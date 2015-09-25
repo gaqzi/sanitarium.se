@@ -1,0 +1,17 @@
+# Site settings
+title: the padded cell
+header-img: img/home-bg.jpg
+email: ba@sanitarium.se
+description: ""
+baseurl: ""
+url: "http://sanitarium.se"
+twitter_username: gaqzi
+github_username:  gaqzi
+facebook_username: 
+
+# Build settings
+markdown: kramdown
+highlighter: pygments
+permalink: pretty
+paginate: 5
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
