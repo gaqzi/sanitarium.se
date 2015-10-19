@@ -186,3 +186,4 @@ and try to be productive instead.
 [included batteries]:http://www.python.org/about/
 [PEP8]:http://www.python.org/dev/peps/pep-0008/
 [SQLAlchemy documentation]:http://docs.sqlalchemy.org/
+[Zed Shaw]: http://zedshaw.com/
