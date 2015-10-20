@@ -8,6 +8,7 @@ twitter_username: gaqzi
 github_username:  gaqzi
 facebook_username:
 timezone: UTC
+github_base_url: https://github.com/gaqzi/sanitarium.se/blob/master/
 
 # Build settings
 markdown: kramdown
