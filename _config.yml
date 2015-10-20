@@ -6,7 +6,8 @@ baseurl: ""
 url: "http://sanitarium.se"
 twitter_username: gaqzi
 github_username:  gaqzi
-facebook_username: 
+facebook_username:
+timezone: UTC
 
 # Build settings
 markdown: kramdown
