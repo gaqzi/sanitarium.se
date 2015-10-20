@@ -1,7 +1,10 @@
 .PHONY: build deploy
 
-build:
+build: clean
 	jekyll build
+
+clean:
+	@rm -rf _site
 
 deploy: build
 	cd _site && \
