@@ -356,6 +356,7 @@ form .row:first-child .floating-label-form-group {
 .pager li > span {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
+  text-decoration: none;
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -407,4 +408,7 @@ body {
 }
 pre {
   font-size: 0.7em;
+}
+article li a {
+  text-decoration: underline;
 }
