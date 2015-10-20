@@ -16,7 +16,7 @@ description: "ramblings of a technical nature"
     </a>
     <p class="post-meta">Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on <time title="{{ post.date }}" datetime="{{ post.date }}">{{ post.date | date: "%B %-d, %Y" }}</time></p>
 </div>
-<hr>
+{% if forloop.last != true %}<hr>{% endif %}
 {% endfor %}
 
 <!-- Pager -->
