@@ -11,6 +11,13 @@ timezone: UTC
 
 # Build settings
 markdown: kramdown
+redcarpet:
+  extensions:
+    - footnotes
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
 highlighter: pygments
 permalink: pretty
 paginate: 5
