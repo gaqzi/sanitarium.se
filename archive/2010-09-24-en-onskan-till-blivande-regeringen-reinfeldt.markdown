@@ -14,7 +14,7 @@ tags:
 - piratpartiet
 ---
 
-[![](http://sanitarium.se/blog/wp-content/uploads/2010/09/Judge-Ask-480px-300x168.jpg)](http://rickfalkvinge.se/2010/06/10/ask-dredd-hittar-spar-av-olaga-rattssakerhet-och-ingriper-direkt/)
+[![](http://sanitarium.se/files/uploads/2010/09/Judge-Ask-480px-300x168.jpg)](http://rickfalkvinge.se/2010/06/10/ask-dredd-hittar-spar-av-olaga-rattssakerhet-och-ingriper-direkt/)
 
 Om det nu är så att det inte blir något nyval, och även om det blir det och ni landar på fötterna även då, så önskar jag att ni kunde ta och göra något vettigare med härket [Tant Gredelin](http://www.annatroberg.com/2010/03/19/tant-gredelin-foresprakar-skampale/) ([Beatrice Ask](http://henrikalexandersson.blogspot.com/search/label/Beatrice%20Ask)) nu när ni inte behöver hålla er eniga. 
 

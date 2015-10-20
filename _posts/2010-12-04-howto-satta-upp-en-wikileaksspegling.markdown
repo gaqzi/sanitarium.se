@@ -75,31 +75,31 @@ Innehållet i filen `wikileaks` som du tankar från den här servern är:
     
 # Hur du säger till Wikileaks att allt är klart
 Surfa in på [formuläret] och fyll i det enligt nedan, byt ut ip-adress mot IP:t för din server:  
-[![](/img/2010/installning-hos-wikileaks.png)](/img/2010/installning-hos-wikileaks.png)
+[![](/img/2010/installning-hos-wikileaks.png)]({{ site.url }}/img/2010/installning-hos-wikileaks.png)
 
 Om det är några oklarheter eller funderingar så fråga på i kommentarsfältet
 nedan så ska jag försöka hjälpa till att reda ut!
 
 **Uppdatering:** [Henrik Rouhivuori](http://twitter.com/rouhivuori)
-  [upplyste om](/blog/2010/12/howto-satta-upp-en-wikileaksspegling/#comment-106760611)
+  [upplyste om]({{ site.url }}/blog/2010/12/howto-satta-upp-en-wikileaksspegling/#comment-106760611)
   att `aptitude` inte finns i Ubuntu 10.10 så jag ändrade till `apt-get`
   istället. Övertydligt att jag fortfarande hänger på 10.04. :)
 
 **Uppdatering 2:**
-  [Henrik Holst](/blog/2010/12/howto-satta-upp-en-wikileaksspegling/#comment-106765553)
+  [Henrik Holst]({{ site.url }}/blog/2010/12/howto-satta-upp-en-wikileaksspegling/#comment-106765553)
   berättade att du kan välja att inaktivera lösenordsinloggning när du skapar
   nya användare, så nu görs det istället för att rekommendera ett slumpmässigt
   långt lösenord!
 
 **Uppdatering 3:**
-  [David Vrensk](/blog/2010/12/howto-satta-upp-en-wikileaksspegling/#comment-106775835)
+  [David Vrensk]({{ site.url }}/blog/2010/12/howto-satta-upp-en-wikileaksspegling/#comment-106775835)
   påminner om att `sshd` är lite petig på att det bara är användaren som ska ha
   rättigheter till `.ssh`-mappen.
 
 **Uppdatering 4:** Av bara farten så hade jag missat att lägga till att man
   måste skapa mappen `www` som wikileaks-filen pekar på, samt `common` efter
   loggraden. Tack till [Gustav Wetter] som
-  [jobbet igenom hela guiden!](http://sanitarium.se/blog/2010/12/howto-satta-upp-en-wikileaksspegling/#comment-106778110)
+  [jobbet igenom hela guiden!]({{ site.url }}/blog/2010/12/howto-satta-upp-en-wikileaksspegling/#comment-106778110)
 
 [kommentar]:http://rickfalkvinge.se/2010/12/04/fullt-krig-om-informationen/#comment-57303
 [infokrig]:http://rickfalkvinge.se/2010/12/04/fullt-krig-om-informationen/

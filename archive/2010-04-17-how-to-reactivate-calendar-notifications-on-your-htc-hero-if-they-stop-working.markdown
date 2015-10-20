@@ -24,6 +24,7 @@ I tried adding and re-adding the calendars I sync on the phone, turning on/off t
 Resetting to factory defaults isn't my first choice of action, so I searched for, [and found][link-to-source], a way to reset the calendar instead. And after doing that a test notification I set to go off a couple of minutes earlier got synced back to the phone and went off!
 
 On your phone:
+
 > Settings -> Applications -> Manage applications  
 > Open up `Calendar storage` and press `Clear data`.  
 > I also cleared the `Calendar` app, not sure if it was needed though. 

@@ -33,7 +33,7 @@ Into my `~/.Xresources` and afterwards ran `xrdb -load ~/.Xresources` and starte
 
 
 
-![xterm with bold font and xterm without bold font](/img/2010/xterms.png)
+![xterm with bold font and xterm without bold font]({{ site.url }}/img/2010/xterms.png)
 
 
 The before and after shot.

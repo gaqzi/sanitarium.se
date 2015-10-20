@@ -27,7 +27,7 @@ Det här är en underbar idé som jag stödjer helhjärtat, men det känns lite 
 
 
 
-![Min fråga/kommentar hos LyftSundsvall.se](/blog/wp-content/uploads/2010/07/Screen-shot-2010-07-17-at-8.00.35-PM.png)
+![Min fråga/kommentar hos LyftSundsvall.se](/files/uploads/2010/07/Screen-shot-2010-07-17-at-8.00.35-PM.png)
 
 
 Min fråga/kommentar hos LyftSundsvall
@@ -56,7 +56,7 @@ Aja, återigen visar det sej att en satsning på den sociala webben inte ens kla
 [st]:http://st.nu/start/sundsvall/1.2034613-folket-ska-lyfta-folkpartiet
 [dagbladet]:http://dagbladet.se/nyheter/sundsvall/1.2033638-folkpartiet-tar-valjarna-till-hjalp-med-valprogrammet
 [senaste-inlägg]:http://lyftsundsvall.se/2010/06/norrlands-storsta-stad/
-[min-kommentar-bild]:http://sanitarium.se/blog/wp-content/uploads/2010/07/Screen-shot-2010-07-17-at-8.00.35-PM.png
+[min-kommentar-bild]:http://sanitarium.se/files/uploads/2010/07/Screen-shot-2010-07-17-at-8.00.35-PM.png
 [kommentar]:http://lyftsundsvall.se/2010/05/parboendegaranti/comment-page-1/#comment-15
 [mitt alternativ]:http://piratpartiet.se/
 [Etherpad]:http://etherpad.org/

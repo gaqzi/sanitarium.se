@@ -24,7 +24,7 @@ tags:
 
 2009 i samband med "The Pirate Bay"-rättegången så bestämde en kompis och jag att det var på plats att [brokep] borde få sej en fanclub. Kompetent och duktig på att prata, och så klart att målsägarsidan tyckte att de här "grabbarna" inte hade några som backade upp dem, vilket vi ju inte tyckte va helt rätt att säga.
 
-[![brokep warhol](http://sanitarium.se/blog/wp-content/uploads/2010/11/brokep-warhol-top-image-2-300x80.png)](http://sanitarium.se/blog/wp-content/uploads/2010/11/brokep-warhol-top-image-2.png)
+[![brokep warhol](http://sanitarium.se/files/uploads/2010/11/brokep-warhol-top-image-2-300x80.png)](http://sanitarium.se/files/uploads/2010/11/brokep-warhol-top-image-2.png)
 
 Så vi registrerade domänen BROKEPFANCLUB.ORG och satte upp den, tyvärr som så många andra projekt så jobbade vi en kväll med det och sen blev det inte mycket mer. Ett problem vi hade var att vi behövde få upp den på internet och vi tyckte att köra en Wordpress-blogg är ju enkelt och bra, men vi hade inte tillgång till något utrymme som räckte till för det just då. Så vi registrerade ett konto hos one.com, och betalade för ett år och tänkte inte så mycket mer på det.
 
@@ -35,21 +35,24 @@ Jag fick aldrig något svar från one.com och fick efter ett tag en påminnelse 
 Ett argt samtal från mej till Intrum där jag skäller ut den stackars tjejen i andra änden så säger hon att de ska de kolla upp allt, eftersom jag endast skulle betala webbhotell och inget annat. Jag ursäktade mitt beteende till henne när jag väl lugnade ner mej, inte hennes fel och hon får säkert alldeles för mycket otrevliga personer som det är i telefon. 
 
 Efter några veckor så får jag ett nytt brev från Intrum där det står: 
+
 > Enligt telefonsamtal med vår kundservice har du bestritt att du beställt domän utan endast webbhotell.
 > Denna fordran avser just webbhotell för adressen BROKEPFANCLUB.ORG som står som obetalt. Emotser omgående besked om bestridan riktas mot One.com och webbhotellsabbonnemanget eller betalning enligt nedan.
 
 Okej tänker jag och ringer upp igen, får prata med en ny tjej som jag försöker förklara att om det nu är så att fakturan endast är på webbhotellet hur har då inte summan kunnat förändras från originalfakturan? (Bortsett från alla avgifter som Intrum lagt på då) Försöker även få henne att TITTA på fakturan, men det är inte möjligt för hon har inte tillgång till det i sina system. Det slutar med att jag skriver ner det jag sagt till henne och skickar in fakturorna via e-post till dem. 
 
 Det vidarebefordras därefter direkt till one.com utan att passera någon hos Intrum, åtminstone så verkar det så när jag i nästa brev från Intrum får:
+
 > One.com låter härmed meddela att då de hanterar både webbhotellet samt domänen ska även domänavgiften betalas. 
 > Kravet vidhålls i sin helhet och vi emotser betalning omgående.
 
 Förvirrad över den logiken ringer jag återigen Intrum och undrar *var* de har *stöd* för det uttalandet i det avtalet vi har med varandra och om de skulle kunna vara snälla att peka ut det. Nästa brev lyder:
+
 > Med anledning av din invändan meddelar One.com att du kan läsa i deras affärsvillkor angående domänavgiften under punkt 2. Domän "Vid utgående av varje registreringsperiod fakturerar One.com kunden årsavgiften för domänen så tillvida inget annat framgår." Vi emotser din betalning enligt nedan senast 100610.
 
 Så, om jag inte sagt upp domännamnet så kommer det faktureras? Klart, få se nu, jag sa upp domännamnet när jag bestred den första fakturan. Check. Läser igenom avtalet för att se om jag måste säga upp domännamnet en viss tid i förväg, hittar inget. Läser runt på deras hemsida för HUR man säger upp domännamnet, men hittar inget. Det står inget i avtalet om att jag *får* säga upp domänen, betyder det att jag är dömd att betala den tills jag dör nu?
 
-[![](http://sanitarium.se/blog/wp-content/uploads/2010/11/cussing-150x150.png)](http://sanitarium.se/blog/wp-content/uploads/2010/11/cussing.png)
+[![](http://sanitarium.se/files/uploads/2010/11/cussing-150x150.png)](http://sanitarium.se/files/uploads/2010/11/cussing.png)
 
 Vid det här laget så har jag börjat bli riktigt arg på Intrum Justitia och one.com, något känns fel här. Så jag börjar gräva runt i vad som gäller för en registrar för .ORG och det visar sej att i [ICANN Registrar Accreditation Agreement][icann] avsnitt 3.7.5 så står det:
 
@@ -64,6 +67,7 @@ Verkar inte som att one.com lever upp till det här avtalet som de [skrivit unde
 Så utan mitt medgivande så *får inte* one.com återregistrera min domän, intressant att de hoppade över den detaljen. Jag använde formuläret hos [ICANN] för att berätta om mitt ärende, fick reda på att de skulle vidarebefordra det till one.com och så hände det inte något mer med det.
 
 Tillsammans med texten från ICANN och en följande text från [Datainspektionens hemsida][di-inkasso], sida 13-14, så börjar jag känna mej rätt säker på att jag har rätt i sak.
+
 > **Kontroll av fordran**  
 > En inkassoåtgärd bör inte vidtas om det finns sannolika skäl för att en fordran inte är lagligen grundad (8 § inkassolagen). Det är inte god inkassosed att vidta en inkassoåtgärd om det framgår av handlingarna som lämnats till inkassoombudet eller av invändningar från gäldenären att fordran saknar laga grund.  
 
@@ -75,13 +79,14 @@ Jag är ju ingen jurist, så jag är osäker på om det inte är avtalsenligt ka
 Så jag struntar i de påminnelserna jag får från Intrum och får snart en fordran från Kronofogden, så jag sammanställer det jag har och skickar in [min bestridan.][bestridan]
 
 Jag fick två veckor på mej att skicka in min bestridan, men efter att inte ha fått svar på tre veckor så börjar jag undra vad som egentligen står på. Så måndagen efter valet, mer än en månad efter jag skickade in mitt svar, så får jag ner i brevlådan ett svar från Kronofogden:
+
 > BESLUT:  
 > Målet avskrivs.  
 > SKÄL  
 > Sökande har inte inom förelagd tid begärt att målet skall överlämnas till tingsrätt. Målet skall därför skrivas av från vidare handläggning från kronofogdemyndigheten.  
 
 Det brevet gjorde den dagen för mej!
-[![](http://sanitarium.se/blog/wp-content/uploads/2010/11/excellent-150x150.jpg)](http://sanitarium.se/blog/wp-content/uploads/2010/11/excellent.jpg)
+[![](http://sanitarium.se/files/uploads/2010/11/excellent-150x150.jpg)](http://sanitarium.se/files/uploads/2010/11/excellent.jpg)
 
 Men nu har vi en sak kvar i det här ärendet, Intrum Justitia, de som hela tiden bara flyttat över allt på one.com och inte gjort mer än att skicka brev mellan oss. Från vad jag läste hos Datainspektionen så borde det ju inte vara riktigt rätt, och det faktumet att de lät bli att gå vidare i ärendet när de faktiskt var tvungna att läsa igenom avtalet och mitt svar, tycker jag pekar på att de faktiskt inte gjort det grundarbetet som inkassolagen kräver. Jag menar, Intrum har ju ändå ett rykte för att aldrig ge sej, så varför skulle de ge sej om de hade rätt i sak och kunde få ut pengarna genom Tingsrätten?
 

@@ -114,7 +114,7 @@ now. When I'm reading documentation for Ruby I generally have the source code
 just one mouse click away. So when I wasn't understanding what the documentation
 was saying I just flipped on the source code and I could figure it out.
 
-[![Ruby documentation source example](/img/2013/Screenshot_2013-01-19_00_30-300x187.png)](/img/2013/Screenshot_2013-01-19_00_30.png)
+[![Ruby documentation source example]({{ site.url }}/img/2013/Screenshot_2013-01-19_00_30-300x187.png)]({{ site.url }}/img/2013/Screenshot_2013-01-19_00_30.png)
 
 With most Python libraries I've had to do something similar to this:
 
@@ -169,7 +169,7 @@ code I read to be consistent. And that's one way of trying to ensure that.
 Now that I've done the virtual variant of screaming out into the night I'll go
 and try to be productive instead.
 
-[![Classy Python](/img/2013/classy-python-158x300.png)](/img/2013/classy-python.png)
+[![Classy Python]({{ site.url }}/img/2013/classy-python-158x300.png)]({{ site.url }}/img/2013/classy-python.png)
 
 
 [Ruby]:http://en.wikipedia.org/wiki/Ruby_(programming_language)

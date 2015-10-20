@@ -16,7 +16,7 @@ tags:
 ---
 
 Det är ju inte allt för ofta att det ska spelas upp att norrlänningen är lite barskare, lite hårdare och ja, lite grövre. Så därför blev jag inte egentligen förvånad när det fanns två typer av tvåler att välja mellan på toaletten på OKQ8 i Umeå, vanlig tvål och *[grov tvål]*.
-[![](http://sanitarium.se/blog/wp-content/uploads/2011/09/tval-grov-tval-300x211.jpg)](http://sanitarium.se/blog/wp-content/uploads/2011/09/tval-grov-tval.jpeg)
+[![](http://sanitarium.se/files/uploads/2011/09/tval-grov-tval-300x211.jpg)](http://sanitarium.se/files/uploads/2011/09/tval-grov-tval.jpeg)
 
 Fast det kändes värre med toalettpappret, en med Lambi och en med [Sandy].
 

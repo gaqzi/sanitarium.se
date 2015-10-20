@@ -22,4 +22,4 @@ Så jag gav mej iväg till [Plantagen](http://plantagen.se/) och köpte tre styc
 Men att ha blommor har fått en helt annan dimension när det har en positiv effekt, nu ska det minsann bli bra luft i min lägenhet!
 
 
-![En svärmorstunga som står i mitt sovrumsfönster — är i behov av riktiga krukor — det kommer ju rasa i golvet när som helst!](http://sanitarium.se/blog/wp-content/uploads/2009/09/thumb_planta.png)
+![En svärmorstunga som står i mitt sovrumsfönster — är i behov av riktiga krukor — det kommer ju rasa i golvet när som helst!](http://sanitarium.se/files/uploads/2009/09/thumb_planta.png)

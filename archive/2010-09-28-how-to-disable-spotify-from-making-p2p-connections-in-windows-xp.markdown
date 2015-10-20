@@ -21,7 +21,7 @@ I've been having trouble at work with the available bandwidth running out when I
 
 So what I did to force Spotify to only connect and fetch data from the Spotify servers was to use the built-in firewall in Windows XP and specify that `spotify.exe` is only allowed to connect to: [`78.31.8.0/22,193.182.8.0/21`][spotify-servers], mix up some traffic priority rules at the router for connections to those IP:s and Spotify can still be used, and not taking up all available bandwidth.
 
-[![](http://sanitarium.se/blog/wp-content/uploads/2010/09/spotify-firewall-updated-255x300.png)](http://sanitarium.se/blog/wp-content/uploads/2010/09/spotify-firewall-updated.png)
+[![](http://sanitarium.se/files/uploads/2010/09/spotify-firewall-updated-255x300.png)](http://sanitarium.se/files/uploads/2010/09/spotify-firewall-updated.png)
 
 **Updated 2011-08-23**: Added a new IP-range that Spotify uses, 193.182.8.0/21.
 
