@@ -6,6 +6,7 @@ layout: post
 slug: testing-against-many-versions-of-python-on-snap-ci
 title: Using multiple versions of Python on Snap CI
 subtitle: Why just play with one snake?
+description: The one where our hero finds and tames multiple Pythons
 categories:
 - blog
 tags:
