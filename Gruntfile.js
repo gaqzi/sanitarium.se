@@ -7,6 +7,15 @@ module.exports = function(grunt) {
             main: {
                 src: 'js/<%= pkg.name %>.js',
                 dest: 'js/<%= pkg.name %>.min.js'
+            },
+            site: {
+              options: {
+                sourceMap: true,
+                sourceMapRoot: '/js'
+              },
+              files: {
+                'js/site.min.js': ['js/jquery.js', 'js/bootstrap.js', 'js/clean-blog.js']
+              }
             }
         },
         less: {

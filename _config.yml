@@ -32,6 +32,11 @@ exclude:
   - LICENSE
   - css/bootstrap.css
   - css/clean-blog.css
+  - css/syntax.css
+  - css/*.min.css
   - js/bootstrap.js
   - js/clean-blog.js
   - js/jquery.js
+  - js/bootstrap.min.js
+  - js/clean-blog.min.js
+  - js/jquery.min.js

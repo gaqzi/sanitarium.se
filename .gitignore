@@ -1,2 +1,6 @@
 _site
 node_modules
+js/*.min.js
+js/*.map
+css/clean-blog.*
+css/site.css
