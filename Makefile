@@ -26,4 +26,6 @@ assets: css/site.css js/site.min.js
 
 deploy: assets build
 	cd _site && \
-		rsync -rvz . sanitarium@cell.sanitarium.se:/srv/www/sanitarium.se/
+		rsync -rvz \
+			--delete-after --delete-excluded \
+			. sanitarium@cell.sanitarium.se:/srv/www/sanitarium.se/
