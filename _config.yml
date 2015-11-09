@@ -21,7 +21,7 @@ kramdown:
   hard_wrap: false
 highlighter: pygments
 permalink: pretty
-paginate: 5
+paginate: 100
 paginate_path: /page/:num
 exclude:
   - less
