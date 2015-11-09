@@ -13,11 +13,15 @@
     <meta property="og:title" content="{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ page.url | replace:'index.html', '' | prepend: site.baseurl | prepend: site.url }}">
-    {% if page.header-img %}
-    <meta property="og:image" content="{{ page.header-img | prepend: site.url }}">
-    <meta property="twitter:card" content="summary_large_image">
+    {% if page.title %}
+        {% if page.header-img %}
+        <meta property="og:image" content="{{ page.header-img | prepend: site.url }}">
+        {% else %}
+        <meta property="og:image" content="{{ page|render_banner | prepend: site.url }}">
+        {% endif %}
+        <meta property="twitter:card" content="summary_large_image">
     {% else %}
-    <meta name="twitter:card" content="summary">
+        <meta property="twitter:card" content="summary">
     {% endif %}
     <meta name="twitter:creator" content="@gaqzi">
 
