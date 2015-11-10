@@ -1,0 +1,5 @@
+# Just to remove these from index
+Disallow: /w/
+Disallow: /wiki/
+
+Sitemap: http://sanitarium.se/robots.txt
