@@ -17,7 +17,7 @@ tags:
 
 I just misplaced my Apple Watch in the apartment, looking in the usual places
 lead nowhere. Walking around frustrated I was thinking, "There ought to be a way
-to make it make some sound. Like a sonar!". I searched the internet but my
+to make it make some sound. Like a [sonar]!". I searched the internet but my
 Google-fu failed me, no obvious way to "ping my watch", like the functionality
 for [pinging the phone], when I misplace it.
 
@@ -43,3 +43,4 @@ companion app on the phone.
    your own apartment.
 
 [pinging the phone]: https://www.youtube.com/watch?v=KYf4q4y7dM4
+[sonar]: https://en.wikipedia.org/wiki/Sonar
