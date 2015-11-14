@@ -21,7 +21,7 @@ to make it make some sound. Like a [sonar]!". I searched the internet but my
 Google-fu failed me, no obvious way to "ping my watch", like the functionality
 for [pinging the phone], when I misplace it.
 
-But there's a way to make some noise; testing out the alert volume in the
+But there's a way to make some noise: testing out the alert volume in the
 companion app on the phone.
 
 ## Steps
