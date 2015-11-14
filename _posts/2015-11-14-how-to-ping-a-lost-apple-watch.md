@@ -39,7 +39,7 @@ companion app on the phone.
       The watch will make a sound every time you tap the knob.
       <img src="{{ '/img/2015/11/alert-volume-settings.png' | prepend: site.url }}"
            alt="Alert volume settings" style="max-width: 375px;">
-3. Don't cry yourself to sleep over loosing an expensive toy in the mess that is
+3. Don't cry yourself to sleep over losing an expensive toy in the mess that is
    your own apartment.
 
 [pinging the phone]: https://www.youtube.com/watch?v=KYf4q4y7dM4
