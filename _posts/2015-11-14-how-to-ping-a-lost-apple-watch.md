@@ -15,11 +15,11 @@ tags:
 ---
 # Background
 
-I just misplaced my Apple Watch in the apartment, looking in the usual places
-lead nowhere. Walking around frustrated I was thinking, "There ought to be a way
-to make it make some sound. Like a [sonar]!". I searched the internet but my
-Google-fu failed me, no obvious way to "ping my watch", like the functionality
-for [pinging the phone], when I misplace it.
+I just misplaced my Apple Watch in my apartment. Walking around looking for it,
+and getting frustrated, I was thinking, "There ought to be a way to make it make
+some sound, then I can play [Marco Polo] with the watch". But my Google-fu
+failed me, no obvious way to "ping my watch". There's functionality for
+[pinging the phone] from the watch though.
 
 But there's a way to make some noise: testing out the alert volume in the
 companion app on the phone.
@@ -43,4 +43,4 @@ companion app on the phone.
    your own apartment.
 
 [pinging the phone]: https://www.youtube.com/watch?v=KYf4q4y7dM4
-[sonar]: https://en.wikipedia.org/wiki/Sonar
+[Marco Polo]: https://en.wikipedia.org/wiki/Marco_Polo_(game)
