@@ -18,7 +18,7 @@ tags:
 I just misplaced my Apple Watch in my apartment. Walking around looking for it,
 and getting frustrated, I was thinking, "There ought to be a way to make it make
 some sound, then I can play [Marco Polo] with the watch". But my Google-fu
-failed me, no obvious way to "ping my watch". There's functionality for
+failed me: no obvious way to "ping my watch". There's functionality for
 [pinging the phone] from the watch though.
 
 But there's a way to make some noise: testing out the alert volume in the
