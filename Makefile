@@ -6,7 +6,7 @@ SITEMAP = http://sanitarium.se/sitemap.xml
 
 build: clean
 	@make assets
-	@jekyll build
+	@bundle exec jekyll build
 
 clean:
 	@rm -rf _site
