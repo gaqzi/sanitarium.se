@@ -75,8 +75,9 @@ PLATFORMS
 DEPENDENCIES
   jekyll (~> 2)
   kramdown
+  liquid
   mini_magick
   rouge
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
