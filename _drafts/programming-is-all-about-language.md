@@ -34,9 +34,8 @@ new species of sharks, but not quite as dangerous.
 
 # Your language
 
-The things we're using to control our computers are called languages. Because
-they're functionally the same in regards to the computer as for instance
-English is to you and me.
+The things we're using to control our computers are called languages, because
+they're functionally the same to the computer as English is to you and me.
 
 Explanations are derived from sentences, which are made up of words. Each word
 carries a meaning and "bigger" words can generally be explained by multiple

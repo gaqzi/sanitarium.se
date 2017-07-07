@@ -44,7 +44,7 @@ does, then read the excellent blog post
 
 In our case what ended up happening was that all requsts appeared to be coming
 from our load balancer, which can hardly be called an end user. Our app setup is
-very straightforward. Some app servers, a load balancer, and in front of all of
+straightforward. Some app servers, a load balancer, and in front of all of
 this there’s a reverse proxy that handles SSL termination and routing for the
 different apps this datacenter provides.
 
