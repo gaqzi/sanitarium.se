@@ -24,6 +24,11 @@ permalink: pretty
 paginate: 100
 paginate_path: /page/:num
 exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Makefile
+  - blog.iml
+  - bin/*
   - less
   - node_modules
   - Gruntfile.js
