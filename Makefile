@@ -11,17 +11,18 @@ build: clean
 clean:
 	@rm -rf _site
 
-css/clean-blog.min.css: node_modules $(ALL_LESS)
+css/clean-blog.min.css: node_modules/.installed $(ALL_LESS)
 	@node_modules/.bin/grunt less
 
 css/site.css: $(ALL_CSS)
 	@cat $(ALL_CSS) > $@
 
-js/site.min.js: node_modules $(ALL_JS)
+js/site.min.js: node_modules/.installed $(ALL_JS)
 	@node_modules/.bin/grunt uglify
 
-node_modules: package.json
-	@npm install
+node_modules/.installed: package.json
+	@npm install && \
+		touch node_modules/.installed
 
 assets: css/site.css js/site.min.js
 
