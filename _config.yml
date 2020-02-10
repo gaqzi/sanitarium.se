@@ -24,27 +24,27 @@ permalink: pretty
 paginate: 100
 paginate_path: /page/:num
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - Makefile
-  - blog.iml
   - bin/*
-  - less
-  - node_modules
-  - Gruntfile.js
-  - package.json
-  - README.md
-  - LICENSE
+  - blog.iml
+  - css/*.min.css
   - css/bootstrap.css
   - css/clean-blog.css
   - css/syntax.css
-  - css/*.min.css
+  - Gemfile
+  - Gemfile.lock
+  - Gruntfile.js
   - js/bootstrap.js
-  - js/clean-blog.js
-  - js/jquery.js
   - js/bootstrap.min.js
+  - js/clean-blog.js
   - js/clean-blog.min.js
+  - js/jquery.js
   - js/jquery.min.js
+  - less
+  - LICENSE
+  - Makefile
+  - node_modules
+  - package.json
+  - README.md
 
 sitemap:
   file: "/sitemap.xml"
