@@ -12,13 +12,13 @@ clean:
 	@rm -rf _site
 
 css/clean-blog.min.css: node_modules $(ALL_LESS)
-	@grunt less
+	@node_modules/.bin/grunt less
 
 css/site.css: $(ALL_CSS)
 	@cat $(ALL_CSS) > $@
 
 js/site.min.js: node_modules $(ALL_JS)
-	@grunt uglify
+	@node_modules/.bin/grunt uglify
 
 node_modules: package.json
 	@npm install
