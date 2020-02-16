@@ -87,15 +87,17 @@ categories:
   <section>
     <h1> Unbuffered example</h1>
 
-    <pre><code class="language-golang">
+    <!-- @formatter:off -->
+<pre><code class="language-golang">
 greetingChan := make(chan string)
 
 go func (c <-chan string) {
-fmt.Printf("Hello, %s", <-c)
+  fmt.Printf("Hello, %s", <-c)
 }(greetingChan)
 
 greetingChan <- "World"
 </code></pre>
+    <!-- @formatter:on -->
   </section>
 </section>
 
@@ -116,20 +118,22 @@ greetingChan <- "World"
     <h3>Buffered concurrent execution</h3>
     <p>With channels you can share a limited resource across unlimited concurrency</p>
 
-    <pre><code class="language-golang">
-var dbConns []*DB.Conn // let's assume this variable contains 5 connections
+    <!-- @formatter:off -->
+<pre><code class="language-golang">
+var dbConns []*DB.Conn // let's assume it contains 5 connections
 dbPool := make(chan *DB.Conn, 5)
 for i := 0; i < 5; i++ {
-dbPool <-dbConns[i]
+  dbPool <-dbConns[i]
 }
 
 t.Run("parallel test run 1", func (t *testing.T) {
-t.Parallel()
-db := <- dbPool
-defer func () { dbPool <- db }() // returns to pool
-// run lots of tests
+  t.Parallel()
+  db := <- dbPool
+  defer func () { dbPool <- db }() // returns to pool
+  // run lots of tests
 })
 </code></pre>
+<!-- @formatter:on -->
   </section>
 </section>
 
@@ -184,13 +188,15 @@ fmt.Printf("v=%v, open=%v\n", v, ok) // v=false, open=false
   <section>
     <h1>Example</h1>
 
-    <pre><code class="language-golang">func getMessages(
-        ctx context.Context,
-        query Query,
-        errChan chan<- error,
-        stopChan <-chan struct{},
-        ) {}
+    <!-- @formatter:off -->
+<pre><code class="language-golang">func getMessages(
+    ctx context.Context,
+    query Query,
+    errChan chan<- error,
+    stopChan <-chan struct{},
+) {}
 </code></pre>
+<!-- @formatter:on -->
 
     <ul>
       <li class="fragment"><code>context.Context</code> means external shutdown</li>
@@ -226,10 +232,10 @@ fmt.Printf("v=%v, open=%v\n", v, ok) // v=false, open=false
 <section>
   <h1>Channel type specification</h1>
   <ul>
-    <li class="fragment"><code>name <-chan string</code>: read-only</li>
-    <li class="fragment"><code>name chan<- string</code>: write-only</li>
     <li class="fragment">
       Used when specifying which channel you want in your functions and interfaces
     </li>
+    <li class="fragment"><code>name <-chan string</code>: read-only</li>
+    <li class="fragment"><code>name chan<- string</code>: write-only</li>
   </ul>
 </section>
