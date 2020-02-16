@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>{% if page.title %}{{ page.title }}{% endif %}</title>
+
+  <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+  <link rel="stylesheet" href="../reveal/css/theme/white.css">
+  <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+  <meta charset="UTF-8">
+  {% if page.title %}
+    {% if page.header-img %}
+      <meta property="og:image" content="{{ page.header img | prepend  site.url }}">
+    {% else %}
+      <meta property="og:image" content="{{ page|render_banner | prepend: site.url }}">
+    {% endif %}
+    <meta property="twitter:card" content="summary_large_image">
+  {% else %}
+    <meta property="twitter:card" content="summary">
+  {% endif %}
+  <meta name="twitter:creator" content="@gaqzi">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+  <style>
+    .fragment.visible {
+      color: silver;
+    }
+
+    .fragment.current-fragment {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+      {{ content }}
+  </div>
+</div>
+<script src="../reveal/js/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true, // Adds a hash to the url so reload goes back
+    dependencies: [
+      // Syntax highlight for <code> elements
+      {src: '../../plugin/highlight/highlight.js', async: true},
+    ]
+  });
+</script>
+</body>
+</html>
