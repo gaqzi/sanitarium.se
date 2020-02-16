@@ -3,4 +3,4 @@ User-agent: *
 Disallow: /w/
 Disallow: /wiki/
 
-Sitemap: http://sanitarium.se/robots.txt
+Sitemap: http://sanitarium.se/sitemap.xml
