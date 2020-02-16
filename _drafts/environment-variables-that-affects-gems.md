@@ -96,4 +96,65 @@ There a full listing of the
 [environment variables bundler is configured with][bundler env] on the bundler
 website. Scroll down to "List of available keys".
 
+# Some system variables
+
+`LANG` and the `LC_*` variables can really affect various parts of your system.
+For a while [grep used to have a bug] when `LANG` was set to something with
+`UTF-8`.
+
+At work we found an interesting issue where the interpreter, Python in that
+case, thought it was running with the POSIX locale. Which is basically ASCII,
+and which doesn't support UTF-8 characters. But how did that end up happening,
+and why?
+
+# How are environment variables set?
+Normally when you're using your computer the environment variables are set when you start your shell. The shell that you start off with is called a "login shell" and has some special characteristics.
+
+# When are they set?
+
+# Why are they sometimes unset!?
+
+
+[grep]: http://dtrace.org/blogs/brendan/2011/12/08/2000x-performance-win/
 [bundler env]: http://bundler.io/v1.10/bundle_config.html
+
+How are environment variables set?
+
+When using your terminal your shell is by default started as a "login shell". The login shell prepares you to work by:
+
+Loading your dotfiles (.bashrc, .zshrc)
+Running system level startup scripts (/etc/profile.d/*.sh)
+Which is why you `eval "$(rbenv init -)"` in your .zshrc gives you access to rbenv on the cli. And in a shell script you've to call it yourself.
+
+How does rbenv, pyenv, virtualenvs and the like work?
+
+To be able to talk about this I've to introduce `$PATH`. `$PATH` is a variable that holds all the "search paths" for where you can find your executables. Type `vim` in your shell and press enter. What then happens is:
+
+The shell looks at all directories in `$PATH`, separated by colons (:)
+Concatenates the path and the executable, lets call it `$full_path`
+If `$full_path` exists and is executable it's executed
+Or in code:
+
+```
+
+ENV['PATH']  # => '/Users/ba/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
+executable = 'vim'
+
+full_path = ENV['PATH'].split(':').find do |path|
+  path = File.join(path, executable)
+
+  File.exists?(path) && File.executable?(path)
+end
+
+exit 1 unless full_path
+exec File.join(full_path, executable)
+
+```
+
+And to get your rbenv selected version of Ruby first… ensure it's early in `$PATH`.
+
+It's elegant in it's simplicity. Put your interpreter first in your `$PATH`, and you're set. Unix fundamentals.
+
+# When are they set?
+
+# Why are they sometimes unset!?
