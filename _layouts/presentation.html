@@ -6,6 +6,16 @@
   <link rel="stylesheet" href="../reveal/css/theme/white.css">
   <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
   <meta charset="UTF-8">
+  {% if page.description == nil or page.description == '' %}
+    <meta name="description" content="{{ page.content | truncatewords: 35, '...' | escape }}">
+    <meta property="og:description" content="{{ page.content | truncatewords: 35, '...' | escape }}">
+  {% else %}
+    <meta name="description" content="{{ page.description | escape }}">
+    <meta property="og:description" content="{{ page.description | escape }}">
+  {% endif %}
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% endif %}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | replace:'index.html', '' | prepend: site.baseurl | prepend: site.url }}">
   {% if page.title %}
     {% if page.header-img %}
       <meta property="og:image" content="{{ page.header img | prepend  site.url }}">
