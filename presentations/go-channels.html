@@ -57,7 +57,30 @@ categories:
     <h1>No globals?</h1>
     <ul>
       <li class="fragment">Of course, we still have globals and mutexes</li>
-      <li class="fragment">Instead, send a message on a channel!</li>
+      <li class="fragment">But prefer to send a message on a channel!</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Syntax and usage</h1>
+
+    <ul>
+      <li class="fragment"><code>stopChan := make(chan bool)</code>, create a channel</li>
+      <li class="fragment"><code><-c</code>: read from a channel</li>
+      <li class="fragment"><code>c <-</code>: write to a channel</li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>Passing channels</h1>
+    <ul>
+      <li>
+        Used when specifying which channel you want in your functions and interfaces
+      </li>
+      <li class="fragment"><code>name <-chan string</code>: read-only</li>
+      <li class="fragment"><code>name chan<- string</code>: write-only</li>
     </ul>
   </section>
 </section>
@@ -120,7 +143,7 @@ greetingChan <- "World"
 
     <!-- @formatter:off -->
 <pre><code class="language-golang">
-var dbConns []*DB.Conn // let's assume it contains 5 connections
+var dbConns []*DB.Conn // assume it contains 5 connections
 dbPool := make(chan *DB.Conn, 5)
 for i := 0; i < 5; i++ {
   dbPool <-dbConns[i]
@@ -226,16 +249,5 @@ fmt.Printf("v=%v, open=%v\n", v, ok) // v=false, open=false
       unless it has a <code>default</code>
     </li>
     <li class="fragment">Remember, a closed channel is always readable</li>
-  </ul>
-</section>
-
-<section>
-  <h1>Channel type specification</h1>
-  <ul>
-    <li class="fragment">
-      Used when specifying which channel you want in your functions and interfaces
-    </li>
-    <li class="fragment"><code>name <-chan string</code>: read-only</li>
-    <li class="fragment"><code>name chan<- string</code>: write-only</li>
   </ul>
 </section>
