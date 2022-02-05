@@ -7,6 +7,7 @@ module Jekyll
     def render_banner(page)
       banner = Banner.new(page)
       banner.create! unless banner.exists?
+      copy_to_destination(banner)
 
       "/#{banner.path}"
     end
@@ -63,6 +64,23 @@ module Jekyll
       def rasterize
         '_rasterize.js'
       end
+    end
+
+    private
+
+    # Before this step we wouldn't get the banner copied into the output
+    # folder until _the next time around_, which is not good when
+    # publishing a new thing, and we're not publishing from the same
+    # host every single time. Like when we deploy from CI.
+    #
+    # So, now try and copy to the same path in the destination folder
+    # and take it from there.
+    def copy_to_destination(banner)
+      site_path = File.join(Jekyll.configuration["destination"], banner.path)
+      FileUtils.cp(banner.path, site_path)
+    rescue Errno::ENOENT
+      FileUtils.mkdir_p(File.dirname(site_path))
+      retry
     end
   end
 end

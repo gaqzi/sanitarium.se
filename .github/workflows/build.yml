@@ -24,7 +24,8 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: img/banners/*.gen.png
-          key: ${{ runner.os }}-banners-${{ hashFiles('_plugins/banner_creator.rb') }}
+          key: ${{ runner.os }}-banners-${{ hashFiles('_plugins/banner_creator.rb', '**/*.md', '**/*.markdown') }}
+          restore-keys: ${{ runner.os }}-banners-
 
       - name: Build
         run: >
