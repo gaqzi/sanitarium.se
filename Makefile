@@ -1,4 +1,4 @@
-.PHONY: build deploy
+.PHONY: build deploy _deploy
 ALL_CSS = css/bootstrap.min.css css/clean-blog.min.css css/syntax.css
 ALL_JS = js/bootstrap.js js/clean-blog.js js/jquery.js
 ALL_LESS = less/clean-blog.less less/mixins.less less/variables.less
@@ -39,6 +39,9 @@ ping:
 	  curl -sSf "https://www.bing.com/webmaster/ping.aspx?siteMap=$(SITEMAP)" > /dev/null
 
 deploy: assets build
+	@make _deploy
+
+_deploy:
 	@cd _site && \
 		rsync -rvz \
 			--delete-after --delete-excluded \

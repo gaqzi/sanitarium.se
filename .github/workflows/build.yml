@@ -1,5 +1,5 @@
 ---
-name: Build
+name: Build & Deploy
 
 on:
   push:
@@ -29,3 +29,39 @@ jobs:
       - name: Build
         run: >
           make build
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: site
+          path: _site/
+          retention-days: 1
+
+  deployment:
+    if: ${{ github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: site
+
+      - name: Add SSH key
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          mkdir -p /home/runner/.ssh
+          ssh-keyscan cell.sanitarium.se >> /home/runner/.ssh/known_hosts
+          echo "${{ secrets.DEPLOY_SSH }}" > /home/runner/.ssh/github_actions
+          chmod 600 /home/runner/.ssh/github_actions
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+          ssh-add /home/runner/.ssh/github_actions
+
+      - name: Deploy
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: make _deploy
+
+      - name: Ping
+        run: make ping
