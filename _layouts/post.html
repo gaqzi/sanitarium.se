@@ -8,11 +8,11 @@ layout: default
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1><a href="{{ page.url }}">{{ page.title }}</a></h1>
+                    <h1 class="title"><a href="{{ page.url }}">{{ page.title }}</a></h1>
                     {% if page.subtitle %}
                     <h2 class="subheading">{{ page.subtitle }}</h2>
                     {% endif %}
-                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on <time title="{{ page.date }}" datetime="{{ page.date }}">{{ page.date | date: "%B %-d, %Y" }}</time></span>
+                    <span class="meta">Posted by {% if page.author %}<span class="author">{{ page.author }}</span>{% else %}{{ site.title }}{% endif %} on <time class="published-at" title="{{ page.date }}" datetime="{{ page.date }}">{{ page.date | date: "%B %-d, %Y" }}</time></span>
                 </div>
             </div>
         </div>
@@ -20,12 +20,13 @@ layout: default
 </header>
 
 <!-- Post Content -->
-<article>
+<div>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-                {{ content }}
+                <article>
+                    {{ content }}
+                </article>
 
                 <hr>
 
@@ -62,6 +63,6 @@ layout: default
             </div>
         </div>
     </div>
-</article>
+</div>
 
 <hr>
