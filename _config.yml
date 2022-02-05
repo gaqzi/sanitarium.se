@@ -34,6 +34,7 @@ paginate: 100
 paginate_path: /page/:num
 exclude:
   - .idea/
+  - .gitignore
   - bin/*
   - blog.iml
   - css/*.min.css
