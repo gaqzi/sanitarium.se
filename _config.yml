@@ -24,6 +24,7 @@ permalink: pretty
 paginate: 100
 paginate_path: /page/:num
 exclude:
+  - .idea/
   - bin/*
   - blog.iml
   - css/*.min.css
