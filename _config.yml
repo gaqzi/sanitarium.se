@@ -10,6 +10,9 @@ facebook_username:
 timezone: UTC
 github_base_url: https://github.com/gaqzi/sanitarium.se/blob/master/
 
+plugins:
+  - jekyll-paginate
+
 # Build settings
 markdown: kramdown
 redcarpet:
