@@ -21,18 +21,9 @@ jobs:
           node-version: lts/erbium
           cache: npm
 
-      - uses: actions/cache@v2
-        with:
-          path: img/banners/*.gen.png
-          key: ${{ runner.os }}-banners-${{ hashFiles('_plugins/banner_creator.rb', '**/*.md', '**/*.markdown') }}
-          restore-keys: ${{ runner.os }}-banners-
-
       - name: Build
-        # Doing it twice because there's a bug with the banner creator where it doesn't copy it
-        # over correctly after creating it the first time. When I have figured that out
-        # the second time can be removed.
         run: >
-          make build && make build
+          make build
 
       - uses: actions/upload-artifact@v2
         with:

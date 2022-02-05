@@ -1,4 +1,4 @@
-.PHONY: build deploy _deploy
+.PHONY: build deploy _deploy recreate-banners
 ALL_CSS = css/bootstrap.min.css css/clean-blog.min.css css/syntax.css
 ALL_JS = js/bootstrap.js js/clean-blog.js js/jquery.js
 ALL_LESS = less/clean-blog.less less/mixins.less less/variables.less
@@ -7,6 +7,11 @@ SITEMAP = https://sanitarium.se/sitemap.xml
 build: clean
 	@make assets
 	@bundle exec jekyll build
+
+recreate-banners:  ## Shouldn't have to be run very often. Just after major changes in the banners.
+	@rm -rf img/banners/*.gen.png && \
+		make build && \
+		git add img/banners/*.gen.png
 
 clean:
 	@rm -rf _site
