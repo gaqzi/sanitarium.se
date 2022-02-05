@@ -49,7 +49,6 @@ GEM
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (4.0.6)
-    pygments.rb (2.3.0)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -72,7 +71,6 @@ DEPENDENCIES
   kramdown
   liquid
   mini_magick
-  pygments.rb
   rouge
 
 BUNDLED WITH
