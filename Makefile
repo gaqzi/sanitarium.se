@@ -44,5 +44,6 @@ deploy: assets build
 _deploy:
 	@cd _site && \
 		rsync -rvz \
+			--perms --chmod=Dgo+rx,Fgo+r \
 			--delete-after --delete-excluded \
 			. sanitarium@cell.sanitarium.se:/srv/www/sanitarium.se/
