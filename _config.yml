@@ -3,7 +3,7 @@ title: the padded cell
 email: ba@sanitarium.se
 description: ""
 baseurl: ""
-url: "http://sanitarium.se"
+url: "https://sanitarium.se"
 twitter_username: gaqzi
 github_username:  gaqzi
 facebook_username:
@@ -12,6 +12,13 @@ github_base_url: https://github.com/gaqzi/sanitarium.se/blob/master/
 
 plugins:
   - jekyll-paginate
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: presentations/reveal/**
+    values:
+      sitemap: false
 
 # Build settings
 markdown: kramdown
@@ -50,14 +57,3 @@ exclude:
   - package.json
   - package-lock.json
   - README.md
-
-sitemap:
-  file: "/sitemap.xml"
-  exclude:
-    - "/atom.xml"
-    - "/feed.xml"
-    - "/feed/index.xml"
-  include_posts:
-    - "/index.html"
-  change_frequency_name: "change_frequency"
-  priority_name: "priority"
