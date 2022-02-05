@@ -24,11 +24,14 @@ node_modules/.installed: package.json
 	@npm install && \
 		touch node_modules/.installed
 
-assets: css/site.css js/site.min.js .bundler-installed
+assets: css/site.css js/site.min.js .bundler-installed .ruby-version
 
 .bundler-installed: Gemfile.lock Gemfile
 	@bundle install && \
 		touch $@
+
+.ruby-version: .tool-versions
+	grep ruby .tool-versions | cut -d' ' -f2 > .ruby-version
 
 ping:
 	curl -sSf "https://www.feedburner.com/fb/a/pingSubmit?bloglink=http%3A%2F%2Fsanitarium.se%2F" > /dev/null && \
