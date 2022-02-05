@@ -18,7 +18,7 @@
   <meta property="og:url" content="{{ page.url | replace:'index.html', '' | prepend: site.baseurl | prepend: site.url }}">
   {% if page.title %}
     {% if page.header-img %}
-      <meta property="og:image" content="{{ page.header img | prepend  site.url }}">
+      <meta property="og:image" content="{{ page.header-img | prepend: site.url }}">
     {% else %}
       <meta property="og:image" content="{{ page|render_banner | prepend: site.url }}">
     {% endif %}
