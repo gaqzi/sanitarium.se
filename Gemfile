@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'jekyll', '~>3'
+gem 'jekyll', '~>4'
 gem 'mini_magick'
 gem 'rouge'
 gem 'kramdown'
-gem 'kramdown-parser-gfm'
 gem 'pygments.rb'
 gem 'liquid'
 
