@@ -79,7 +79,7 @@ span.rm-page-ref[data-tag="sticky"] {
 }
 ```
 
-**Note:** This CSS currently does not support having both `#stick-block` and 
+**Note:** This CSS currently does not support having both `#sticky-block` and 
 `#sticky` for the same page, they will overlap each other, and the second 
 element will block the first. I don't currently need this, so I haven't spent 
 the time. :) 
