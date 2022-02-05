@@ -29,7 +29,7 @@ module Jekyll
       end
 
       def path
-        "#{banner_path}/#{@page['slug']}--#{checksum}.png"
+        "#{banner_path}/#{@page['slug']}--#{checksum}.gen.png"
       end
 
       def phantomjs_command(input_file, output_file, dimensions = '1200px*630px')
