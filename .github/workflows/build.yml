@@ -21,6 +21,12 @@ jobs:
           node-version: lts/erbium
           cache: npm
 
+      - uses: actions/cache@v2
+        with:
+          path: img/banners/
+          key: ${{ runner.os }}-${{ hashFiles('_plugins/banner_creator.rb') }}
+          restore-keys: ${{ runner.os }}-
+
       - name: Build
         run: >
           make build
