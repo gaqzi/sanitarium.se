@@ -24,10 +24,11 @@ node_modules/.installed: package.json
 	@npm install && \
 		touch node_modules/.installed
 
-assets: css/site.css js/site.min.js Gemfile.lock
+assets: css/site.css js/site.min.js .bundler-installed
 
-Gemfile.lock: Gemfile
-	@bundle install
+.bundler-installed: Gemfile.lock Gemfile
+	@bundle install && \
+		touch $@
 
 ping:
 	curl -sSf "http://www.feedburner.com/fb/a/pingSubmit?bloglink=http%3A%2F%2Fsanitarium.se%2F" > /dev/null && \

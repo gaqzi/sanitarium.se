@@ -1,4 +1,5 @@
 .jekyll-cache
+.bundler-installed
 _site
 node_modules
 js/*.min.js
