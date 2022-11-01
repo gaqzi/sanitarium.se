@@ -39,9 +39,10 @@ assets: css/site.css js/site.min.js .bundler-installed .ruby-version
 	grep ruby .tool-versions | cut -d' ' -f2 > .ruby-version
 
 ping:
-	curl -sSf "https://www.feedburner.com/fb/a/pingSubmit?bloglink=http%3A%2F%2Fsanitarium.se%2F" > /dev/null && \
-	  curl -sSf "https://www.google.com/webmasters/sitemaps/ping?sitemap=$(SITEMAP)" > /dev/null && \
-	  curl -sSf "https://www.bing.com/webmaster/ping.aspx?siteMap=$(SITEMAP)" > /dev/null
+	curl -sSf "https://www.feedburner.com/fb/a/pingSubmit?bloglink=http%3A%2F%2Fsanitarium.se%2F" > /dev/null ; \
+	  curl -sSf "https://www.google.com/webmasters/sitemaps/ping?sitemap=$(SITEMAP)" > /dev/null ; \
+	  curl -sSf "https://www.bing.com/webmaster/ping.aspx?siteMap=$(SITEMAP)" > /dev/null ; \
+	  true
 
 deploy: assets build
 	@make _deploy
