@@ -6,7 +6,7 @@ baseurl: ""
 url: "https://sanitarium.se"
 twitter_username: gaqzi
 github_username:  gaqzi
-mastodon_username: "https://mastodon.online/@gaqzi"
+mastodon_username: "https://mastodon.hackerdrinks.social/@gaqzi"
 facebook_username:
 timezone: UTC
 github_base_url: https://github.com/gaqzi/sanitarium.se/blob/master/
