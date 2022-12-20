@@ -7,8 +7,8 @@ url: "https://sanitarium.se"
 twitter_username: gaqzi
 github_username:  gaqzi
 mastodon:
-  host: mastodon.hackerdrinks.social
-  nickname: gaqzi
+  username: gaqzi
+  instance: mastodon.hackerdrinks.social
 facebook_username:
 timezone: UTC
 github_base_url: https://github.com/gaqzi/sanitarium.se/blob/master/
@@ -16,6 +16,7 @@ github_base_url: https://github.com/gaqzi/sanitarium.se/blob/master/
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll/mastodon_webfinger
 
 defaults:
   - scope:

@@ -11,3 +11,5 @@ group :jekyll_plugins do
   gem 'jekyll-sitemap'
 #  gem 'jekyll-picture-tag'
 end
+
+gem "jekyll-mastodon_webfinger", "~> 1.0"
