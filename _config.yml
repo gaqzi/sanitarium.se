@@ -8,7 +8,7 @@ twitter_username: gaqzi
 github_username:  gaqzi
 mastodon:
   username: gaqzi
-  instance: mastodon.hackerdrinks.social
+  instance: hachyderm.io
 facebook_username:
 timezone: UTC
 github_base_url: https://github.com/gaqzi/sanitarium.se/blob/master/
