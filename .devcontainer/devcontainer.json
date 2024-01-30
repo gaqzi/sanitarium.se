@@ -1,0 +1,8 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/ruby:2.7",
+  "args": {
+    "VARIANT": "2",
+    "NODE_VERSION": "lts-erbium" // Set to "none" to skip Node.js installation
+  },
+  appPort: [4000]
+}
