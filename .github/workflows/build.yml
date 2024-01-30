@@ -15,10 +15,11 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          ruby-version: '3.2'
 
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/erbium
+          node-version: lts/iron
           cache: npm
 
       - name: Build

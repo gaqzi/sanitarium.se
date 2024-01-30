@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=$(shasum Gemfile Gemfile.lock package.json package-lock.json | shasum | cut -d' ' -f 1)
+VERSION=$(shasum Gemfile Gemfile.lock package.json package-lock.json .devcontainer/Dockerfile | shasum | cut -d' ' -f 1)
 IMAGE="blog:${VERSION}"
 
 if [ "$(docker images ${IMAGE} | wc -l)" -lt 2 ]; then
