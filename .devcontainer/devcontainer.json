@@ -1,8 +1,14 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/ruby:2.7",
-  "args": {
-    "VARIANT": "2",
-    "NODE_VERSION": "lts-erbium" // Set to "none" to skip Node.js installation
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "platform": "linux/amd64"
+    },
+    "context": "../"
   },
-  appPort: [4000]
+  "remoteUser": "vscode",
+  "name": "sanitarium.se",
+  "forwardPorts": [
+    4000
+  ]
 }

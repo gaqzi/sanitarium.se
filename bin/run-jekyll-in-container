@@ -1,0 +1,16 @@
+#!/bin/bash
+
+VERSION=$(shasum Gemfile Gemfile.lock package.json package-lock.json | shasum | cut -d' ' -f 1)
+IMAGE="blog:${VERSION}"
+
+if [ "$(docker images ${IMAGE} | wc -l)" -lt 2 ]; then
+  docker build --platform=linux/amd64 -t "$IMAGE" -t "blog:latest" -f .devcontainer/Dockerfile .
+fi
+
+set -x
+docker run \
+    --platform=linux/amd64 \
+    -w /workspaces/blog \
+    --mount type=bind,source=$(pwd),target=/workspaces/blog,consistency=consistent \
+    -p 127.0.0.1:4000:4000 \
+    "blog:${VERSION}"
