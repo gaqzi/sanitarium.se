@@ -6,7 +6,8 @@ SITEMAP = https://sanitarium.se/sitemap.xml
 
 build: clean
 	@make assets
-	@bundle exec jekyll build
+	# build twice so if CI generates new banners it's picked up and moved over.
+	@bundle exec jekyll build && bundle exec jekyll build
 
 recreate-banners:  ## Shouldn't have to be run very often. Just after major changes in the banners.
 	@rm -rf img/banners/*.gen.png && \
