@@ -1,0 +1,31 @@
+---
+
+services:
+  jekyll:
+    build:
+      context: ../
+      dockerfile: ./.devcontainer/Dockerfile
+
+    working_dir: /workspaces/blog
+    volumes:
+      - type: bind
+        source: ../
+        target: /workspaces/blog
+        consistency: consistent
+
+    depends_on:
+      - ws-screenshot
+
+    expose:
+      # This port is going to run a webserver for the banner generator
+      # to expose its files so the screenshotter can hit it.
+      - 3001
+    ports:
+      - "4000:4000"
+
+  ws-screenshot:
+    image: "elestio/ws-screenshot.slim:latest-arm"
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"

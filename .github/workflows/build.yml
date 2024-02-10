@@ -12,19 +12,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ruby/setup-ruby@v1
+      - uses: isbang/compose-action@v1.5.1
         with:
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-          ruby-version: '3.2'
+          compose-file: |
+            ./.devcontainer/docker-compose.yml
+            ./.devcontainer/docker-compose.ci.yml
+          up-flags: --abort-on-container-exit
 
-      - uses: actions/setup-node@v4
+      - uses: isbang/compose-action@v1.5.1
         with:
-          node-version: lts/iron
-          cache: npm
-
-      - name: Build
-        run: >
-          make build
+          compose-file: |
+            ./.devcontainer/docker-compose.yml
+            ./.devcontainer/docker-compose.ci.yml
+          up-flags: --abort-on-container-exit
 
       - uses: actions/upload-artifact@v4
         with:

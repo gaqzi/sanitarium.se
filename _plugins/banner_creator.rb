@@ -1,6 +1,8 @@
 require 'digest'
 require 'liquid'
+require 'net/http'
 require 'tempfile'
+require 'webrick'
 
 module Jekyll
   module RenderBannerFilter
@@ -18,10 +20,10 @@ module Jekyll
 
       def checksum
         @checksum ||= begin
-          md5 = Digest::MD5.new
-          md5 << "#{@page['date']}--#{@page['title']}--#{@page['subtitle']}"
-          md5.hexdigest
-        end
+                        md5 = Digest::MD5.new
+                        md5 << "#{@page['date']}--#{@page['title']}--#{@page['subtitle']}"
+                        md5.hexdigest
+                      end
       end
 
       def exists?
@@ -38,16 +40,44 @@ module Jekyll
 
       def create!
         template = Liquid::Template.parse(File.open(template_file).read)
-        file = Tempfile.new([checksum, '.html'])
+        # file = Tempfile.new([checksum, '.html'])
+        dir = Dir.mktmpdir("banner")
+        file = File.new(File.join(dir, "#{checksum}.html"), "w+")
         file.write(template.render(@page))
         file.close
-        puts "banner: #{@page['title']}"
+        puts "banner: #{@page['title']} - #{file.path} - #{path}"
 
-        output = `#{phantomjs_command(file.path, path)} >&1`
-        raise "Failed to create banner! '#{output}'" unless $?.exitstatus == 0
+        # Run webrick in a thread so it can execute at the same time as the rest of this
+        webrick = Thread.new do
+          server = WEBrick::HTTPServer.new Port: 3001, DocumentRoot: dir
+          trap('INT') { server.shutdown }
+          server.start
+        end
+
+        server_path = ERB::Util.url_encode("http://jekyll:3001/#{checksum}.html")
+
+        # assume this will be running in docker compose since we need the screenshotting service now
+        uri = URI("http://ws-screenshot:3000/api/screenshot?resX=1200&resY=630&outFormat=png&waitTime=150&isFullPage=false&dismissModals=false&url=#{server_path}")
+        Net::HTTP.start(uri.host, uri.port) do |http|
+          http.open_timeout = 0.5 # how long to wait for the docker network to be available
+          http.read_timeout = 40 # how long we'll wait for a response in total
+          req = Net::HTTP::Get.new uri
+          puts req.uri
+
+          http.request req do |response|
+            raise "Failed create banner: #{response.message}" unless response.code == "200"
+
+            File.open(path, "w+") do |f|
+              response.read_body { |chunk| f.write chunk }
+            end
+          end
+        end
+
+        webrick.kill
       end
 
       private
+
       def banner_path
         'img/banners'
       end

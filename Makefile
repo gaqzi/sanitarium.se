@@ -1,4 +1,4 @@
-.PHONY: build deploy _deploy recreate-banners
+.PHONY: build build-with-compose deploy _deploy recreate-banners
 ALL_CSS = css/bootstrap.min.css css/clean-blog.min.css css/syntax.css
 ALL_JS = js/bootstrap.js js/clean-blog.js js/jquery.js
 ALL_LESS = less/clean-blog.less less/mixins.less less/variables.less
@@ -7,7 +7,10 @@ SITEMAP = https://sanitarium.se/sitemap.xml
 build: clean
 	@make assets
 	# build twice so if CI generates new banners it's picked up and moved over.
-	@bundle exec jekyll build && bundle exec jekyll build
+	@make build-with-compose && make build-with-compose
+
+build-with-compose:
+	@docker compose -f .devcontainer/docker-compose.yaml -f .devcontainer/docker-compose.ci.yaml up --abort-on-container-exit
 
 recreate-banners:  ## Shouldn't have to be run very often. Just after major changes in the banners.
 	@rm -rf img/banners/*.gen.png && \
@@ -30,14 +33,7 @@ node_modules/.installed: package.json
 	@npm install && \
 		touch node_modules/.installed
 
-assets: css/site.css js/site.min.js .bundler-installed .ruby-version
-
-.bundler-installed: Gemfile.lock Gemfile
-	@bundle install && \
-		touch $@
-
-.ruby-version: .tool-versions
-	grep ruby .tool-versions | cut -d' ' -f2 > .ruby-version
+assets: css/site.css js/site.min.js
 
 ping:
 	curl -sSf "https://www.feedburner.com/fb/a/pingSubmit?bloglink=http%3A%2F%2Fsanitarium.se%2F" > /dev/null ; \

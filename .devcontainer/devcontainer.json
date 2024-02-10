@@ -1,14 +1,10 @@
 {
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "platform": "linux/amd64"
-    },
-    "context": "../"
-  },
+  dockerComposeFile: "docker-compose.yaml",
+  service: "jekyll",
   "remoteUser": "vscode",
   "name": "sanitarium.se",
   "forwardPorts": [
+    3000,
     4000
   ]
 }
