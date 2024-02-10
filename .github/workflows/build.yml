@@ -17,14 +17,14 @@ jobs:
           compose-file: |
             ./.devcontainer/docker-compose.yaml
             ./.devcontainer/docker-compose.ci.yaml
-          up-flags: --abort-on-container-exit
+          up-flags: --exit-code-from jekyll
 
       - uses: isbang/compose-action@v1.5.1
         with:
           compose-file: |
             ./.devcontainer/docker-compose.yaml
             ./.devcontainer/docker-compose.ci.yaml
-          up-flags: --abort-on-container-exit
+          up-flags: --exit-code-from jekyll
 
       - uses: actions/upload-artifact@v4
         with:
