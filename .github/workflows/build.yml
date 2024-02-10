@@ -15,15 +15,15 @@ jobs:
       - uses: isbang/compose-action@v1.5.1
         with:
           compose-file: |
-            ./.devcontainer/docker-compose.yml
-            ./.devcontainer/docker-compose.ci.yml
+            ./.devcontainer/docker-compose.yaml
+            ./.devcontainer/docker-compose.ci.yaml
           up-flags: --abort-on-container-exit
 
       - uses: isbang/compose-action@v1.5.1
         with:
           compose-file: |
-            ./.devcontainer/docker-compose.yml
-            ./.devcontainer/docker-compose.ci.yml
+            ./.devcontainer/docker-compose.yaml
+            ./.devcontainer/docker-compose.ci.yaml
           up-flags: --abort-on-container-exit
 
       - uses: actions/upload-artifact@v4
