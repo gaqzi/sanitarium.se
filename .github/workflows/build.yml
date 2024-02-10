@@ -12,6 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/erbium
+          cache: npm
+
+      - name: Build
+        run: >
+          make assets
+
       - uses: isbang/compose-action@v1.5.1
         with:
           compose-file: |
