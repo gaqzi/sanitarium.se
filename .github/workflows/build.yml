@@ -17,7 +17,7 @@ jobs:
           compose-file: |
             ./.devcontainer/docker-compose.yaml
             ./.devcontainer/docker-compose.ci.yaml
-          up-flags: > 
+          up-flags: >- 
             --abort-on-container-exit 
             --exit-code-from=jekyll
 
@@ -26,7 +26,7 @@ jobs:
           compose-file: |
             ./.devcontainer/docker-compose.yaml
             ./.devcontainer/docker-compose.ci.yaml
-          up-flags: >
+          up-flags: >-
             --abort-on-container-exit
             --exit-code-from=jekyll
 
