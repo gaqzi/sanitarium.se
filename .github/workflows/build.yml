@@ -20,6 +20,9 @@ jobs:
           up-flags: >- 
             --abort-on-container-exit 
             --exit-code-from=jekyll
+          services: |
+            jekyll
+            ws-screenshot
 
       - uses: isbang/compose-action@v1.5.1
         with:
@@ -29,6 +32,9 @@ jobs:
           up-flags: >-
             --abort-on-container-exit
             --exit-code-from=jekyll
+          services: |
+            jekyll
+            ws-screenshot
 
       - uses: actions/upload-artifact@v4
         with:
