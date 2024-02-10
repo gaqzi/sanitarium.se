@@ -1,3 +1,6 @@
 services:
   jekyll:
     command: "jekyll build"
+
+  ws-screenshot:
+    image: "elestio/ws-screenshot.slim"
