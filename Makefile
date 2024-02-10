@@ -10,7 +10,7 @@ build: clean
 	@make build-with-compose && make build-with-compose
 
 build-with-compose:
-	@docker compose -f .devcontainer/docker-compose.yaml -f .devcontainer/docker-compose.ci.yaml up --abort-on-container-exit
+	@docker compose -f .devcontainer/docker-compose.yaml -f .devcontainer/docker-compose.ci.yaml up --exit-code-from jekyll
 
 recreate-banners:  ## Shouldn't have to be run very often. Just after major changes in the banners.
 	@rm -rf img/banners/*.gen.png && \
