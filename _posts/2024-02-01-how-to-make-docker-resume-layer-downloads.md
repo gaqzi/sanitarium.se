@@ -21,7 +21,7 @@ In the Docker Desktop app you can go into `Features in Development` and check
 
 Or you can do add the following to Docker's `daemon.json` file:
 
-```json
+```javascript
 {
   "features": {
     "containerd-snapshotter": true
