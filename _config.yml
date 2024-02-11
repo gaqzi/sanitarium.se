@@ -14,6 +14,7 @@ timezone: UTC
 github_base_url: https://github.com/gaqzi/sanitarium.se/blob/master/
 
 plugins:
+  - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll/mastodon_webfinger
