@@ -7,4 +7,4 @@ RUN /bin/bash -c "source /usr/local/share/nvm/nvm.sh && nvm install 20.11.0"
 RUN bundler
 RUN /bin/bash -c "npm i"
 
-CMD ["jekyll", "s", "--host=0.0.0.0"]
+CMD make assets && jekyll s --host=0.0.0.0
