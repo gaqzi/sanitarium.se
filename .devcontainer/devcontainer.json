@@ -1,8 +1,9 @@
 {
-  dockerComposeFile: "docker-compose.yaml",
-  service: "jekyll",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "jekyll",
   "remoteUser": "vscode",
   "name": "sanitarium.se",
+  "workspaceFolder": "/workspaces/blog",
   "forwardPorts": [
     3000,
     4000
