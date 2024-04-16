@@ -1,6 +1,6 @@
 ---
 author: björn
-comments: true
+comments: false
 date: 2024-02-01 17:00:00 +08:00
 layout: post
 slug: how-to-make-docker-pull-resume-layer-downloads

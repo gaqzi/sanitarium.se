@@ -1,6 +1,6 @@
 ---
 author: björn
-comments: true
+comments: false
 date: 2015-11-14 21:03:42 +08:00
 layout: post
 slug: how-to-ping-a-lost-apple-watch

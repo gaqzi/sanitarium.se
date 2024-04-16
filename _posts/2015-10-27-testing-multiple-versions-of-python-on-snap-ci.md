@@ -1,6 +1,6 @@
 ---
 author: björn
-comments: true
+comments: false
 date: 2015-10-27 08:00:00 +08:00
 layout: post
 slug: testing-against-many-versions-of-python-on-snap-ci

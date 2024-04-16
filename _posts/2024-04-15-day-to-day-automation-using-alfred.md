@@ -1,6 +1,6 @@
 ---
 author: björn
-comments: true
+comments: false
 date: 2024-04-15T19:15:00+08:00
 layout: post
 title: Day-to-day automation using Alfred on your Mac
@@ -315,8 +315,8 @@ from the [workflow's Github page.](https://github.com/jsumners/alfred-emoji)
 
 As I was writing the tying it up section I realized that I had a recent pain
 which where I kept jumping between apps to create new UUIDs. I was running
-the following command on the CLI and then pasting it into some yaml files in 
-my editor. 
+the following command on the CLI and then pasting it into some yaml files in
+my editor.
 
 ```shell
 uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | pbcopy
@@ -393,6 +393,7 @@ record it in Roam under `#hack-idea`, whether it's Friday or not, and when I
 feel like hacking on something I'll look there. Because sometimes you just
 need something quick to hack on. 🙂
 
-I'd love to hear what your favorite day-to-day automations are!
+I'd love to hear what your favorite day-to-day automations are
+on [Mastodon](https://hachyderm.io/@gaqzi)!
 
 [brag document]: https://jvns.ca/blog/brag-documents/
