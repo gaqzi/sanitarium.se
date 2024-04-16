@@ -14,21 +14,6 @@ $(function() {
 	$("img").addClass("img-responsive");
 });
 
-jQuery(document).ready(function () {
-  for (let heading of ['h2', 'h3', 'h4', 'h5', 'h6']) {
-    $(`.container article ${heading}`).addClass('copy-link');
-  }
-
-  $('.copy-link').click((el) => {
-    let target = el.currentTarget,
-      url = new URL(window.location.href);
-    url.hash = target.id;
-    window.navigator.clipboard.writeText(url.toString()).then((e) => {
-      console.log(`wrote to clipboard: ${url.toString()}`);
-    });
-  });
-});
-
 // responsive tables
 $(document).ready(function() {
 	$("table").wrap("<div class='table-responsive'></div>");

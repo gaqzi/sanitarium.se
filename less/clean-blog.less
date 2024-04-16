@@ -482,30 +482,8 @@ defn {
 	border-bottom: 1px dotted silver;
 }
 
-.copy-link:hover {
-  cursor: pointer;
-}
-
-.copy-link:hover::before {
-  content: '🔗';
-}
-
-h2.copy-link:hover::before {
-  margin-left: -3.09rem;
-}
-
-h3.copy-link:hover::before {
-  margin-left: -2.57rem;
-}
-
-h4.copy-link:hover::before {
-  margin-left: -2.29rem;
-}
-
-h5.copy-link:hover::before {
-  margin-left: -1.95rem;
-}
-
-h6.copy-link:hover::before {
-  margin-left: -1.65rem;
+h2, h3, h4, h5, h6 {
+  a {
+    color: @gray;
+  }
 }
