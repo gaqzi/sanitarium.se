@@ -31,16 +31,6 @@ jobs:
             jekyll
             ws-screenshot
 
-      - uses: isbang/compose-action@v2.0.0
-        with:
-          compose-file: |
-            ./.devcontainer/docker-compose.yaml
-            ./.devcontainer/docker-compose.ci.yaml
-          up-flags: "--abort-on-container-exit --exit-code-from=jekyll"
-          services: |-
-            jekyll
-            ws-screenshot
-
       - uses: actions/upload-artifact@v4
         with:
           name: site

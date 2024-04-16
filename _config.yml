@@ -13,11 +13,19 @@ facebook_username:
 timezone: UTC
 github_base_url: https://github.com/gaqzi/sanitarium.se/blob/master/
 
+social:
+  name: björn
+  links:
+    - https://hackyderm.io/@gaqzi
+    - https://github.com/gaqzi
+    - https://speakerdeck.com/gaqzi
+
 plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll/mastodon_webfinger
+  - jekyll-seo-tag
 
 defaults:
   - scope:

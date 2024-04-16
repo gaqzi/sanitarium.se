@@ -1,33 +1,10 @@
 <head>
+    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    {% seo title=false %}
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% if page.description == nil or page.description == '' %}
-    <meta name="description" content="{{ page.content | strip_html | truncatewords: 35, '...' | strip | escape }}">
-    <meta property="og:description" content="{{ page.content | strip_html | truncatewords: 35, '...' | strip | escape }}">
-    {% else %}
-    <meta name="description" content="{{ page.description | strip | escape }}">
-    <meta property="og:description" content="{{ page.description | strip | escape }}">
-    {% endif %}
-    <meta property="og:title" content="{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ page.url | replace:'index.html', '' | prepend: site.baseurl | prepend: site.url }}">
-    {% if page.title %}
-        {% if page.header-img %}
-        <meta property="og:image" content="{{ page.header-img | prepend: site.url }}">
-        {% else %}
-        <meta property="og:image" content="{{ page|render_banner | prepend: site.url }}">
-        {% endif %}
-        <meta property="twitter:card" content="summary_large_image">
-    {% else %}
-        <meta property="twitter:card" content="summary">
-    {% endif %}
-    <meta name="twitter:creator" content="@gaqzi">
-
-    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     {% feed_meta %}
 
     <link rel="stylesheet" href="{{ "/css/site.css" | prepend: site.baseurl }}">
