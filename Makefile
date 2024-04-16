@@ -12,7 +12,15 @@ build: clean
 build-with-compose:
 	@docker compose -f .devcontainer/docker-compose.yaml -f .devcontainer/docker-compose.ci.yaml up --exit-code-from jekyll
 
-develop:
+.bundler-installed: Gemfile
+	bundle && \
+		touch $@
+
+.container-built: .bundler-installed Gemfile.lock node_modules/.installed package-lock.json
+	docker compose -f .devcontainer/docker-compose.yaml build && \
+		touch $@
+
+develop: .container-built
 	docker compose -f .devcontainer/docker-compose.yaml up --exit-code-from jekyll
 
 recreate-banners:  ## Shouldn't have to be run very often. Just after major changes in the banners.
@@ -34,7 +42,7 @@ js/site.min.js: node_modules/.installed $(ALL_JS)
 
 node_modules/.installed: package.json
 	@npm install && \
-		touch node_modules/.installed
+		touch $@
 
 assets: css/site.css js/site.min.js
 
