@@ -66,6 +66,3 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: make _deploy
-
-      - name: Ping
-        run: make ping
