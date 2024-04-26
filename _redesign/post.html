@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example blog post</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="color-scheme" content="dark light">
+    <link rel="stylesheet" href="./minimal.css">
+    <link rel="stylesheet" href="./zenburn.css">
+</head>
+<body>
+<header class="masthead">
+    <a href="/">the padded cell</a>
+</header>
+
+<main>
+    <article>
+        <header>
+            <hgroup>
+                <h1 class="title"><a href="/blog/2024/04/15/day-to-day-automation-using-alfred/">Day-to-day automation
+                    using
+                    Alfred on your Mac</a></h1>
+                <p class="subheading">reducing TOIL outside of your DevOps practice</p>
+            </hgroup>
+            <p class="meta">Posted by <span class="author">björn</span> on <time class="published-at"
+                                                                                    title="2024-04-15 11:15:00 +0000"
+                                                                                    datetime="2024-04-15 11:15:00 +0000">April 15, 2024</time>.</p>
+        </header>
+
+        <div class="language-shell highlighter-rouge">
+            <div class="highlight"><pre class="highlight"><code>uuidgen \
+  | <span class="nb">tr</span> <span class="s1">'[:upper:]'</span> <span
+                        class="s1">'[:lower:]'</span> \
+  | <span class="nb">tr</span> <span class="nt">-d</span> <span
+                        class="s1">'\n'</span> \
+  | pbcopy
+</code></pre>
+            </div>
+        </div>
+
+        <blockquote><p>I try to be aware of where I have friction in my day-to-day when working at my
+            computer, keeping an eye out for <a href="https://sre.google/sre-book/eliminating-toil/">TOIL to remove.</a>
+            Whether it’s from
+            manually repeated actions, or from differing behaviors across apps and services
+            I use. When I identify any of these I try to spend some small amount of time
+            automating or changing how I work to improve.</p></blockquote>
+
+        <p>All of these things don’t necessarily make a lot of sense from how much time I
+            save, but, it also makes me happy to spend a bit of time improving my
+            environment, and spending a bit of time to make me happy is good enough for me.</p>
+
+        <p>I view doing these kinds of small workflow improvements like a <a
+                href="https://en.wikipedia.org/wiki/Kata#Outside_martial_arts">kata</a> because it
+            improves my automation/scripting skills and encourages me to think about how I
+            work. I usually give myself 10-20m to try and make these kinds of improvements
+            just so I know how much time to spend. Just don’t go overboard. XKCD, as always,
+            have a comic to illustrate the downside of going too far. 🙂</p>
+
+        <p><a href="https://xkcd.com/1319"><img class="center-block img-responsive" loading="lazy"
+                                                alt="'Automating' comes from the roots 'auto-' meaning 'self-', and 'mating', meaning 'screwing'."
+                                                title="'Automating' comes from the roots 'auto-' meaning 'self-', and 'mating', meaning 'screwing'."
+                                                src="https://imgs.xkcd.com/comics/automation.png"></a></p>
+        <h2 id="what-is-alfred-and-why-is-it-an-app-im-focusing-on">
+
+
+            What is Alfred and why is it an app I’m focusing on? <a
+                href="#what-is-alfred-and-why-is-it-an-app-im-focusing-on">#</a>
+
+
+        </h2>
+
+
+        <p><a href="https://alfredapp.com/">Alfred</a> is an application launcher but oh-so-much-more. It connects with
+            macOS
+            and the Workflows contains a lot of extensions that allow you to interact with
+            all kinds of programs, websites, etc.</p>
+
+        <p>A big part of what Alfred has helped me create is a more unified experience
+            across the apps and websites I use. I have moved some operations that behave
+            differently in different apps into Alfred because then I can focus on what I
+            need to do and then use Alfred to provide consistency (and as I’ve
+            been told, “consistency is good even outside the bathroom”).</p>
+
+        <p>Now, let’s look at how I use Alfred.</p>
+        <h2 id="built-in-functionality">
+
+
+            Built-in functionality <a href="#built-in-functionality">#</a>
+
+
+        </h2>
+
+
+        <p>These are features that don’t require anything extra to install and use.</p>
+        <h3 id="open-an-app">
+
+
+            Open an app <a href="#open-an-app">#</a>
+
+
+        </h3>
+
+
+        <p>Alfred’s starter feature is the application launcher, and it means you summon it
+            with a keybinding and type the name of the app you want to start and voilà.
+            I have bound the keyboard shortcut to <code class="language-plaintext highlighter-rouge">cmd+space</code>
+            and
+            replaced the built-in
+            Spotlight search.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Opening Firefox in Alfred"
+                title="Opening Firefox in Alfred" src="/img/2024/04/15/01-open-app.png"></p>
+        <h3 id="spell--define">
+
+
+            Spell / define <a href="#spell--define">#</a>
+
+
+        </h3>
+
+
+        <p>There are certain words I rarely get right (continuous) and some
+            words are spelled very differently from how they sound. Summon Alfred and
+            <code class="language-plaintext highlighter-rouge">spell &lt;word&gt;</code> and you’ll have suggestions
+            that
+            often will go right. And if
+            you don’t find it, replace <code class="language-plaintext highlighter-rouge">spell</code> with <code
+                    class="language-plaintext highlighter-rouge">google</code> and see if Google knows
+            better. Hit enter to copy the correct spelling to the clipboard.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Finding the correct spelling of continuus"
+                title="Finding the correct spelling of continuus" src="/img/2024/04/15/02-spell-continuous.png"></p>
+
+        <p>And <code class="language-plaintext highlighter-rouge">define</code> is the same thing but for dictionary
+            lookup
+            because you have some
+            word you’re unsure what it means, or because you’re wondering if someone was
+            trying to call you something you with some subtle nuance to a word. 😉
+            Hit enter to open the definition in macOS’s dictionary app.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Define 'laggard'" title="Define 'laggard'"
+                src="/img/2024/04/15/03-define-laggard.png"></p>
+        <h3 id="calculator">
+
+
+            Calculator <a href="#calculator">#</a>
+
+
+        </h3>
+
+
+        <p>You can give it an expression and when you hit enter the result goes into the
+            clipboard. I often end up using this instead of opening a Python console on the
+            CLI.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Adding some numbers together"
+                title="Adding some numbers together" src="/img/2024/04/15/04-calculator.png"></p>
+        <h3 id="custom-web-search">
+
+
+            Custom web search <a href="#custom-web-search">#</a>
+
+
+        </h3>
+
+
+        <p>A custom web search allow you to quickly open a web browser at a
+            particular website with whatever value you’ve typed into Alfred which <em>doesn’t
+                have to be a search engine or even a search page.</em></p>
+
+        <p>To configure a custom web search summon Alfred and hit <code
+                class="language-plaintext highlighter-rouge">cmd+,</code> to open
+            the settings page. Go into the <code class="language-plaintext highlighter-rouge">Features</code> tab and
+            click
+            on <code class="language-plaintext highlighter-rouge">Web Search</code>.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy"
+                alt="Alfred's setting Features -> Web Search highlighted"
+                title="Alfred's setting Features -> Web Search highlighted"
+                src="/img/2024/04/15/05-web-search-listing.png">
+        </p>
+
+        <p>Some example search engines I have made:</p>
+
+        <ul>
+            <li>Jira: <code class="language-plaintext highlighter-rouge">https://jira.example.com/browse/{query}</code>
+                <ul>
+                    <li>This isn’t a search but rather the view this ticket. Because I often get a
+                        ticket id (either from a commit message or someone rattling it off in a
+                        meeting) and this way I can open it quickly
+                    </li>
+                </ul>
+            </li>
+            <li>Confluence: <code class="language-plaintext highlighter-rouge">https://confluence.example.com/dosearchsite.action?
+                queryString={query}</code></li>
+            <li>Wordnik: <code class="language-plaintext highlighter-rouge">https://wordnik.com/words/{query}</code>
+                <ul>
+                    <li>So I can find synonyms and other alternatives for words. Often use this when
+                        I want to find a good name for something which has been inspired
+                        by <a href="https://signalvnoise.com/svn3/hunting-for-great-names-in-programming/">Hunting for
+                            great
+                            names in programming</a>.
+                    </li>
+                </ul>
+            </li>
+            <li>Pypi: <code class="language-plaintext highlighter-rouge">https://pypi.org/project/{query}</code>
+                <ul>
+                    <li>To look up python packages</li>
+                </ul>
+            </li>
+        </ul>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Example setup of the Confluence search engine"
+                title="Example setup of the Confluence search engine"
+                src="/img/2024/04/15/06-web-search-example-config.png"></p>
+        <h2 id="working-with-other-applications">
+
+
+            Working with other applications <a href="#working-with-other-applications">#</a>
+
+
+        </h2>
+
+
+        <p>Alfred has ended being the tool that brings my apps to focus and smoothes
+            over differences between apps.</p>
+        <h3 id="give-my-most-common-apps-a-keybinding">
+
+
+            Give my most common apps a keybinding <a href="#give-my-most-common-apps-a-keybinding">#</a>
+
+
+        </h3>
+
+
+        <p>Instead of <code class="language-plaintext highlighter-rouge">cmd+tab</code> between the various apps I’m
+            using I
+            have bound specific
+            keybindings to my most used app, so I can quickly swap between
+            them. <a href="https://dev.to/rstacruz/switching-apps-slow-down-my-productivity-and-how-i-fixed-it-2anb">Hat
+                tip
+                to Rico Sta. Cruz</a>
+            who blogged about this a couple of years ago and who I picked it up from.</p>
+
+        <p>The big benefit I have found here is just the ease of being mid-thinking and
+            wanting to switch back to another app, whether it’s to jot down a quick note, to
+            finish that Regex you were visualizing on <a href="https://regex101.com/">Regex 101</a>, or
+            to get back to Slack to paste that thing your colleague asked for. It feels so
+            seamless compared to tabbing between.</p>
+
+        <p>This is using <a href="https://www.alfredapp.com/workflows/">Alfred’s Workflows</a>, and
+            they’re part of their advanced set of options. You can do keybindings that work
+            across all of macOS as well as actions based on what you’re typing.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="The custom app shortcuts workflow"
+                title="The custom app shortcuts workflow" src="/img/2024/04/15/07-app-shortcuts.png"></p>
+        <h3 id="spotify-controller">
+
+
+            Spotify controller <a href="#spotify-controller">#</a>
+
+
+        </h3>
+
+
+        <p>I have been using these keybindings since before Alfred, in Quicksilver, and
+            there are other workflows for Spotify but since I had these I never bothered
+            installing anything else.</p>
+
+        <p>The cool extra in this workflow is that I added a keyword to open the
+            current playing song on <a href="https://genius.com">Genius.com</a> because I like
+            reading the lyrics.</p>
+
+        <p>This is an example of something where the automation is <em>far from necessary,</em>
+            but, I enjoyed adding it. It’s something I do every other week and knowing I
+            can just go straight into the song nearly every time is great.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Spotify keybinding and keyword configuration"
+                title="Spotify keybinding and keyword configuration" src="/img/2024/04/15/08-spotify-keybindings.png">
+        </p>
+
+        <p>My <a
+                href="https://github.com/gaqzi/alfred-workflows/blob/master/Spotify%20keyboard%20shortcuts.alfredworkflow">Spotify
+            workflow</a> is on Github if you want to install it, or <a
+                href="https://gist.github.com/gaqzi/b3de88050bf1caaf8d2661233b51a1ae">here’s a gist</a>
+            if you’re just curious how I made “open on genius.”</p>
+        <h3 id="global-microphone-muteunmute-shortcuts">
+
+
+            Global microphone mute/unmute shortcuts <a href="#global-microphone-muteunmute-shortcuts">#</a>
+
+
+        </h3>
+
+
+        <p>I regularly use Google Meet, Slack, and Zoom for talking with people, and these
+            apps all use different shortcuts to mute. So instead of keeping the app
+            focused and remembering the various shortcuts I now just leave myself unmuted
+            everywhere and directly mute/unmute the OS through Alfred. My mic has a visual
+            indicator when it’s on. +I have a notification posted, so I can see the current
+            status on the screen.</p>
+
+        <p>As I started using this workflow I realized that sometimes the microphone
+            bugs out but swapping it between the built-in and back will fix it. So after
+            a while I made a script to help swap as well.</p>
+
+        <p>And finally, I realized that sometimes my virtual soundcard which removes
+            background noise (<a href="https://krisp.ai">krisp.ai</a>) hangs and needs to be
+            restarted, so another keybinding to quickly restart the soundcard.</p>
+
+        <p>The only downside of this workflow is that others can’t as clearly see when
+            I want to speak by unmuting myself in the current app, so in those rare cases
+            I’ll use the mute in the app itself. Because optimizing my workflow
+            shouldn’t come at the pain of everyone else, we live in a society. 🙂</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="The mic switch workflow setup"
+                title="The mic switch workflow setup" src="/img/2024/04/15/09-mic-switch.png"></p>
+
+        <p>This <a href="https://github.com/gaqzi/alfred-workflows/blob/master/Toggle%20mute%20mic.alfredworkflow">mute/unmute
+            workflow</a> is available on Github,
+            and <a href="https://gist.github.com/gaqzi/f299047706c10b2616ba15c94cabf1fe">here’s a gist</a> if you want
+            to
+            see the toggle code. My
+            dotfiles got the <a href="https://github.com/gaqzi/conf/blob/master/bin/swap-mic-input">swap mic script</a>
+            and
+            the <a href="https://github.com/gaqzi/conf/blob/master/bin/%2Crestart-krisp">restart krisp script</a>.</p>
+        <h2 id="improvement-to-my-day-to-day-workflow">
+
+
+            Improvement to my day-to-day workflow <a href="#improvement-to-my-day-to-day-workflow">#</a>
+
+
+        </h2>
+
+        <h3 id="text-replacement--snippets">
+
+
+            Text replacement / snippets <a href="#text-replacement--snippets">#</a>
+
+
+        </h3>
+
+
+        <p>Snippets are short pieces of text that expand into something else. It can be
+            a static string, or it can be dynamic and I use both kinds as I work. For me
+            they fall into these categories</p>
+
+        <ol>
+            <li>“Named paste”, things that are hard to remember or unwieldy and are now not</li>
+            <li>Dynamic replacement, something that follows a pattern and I want to swap
+                between. Generally these use the clipboard
+            </li>
+            <li>Generated inputs, I need the current time in a specific format or some
+                other piece of data
+            </li>
+        </ol>
+
+        <p>You configure snippets by summoning Alfred and hitting <code
+                class="language-plaintext highlighter-rouge">cmd+,</code> which opens
+            Settings, then go into Features -&gt; Snippets. Snippets work by specifying a
+            keyword, in my default bundle I require that my keywords are prefixed with <code
+                    class="language-plaintext highlighter-rouge">\\</code>,
+            meaning that Alfred will expand my snippets if it sees <code class="language-plaintext highlighter-rouge">\\&lt;keyword&gt;</code>
+            and with
+            the example keyword <code class="language-plaintext highlighter-rouge">exp</code> you’d then type <code
+                    class="language-plaintext highlighter-rouge">\\exp</code> to add it. If you need to type
+            the exact string for some reason it’s easiest to add a space somewhere before
+            you type the last character and then go back and remove it.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="How to view or create snippets"
+                title="How to view or create snippets" src="/img/2024/04/15/11-snippets-config.png"></p>
+
+        <p>My trigger for creating a snippet is finding that I keep typing or
+            pasting the same thing again and again.</p>
+
+        <p>Let’s look at how I use them in a couple of different places.</p>
+        <h4 id="gmail">
+
+
+            GMail <a href="#gmail">#</a>
+
+
+        </h4>
+
+
+        <p>Finding emails from “unusual senders:” I label the majority of emails I get
+            at work as they are notifications or otherwise automated emails. So if I get
+            something that isn’t labeled it’s probably a human or something I need to
+            look into, and it can sometimes get hidden in a sea of everything else.</p>
+
+        <p><code class="language-plaintext highlighter-rouge">&lt;prefix&gt;gmailn</code> in the search bar turns into
+            <code
+                    class="language-plaintext highlighter-rouge">is:inbox is:unread
+                has:nouserlabels</code> which only shows unread emails in the inbox which doesn’t
+            have a label.</p>
+
+        <p>When I’m processing my labels, which are effectively buckets of things to do,
+            I often go into a label and want to see only the unread items, so I can open
+            the first and then go through them one-by-one. So open the label, focus on
+            the search bar, and type in <code class="language-plaintext highlighter-rouge">&lt;prefix&gt;unr</code> to
+            give
+            me <code class="language-plaintext highlighter-rouge">is:unread</code> and then
+            get to that focus.</p>
+        <h4 id="jira-tickets">
+
+
+            Jira tickets <a href="#jira-tickets">#</a>
+
+
+        </h4>
+
+
+        <p>If I’m writing a message on Slack and I need to reference a ticket I think
+            it’s nice to give a link even if I only have the jira ticket ID, so I made a
+            snippet that adds the current clipboard item at the end of my company’s Jira
+            instance in a Markdown link. Now it looks nice where markdown is and the
+            other person doesn’t have to open it up themselves.</p>
+
+        <p>Copy <code class="language-plaintext highlighter-rouge">WRK-123</code> and then type <code
+                class="language-plaintext highlighter-rouge">&lt;prefix&gt;jiramd</code> which replaces it with
+            <code class="language-plaintext highlighter-rouge">[WRK-123](https://jira.deliveryhero.com/browse/WRK-123)</code>.
+        </p>
+
+        <p>The Alfred snippet configuration</p>
+        <div class="language-plaintext highlighter-rouge">
+            <div class="highlight"><pre class="highlight"><code>[{clipboard:trim}](https://jira.example.com/browse/{clipboard:trim})
+</code></pre>
+            </div>
+        </div>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Configuring the jiramd snippet in Alfred"
+                title="Configuring the jiramd snippet in Alfred" src="/img/2024/04/15/12-snippet-jiramd.png"></p>
+        <h4 id="roam-research">
+
+
+            Roam Research <a href="#roam-research">#</a>
+
+
+        </h4>
+
+
+        <p>Roam is my notetaking app and where most of my thinking happen and I have a
+            whole slew of replacements for how I work with Roam Research and most of them
+            are to help me keep my workflow consistent (using the right tags)
+            and to make common actions easier and faster.</p>
+
+        <ul>
+            <li><code class="language-plaintext highlighter-rouge">&lt;prefix&gt;rts</code> turns into the current time
+                in
+                bold since I practice
+                interstitial journaling. Example <code class="language-plaintext highlighter-rouge">**15:03**</code>.
+                Snippet configuration: <code class="language-plaintext highlighter-rouge">**
+                    {time:short}**</code></li>
+            <li><code class="language-plaintext highlighter-rouge">&lt;prefix&gt;b&lt;shortcode&gt;</code> for how I
+                bucket
+                tasks so when I spend time on a
+                particular bucket I can find the things I need to do. I.e. my bucket “Life in
+                Production” (on-call, observability, continuous delivery, etc.) is prefixed
+                with <code class="language-plaintext highlighter-rouge">&lt;prefix&gt;bl</code> and that turns into
+                <code
+                        class="language-plaintext highlighter-rouge">[🥬]([[Bucket/Life in Production]])</code></li>
+            <li><code class="language-plaintext highlighter-rouge">&lt;prefix&gt;&lt;INITIALS&gt;</code> to turn into
+                the
+                name of my most frequent
+                collaborators at work, so I can tag what I’ve said to them or a task we
+                need to do.
+            </li>
+        </ul>
+        <h3 id="emoji-search">
+
+
+            Emoji search <a href="#emoji-search">#</a>
+
+
+        </h3>
+
+
+        <p>Spending a lot of time communicating across continents involves timezones
+            and people rarely hearing your voice, so I have gotten used to peppering my
+            inputs with emojis to help since it’s so easy to come off sounding like an
+            ass otherwise.</p>
+
+        <p>And because some websites or applications don’t have a good search for
+            emoji and this way I only have to learn one keyboard shortcut and normalize it
+            across places. This way I don’t have to remember how Slack named this emoji vs.
+            Miro vs. Google Docs vs. Confluence vs. other random website. I just learn it in
+            Alfred and then paste it straight into the textbox I wanted.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Searching for the rocket emoji"
+                title="Searching for the rocket emoji" src="/img/2024/04/15/10-search-emoji.png"></p>
+
+        <p>This is an external Workflow made by <a href="https://github.com/jsumners">James Sumners</a>, and you can
+            download it
+            from the <a href="https://github.com/jsumners/alfred-emoji">workflow’s Github page.</a></p>
+        <h3 id="generate-uuids-on-the-fly">
+
+
+            Generate uuids on the fly <a href="#generate-uuids-on-the-fly">#</a>
+
+
+        </h3>
+
+
+        <p>As I was writing the tying it up section I realized that I had a recent pain
+            which where I kept jumping between apps to create new UUIDs. I was running
+            the following command on the CLI and then pasting it into some yaml files in
+            my editor.</p>
+
+        <div class="language-shell highlighter-rouge">
+            <div class="highlight"><pre class="highlight"><code>uuidgen \
+  | <span class="nb">tr</span> <span class="s1">'[:upper:]'</span> <span
+                    class="s1">'[:lower:]'</span> \
+  | <span class="nb">tr</span> <span class="nt">-d</span> <span
+                    class="s1">'\n'</span> \
+  | pbcopy
+</code></pre>
+            </div>
+        </div>
+
+        <p>So I instead created a new workflow that is triggered by a snippet that runs
+            this for me.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Configuring the uuidgen snippet"
+                title="Configuring the uuidgen snippet" src="/img/2024/04/15/15-snippet-uuidgen.png"></p>
+
+        <p><strong>Note:</strong> To make it behave just like a regular snippet you need to
+            configure the <em>Copy to clipboard</em> output to <code class="language-plaintext highlighter-rouge">Automatically
+                paste to the
+                frontmost app</code> and <code class="language-plaintext highlighter-rouge">Mark item as transient in
+                clipboard</code>.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="How configure the Copy to clipboard output"
+                title="How configure the Copy to clipboard output"
+                src="/img/2024/04/15/16-snippet-uuidgen-clipboard-config.png"></p>
+
+        <p>The <a href="https://github.com/gaqzi/alfred-workflows/blob/master/uuidgen.alfredworkflow">uuidgen
+            workflow</a>
+            is available on Github.</p>
+        <h2 id="other-workflows">
+
+
+            Other workflows <a href="#other-workflows">#</a>
+
+
+        </h2>
+
+
+        <p>Some other workflows I have installed since they save me time.</p>
+        <h3 id="calculate-anything">
+
+
+            Calculate Anything <a href="#calculate-anything">#</a>
+
+
+        </h3>
+
+
+        <p>I installed this for two reasons: to quickly translate cooking recipes using
+            imperial units into metric and currency conversion. Super convenient and now I
+            can finally get how much 16 floz is in ml (473.176) without needing to go
+            online.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy" alt="Calculate Anything converting 16 floz to ml"
+                title="Calculate Anything converting 16 floz to ml" src="/img/2024/04/15/13-calculate-anything.png"></p>
+
+        <p>By <a href="https://github.com/biati-digital">Biati Digital</a> and available in
+            the <a href="https://alfred.app/workflows/biatidigital/calculate-anything/">Alfred Gallery</a>.</p>
+        <h3 id="epoch-converter">
+
+
+            Epoch converter <a href="#epoch-converter">#</a>
+
+
+        </h3>
+
+
+        <p>There was a time when I kept looking at unix timestamps and needed to quickly
+            get when it was, so copying and then <code class="language-plaintext highlighter-rouge">ts
+                &lt;paste&gt;</code>
+            gave me when it was and
+            <code class="language-plaintext highlighter-rouge">ts</code> without anything will give you the current unix
+            timestamp.</p>
+
+        <p><img class="center-block img-responsive" loading="lazy"
+                alt="Epoch Converter showing the current unix timestamp at the time of writing"
+                title="Epoch Converter showing the current unix timestamp at the time of writing"
+                src="/img/2024/04/15/14-epoch-converter.png"></p>
+
+        <p>By <a href="https://github.com/snooze92">Julien Lehuen</a> and available in
+            the <a href="https://alfred.app/workflows/julienlehuen/epoch-converter/">Alfred Gallery</a>.</p>
+        <h2 id="tying-it-up-and-how-i-figure-out-what-to-add">
+
+
+            Tying it up and how I figure out what to add <a href="#tying-it-up-and-how-i-figure-out-what-to-add">#</a>
+
+
+        </h2>
+
+
+        <p>I hope the above gives you some ideas or inspiration for what you could do
+            to improve your day-to-day computer usage. These are things that I’ve pulled
+            together over years, and similarly I have a <a href="https://github.com/gaqzi/conf">bin/ folder</a> with
+            other
+            types of
+            automation I’ve accrued, hehe. 😅</p>
+
+        <p>Now, how have I accrued these things? I generally try to reflect on the work
+            I do and the biggest help to it has been scheduling 30min every Friday to
+            reflect on the week. This session covers everything from updating my <a
+                    href="https://jvns.ca/blog/brag-documents/">brag
+                document</a> to reflecting on what work I felt I repeated a lot and whether
+            there’s anything there to spend time on in the future. Pretty much,
+            what annoyed me when working and can I do something about it?</p>
+
+        <p>If I come up with something that I can’t deal with right now then I’ll
+            record it in Roam under <code class="language-plaintext highlighter-rouge">#hack-idea</code>, whether it’s
+            Friday or not, and when I
+            feel like hacking on something I’ll look there. Because sometimes you just
+            need something quick to hack on. 🙂</p>
+
+        <p>I’d love to hear what your favorite day-to-day automations are
+            on <a href="https://hachyderm.io/@gaqzi">Mastodon</a>!</p>
+    </article>
+</main>
+<footer><img src="https://sanitarium.se/img/old-logo.gif" loading="lazy"></footer>
+</body>
+</html>

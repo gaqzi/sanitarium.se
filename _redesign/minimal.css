@@ -1,0 +1,154 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* Fonts from https://modernfontstacks.com/, the comments after are the groups I picked */
+    --main-emoji-font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --main-text-font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif, var(--main-emoji-font-family); /* Transitional */
+    --main-heading-font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif, var(--main-emoji-font-family); /* Geometric Humanist */
+    --main-heading-font-weight: 800;
+    --main-code-highlight-bg-color: #eee;
+    --main-code-highlight-fg-color: #121212;
+
+    --main-accent-color: #005cb8;
+    @media (prefers-color-scheme: light) {
+        --main-accent-color: #b30000;
+    }
+
+    font-size: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--main-heading-font-family);
+    font-weight: var(--main-heading-font-weight);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &.title {
+        a, a:visited {
+            color: CanvasText;
+        }
+    }
+}
+
+/* Sizes stolen from bootstrap 5 */
+h1 { font-size: calc(1.375rem + 1.5vw); }
+h2 { font-size: calc(1.325rem + .9vw); }
+h3 { font-size: calc(1.3rem + .6vw); }
+h4 { font-size: calc(1.275rem + .3vw); }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+
+hgroup {
+    h1:has(+ p) {
+        margin-bottom: 0.2em;
+    }
+    h1 + p {
+        margin-top: 0;
+        font-size: 1.4em;
+    }
+}
+
+header.masthead {
+    grid-area: header;
+
+    a {
+        font-size: 1.5rem;
+        font-family: var(--main-heading-font-family);
+        font-weight: var(--main-heading-font-weight);
+        color: CanvasText;
+        text-decoration: underline;
+        text-decoration-color: var(--main-accent-color);
+
+        &:hover {
+            color: VisitedText;
+        }
+    }
+}
+
+body {
+    font-family: var(--main-text-font-family);
+}
+
+main {
+    grid-area: content;
+}
+
+article {
+    header {
+        /* create a divider between the title of the post and the body */
+        border-bottom: 0.1em solid #888888;
+
+        .meta {
+            font-style: italic;
+        }
+    }
+}
+
+/* Make sure images don't go wider than what can be shown */
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Code styling, make sure it doesn't overflow */
+pre {
+    max-width: 100%;
+    overflow: auto;
+}
+
+code.language-plaintext {
+    background-color: var(--main-code-highlight-bg-color);
+    color: var(--main-code-highlight-fg-color);
+    padding: 0.1em;
+    font-size: .875em;
+    border-radius: 0.15em;
+    word-wrap: break-word;
+}
+
+blockquote {
+    border-left: 0.25em solid var(--main-code-highlight-bg-color);
+    padding-left: 0.5em;
+    font-style: italic;
+    position: relative;
+
+    /* Clean up variables here */
+    &:before {
+        content: '\201c';
+        font-family: 'Times New Roman', serif;
+        float: left;
+        font-size: 5em;
+        left: -0.16em;
+        top: -.24em;
+        position: absolute;
+        z-index: -1;
+
+        color: #5e5e5e;
+    }
+    @media (prefers-color-scheme: light) {
+        &:before { color: #ccc; }
+    }
+}
+
+/* TODO:
+
+1. Setup breakpoints for various sizes, effectively
+   one central column at a reasonable reading size
+2. Create the footer
+3. Inline SVG logos for the things I want to link to
+   - Mastodon
+   - Bluesky?
+   - Github
+   - RSS feed
+
+ */
