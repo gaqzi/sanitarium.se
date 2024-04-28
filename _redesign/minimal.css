@@ -82,6 +82,7 @@ body {
 
 main {
     grid-area: content;
+    border-bottom: 0.1em solid #888888;
 }
 
 article {
@@ -137,6 +138,25 @@ blockquote {
     }
     @media (prefers-color-scheme: light) {
         &:before { color: #ccc; }
+    }
+}
+
+footer {
+
+}
+
+ul.social-links {
+    list-style: none;
+    /*display: grid;*/
+
+    li {
+        display: inline-block;
+        border-radius: 2em;
+        border: 0.5em solid red;
+    }
+
+    .mastodon {
+
     }
 }
 
