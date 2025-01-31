@@ -21,7 +21,7 @@ jobs:
         run: >
           make assets
 
-      - uses: isbang/compose-action@v2.1.0
+      - uses: isbang/compose-action@v2.2.0
         with:
           compose-file: |
             ./.devcontainer/docker-compose.yaml
