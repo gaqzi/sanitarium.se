@@ -16,7 +16,7 @@
         --main-accent-color: #b30000;
     }
 
-    font-size: 20px;
+    font-size: clamp(1rem, 1vw + 0.75rem, 1.125rem);
 }
 
 h1, h2, h3, h4, h5, h6 {
