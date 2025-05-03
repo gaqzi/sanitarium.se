@@ -42,8 +42,8 @@ In my experience, here's what both have in common:
 
 Let's break down each of these components and see how they apply specifically to meetings:
 
-### 1. Gather: Define your scope
-Just as you wouldn't start coding without requirements, don't start a meeting without defining what needs covering. List all topics and be realistic about what fits in the allotted time. If your meeting scope looks like your backlog after a year of "we'll get to it later," you're doing it wrong.
+### 1. Gather: Build your agenda
+Just as you wouldn't start coding without requirements, don't start a meeting without identifying the topics you need to discuss. Be specific and thorough. Vague items like "discuss architecture" are as useful as those ancient backlog entries everyone ignores.
 
 ### 2. Clarify: Set measurable goals for each topic
 For each topic, be clear about what you're trying to accomplish:
