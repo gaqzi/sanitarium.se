@@ -24,6 +24,15 @@
     --quote-text-color-dark: white;
     --quote-border-color-dark: var(--accent-color-dark);
 
+    /* Code styling variables */
+    --code-inline-bg-light: rgba(175, 184, 193, 0.4);  /* Increased opacity from 0.2 to 0.4 */
+    --code-inline-fg-light: #24292f;
+    --code-inline-bg-dark: rgba(110, 118, 129, 0.4);
+    --code-inline-fg-dark: #e6edf3;
+
+    --code-inline-bg: var(--code-inline-bg-dark);
+    --code-inline-fg: var(--code-inline-fg-dark);
+
     --quote-border-width: 4px;
     --quote-mark-color-dark: #5e5e5e;
     --quote-mark-color-light: #ccc;
@@ -41,12 +50,16 @@
         --quote-bg-color: var(--quote-bg-color-light);
         --quote-text-color: var(--quote-text-color-light);
         --quote-border-color: var(--quote-border-color-light);
+        --code-inline-bg: var(--code-inline-bg-light);
+        --code-inline-fg: var(--code-inline-fg-light);
     }
 
     @media (prefers-color-scheme: dark) {
         --quote-bg-color: var(--quote-bg-color-dark);
         --quote-text-color: var(--quote-text-color-dark);
         --quote-border-color: var(--quote-border-color-dark);
+        --code-inline-bg: var(--code-inline-bg-dark);
+        --code-inline-fg: var(--code-inline-fg-dark);
     }
 
     font-size: clamp(1rem, 1vw + 0.75rem, 1.125rem);
@@ -170,12 +183,15 @@ pre code {
 }
 
 code.language-plaintext {
-    background-color: var(--main-code-highlight-bg-color);
-    color: var(--main-code-highlight-fg-color);
-    padding: 0.1em;
+    background-color: var(--code-inline-bg);
+    color: var(--code-inline-fg);
+    padding: 0.2em 0.4em;
     font-size: .875em;
-    border-radius: 0.15em;
-    word-wrap: break-word;
+    border-radius: 3px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    border-bottom: 1px solid var(--code-inline-border);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.05em;
 }
 
 /* Link styling */
