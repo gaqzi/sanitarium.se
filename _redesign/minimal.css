@@ -143,13 +143,22 @@ article {
     margin: var(--space-md) auto;
 }
 
-/* Code styling, make sure it doesn't overflow */
-pre {
-    max-width: 100%;
+/* Code styling */
+.highlight {
+    border-radius: 3px;
+    overflow: hidden;
+    margin: var(--space-md) 0;
+}
+
+.highlight pre.highlight {
+    padding: var(--space-md) var(--space-lg);
+    margin: 0;
     overflow-x: auto;
-    padding: 1em;
-    border-radius: 4px;
     tab-size: 2;
+}
+
+pre code {
+    line-height: 1.5;
 }
 
 code.language-plaintext {
@@ -161,55 +170,75 @@ code.language-plaintext {
     word-wrap: break-word;
 }
 
-blockquote {
+/* Both quotes and code styling consistency */
+blockquote,
+.highlight {
     position: relative;
-    margin-left: var(--space-md);
-    margin-right: var(--space-md);
+    margin: var(--space-md) var(--space-lg);
+    width: auto;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+/* Quote styling */
+blockquote {
     padding: 0;
     border-left: none;
+}
 
-    p {
-        background-color: var(--quote-bg-color);
-        color: var(--quote-text-color);
-        padding: 1.5em 1em 1em 1.5em;
-        margin: 0;
-        font-style: italic;
-        position: relative;
+blockquote p {
+    background-color: var(--quote-bg-color);
+    color: var(--quote-text-color);
+    padding: 1.5em 1em 1em 1.5em;
+    margin: 0;
+    font-style: italic;
+    position: relative;
 
-        &::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: var(--quote-border-width);
-            background-color: var(--quote-border-color);
-            z-index: 1;
-        }
-    }
-
-    &:before {
-        content: '\201c';
-        font-family: 'Times New Roman', serif;
+    &::before {
+        content: '';
         position: absolute;
-        font-size: 6em;
-        left: 0.1em;
-        top: -0.3em;
-        z-index: 2;
-        opacity: var(--quote-mark-opacity);
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: var(--quote-border-width);
+        background-color: var(--quote-border-color);
+        z-index: 1;
     }
+}
 
-    @media (prefers-color-scheme: dark) {
-        &:before {
-            color: var(--quote-mark-color-dark);
-        }
-    }
+blockquote:before {
+    content: '\201c';
+    font-family: 'Times New Roman', serif;
+    position: absolute;
+    font-size: 6em;
+    left: 0.1em;
+    top: -0.3em;
+    z-index: 2;
+    opacity: var(--quote-mark-opacity);
+}
 
-    @media (prefers-color-scheme: light) {
-        &:before {
-            color: var(--quote-mark-color-light);
-        }
+@media (prefers-color-scheme: dark) {
+    blockquote:before {
+        color: var(--quote-mark-color-dark);
     }
+}
+
+@media (prefers-color-scheme: light) {
+    blockquote:before {
+        color: var(--quote-mark-color-light);
+    }
+}
+
+/* Code styling */
+.highlight pre.highlight {
+    padding: var(--space-md) var(--space-lg);
+    margin: 0;
+    overflow-x: auto;
+    tab-size: 2;
+}
+
+pre code {
+    line-height: 1.5;
 }
 
 footer {
