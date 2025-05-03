@@ -9,21 +9,27 @@
     --main-heading-font-weight: 800;
     --main-code-highlight-bg-color: #eee;
     --main-code-highlight-fg-color: #121212;
-    --main-accent-color: #005cb8;
 
+    /* Accent colors for light/dark modes - using system color keywords */
+    --accent-color-dark: LinkText;  /* Browser's default link color in dark mode */
+    --accent-color-light: #b30000; /* Red for light mode */
+    --main-accent-color: var(--accent-color-dark); /* Default to dark mode accent */
+
+    /* Quote styling variables */
     --quote-bg-color-light: #f5f5f5;
     --quote-text-color-light: #121212;
-    --quote-border-color-light: #333;
+    --quote-border-color-light: var(--accent-color-light);
 
     --quote-bg-color-dark: #2a2a2a;
     --quote-text-color-dark: white;
-    --quote-border-color-dark: white;
+    --quote-border-color-dark: var(--accent-color-dark);
 
     --quote-border-width: 4px;
     --quote-mark-color-dark: #5e5e5e;
     --quote-mark-color-light: #ccc;
     --quote-mark-opacity: 0.8;
 
+    /* Spacing variables for consistency */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -31,7 +37,7 @@
     --space-xl: 4rem;
 
     @media (prefers-color-scheme: light) {
-        --main-accent-color: #b30000;
+        --main-accent-color: var(--accent-color-light);
         --quote-bg-color: var(--quote-bg-color-light);
         --quote-text-color: var(--quote-text-color-light);
         --quote-border-color: var(--quote-border-color-light);
@@ -96,9 +102,11 @@ header.masthead {
         color: CanvasText;
         text-decoration: underline;
         text-decoration-color: var(--main-accent-color);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
 
         &:hover {
-            color: VisitedText;
+            color: var(--main-accent-color);
         }
     }
 }
@@ -143,11 +151,11 @@ article {
     margin: var(--space-md) auto;
 }
 
-/* Code styling */
 .highlight {
+    position: relative;
+    margin: var(--space-md) var(--space-lg);
     border-radius: 3px;
     overflow: hidden;
-    margin: var(--space-md) 0;
 }
 
 .highlight pre.highlight {
@@ -170,20 +178,25 @@ code.language-plaintext {
     word-wrap: break-word;
 }
 
-/* Both quotes and code styling consistency */
-blockquote,
-.highlight {
-    position: relative;
-    margin: var(--space-md) var(--space-lg);
-    width: auto;
-    border-radius: 3px;
-    overflow: hidden;
+/* Link styling */
+a {
+    color: var(--main-accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 /* Quote styling */
 blockquote {
+    position: relative;
+    margin: var(--space-md) var(--space-lg);
     padding: 0;
     border-left: none;
+    border-radius: 3px;
+    overflow: hidden;
 }
 
 blockquote p {
@@ -204,6 +217,11 @@ blockquote p {
         background-color: var(--quote-border-color);
         z-index: 1;
     }
+}
+
+blockquote a {
+    color: var(--main-accent-color);
+    font-weight: 600;
 }
 
 blockquote:before {
