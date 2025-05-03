@@ -139,15 +139,8 @@ article {
 .img-responsive {
     max-width: 100%;
     height: auto;
-    aspect-ratio: attr(width) / attr(height);
     display: block;
     margin: var(--space-md) auto;
-    background: #f0f0f0;
-    transition: opacity 0.2s;
-}
-
-.img-responsive[loading] {
-    opacity: 0.5;
 }
 
 /* Code styling, make sure it doesn't overflow */
