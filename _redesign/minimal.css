@@ -10,8 +10,15 @@
     --main-heading-font-weight: 800;
     --main-code-highlight-bg-color: #eee;
     --main-code-highlight-fg-color: #121212;
-
     --main-accent-color: #005cb8;
+
+    /* Spacing variables for consistency */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+
     @media (prefers-color-scheme: light) {
         --main-accent-color: #b30000;
     }
@@ -23,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--main-heading-font-family);
     font-weight: var(--main-heading-font-weight);
     margin-top: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
 
     a {
         text-decoration: none;
@@ -40,14 +47,13 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Sizes stolen from bootstrap 5 */
-h1 { font-size: calc(1.375rem + 1.5vw); }
-h2 { font-size: calc(1.325rem + .9vw); }
-h3 { font-size: calc(1.3rem + .6vw); }
-h4 { font-size: calc(1.275rem + .3vw); }
+/* Fluid typography using clamp for better responsiveness */
+h1 { font-size: clamp(1.5rem, 1.2rem + 2vw, 2.5rem); }
+h2 { font-size: clamp(1.25rem, 1rem + 1.5vw, 2rem); }
+h3 { font-size: clamp(1.1rem, 0.9rem + 1vw, 1.75rem); }
+h4 { font-size: clamp(1rem, 0.85rem + 0.7vw, 1.5rem); }
 h5 { font-size: 1.25rem; }
 h6 { font-size: 1rem; }
-
 
 hgroup {
     h1:has(+ p) {
@@ -61,6 +67,7 @@ hgroup {
 
 header.masthead {
     grid-area: header;
+    padding: var(--space-sm);
 
     a {
         font-size: 1.5rem;
@@ -84,13 +91,14 @@ body {
     ". header ."
     ". content ."
     ". footer .";
-    gap: 2rem;
+    gap: var(--space-lg);
     min-height: 100vh;
+    line-height: 1.5;
+    margin: 0;
 }
 
 main {
-    padding: 2rem 0;
-
+    padding: var(--space-lg) 0;
     grid-area: content;
     border-bottom: 0.1em solid #888888;
 }
@@ -99,6 +107,7 @@ article {
     header {
         /* create a divider between the title of the post and the body */
         border-bottom: 0.1em solid #888888;
+        margin-bottom: var(--space-md);
 
         .meta {
             font-style: italic;
@@ -110,12 +119,24 @@ article {
 .img-responsive {
     max-width: 100%;
     height: auto;
+    aspect-ratio: attr(width) / attr(height);
+    display: block;
+    margin: var(--space-md) auto;
+    background: #f0f0f0;
+    transition: opacity 0.2s;
+}
+
+.img-responsive[loading] {
+    opacity: 0.5;
 }
 
 /* Code styling, make sure it doesn't overflow */
 pre {
     max-width: 100%;
-    overflow: auto;
+    overflow-x: auto;
+    padding: 1em;
+    border-radius: 4px;
+    tab-size: 2;
 }
 
 code.language-plaintext {
@@ -129,9 +150,11 @@ code.language-plaintext {
 
 blockquote {
     border-left: 0.25em solid var(--main-code-highlight-bg-color);
-    padding-left: 0.5em;
+    padding-left: var(--space-sm);
     font-style: italic;
     position: relative;
+    margin-left: var(--space-md);
+    margin-right: var(--space-md);
 
     /* Clean up variables here */
     &:before {
@@ -143,7 +166,6 @@ blockquote {
         top: -.24em;
         position: absolute;
         z-index: -1;
-
         color: #5e5e5e;
     }
     @media (prefers-color-scheme: light) {
@@ -154,6 +176,7 @@ blockquote {
 footer {
     grid-area: footer;
     text-align: center;
+    padding: var(--space-md);
 }
 
 ul.social-links {
@@ -162,7 +185,6 @@ ul.social-links {
 
     li {
         display: inline-block;
-
         padding: 0.8em;
     }
 
@@ -170,12 +192,10 @@ ul.social-links {
         display: block;
         height: 3em;
         width: 3em;
-
         vertical-align: middle;
         background-size: 2.2em 2.2em;
         background-repeat: no-repeat;
         background-position: center;
-
         border-radius: 50%;
         border: 0.1em solid white;
 
@@ -202,30 +222,109 @@ ul.social-links {
     }
 }
 
-@media (max-width: 40rem) {
-    body {
-        grid-template-columns: 100%; /* ensures it doesn't go wider than necessary, no idea why 1fr doens't work */
-        grid-template-areas:
-        "header"
-        "content"
-        "footer";
-        gap: 1rem;
-    }
+/* Accessibility improvements */
+:focus {
+    outline: 2px solid var(--main-accent-color);
+    outline-offset: 2px;
+}
 
-    main {
-        padding: 0 0;
+@media (prefers-reduced-transparency: reduce) {
+    :focus {
+        outline: 2px solid var(--main-accent-color);
+        background-color: rgba(0, 92, 184, 0.1);
     }
 }
 
-/* TODO:
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
 
-1. Setup breakpoints for various sizes, effectively
-   one central column at a reasonable reading size
-2. Create the footer ✅
-3. Inline SVG logos for the things I want to link to ✅
-   - Mastodon ✅
-   - Bluesky?
-   - Github ✅
-   - RSS feed ✅
+/* Small phones (portrait) */
+@media (max-width: 30rem) {
+    :root {
+        font-size: 16px; /* Base font size for very small screens */
+    }
 
- */
+    body {
+        grid-template-columns: minmax(0.5rem, 1fr) minmax(0, 100%) minmax(0.5rem, 1fr);
+        grid-template-areas:
+            "header header header"
+            "content content content"
+            "footer footer footer";
+        gap: var(--space-sm);
+    }
+
+    header.masthead {
+        padding: var(--space-sm);
+    }
+
+    main {
+        padding: var(--space-sm);
+    }
+
+    blockquote {
+        margin-left: var(--space-sm);
+        margin-right: var(--space-sm);
+    }
+}
+
+/* Large phones and small tablets */
+@media (min-width: 30.01rem) and (max-width: 48rem) {
+    body {
+        grid-template-columns: minmax(1rem, 1fr) minmax(0, 100%) minmax(1rem, 1fr);
+        gap: var(--space-md);
+    }
+
+    main {
+        padding: var(--space-md) 0;
+    }
+}
+
+/* Medium devices (tablets, 48.01rem and up) */
+@media (min-width: 48.01rem) and (max-width: 64rem) {
+    body {
+        grid-template-columns: minmax(1rem, 1fr) minmax(0, 60ch) minmax(1rem, 1fr);
+    }
+}
+
+/* Large devices (desktops, 64.01rem and up) */
+@media (min-width: 64.01rem) {
+    body {
+        grid-template-columns: minmax(1rem, 1fr) minmax(0, 65ch) minmax(1rem, 1fr);
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        grid-template-columns: 100%;
+        grid-template-areas:
+            "header"
+            "content"
+            "footer";
+        gap: 1rem;
+    }
+
+    pre, code {
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+
+    a::after {
+        content: " (" attr(href) ")";
+        font-size: 0.9em;
+    }
+
+    @page {
+        margin: 1.5cm;
+    }
+
+    .social-links {
+        display: none;
+    }
+}
