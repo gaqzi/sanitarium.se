@@ -3,7 +3,6 @@
 }
 
 :root {
-    /* Fonts from https://modernfontstacks.com/, the comments after are the groups I picked */
     --main-emoji-font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --main-text-font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif, var(--main-emoji-font-family); /* Transitional */
     --main-heading-font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif, var(--main-emoji-font-family); /* Geometric Humanist */
@@ -12,7 +11,19 @@
     --main-code-highlight-fg-color: #121212;
     --main-accent-color: #005cb8;
 
-    /* Spacing variables for consistency */
+    --quote-bg-color-light: #f5f5f5;
+    --quote-text-color-light: #121212;
+    --quote-border-color-light: #333;
+
+    --quote-bg-color-dark: #2a2a2a;
+    --quote-text-color-dark: white;
+    --quote-border-color-dark: white;
+
+    --quote-border-width: 4px;
+    --quote-mark-color-dark: #5e5e5e;
+    --quote-mark-color-light: #ccc;
+    --quote-mark-opacity: 0.8;
+
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -21,6 +32,15 @@
 
     @media (prefers-color-scheme: light) {
         --main-accent-color: #b30000;
+        --quote-bg-color: var(--quote-bg-color-light);
+        --quote-text-color: var(--quote-text-color-light);
+        --quote-border-color: var(--quote-border-color-light);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        --quote-bg-color: var(--quote-bg-color-dark);
+        --quote-text-color: var(--quote-text-color-dark);
+        --quote-border-color: var(--quote-border-color-dark);
     }
 
     font-size: clamp(1rem, 1vw + 0.75rem, 1.125rem);
@@ -149,27 +169,53 @@ code.language-plaintext {
 }
 
 blockquote {
-    border-left: 0.25em solid var(--main-code-highlight-bg-color);
-    padding-left: var(--space-sm);
-    font-style: italic;
     position: relative;
     margin-left: var(--space-md);
     margin-right: var(--space-md);
+    padding: 0;
+    border-left: none;
 
-    /* Clean up variables here */
+    p {
+        background-color: var(--quote-bg-color);
+        color: var(--quote-text-color);
+        padding: 1.5em 1em 1em 1.5em;
+        margin: 0;
+        font-style: italic;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: var(--quote-border-width);
+            background-color: var(--quote-border-color);
+            z-index: 1;
+        }
+    }
+
     &:before {
         content: '\201c';
         font-family: 'Times New Roman', serif;
-        float: left;
-        font-size: 5em;
-        left: -0.16em;
-        top: -.24em;
         position: absolute;
-        z-index: -1;
-        color: #5e5e5e;
+        font-size: 6em;
+        left: 0.1em;
+        top: -0.3em;
+        z-index: 2;
+        opacity: var(--quote-mark-opacity);
     }
+
+    @media (prefers-color-scheme: dark) {
+        &:before {
+            color: var(--quote-mark-color-dark);
+        }
+    }
+
     @media (prefers-color-scheme: light) {
-        &:before { color: #ccc; }
+        &:before {
+            color: var(--quote-mark-color-light);
+        }
     }
 }
 
