@@ -112,28 +112,36 @@ hgroup {
         margin-bottom: 0.2em;
     }
     h1 + p {
-        margin-top: 0;
-        font-size: 1.4em;
+        margin-top: 0.25em;
+        margin-bottom: var(--space-md);
+        font-size: 1.25em;
+        color: rgba(CanvasText, 0.85);
+        font-weight: normal;
+        line-height: 1.4;
     }
 }
 
 header.masthead {
     grid-area: header;
-    padding: var(--space-sm);
+    padding: var(--space-sm) var(--space-sm);
+    margin-bottom: var(--space-xs);
+    position: relative;
+}
 
-    a {
-        font-size: 1.5rem;
-        font-family: var(--main-heading-font-family);
-        font-weight: var(--main-heading-font-weight);
-        color: CanvasText;
-        text-decoration: underline;
-        text-decoration-color: var(--main-accent-color);
-        text-decoration-thickness: 2px;
-        text-underline-offset: 4px;
+header.masthead a {
+    font-size: 1.75rem;
+    font-weight: var(--main-heading-font-weight);
+    font-family: var(--main-heading-font-family);
+    letter-spacing: -0.02em;
+    color: CanvasText;
+    text-decoration: underline;
+    text-decoration-color: var(--main-accent-color);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    transition: all 0.2s ease;
 
-        &:hover {
-            color: var(--main-accent-color);
-        }
+    &:hover {
+        color: var(--main-accent-color);
     }
 }
 
@@ -145,23 +153,23 @@ body {
     ". header ."
     ". content ."
     ". footer .";
-    gap: var(--space-lg);
+    gap: var(--space-sm);
     min-height: 100vh;
     line-height: 1.5;
     margin: 0;
 }
 
 main {
-    padding: var(--space-lg) 0;
+    padding: var(--space-sm) 0 var(--space-lg) 0;
     grid-area: content;
     border-bottom: 0.1em solid #888888;
 }
 
 article {
     header {
-        /* create a divider between the title of the post and the body */
         border-bottom: 0.1em solid #888888;
-        margin-bottom: var(--space-md);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
 
         .meta {
             font-style: italic;
@@ -169,12 +177,28 @@ article {
     }
 }
 
-/* Make sure images don't go wider than what can be shown */
-.img-responsive {
+/* Make images responsive and centered by default */
+img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: var(--space-md) auto;
+    margin: var(--space-md) auto; /* Auto left/right margins center the image */
+}
+
+/* Optional classes to override default image behavior */
+.img-left {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.img-right {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.img-fixed {
+    max-width: none;
+    width: auto;
 }
 
 /* Code styling */
@@ -260,44 +284,54 @@ footer {
 ul.social-links {
     list-style: none;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: var(--space-md) 0;
+}
 
-    li {
-        display: inline-block;
-        padding: 0.8em;
-    }
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    background-size: 1.8rem 1.8rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.08);
+}
 
+.social-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (prefers-color-scheme: light) {
     .social-link {
-        display: block;
-        height: 3em;
-        width: 3em;
-        vertical-align: middle;
-        background-size: 2.2em 2.2em;
-        background-repeat: no-repeat;
-        background-position: center;
-        border-radius: 50%;
-        border: 0.1em solid white;
-
-        @media (prefers-color-scheme: light) {
-            filter: brightness(0);
-        }
-
-        &:hover, &:active {
-            filter: brightness(0.6);
-        }
+        background-color: rgba(0, 0, 0, 0.05);
+        filter: brightness(0.2);
     }
 
-    .feed {
-        background-size: 2em 2em;
-        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> <path fill="white" d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/> </svg>');
+    .social-link:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        filter: brightness(0.2);
     }
+}
 
-    .mastodon {
-        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> <path fill="white" d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"/> </svg>');
-    }
+.feed {
+    background-size: 2em 2em;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> <path fill="white" d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/> </svg>');
+}
 
-    .github {
-        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> <path fill="white" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/> </svg>');
-    }
+.mastodon {
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> <path fill="white" d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"/> </svg>');
+}
+
+.github {
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> <path fill="white" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/> </svg>');
+}
 }
 
 /* Accessibility improvements */
@@ -350,6 +384,10 @@ a {
 
     header.masthead {
         padding: var(--space-sm);
+    }
+
+    header.masthead a {
+        font-size: 1.5rem;
     }
 
     main {
