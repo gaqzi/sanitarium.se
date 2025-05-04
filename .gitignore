@@ -3,10 +3,6 @@ public/
 resources/
 .hugo_build.lock
 
-# OS Files
-.DS_Store
-Thumbs.db
-
 # Temporary files
 tmp/
 
