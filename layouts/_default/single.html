@@ -1,15 +1,15 @@
 {{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
 
 {{ define "main" }}
-<article>
+<article class="post single">
     <header>
-        <hgroup>
-            <h1 class="title"><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-            {{ with .Params.subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
-        </hgroup>
+        <h1 class="title">{{ .Title }}</h1>
+        {{ with .Params.subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
         {{ partial "post-meta.html" . }}
     </header>
 
-    {{ .Content }}
+    <div class="content">
+        {{ .Content }}
+    </div>
 </article>
 {{ end }}
