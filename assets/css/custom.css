@@ -1,0 +1,42 @@
+/* Custom styling for the index page */
+
+.recent-posts article {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.recent-posts article:last-of-type {
+  border-bottom: none;
+}
+
+.recent-posts h3 {
+  margin-bottom: var(--space-xs);
+}
+
+.recent-posts .meta {
+  font-size: 0.85em;
+  color: var(--text-meta-color);
+  margin-bottom: var(--space-sm);
+}
+
+.post-preview {
+  margin-bottom: var(--space-xs);
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.read-more {
+  font-size: 0.9em;
+  text-align: right;
+  margin-top: var(--space-xs);
+}
+
+.read-more a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.read-more a:hover {
+  text-decoration: underline;
+}

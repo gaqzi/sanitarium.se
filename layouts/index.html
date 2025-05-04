@@ -25,13 +25,11 @@
                 {{ end }}
             </div>
             {{ with .Description }}
-            <p>{{ . }}</p>
+            <p class="post-preview">{{ . | truncate 120 }}</p>
             {{ else }}
-            <p>{{ .Summary }}</p>
+            <p class="post-preview">{{ .Summary | plainify | truncate 120 }}</p>
             {{ end }}
-            {{ if .Truncated }}
-            <p><a href="{{ .Permalink }}">Read more →</a></p>
-            {{ end }}
+            <p class="read-more"><a href="{{ .Permalink }}">Read more →</a></p>
         </article>
         {{ end }}
         
