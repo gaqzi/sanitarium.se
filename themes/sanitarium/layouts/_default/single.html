@@ -1,0 +1,25 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<article>
+    <header>
+        <hgroup>
+            <h1 class="title"><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+            {{ with .Params.subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
+        </hgroup>
+        <p class="meta">Posted by <span class="author">{{ .Params.author | default .Site.Params.author }}</span> on 
+            <time class="published-at" title="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">
+                {{ .Date.Format "January 2, 2006 at 15:04" }}
+            </time>
+            {{ if ne .Lastmod .Date }}
+            <br>Last modified on 
+            <time class="modified-at" title="{{ .Lastmod.Format "2006-01-02 15:04:05 -0700" }}" datetime="{{ .Lastmod.Format "2006-01-02 15:04:05 -0700" }}">
+                {{ .Lastmod.Format "January 2, 2006 at 15:04" }}
+            </time>
+            {{ end }}
+        </p>
+    </header>
+
+    {{ .Content }}
+</article>
+{{ end }}

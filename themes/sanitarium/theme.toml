@@ -1,0 +1,43 @@
+name = "Sanitarium"
+license = "MIT"
+licenselink = "https://github.com/yourusername/sanitarium/blob/main/LICENSE"
+description = "A clean, minimalist Hugo theme with responsive design and dark mode support"
+homepage = "https://github.com/yourusername/sanitarium"
+tags = ["blog", "responsive", "minimal", "clean", "personal", "dark", "light"]
+features = ["responsive", "dark mode", "blog", "clean", "minimal", "code highlighting", "social icons"]
+min_version = "0.80.0"
+
+[author]
+  name = "Björn"
+  homepage = "https://sanitarium.se"
+
+# Theme-specific settings
+[params]
+  # Social media links (shown in footer)
+  github = ""
+  mastodon = ""
+  feed = "/index.xml"
+  # linkedin = ""
+  # twitter = ""
+  
+  # Site settings
+  siteName = "the padded cell"
+  description = "A personal blog"
+  mainSections = ["posts"]
+  rssLimit = 20
+  dateFormat = "January 2, 2006"
+  dateTimeFormat = "January 2, 2006 at 15:04"
+  
+  # Theme appearance
+  enableCodeHighlighting = true
+  footerLogo = ""
+  footerLogoAlt = "Site logo"
+  
+  # Author information (used in post metadata)
+  author = "Björn"
+  
+  # Enable/disable features
+  showModifiedDate = true
+  showReadingTime = true
+  showAuthorInPostMeta = true
+  showTagsInPostFooter = true

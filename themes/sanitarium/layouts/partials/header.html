@@ -1,0 +1,6 @@
+<header class="masthead">
+    <a href="{{ .Site.BaseURL }}">{{ .Site.Params.siteName | default .Site.Title }}</a>
+    {{ if .Site.Menus.main }}
+    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    {{ end }}
+</header>

@@ -1,0 +1,19 @@
+<footer>
+    <nav aria-label="Author related links">
+        <ul class="social-links">
+            {{ if .Site.Params.feed }}
+            <li><a href="{{ .Site.Params.feed }}" class="social-link feed" title="Feed" rel="me"></a></li>
+            {{ end }}
+            {{ if .Site.Params.mastodon }}
+            <li><a href="{{ .Site.Params.mastodon }}" class="social-link mastodon" title="Mastodon" rel="me"></a></li>
+            {{ end }}
+            {{ if .Site.Params.github }}
+            <li><a href="{{ .Site.Params.github }}" class="social-link github" title="GitHub" rel="me"></a></li>
+            {{ end }}
+        </ul>
+    </nav>
+    {{ if .Site.Params.footerLogo }}
+    <img src="{{ .Site.Params.footerLogo }}" loading="lazy" alt="{{ .Site.Params.footerLogoAlt | default "Site logo" }}">
+    {{ end }}
+    <p>Copyright © {{ now.Year }} {{ .Site.Params.author | default .Site.Title }}. All rights reserved.</p>
+</footer>

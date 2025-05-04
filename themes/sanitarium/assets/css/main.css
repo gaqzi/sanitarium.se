@@ -1,0 +1,504 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* System font stacks from systemfontstack.com */
+    --system-sans: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif, var(--main-emoji-font-family); /* Geometric Humanist */
+    --system-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif, var(--main-emoji-font-family); /* Transitional */
+    --system-mono: "Source Code Pro", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+
+    /* Use the font stacks */
+    --main-emoji-font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --main-text-font-family: var(--system-serif);
+    --main-heading-font-family: var(--system-sans);
+    --main-heading-font-weight: 800;
+    --main-monospace-font-family: var(--system-mono);
+    --main-code-highlight-bg-color: #eee;
+    --main-code-highlight-fg-color: #121212;
+
+    /* Accent colors for light/dark modes - using system color keywords */
+    --accent-color-dark: LinkText;  /* Browser's default link color in dark mode */
+    --accent-color-light: #b30000; /* Red for light mode */
+    --main-accent-color: var(--accent-color-dark); /* Default to dark mode accent */
+
+    /* Quote styling variables */
+    --quote-bg-color-light: #f5f5f5;
+    --quote-text-color-light: #121212;
+    --quote-border-color-light: var(--accent-color-light);
+
+    --quote-bg-color-dark: #2a2a2a;
+    --quote-text-color-dark: white;
+    --quote-border-color-dark: var(--accent-color-dark);
+
+    /* Code styling variables */
+    --code-inline-bg-light: rgba(175, 184, 193, 0.4);
+    --code-inline-fg-light: #24292f;
+    --code-inline-border-light: rgba(175, 184, 193, 0.6);
+
+    --code-inline-bg-dark: rgba(110, 118, 129, 0.4);
+    --code-inline-fg-dark: #e6edf3;
+    --code-inline-border-dark: rgba(139, 148, 158, 0.6);
+
+    --code-inline-bg: var(--code-inline-bg-dark);
+    --code-inline-fg: var(--code-inline-fg-dark);
+    --code-inline-border: var(--code-inline-border-dark);
+
+    --quote-border-width: 4px;
+    --quote-mark-color-dark: #5e5e5e;
+    --quote-mark-color-light: #ccc;
+    --quote-mark-opacity: 0.8;
+
+    /* Border variables */
+    --border-width-standard: 0.1em;
+    --border-color-standard: #888888;
+    --border-color-light: white;
+
+    /* Spacing variables for consistency */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+
+    /* Content block margin for consistent alignment */
+    --content-block-margin: var(--space-md) var(--space-lg);
+
+    @media (prefers-color-scheme: light) {
+        --main-accent-color: var(--accent-color-light);
+        --quote-bg-color: var(--quote-bg-color-light);
+        --quote-text-color: var(--quote-text-color-light);
+        --quote-border-color: var(--quote-border-color-light);
+        --code-inline-bg: var(--code-inline-bg-light);
+        --code-inline-fg: var(--code-inline-fg-light);
+        --code-inline-border: var(--code-inline-border-light);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        --quote-bg-color: var(--quote-bg-color-dark);
+        --quote-text-color: var(--quote-text-color-dark);
+        --quote-border-color: var(--quote-border-color-dark);
+        --code-inline-bg: var(--code-inline-bg-dark);
+        --code-inline-fg: var(--code-inline-fg-dark);
+        --code-inline-border: var(--code-inline-border-dark);
+    }
+
+    font-size: clamp(1rem, 1vw + 0.75rem, 1.125rem);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--main-heading-font-family);
+    font-weight: var(--main-heading-font-weight);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    &.title {
+        a, a:visited {
+            color: CanvasText;
+        }
+    }
+}
+
+/* Fluid typography using clamp for better responsiveness */
+h1 { font-size: clamp(1.5rem, 1.2rem + 2vw, 2.5rem); }
+h2 { font-size: clamp(1.25rem, 1rem + 1.5vw, 2rem); }
+h3 { font-size: clamp(1.1rem, 0.9rem + 1vw, 1.75rem); }
+h4 { font-size: clamp(1rem, 0.85rem + 0.7vw, 1.5rem); }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+hgroup {
+    h1:has(+ p) {
+        margin-bottom: 0.2em;
+    }
+    h1 + p {
+        margin-top: 0.25em;
+        margin-bottom: var(--space-md);
+        font-size: 1.25em;
+        color: rgba(CanvasText, 0.85);
+        font-weight: normal;
+        line-height: 1.4;
+    }
+}
+
+header.masthead {
+    grid-area: header;
+    padding: var(--space-sm) var(--space-sm);
+    margin-bottom: 0;
+    position: relative;
+}
+
+header.masthead a {
+    font-size: 1.75rem;
+    font-weight: var(--main-heading-font-weight);
+    font-family: var(--main-heading-font-family);
+    letter-spacing: -0.02em;
+    color: CanvasText;
+    text-decoration: underline;
+    text-decoration-color: var(--main-accent-color);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+}
+
+header.masthead a:hover {
+    color: var(--main-accent-color);
+}
+
+body {
+    font-family: var(--main-text-font-family);
+    display: grid;
+    grid-template-columns: minmax(1rem, 1fr) minmax(0, 65ch) minmax(1rem, 1fr);
+    grid-template-areas:
+    ". header ."
+    ". content ."
+    ". footer .";
+    gap: var(--space-xs);
+    min-height: 100vh;
+    line-height: 1.5;
+    margin: 0;
+}
+
+main {
+    padding: var(--space-xs) 0 var(--space-lg) 0;
+    grid-area: content;
+    border-bottom: var(--border-width-standard) solid var(--border-color-standard);
+}
+
+article {
+    header {
+        border-bottom: var(--border-width-standard) solid var(--border-color-standard);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+    }
+
+    .meta {
+        font-style: italic;
+    }
+}
+
+/* Recent posts styles */
+.recent-posts article {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.recent-posts article:last-child {
+    border-bottom: none;
+}
+
+.all-posts-link {
+    margin-top: var(--space-lg);
+    text-align: right;
+}
+
+.all-posts-link a {
+    font-weight: 600;
+    font-family: var(--main-heading-font-family);
+}
+
+/* Make images responsive and centered by default */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: var(--space-md) auto; /* Auto left/right margins center the image */
+}
+
+/* Optional classes to override default image behavior */
+.img-left {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.img-right {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.img-fixed {
+    max-width: none;
+    width: auto;
+}
+
+/* Code styling */
+code, pre, kbd, samp {
+    font-family: var(--main-monospace-font-family);
+}
+
+code.language-plaintext {
+    background-color: var(--code-inline-bg);
+    color: var(--code-inline-fg);
+    padding: 0.2em 0.4em;
+    font-size: .875em;
+    border-radius: 3px;
+    border-bottom: 1px solid var(--code-inline-border);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.05em;
+}
+
+/* Shared styles for content blocks */
+blockquote, .highlight {
+    position: relative;
+    margin: var(--content-block-margin);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+/* Quote styling */
+blockquote {
+    padding: 0;
+    border-left: none;
+}
+
+blockquote p {
+    background-color: var(--quote-bg-color);
+    color: var(--quote-text-color);
+    padding: 1.5em 1em 1em calc(1.5em + 5px); /* Added 5px to compensate for the visual shift caused by the left border and different box rendering between blockquotes and code blocks */
+    margin: 0;
+    font-style: italic;
+    position: relative;
+}
+
+blockquote p::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: var(--quote-border-width);
+    background-color: var(--quote-border-color);
+    z-index: 1;
+}
+
+blockquote:before {
+    content: '\201c';
+    font-family: 'Times New Roman', serif;
+    position: absolute;
+    font-size: 6em;
+    left: 0.1em;
+    top: -0.3em;
+    z-index: 2;
+    opacity: var(--quote-mark-opacity);
+}
+
+@media (prefers-color-scheme: dark) {
+    blockquote:before {
+        color: var(--quote-mark-color-dark);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    blockquote:before {
+        color: var(--quote-mark-color-light);
+    }
+}
+
+blockquote a {
+    color: var(--main-accent-color);
+    font-weight: 600;
+}
+
+/* Code block styling */
+.highlight pre.highlight {
+    padding: 1em 1em 1em 1.5em; /* Adjusted left padding to match blockquote */
+    margin: 0;
+    overflow-x: auto;
+    tab-size: 2;
+    font-size: 1.05em; /* Slightly larger to compensate for visual difference */
+}
+
+/* Remove the left border for code blocks */
+
+pre code {
+    line-height: 1.5;
+}
+
+footer {
+    grid-area: footer;
+    text-align: center;
+    padding: var(--space-md);
+}
+
+ul.social-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: var(--space-md) 0;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    background-size: 1.8rem 1.8rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.social-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (prefers-color-scheme: light) {
+    .social-link {
+        background-color: rgba(0, 0, 0, 0.05);
+        filter: brightness(0.2);
+    }
+
+    .social-link:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        filter: brightness(0.2);
+    }
+}
+
+.feed {
+    background-size: 2em 2em;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> <path fill="white" d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/> </svg>');
+}
+
+.mastodon {
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> <path fill="white" d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"/> </svg>');
+}
+
+.github {
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> <path fill="white" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/> </svg>');
+}
+
+/* Accessibility improvements */
+:focus {
+    outline: 2px solid var(--main-accent-color);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    :focus {
+        outline: 2px solid var(--main-accent-color);
+        background-color: rgba(0, 92, 184, 0.1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Link styling */
+a {
+    color: var(--main-accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Small phones (portrait) */
+@media (max-width: 30rem) {
+    body {
+        grid-template-columns: minmax(0.5rem, 1fr) minmax(0, 100%) minmax(0.5rem, 1fr);
+        grid-template-areas:
+            "header header header"
+            "content content content"
+            "footer footer footer";
+        gap: var(--space-xs);
+    }
+
+    header.masthead {
+        padding: var(--space-sm);
+    }
+
+    header.masthead a {
+        font-size: 1.5rem;
+    }
+
+    main {
+        padding: var(--space-xs) var(--space-sm) var(--space-lg);
+    }
+
+    blockquote, .highlight {
+        margin-left: var(--space-sm);
+        margin-right: var(--space-sm);
+    }
+}
+
+/* Large phones and small tablets */
+@media (min-width: 30.01rem) and (max-width: 48rem) {
+    body {
+        grid-template-columns: minmax(1rem, 1fr) minmax(0, 100%) minmax(1rem, 1fr);
+        gap: var(--space-xs);
+    }
+
+    main {
+        padding: var(--space-xs) 0 var(--space-lg);
+        max-width: 65ch;
+        margin: 0 auto;
+    }
+}
+
+/* Medium devices (tablets, 48.01rem and up) */
+@media (min-width: 48.01rem) and (max-width: 64rem) {
+    body {
+        grid-template-columns: minmax(1rem, 1fr) minmax(0, 60ch) minmax(1rem, 1fr);
+        gap: var(--space-xs);
+    }
+}
+
+/* Large devices (desktops, 64.01rem and up) */
+@media (min-width: 64.01rem) {
+    body {
+        grid-template-columns: minmax(1rem, 1fr) minmax(0, 65ch) minmax(1rem, 1fr);
+        gap: var(--space-xs);
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        grid-template-columns: 100%;
+        grid-template-areas:
+            "header"
+            "content"
+            "footer";
+        gap: 1rem;
+    }
+
+    pre, code {
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+
+    a::after {
+        content: " (" attr(href) ")";
+        font-size: 0.9em;
+    }
+
+    @page {
+        margin: 1.5cm;
+    }
+
+    .social-links {
+        display: none;
+    }
+}
