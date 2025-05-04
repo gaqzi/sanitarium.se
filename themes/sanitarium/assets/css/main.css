@@ -562,3 +562,44 @@ ul.pagination {
   color: rgba(CanvasText, 0.4);
   cursor: not-allowed;
 }
+
+/* Heading anchor links */
+.heading-anchor {
+  opacity: 0;
+  font-size: 0.8em;
+  margin-left: 0.3em;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  color: var(--main-accent-color);
+}
+
+h1:hover .heading-anchor,
+h2:hover .heading-anchor,
+h3:hover .heading-anchor,
+h4:hover .heading-anchor,
+h5:hover .heading-anchor,
+h6:hover .heading-anchor {
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: light) {
+  .heading-anchor:hover {
+    color: var(--accent-color-light);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .heading-anchor:hover {
+    color: var(--accent-color-dark);
+  }
+}
+
+/* Ensure anchors are positioned correctly when navigating to them */
+h1[id],
+h2[id],
+h3[id],
+h4[id],
+h5[id],
+h6[id] {
+  scroll-margin-top: 1em;
+}
