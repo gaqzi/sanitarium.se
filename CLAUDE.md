@@ -34,3 +34,5 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - For multi-step processes, include a step number in the commit message (e.g., "Step 1: Create base layout templates")
 - Always test changes before committing
 - Ensure each commit leaves the codebase in a working state
+- NEVER include references to Claude, Claude Code, Anthropic, or AI assistance in commit messages
+- Do not add co-author lines or generation tags in commit messages
