@@ -565,21 +565,27 @@ ul.pagination {
 
 /* Heading anchor links */
 .heading-anchor {
-  opacity: 0;
   font-size: 0.8em;
   margin-left: 0.3em;
   text-decoration: none;
-  transition: opacity 0.2s;
   color: var(--main-accent-color);
+  opacity: 0.4;  /* Always visible but subtle */
 }
 
-h1:hover .heading-anchor,
-h2:hover .heading-anchor,
-h3:hover .heading-anchor,
-h4:hover .heading-anchor,
-h5:hover .heading-anchor,
-h6:hover .heading-anchor {
-  opacity: 1;
+/* Slightly more visible on hover for desktop devices */
+@media (hover: hover) {
+  .heading-anchor {
+    opacity: 0.2;
+  }
+  
+  h1:hover .heading-anchor,
+  h2:hover .heading-anchor,
+  h3:hover .heading-anchor,
+  h4:hover .heading-anchor,
+  h5:hover .heading-anchor,
+  h6:hover .heading-anchor {
+    opacity: 0.8;
+  }
 }
 
 @media (prefers-color-scheme: light) {
