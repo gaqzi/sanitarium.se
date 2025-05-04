@@ -1,1 +1,14 @@
+# Hugo default output directory
+public/
+resources/
+.hugo_build.lock
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Temporary files
 tmp/
+
+# Claude configuration
+**/.claude/settings.local.json
