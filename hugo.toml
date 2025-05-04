@@ -38,7 +38,7 @@ enableEmoji = true
   # Social media links
   github = "https://github.com/gaqzi"
   mastodon = "https://hachyderm.io/@gaqzi"
-  feed = "/index.xml"
+  feed = "/feed.xml"
   
   # Site settings
   siteName = "the padded cell"
