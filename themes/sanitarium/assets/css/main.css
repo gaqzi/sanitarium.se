@@ -498,11 +498,21 @@ a {
   margin-bottom: var(--space-xs);
 }
 
-.recent-posts .meta,
-.article-list .meta {
+.meta {
   font-size: 0.85em;
   color: var(--text-meta-color);
   margin-bottom: var(--space-sm);
+  font-style: italic;
+}
+
+.meta .author {
+  font-weight: 600;
+  font-style: normal;
+}
+
+.meta .updated-separator {
+  margin: 0 0.5em;
+  opacity: 0.6;
 }
 
 .post-preview {
