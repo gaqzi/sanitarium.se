@@ -1,5 +1,9 @@
 /* Custom styling for the index page and list pages */
 
+:root {
+  --primary-color-rgb: 179, 0, 0; /* Based on the theme's accent-color-light */
+}
+
 .recent-posts article,
 .article-list article {
   margin-bottom: var(--space-lg);
@@ -34,13 +38,20 @@
   font-size: 0.9em;
   text-align: right;
   margin-top: var(--space-xs);
+  clear: both;
 }
 
 .read-more a {
   color: var(--primary-color);
   text-decoration: none;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  transition: all 0.2s ease;
 }
 
 .read-more a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  background-color: rgba(var(--primary-color-rgb), 0.2);
 }
