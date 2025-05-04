@@ -16,6 +16,9 @@
     --main-monospace-font-family: var(--system-mono);
     --main-code-highlight-bg-color: #eee;
     --main-code-highlight-fg-color: #121212;
+    
+    /* RGB values for colors (for rgba usage) */
+    --border-color-standard-rgb: 136, 136, 136; /* Match the hex #888888 */
 
     /* Accent colors for light/dark modes - using system color keywords */
     --accent-color-dark: LinkText;  /* Browser's default link color in dark mode */
@@ -512,4 +515,50 @@ a {
   font-size: 0.9em;
   text-align: right;
   margin-top: var(--space-xs);
+}
+
+/* Pagination styling */
+ul.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: var(--space-lg) 0;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.pagination li {
+  margin: 0;
+}
+
+.pagination a, .pagination .disabled, .pagination .active {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  min-width: 2.5rem;
+  text-align: center;
+  border-radius: 4px;
+  font-family: var(--system-sans);
+}
+
+.pagination a {
+  background-color: rgba(var(--border-color-standard-rgb), 0.1);
+  color: CanvasText;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.pagination a:hover {
+  background-color: rgba(var(--border-color-standard-rgb), 0.2);
+  text-decoration: none;
+}
+
+.pagination .active a {
+  background-color: var(--accent-color-light);
+  color: white;
+  font-weight: bold;
+}
+
+.pagination .disabled {
+  color: rgba(CanvasText, 0.4);
+  cursor: not-allowed;
 }
