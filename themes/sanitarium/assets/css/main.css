@@ -91,20 +91,23 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: var(--main-heading-font-weight);
     margin-top: 0;
     margin-bottom: var(--space-sm);
+}
 
-    a {
-        text-decoration: none;
-    }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    text-decoration: none;
+}
 
-    a:hover {
-        text-decoration: underline;
-    }
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+    text-decoration: underline;
+}
 
-    &.title {
-        a, a:visited {
-            color: CanvasText;
-        }
-    }
+h1.title a, h1.title a:visited, 
+h2.title a, h2.title a:visited, 
+h3.title a, h3.title a:visited,
+h4.title a, h4.title a:visited,
+h5.title a, h5.title a:visited,
+h6.title a, h6.title a:visited {
+    color: CanvasText;
 }
 
 /* Fluid typography using clamp for better responsiveness */
@@ -115,25 +118,32 @@ h4 { font-size: clamp(1rem, 0.85rem + 0.7vw, 1.5rem); }
 h5 { font-size: 1.25rem; }
 h6 { font-size: 1rem; }
 
-hgroup {
-    h1:has(+ p) {
-        margin-bottom: 0.2em;
-    }
-    h1 + p {
-        margin-top: 0.25em;
-        margin-bottom: var(--space-md);
-        font-size: 1.25em;
-        color: rgba(CanvasText, 0.85);
-        font-weight: normal;
-        line-height: 1.4;
-    }
+hgroup h1:has(+ p) {
+    margin-bottom: 0.2em;
+}
+
+hgroup h1 + p {
+    margin-top: 0.25em;
+    margin-bottom: var(--space-md);
+    font-size: 1.25em;
+    color: rgba(CanvasText, 0.85);
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+/* Use a block layout instead of grid for sequential content flow */
+body {
+    font-family: var(--main-text-font-family);
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    line-height: 1.5;
 }
 
 header.masthead {
-    grid-area: header;
-    padding: var(--space-sm) var(--space-sm);
-    margin-bottom: 0;
-    position: relative;
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-md);
+    border-bottom: var(--border-width-standard) solid var(--border-color-standard);
 }
 
 header.masthead a {
@@ -153,36 +163,18 @@ header.masthead a:hover {
     color: var(--main-accent-color);
 }
 
-body {
-    font-family: var(--main-text-font-family);
-    display: grid;
-    grid-template-columns: minmax(1rem, 1fr) minmax(0, 65ch) minmax(1rem, 1fr);
-    grid-template-areas:
-    ". header ."
-    ". content ."
-    ". footer .";
-    gap: var(--space-xs);
-    min-height: 100vh;
-    line-height: 1.5;
-    margin: 0;
-}
-
 main {
-    padding: var(--space-xs) 0 var(--space-lg) 0;
-    grid-area: content;
-    border-bottom: var(--border-width-standard) solid var(--border-color-standard);
+    margin-bottom: var(--space-lg);
 }
 
-article {
-    header {
-        border-bottom: var(--border-width-standard) solid var(--border-color-standard);
-        margin-bottom: var(--space-lg);
-        padding-bottom: var(--space-md);
-    }
+article header {
+    border-bottom: var(--border-width-standard) solid var(--border-color-standard);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+}
 
-    .meta {
-        font-style: italic;
-    }
+article .meta {
+    font-style: italic;
 }
 
 /* Recent posts styles */
@@ -317,16 +309,15 @@ blockquote a {
     font-size: 1.05em; /* Slightly larger to compensate for visual difference */
 }
 
-/* Remove the left border for code blocks */
-
 pre code {
     line-height: 1.5;
 }
 
 footer {
-    grid-area: footer;
     text-align: center;
-    padding: var(--space-md);
+    padding: var(--space-md) 0;
+    margin-top: var(--space-lg);
+    border-top: var(--border-width-standard) solid var(--border-color-standard);
 }
 
 ul.social-links {
@@ -417,26 +408,17 @@ a:hover {
 /* Small phones (portrait) */
 @media (max-width: 30rem) {
     body {
-        grid-template-columns: minmax(0.5rem, 1fr) minmax(0, 100%) minmax(0.5rem, 1fr);
-        grid-template-areas:
-            "header header header"
-            "content content content"
-            "footer footer footer";
-        gap: var(--space-xs);
+        padding: 0 var(--space-sm);
     }
-
+    
     header.masthead {
-        padding: var(--space-sm);
+        padding: var(--space-sm) 0;
     }
-
+    
     header.masthead a {
         font-size: 1.5rem;
     }
-
-    main {
-        padding: var(--space-xs) var(--space-sm) var(--space-lg);
-    }
-
+    
     blockquote, .highlight {
         margin-left: var(--space-sm);
         margin-right: var(--space-sm);
@@ -446,12 +428,11 @@ a:hover {
 /* Large phones and small tablets */
 @media (min-width: 30.01rem) and (max-width: 48rem) {
     body {
-        grid-template-columns: minmax(1rem, 1fr) minmax(0, 100%) minmax(1rem, 1fr);
-        gap: var(--space-xs);
+        max-width: 100%;
+        padding: 0 var(--space-md);
     }
-
+    
     main {
-        padding: var(--space-xs) 0 var(--space-lg);
         max-width: 65ch;
         margin: 0 auto;
     }
@@ -460,44 +441,37 @@ a:hover {
 /* Medium devices (tablets, 48.01rem and up) */
 @media (min-width: 48.01rem) and (max-width: 64rem) {
     body {
-        grid-template-columns: minmax(1rem, 1fr) minmax(0, 60ch) minmax(1rem, 1fr);
-        gap: var(--space-xs);
+        max-width: 60ch;
     }
 }
 
 /* Large devices (desktops, 64.01rem and up) */
 @media (min-width: 64.01rem) {
     body {
-        grid-template-columns: minmax(1rem, 1fr) minmax(0, 65ch) minmax(1rem, 1fr);
-        gap: var(--space-xs);
+        max-width: 65ch;
     }
 }
 
 /* Print styles */
 @media print {
     body {
-        grid-template-columns: 100%;
-        grid-template-areas:
-            "header"
-            "content"
-            "footer";
-        gap: 1rem;
+        max-width: 100%;
     }
-
+    
     pre, code {
         white-space: pre-wrap;
         word-break: break-all;
     }
-
+    
     a::after {
         content: " (" attr(href) ")";
         font-size: 0.9em;
     }
-
+    
     @page {
         margin: 1.5cm;
     }
-
+    
     .social-links {
         display: none;
     }
