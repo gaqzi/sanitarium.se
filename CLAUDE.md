@@ -25,6 +25,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Use Markdown front matter for content metadata
 - Organize content with proper section hierarchy
 - Test across browsers and device sizes
+- Use native CSS nesting with the `&` selector for maintainable CSS
+- Prefer concise, nested CSS over verbose repeated selectors
 
 ## Workflow Guidelines
 - When executing a plan with multiple steps, make incremental commits after completing each logical step
