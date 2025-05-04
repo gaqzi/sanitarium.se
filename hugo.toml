@@ -3,6 +3,24 @@ languageCode = 'en-us'
 title = 'the padded cell'
 theme = 'sanitarium'
 
+# URL structure 
+[permalinks]
+  posts = "/:year/:month/:day/:slug/"
+  archive = "/:year/:month/:day/:slug/"
+
+# Output formats
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+
+# RSS settings
+[outputFormats.RSS]
+  baseName = "feed"
+
+# Pagination
+paginate = 100
+paginatePath = "/page/:num"
+
 # Enable syntax highlighting
 pygmentsUseClasses = true
 pygmentsCodeFences = true
@@ -34,3 +52,20 @@ enableEmoji = true
   
   # Author information
   author = "björn"
+  
+  # Timezone
+  timeZone = "UTC"
+
+# Sitemap config
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+# Markup settings
+[markup]
+  [markup.highlight]
+    style = "zenburn"
+    
+  [markup.goldmark.renderer]
+    unsafe = true  # Allow HTML in markdown

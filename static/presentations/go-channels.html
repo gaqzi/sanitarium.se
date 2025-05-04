@@ -1,0 +1,253 @@
+---
+presentation: true
+author: björn
+date: 2020-02-16 23:00:00+08:00
+layout: presentation
+slug: go-channels
+title: Go channels
+subtitle: …a means of communication
+description: Takeaways from learning to use channels in Go.
+categories:
+- programming
+- go
+---
+<section>
+  <h1>Go Channels</h1>
+  <p>…a means of communication</p>
+
+  <hr style="border: 2px solid silver; width: 80%;"/>
+
+  <p>Björn Andersson</p>
+</section>
+
+<section>
+  <h1>Quick thing about Go</h1>
+
+  <ul>
+    <li class="fragment">
+      Does not have threads
+      <ul>
+        <li class="fragment">Instead has "go routines"</li>
+        <li class="fragment">Kind of like a "green/lightweight" thread</li>
+        <li class="fragment">Many go routines in one thread and many threads to a program</li>
+      </ul>
+    </li>
+    <li class="fragment">
+      You have to write your code as if it could go into another thread at any point
+    </li>
+  </ul>
+</section>
+
+<section>
+  <section>
+    <h1>What?</h1>
+
+    <ul>
+      <li class="fragment">
+        Channels are for letting different parts of the code communicate
+      </li>
+      <li class="fragment">In Go, you never know if you're in a thread or not</li>
+      <li class="fragment">The fastest way of sharing sharing state is over a
+        channel
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>No globals?</h1>
+    <ul>
+      <li class="fragment">Of course, we still have globals and mutexes</li>
+      <li class="fragment">But prefer to send a message on a channel!</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Syntax and usage</h1>
+
+    <ul>
+      <li class="fragment"><code>stopChan := make(chan bool)</code>, create a channel</li>
+      <li class="fragment"><code><-c</code>: read from a channel</li>
+      <li class="fragment"><code>c <-</code>: write to a channel</li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>Passing channels</h1>
+    <ul>
+      <li>
+        Used when specifying which channel you want in your functions and interfaces
+      </li>
+      <li class="fragment"><code>name <-chan string</code>: read-only</li>
+      <li class="fragment"><code>name chan<- string</code>: write-only</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h1>Types of channels</h1>
+
+  <ul>
+    <li class="fragment">Unbuffered</li>
+    <li class="fragment">Buffered</li>
+    <li class="fragment">Closed</li>
+  </ul>
+</section>
+
+<section>
+  <section>
+    <h1>Unbuffered</h1>
+
+    <ul>
+      <li class="fragment">Holds a single value at a time</li>
+      <li class="fragment">You only continue as soon as someone reads from the
+        channel
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h1> Unbuffered example</h1>
+
+    <!-- @formatter:off -->
+<pre><code class="language-golang">
+greetingChan := make(chan string)
+
+go func (c <-chan string) {
+  fmt.Printf("Hello, %s", <-c)
+}(greetingChan)
+
+greetingChan <- "World"
+</code></pre>
+    <!-- @formatter:on -->
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Buffered</h1>
+
+    <ul>
+      <li class="fragment">Can hold up to <em>n</em> values at a time</li>
+      <li class="fragment">Before it has <em>n</em> values in it doesn't wait for someone to
+        read
+      </li>
+      <li class="fragment">Is practically the same as a buffered with 1 as <em>n</em></li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Buffered concurrent execution</h3>
+    <p>With channels you can share a limited resource across unlimited concurrency</p>
+
+    <!-- @formatter:off -->
+<pre><code class="language-golang">
+var dbConns []*DB.Conn // assume it contains 5 connections
+dbPool := make(chan *DB.Conn, 5)
+for i := 0; i < 5; i++ {
+  dbPool <-dbConns[i]
+}
+
+t.Run("parallel test run 1", func (t *testing.T) {
+  t.Parallel()
+  db := <- dbPool
+  defer func () { dbPool <- db }() // returns to pool
+  // run lots of tests
+})
+</code></pre>
+<!-- @formatter:on -->
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Closed</h1>
+
+    <ul>
+      <li class="fragment">Will return the default value immediately</li>
+      <li class="fragment">You can always ask a channel if its open when reading by asking for
+        a second boolean parameter
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Closed example</h3>
+
+    <pre><code class="language-golang">
+stopChan := make(chan struct{})
+
+close(stopChan) // No value written to the channel
+v, ok := <- stopChan
+fmt.Printf("v=%v, open=%v\n", v, ok) // v=false, open=false
+v, ok = <- stopChan
+fmt.Printf("v=%v, open=%v\n", v, ok) // v=false, open=false
+</code></pre>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Tips</h1>
+
+    <ul>
+      <li class="fragment">
+        Think about about your lines of communication
+        <ul>
+          <li class="fragment">Only one Go routine writes and one reads — don't do both in the
+            same
+          </li>
+          <li class="fragment">Who is leading the communication?</li>
+          <li class="fragment">Who is charge of telling the routine to shut down?</li>
+        </ul>
+      </li>
+      <li class="fragment">Does a started Go routine have a reason to communicate something
+        back?
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>Example</h1>
+
+    <!-- @formatter:off -->
+<pre><code class="language-golang">func getMessages(
+    ctx context.Context,
+    query Query,
+    errChan chan<- error,
+    stopChan <-chan struct{},
+) {}
+</code></pre>
+<!-- @formatter:on -->
+
+    <ul>
+      <li class="fragment"><code>context.Context</code> means external shutdown</li>
+      <li class="fragment">
+        <code>errChan</code> sounds like there can be errors that forces the function to stop
+        work on its own
+      </li>
+      <li class="fragment">
+        <code>stopChan</code> tells me that there are other reasons than context to stop
+        working
+      </li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h1><code>select</code> statement</h1>
+
+  <ul>
+    <li class="fragment">Like a <code>switch</code> statement, but for channels</li>
+    <li class="fragment">Reads from one channel at a time <strong>in random order</strong></li>
+    <li class="fragment">
+      <code>default</code> evaluates immediately if no channel is readable
+    </li>
+    <li class="fragment">
+      Will wait for a channel to return something before it continues,
+      unless it has a <code>default</code>
+    </li>
+    <li class="fragment">Remember, a closed channel is always readable</li>
+  </ul>
+</section>
