@@ -8,6 +8,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `hugo` - Build site for production
 - `hugo --minify` - Build with minification
 
+## Testing
+- Use `hugo` command to build site rather than running the server for testing SEO and functionality
+- Check generated HTML files in the `public/` directory to verify changes
+- Run `grep` on generated files to verify specific implementation details
+
 ## Content Creation
 - Create new post: `hugo new content/posts/my-post.md`
 - Create new page: `hugo new content/pages/my-page.md`

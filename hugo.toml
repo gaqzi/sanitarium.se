@@ -39,10 +39,16 @@ enableEmoji = true
   github = "https://github.com/gaqzi"
   mastodon = "https://hachyderm.io/@gaqzi"
   feed = "/feed.xml"
+  mastodonHandle = "@gaqzi@hachyderm.io"
+  
+  # SEO settings
+  defaultImage = "/img/site-default-image.jpg"  # Default image for social media when not specified in post
+  twitterAuthor = "gaqzi"  # Twitter handle without @
+  favicon = "/favicon.ico"
   
   # Site settings
   siteName = "the padded cell"
-  description = "Personal blog of Björn"
+  description = "Personal blog of Björn about programming, technology, and automation"
   mainSections = ["posts"]
   
   # Theme appearance

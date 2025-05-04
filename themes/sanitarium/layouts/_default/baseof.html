@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode | default "en" }}">
 <head>
-    <meta charset="UTF-8">
-    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <meta name="color-scheme" content="dark light">
-    {{ $style := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-    {{ if .Site.Params.enableCodeHighlighting }}
-    {{ $highlight := resources.Get "css/zenburn.css" | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $highlight.RelPermalink }}">
-    {{ end }}
+    {{ partial "head.html" . }}
     {{ block "head" . }}{{ end }}
 </head>
 <body>
