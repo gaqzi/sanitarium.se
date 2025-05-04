@@ -1,20 +1,24 @@
-/* Custom styling for the index page */
+/* Custom styling for the index page and list pages */
 
-.recent-posts article {
+.recent-posts article,
+.article-list article {
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-md);
   border-bottom: 1px solid var(--border-color);
 }
 
-.recent-posts article:last-of-type {
+.recent-posts article:last-of-type,
+.article-list article:last-of-type {
   border-bottom: none;
 }
 
-.recent-posts h3 {
+.recent-posts h3,
+.article-list h2 {
   margin-bottom: var(--space-xs);
 }
 
-.recent-posts .meta {
+.recent-posts .meta,
+.article-list .meta {
   font-size: 0.85em;
   color: var(--text-meta-color);
   margin-bottom: var(--space-sm);
