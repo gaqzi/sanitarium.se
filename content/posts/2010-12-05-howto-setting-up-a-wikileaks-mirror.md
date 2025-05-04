@@ -1,13 +1,17 @@
-+++
-author = "björn"
-comments = true
-date = "2010-12-05 21:11:18+00:00"
-slug = "howto-setting-up-a-wikileaks-mirror"
-title = "How to: Setting up a Wikileaks mirror"
-wordpress_id = 366
-categories = ["blog"]
-tags = ["howto", "linux", "wikileaks"]
-+++
+---
+author: björn
+comments: true
+date: 2010-12-05 21:11:18+00:00
+slug: howto-setting-up-a-wikileaks-mirror
+title: "How to: Setting up a Wikileaks mirror"
+wordpress_id: 366
+categories:
+- blog
+tags:
+- howto
+- linux
+- wikileaks
+---
 
 Yesterday I wrote a quick step-by-step guide for installing apache and setting
 your system up for [Wikileaks mass-mirror project][formuläret] in Swedish and

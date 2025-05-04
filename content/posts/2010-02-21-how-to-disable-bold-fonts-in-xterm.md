@@ -1,14 +1,18 @@
-+++
-author = "björn"
-comments = true
-date = "2010-02-21 22:36:19+00:00"
-slug = "how-to-disable-bold-fonts-in-xterm"
-title = "How to disable bold fonts in xterm"
-subtitle = "Why sometimes repeating yourself really does get the message through"
-wordpress_id = 67
-categories = ["blog"]
-tags = ["howto", "linux", "terminal"]
-+++
+---
+author: björn
+comments: true
+date: 2010-02-21 22:36:19+00:00
+slug: how-to-disable-bold-fonts-in-xterm
+title: How to disable bold fonts in xterm
+subtitle: Why sometimes repeating yourself really does get the message through
+wordpress_id: 67
+categories:
+- blog
+tags:
+- howto
+- linux
+- terminal
+---
 
 I've so far in all my travels never found a terminal I like better than [xterm], maybe [urxvt], but I've had a problem disabling bold fonts for a very long time. **Update:** Seems this is a [known bug for xterm][xterm-bug].
 

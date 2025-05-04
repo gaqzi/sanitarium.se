@@ -1,14 +1,18 @@
-+++
-author = "björn"
-comments = true
-date = "2010-12-04 21:27:26+00:00"
-slug = "howto-satta-upp-en-wikileaksspegling"
-title = "How to: Sätta upp en Wikileaksspegling"
-language = "sv-SE"
-wordpress_id = 327
-categories = ["blog"]
-tags = ["howto", "linux", "wikileaks"]
-+++
+---
+author: björn
+comments: true
+date: 2010-12-04 21:27:26+00:00
+slug: howto-satta-upp-en-wikileaksspegling
+title: "How to: Sätta upp en Wikileaksspegling"
+language: sv-SE
+wordpress_id: 327
+categories:
+- blog
+tags:
+- howto
+- linux
+- wikileaks
+---
 
 [A translation of this post is available in English.](/blog/2010/12/howto-setting-up-a-wikileaks-mirror/)
 

@@ -1,13 +1,17 @@
-+++
-author = "björn"
-comments = true
-date = "2011-01-07 01:21:46+00:00"
-slug = "keeping-your-varnish-farm-in-sync"
-title = "Keeping your Varnish farms configuration in sync"
-wordpress_id = 378
-categories = ["blog"]
-tags = ["varnish", "linux", "devops"]
-+++
+---
+author: björn
+comments: true
+date: 2011-01-07 01:21:46+00:00
+slug: keeping-your-varnish-farm-in-sync
+title: Keeping your Varnish farms configuration in sync
+wordpress_id: 378
+categories:
+- blog
+tags:
+- varnish
+- linux
+- devops
+---
 
 I spend some of my free time helping out with server administration and
 programming for the [Swedish Pirate Party][pp-wiki], [Piratpartiet] (*look ma*,

@@ -1,13 +1,16 @@
-+++
-author = "björn"
-comments = true
-date = "2013-01-18 16:22:32+00:00"
-slug = "python-and-its-included-batteries"
-title = "Python and its included batteries"
-wordpress_id = 460
-categories = ["blog"]
-tags = ["python", "programming"]
-+++
+---
+author: björn
+comments: true
+date: 2013-01-18 16:22:32+00:00
+slug: python-and-its-included-batteries
+title: Python and its included batteries
+wordpress_id: 460
+categories:
+- blog
+tags:
+- python
+- programming
+---
 
 I've for almost a year now been using [Python] as my day to day language as it's
 what is used at my job. I'm starting to come around to really liking most parts
