@@ -25,6 +25,13 @@
 - Organize with section hierarchy
 - Cross-browser/device testing
 - Use native CSS nesting with `&`
+- Support dark/light themes:
+  - Leverage browser standard colors (like `CanvasText`) to minimize custom CSS
+  - Define theme variables in `:root` with light/dark pairs
+  - Use `prefers-color-scheme` media queries for automatic theme switching
+  - Only define custom colors when browser defaults aren't sufficient
+  - Test all color combinations for sufficient contrast in both themes
+  - For SVGs and icons, use filters rather than duplicate assets
 
 ## Template Structure
 
