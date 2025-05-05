@@ -1,8 +1,9 @@
-{{ define "title" }}{{ if eq .Kind "term" }}{{ .Data.Term }} - {{ end }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
 
 {{ define "main" }}
+<!-- Posts-specific list template -->
 <header>
-    <h1>{{ if eq .Kind "term" }}{{ .Data.Term }}{{ else }}{{ .Title }}{{ end }}</h1>
+    <h1>{{ .Title }}</h1>
     {{ with .Description }}
     <div class="description">{{ . }}</div>
     {{ end }}
@@ -18,8 +19,10 @@
         {{ else }}
         <p class="post-preview">{{ .Summary | plainify | truncate 120 }}</p>
         {{ end }}
-        <!-- Unconditional Read More link -->
-        <p class="read-more"><a href="{{ .Permalink }}">Read more →</a></p>
+        <!-- Read More link -->
+        <p class="read-more">
+            <a href="{{ .Permalink }}">Read more →</a>
+        </p>
     </article>
     {{ end }}
 </div>
