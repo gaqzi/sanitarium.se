@@ -179,6 +179,19 @@ article {
     }
 }
 
+/* Article listing styles */
+.article-list {
+    & article {
+        a h1, a h2, a h3, a h4, a h5, a h6, .subtitle {
+            color: CanvasText;
+        }
+
+        a:hover h1, a:hover h2, a:hover h3, a:hover h4, a:hover h5, a:hover h6 {
+            color: var(--main-accent-color);
+        }
+    }
+}
+
 /* Recent posts styles */
 .recent-posts article {
     margin-bottom: var(--space-lg);
