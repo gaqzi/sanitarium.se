@@ -40,25 +40,25 @@ enableEmoji = true
   mastodon = "https://hachyderm.io/@gaqzi"
   feed = "/feed.xml"
   mastodonHandle = "@gaqzi@hachyderm.io"
-  
+
   # SEO settings
   defaultImage = "/img/site-default-image.jpg"  # Default image for social media when not specified in post
   twitterAuthor = "gaqzi"  # Twitter handle without @
   favicon = "/favicon.ico"
-  
+
   # Site settings
   siteName = "the padded cell"
   description = "Personal blog of Björn about programming, technology, and automation"
   mainSections = ["posts"]
-  
+
   # Theme appearance
   enableCodeHighlighting = true
   footerLogo = "/img/old-logo.gif"
   footerLogoAlt = "padded cell logo"
-  
+
   # Author information
   author = "björn"
-  
+
   # Timezone
   timeZone = "UTC"
 
@@ -71,7 +71,9 @@ enableEmoji = true
 # Markup settings
 [markup]
   [markup.highlight]
+    codeFences = true
     style = "zenburn"
-    
+    noClasses = false
+
   [markup.goldmark.renderer]
     unsafe = true  # Allow HTML in markdown
