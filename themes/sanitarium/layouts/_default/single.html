@@ -3,8 +3,11 @@
 {{ define "main" }}
 <article class="post single">
     <header>
-        <h1 class="title">{{ .Title }}</h1>
-        {{ with .Params.subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
+        <hgroup>
+            <h1 class="title">{{ .Title }}</h1>
+            {{ with .Params.subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
+        </hgroup>
+
         {{ partial "post-meta.html" . }}
     </header>
 
