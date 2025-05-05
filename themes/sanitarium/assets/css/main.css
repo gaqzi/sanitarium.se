@@ -16,7 +16,7 @@
     --main-monospace-font-family: var(--system-mono);
     --main-code-highlight-bg-color: #eee;
     --main-code-highlight-fg-color: #121212;
-    
+
     /* RGB values for colors (for rgba usage) */
     --border-color-standard-rgb: 136, 136, 136; /* Match the hex #888888 */
 
@@ -97,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 
     & a {
         text-decoration: none;
-        
+
         &:hover {
             text-decoration: underline;
         }
@@ -120,7 +120,7 @@ hgroup {
     & h1:has(+ p) {
         margin-bottom: 0.2em;
     }
-    
+
     & h1 + p {
         margin-top: 0.25em;
         margin-bottom: var(--space-md);
@@ -156,7 +156,7 @@ header.masthead {
         text-decoration-thickness: 2px;
         text-underline-offset: 4px;
         transition: color 0.2s ease;
-        
+
         &:hover {
             color: var(--main-accent-color);
         }
@@ -197,7 +197,7 @@ article {
     margin-bottom: var(--space-lg);
     padding-bottom: var(--space-md);
     border-bottom: 1px solid rgba(128, 128, 128, 0.2);
-    
+
     &:last-child {
         border-bottom: none;
     }
@@ -206,7 +206,7 @@ article {
 .all-posts-link {
     margin-top: var(--space-lg);
     text-align: right;
-    
+
     & a {
         font-weight: 600;
         font-family: var(--main-heading-font-family);
@@ -265,7 +265,7 @@ blockquote, .highlight {
 blockquote {
     padding: 0;
     border-left: none;
-    
+
     & p {
         background-color: var(--quote-bg-color);
         color: var(--quote-text-color);
@@ -273,7 +273,7 @@ blockquote {
         margin: 0;
         font-style: italic;
         position: relative;
-        
+
         &::before {
             content: '';
             position: absolute;
@@ -285,7 +285,7 @@ blockquote {
             z-index: 1;
         }
     }
-    
+
     &:before {
         content: '\201c';
         font-family: 'Times New Roman', serif;
@@ -296,7 +296,7 @@ blockquote {
         z-index: 2;
         opacity: var(--quote-mark-opacity);
     }
-    
+
     & a {
         color: var(--main-accent-color);
         font-weight: 600;
@@ -356,7 +356,7 @@ ul.social-links {
     border-radius: 8px;
     transition: background-color 0.2s ease;
     background-color: rgba(255, 255, 255, 0.08);
-    
+
     &:hover {
         background-color: rgba(255, 255, 255, 0.15);
     }
@@ -366,7 +366,7 @@ ul.social-links {
     .social-link {
         background-color: rgba(0, 0, 0, 0.05);
         filter: brightness(0.2);
-        
+
         &:hover {
             background-color: rgba(0, 0, 0, 0.1);
             filter: brightness(0.2);
@@ -414,7 +414,7 @@ a {
     color: var(--main-accent-color);
     text-decoration: none;
     transition: color 0.2s ease;
-    
+
     &:hover {
         text-decoration: underline;
     }
@@ -425,15 +425,15 @@ a {
     body {
         padding: 0 var(--space-sm);
     }
-    
+
     header.masthead {
         padding: var(--space-sm) 0;
-        
+
         & a {
             font-size: 1.5rem;
         }
     }
-    
+
     blockquote, .highlight {
         margin-left: var(--space-sm);
         margin-right: var(--space-sm);
@@ -446,7 +446,7 @@ a {
         max-width: 100%;
         padding: 0 var(--space-md);
     }
-    
+
     main {
         max-width: 65ch;
         margin: 0 auto;
@@ -472,21 +472,21 @@ a {
     body {
         max-width: 100%;
     }
-    
+
     pre, code {
         white-space: pre-wrap;
         word-break: break-all;
     }
-    
+
     a::after {
         content: " (" attr(href) ")";
         font-size: 0.9em;
     }
-    
+
     @page {
         margin: 1.5cm;
     }
-    
+
     .social-links {
         display: none;
     }
@@ -496,131 +496,157 @@ a {
 
 .recent-posts article,
 .article-list article {
-  margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .recent-posts article:last-of-type,
 .article-list article:last-of-type {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 .recent-posts h3,
 .article-list h2 {
-  margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-xs);
 }
 
 .meta {
-  font-size: 0.85em;
-  color: var(--text-meta-color);
-  margin-bottom: var(--space-sm);
-  font-style: italic;
+    font-size: 0.85em;
+    color: var(--text-meta-color);
+    margin-bottom: var(--space-sm);
+    font-style: italic;
 }
 
 .meta .author {
-  font-weight: 600;
-  font-style: normal;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .meta .updated-separator {
-  margin: 0 0.5em;
-  opacity: 0.6;
+    margin: 0 0.5em;
+    opacity: 0.6;
 }
 
 .post-preview {
-  margin-bottom: var(--space-xs);
-  line-height: 1.5;
-  color: var(--text-color);
+    margin-bottom: var(--space-xs);
+    line-height: 1.5;
+    color: var(--text-color);
 }
 
 .read-more {
-  font-size: 0.9em;
-  text-align: right;
-  margin-top: var(--space-xs);
+    font-size: 0.9em;
+    text-align: right;
+    margin-top: var(--space-xs);
 }
 
 /* Pagination styling */
 ul.pagination {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: var(--space-lg) 0;
-  justify-content: center;
-  gap: 0.25rem;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: var(--space-lg) 0;
+    justify-content: center;
+    gap: 0.25rem;
 }
 
 .pagination li {
-  margin: 0;
+    margin: 0;
 }
 
-.pagination a, .pagination .disabled, .pagination .active {
-  display: inline-block;
-  padding: 0.5rem 0.75rem;
-  min-width: 2.5rem;
-  text-align: center;
-  border-radius: 4px;
-  font-family: var(--system-sans);
+/* Base styles for all pagination elements */
+.pagination a,
+.pagination .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    border-radius: 4px;
+    font-family: var(--system-sans);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
 }
 
-.pagination a {
-  background-color: rgba(var(--border-color-standard-rgb), 0.1);
-  color: CanvasText;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
+/* Regular pagination links */
+.pagination a:not(.active):not([aria-disabled="true"]) {
+    background-color: rgba(var(--border-color-standard-rgb), 0.1);
+    color: CanvasText;
 }
 
-.pagination a:hover {
-  background-color: rgba(var(--border-color-standard-rgb), 0.2);
-  text-decoration: none;
+.pagination a:hover:not([aria-disabled="true"]) {
+    background-color: rgba(var(--border-color-standard-rgb), 0.2);
+    text-decoration: none;
 }
 
-.pagination .active a {
-  background-color: var(--accent-color-light);
-  color: white;
-  font-weight: bold;
+/* Active pagination state */
+.pagination .active a,
+.pagination .page-item.active .page-link {
+    background-color: var(--main-accent-color);
+    color: white;
+    font-weight: bold;
 }
 
-.pagination .disabled {
-  color: rgba(CanvasText, 0.4);
-  cursor: not-allowed;
+/* Disabled pagination state */
+.pagination [aria-disabled="true"],
+.pagination .disabled .page-link {
+    background-color: rgba(var(--border-color-standard-rgb), 0.05);
+    color: rgba(CanvasText, 0.4);
+    cursor: not-allowed;
+}
+
+/* Ensure pagination works well in both light and dark mode */
+@media (prefers-color-scheme: dark) {
+    .pagination .active a,
+    .pagination .page-item.active .page-link {
+        background-color: var(--accent-color-dark);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .pagination .active a,
+    .pagination .page-item.active .page-link {
+        background-color: var(--accent-color-light);
+    }
 }
 
 /* Heading anchor links */
 .heading-anchor {
-  font-size: 0.8em;
-  margin-left: 0.1em; /* Reduced from 0.3em to bring it closer */
-  text-decoration: none;
-  color: var(--main-accent-color);
-  opacity: 0.4;  /* Always visible but subtle */
+    font-size: 0.8em;
+    margin-left: 0.1em; /* Reduced from 0.3em to bring it closer */
+    text-decoration: none;
+    color: var(--main-accent-color);
+    opacity: 0.4;  /* Always visible but subtle */
 }
 
 /* Slightly more visible on hover for desktop devices */
 @media (hover: hover) {
-  .heading-anchor {
-    opacity: 0.2;
-  }
-  
-  h1:hover .heading-anchor,
-  h2:hover .heading-anchor,
-  h3:hover .heading-anchor,
-  h4:hover .heading-anchor,
-  h5:hover .heading-anchor,
-  h6:hover .heading-anchor {
-    opacity: 0.8;
-  }
+    .heading-anchor {
+        opacity: 0.2;
+    }
+
+    h1:hover .heading-anchor,
+    h2:hover .heading-anchor,
+    h3:hover .heading-anchor,
+    h4:hover .heading-anchor,
+    h5:hover .heading-anchor,
+    h6:hover .heading-anchor {
+        opacity: 0.8;
+    }
 }
 
 @media (prefers-color-scheme: light) {
-  .heading-anchor:hover {
-    color: var(--accent-color-light);
-  }
+    .heading-anchor:hover {
+        color: var(--accent-color-light);
+    }
 }
 
 @media (prefers-color-scheme: dark) {
-  .heading-anchor:hover {
-    color: var(--accent-color-dark);
-  }
+    .heading-anchor:hover {
+        color: var(--accent-color-dark);
+    }
 }
 
 /* Ensure anchors are positioned correctly when navigating to them */
@@ -630,5 +656,5 @@ h3[id],
 h4[id],
 h5[id],
 h6[id] {
-  scroll-margin-top: 1em;
+    scroll-margin-top: 1em;
 }
