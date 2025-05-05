@@ -1,7 +1,8 @@
 {{ define "main" }}
   {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
+  <div class="article-list">
+  {{ range where site.RegularPages "Section" "posts" }}
+    {{ partial "article-summary.html" (dict "headingLevel" "h2" "Title" .Title "Permalink" .Permalink "Params" .Params "Description" .Description "Summary" .Summary "Date" .Date "Lastmod" .Lastmod "Site" .Site) }}
   {{ end }}
+  </div>
 {{ end }}

@@ -10,17 +10,7 @@
 
 <div class="article-list">
     {{ range .Paginator.Pages }}
-    <article>
-        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-        {{ partial "post-meta.html" . }}
-        {{ with .Description }}
-        <p class="post-preview">{{ . | truncate 120 }}</p>
-        {{ else }}
-        <p class="post-preview">{{ .Summary | plainify | truncate 120 }}</p>
-        {{ end }}
-        <!-- Unconditional Read More link -->
-        <p class="read-more"><a href="{{ .Permalink }}">Read more →</a></p>
-    </article>
+    {{ partial "article-summary.html" (dict "headingLevel" "h2" "Title" .Title "Permalink" .Permalink "Params" .Params "Description" .Description "Summary" .Summary "Date" .Date "Lastmod" .Lastmod "Site" .Site) }}
     {{ end }}
 </div>
 

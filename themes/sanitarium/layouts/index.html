@@ -12,16 +12,7 @@
         <h2>Recent Posts</h2>
         {{ $posts := where (where .Site.RegularPages "Section" "posts") "IsPage" true }}
         {{ range first 5 $posts }}
-        <article>
-            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-            {{ partial "post-meta.html" . }}
-            {{ with .Description }}
-            <p class="post-preview">{{ . | truncate 120 }}</p>
-            {{ else }}
-            <p class="post-preview">{{ .Summary | plainify | truncate 120 }}</p>
-            {{ end }}
-            <p class="read-more"><a href="{{ .Permalink }}">Read more →</a></p>
-        </article>
+        {{ partial "article-summary.html" (dict "headingLevel" "h3" "Title" .Title "Permalink" .Permalink "Params" .Params "Description" .Description "Summary" .Summary "Date" .Date "Lastmod" .Lastmod "Site" .Site) }}
         {{ end }}
 
         <p class="all-posts-link">

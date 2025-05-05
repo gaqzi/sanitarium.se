@@ -1,0 +1,17 @@
+<article>
+    <a href="{{ .Permalink }}">
+        {{ if eq .headingLevel "h3" }}
+        <h3>{{ .Title }}</h3>
+        {{ else }}
+        <h2>{{ .Title }}</h2>
+        {{ end }}
+        <p class="subtitle">{{ .Params.subtitle }}</p>
+    </a>
+    {{ partial "post-meta.html" . }}
+    {{ with .Description }}
+    <p class="post-preview">{{ . | truncate 120 }}</p>
+    {{ else }}
+    <p class="post-preview">{{ .Summary | plainify | truncate 120 }}</p>
+    {{ end }}
+    <p class="read-more"><a href="{{ .Permalink }}">Read more →</a></p>
+</article>
