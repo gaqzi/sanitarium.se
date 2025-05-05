@@ -261,18 +261,50 @@ blockquote, .highlight {
     overflow: hidden;
 }
 
-/* Quote styling */
+/* Quote styling - using negative z-index approach with CSS variables */
 blockquote {
+    position: relative;
     padding: 0;
     border-left: none;
+    margin: var(--content-block-margin);
+    border-radius: 3px;
+    overflow: hidden;
 
-    & p {
+    /* Background container */
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background-color: var(--quote-bg-color);
+        z-index: -1;  /* Puts this at the bottom layer */
+    }
+
+    /* Quotation mark */
+    &::after {
+        content: '\201c';
+        font-family: 'Times New Roman', serif;
+        position: absolute;
+        font-size: 6em;
+        left: 0.1em;
+        top: -0.3em;
+        color: var(--quote-mark-color-dark);
+        opacity: var(--quote-mark-opacity);
+        z-index: 0;  /* Middle layer between background and content */
+        pointer-events: none;
+    }
+
+    /* Text content */
+    & p {
+        position: relative;
+        background-color: transparent; /* No background on paragraph */
         color: var(--quote-text-color);
-        padding: 1.5em 1em 1em calc(1.5em + 5px); /* Added 5px to compensate for the visual shift caused by the left border and different box rendering between blockquotes and code blocks */
+        padding: 1.5em 1em 1em calc(1.5em + 5px);
         margin: 0;
         font-style: italic;
-        position: relative;
+        z-index: 1;  /* Top layer ensures text is always visible */
 
         &::before {
             content: '';
@@ -282,19 +314,7 @@ blockquote {
             height: 100%;
             width: var(--quote-border-width);
             background-color: var(--quote-border-color);
-            z-index: 1;
         }
-    }
-
-    &:before {
-        content: '\201c';
-        font-family: 'Times New Roman', serif;
-        position: absolute;
-        font-size: 6em;
-        left: 0.1em;
-        top: -0.3em;
-        z-index: 2;
-        opacity: var(--quote-mark-opacity);
     }
 
     & a {
