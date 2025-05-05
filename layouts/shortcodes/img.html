@@ -1,7 +1,0 @@
-{{ $alt := or (.Get "alt") "" }}
-{{ $lazy := "" }}
-{{ if ne (.Get "lazy") "false" }}
-  {{ $lazy = `loading="lazy"` }}
-{{ end }}
-{{ $src := .Get "src" | default (.Get 0) }}
-<img {{ $lazy | safeHTMLAttr }} alt="{{ $alt }}" title="{{ $alt }}" src="{{ $src }}">
