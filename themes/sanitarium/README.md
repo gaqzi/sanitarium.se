@@ -75,7 +75,7 @@ enableEmoji = true
 Create a new post with:
 
 ```bash
-hugo new content posts/my-post.md
+hugo new content blog/my-post.md
 ```
 
 The front matter should look like:

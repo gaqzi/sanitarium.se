@@ -5,7 +5,7 @@ theme = 'sanitarium'
 
 # URL structure 
 [permalinks]
-  posts = "/blog/:year/:month/:day/:slug/"
+  blog = "/blog/:year/:month/:day/:slug/"
   archive = "/blog/:year/:month/:day/:slug/"
 
 # Output formats
