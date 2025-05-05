@@ -20,11 +20,11 @@ there's about the _[included batteries]_ and to a small extent how there seems
 to bit of dickishness involved with hard core Python people. For an example of
 the latter just:
 
-{% highlight bash %}
+```bash
 $ python  
 >>> exit  
 Use exit() or Ctrl-D (i.e. EOF) to exit
-{% endhighlight %}
+```
 
 Clearly the interpreter known what I want to achieve, and at the same time it's
 programmed to give of an error message telling me I was doing it wrong. And for
@@ -50,7 +50,7 @@ So far the worst way I've been bitten was with the built-in e-mail library, this
 ended up with me sending a copy of the e-mail addresses of 150 customers by
 mistake.
 
-{% highlight python %}
+```python
 import smtplib
 from email.mime.text import MIMEText
   
@@ -61,11 +61,11 @@ msg['To'] = 'user-1@domain.tld'
 msg['To'] = 'user-2@domain.tld'
   
 print msg.as_string()
-{% endhighlight %}
+```
 
 Output:
 
-{% highlight text %}
+```plain
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -75,7 +75,7 @@ To: user-1@domain.tld
 To: user-2@domain.tld
    
 Ho ho ho, merry christmas
-{% endhighlight %}
+```
 
 Because appending when doing an assignment is just what you'd expect. This from
 the same people that needs to tell me I can't type `exit` but I need to type
