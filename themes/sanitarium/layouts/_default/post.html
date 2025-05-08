@@ -14,5 +14,7 @@
     <div class="content" {{ if .Params.language }} lang="{{ .Params.language }}"{{ end }}>
         {{ .Content }}
     </div>
+
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 </article>
 {{ end }}

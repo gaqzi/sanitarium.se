@@ -179,6 +179,34 @@ article {
     }
 }
 
+.post-tags {
+    margin-top: var(--space-md);    /* Space from content above */
+    margin-bottom: var(--space-md); /* Space to footer divider */
+
+    & ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    & li {
+        margin: 0;
+    }
+
+    & a {
+        color: var(--main-accent-color);
+        text-decoration: none;
+        font-size: 0.9em;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
 /* Article listing styles */
 .article-list {
     & article {
