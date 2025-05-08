@@ -3,7 +3,7 @@
 {{ define "main" }}
 <article class="post single">
     <header>
-        <hgroup>
+        <hgroup {{ if .Params.language }} lang="{{ .Params.language }}"{{ end }}>
             <h1 class="title">{{ .Title }}</h1>
             {{ with .Params.subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
         </hgroup>
@@ -11,7 +11,7 @@
         {{ partial "post-meta.html" . }}
     </header>
 
-    <div class="content">
+    <div class="content" {{ if .Params.language }} lang="{{ .Params.language }}"{{ end }}>
         {{ .Content }}
     </div>
 </article>
