@@ -43,7 +43,6 @@ So this is all pretty new and I’m hoping someone else will find this useful as
 
 If someone have any questions or comments please leave your mark below. :)
 
-_ I’ve since the original publication tried to clean up the language/wordings to try to make it more coherent :)_
+_I’ve since the original publication tried to clean up the language/wordings to try to make it more coherent :)_
 
-_Update 2010-02-21: Since the posting of this post I've migrated over to Wordpress, while I love the idea with Webby I realized I also wanted to easily make a blogpost even if I were not at my own computer.
-_
+_Update 2010-02-21: Since the posting of this post I've migrated over to Wordpress, while I love the idea with Webby I realized I also wanted to easily make a blogpost even if I were not at my own computer._

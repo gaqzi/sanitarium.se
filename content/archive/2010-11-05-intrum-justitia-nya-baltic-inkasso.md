@@ -7,7 +7,7 @@ date: 2010-11-05 22:55:46+00:00
 layout: post
 slug: intrum-justitia-nya-baltic-inkasso
 title: Intrum Justitia, nya Baltic Inkasso?
-language: sv-SE
+language: sv
 wordpress_id: 265
 categories:
 - Svenska inlägg

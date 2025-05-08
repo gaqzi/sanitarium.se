@@ -7,7 +7,7 @@ date: 2009-08-26 10:51:29+00:00
 layout: post
 slug: overvakad-av-dintur
 title: Övervakad av Din Tur
-language: sv-SE
+language: sv
 wordpress_id: 8
 categories:
 - Svenska inlägg

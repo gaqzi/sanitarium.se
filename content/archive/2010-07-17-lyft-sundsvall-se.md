@@ -7,7 +7,7 @@ date: 2010-07-17 21:26:48+00:00
 layout: post
 slug: lyft-sundsvall-se
 title: LyftSundsvall.se
-language: sv-SE
+language: sv
 wordpress_id: 182
 categories:
 - Svenska inlägg

@@ -7,7 +7,7 @@ date: 2010-11-26 19:18:22+00:00
 layout: post
 slug: svar-fran-datainspektionen-om-intrum-justitia
 title: Svar från Datainspektionen om Intrum Justitia
-language: sv-SE
+language: sv
 wordpress_id: 315
 categories:
 - Svenska inlägg

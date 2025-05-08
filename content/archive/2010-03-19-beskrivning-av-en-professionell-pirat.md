@@ -7,7 +7,7 @@ date: 2010-03-19 20:08:21+00:00
 layout: post
 slug: beskrivning-av-en-professionell-pirat
 title: 'Beskrivning av en professionell pirat? '
-language: sv-SE
+language: sv
 wordpress_id: 91
 categories:
 - Svenska inlägg

@@ -7,7 +7,7 @@ date: 2010-09-11 16:09:29+00:00
 layout: post
 slug: lokalpolitik-i-sundsvall-och-vasternorrland
 title: Lokalpolitik i Sundsvall och Västernorrland
-language: sv-SE
+language: sv
 wordpress_id: 211
 categories:
 - Svenska inlägg

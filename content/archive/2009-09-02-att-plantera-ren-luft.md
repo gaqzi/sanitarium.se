@@ -7,7 +7,7 @@ date: 2009-09-02 19:55:45+00:00
 layout: post
 slug: att-plantera-ren-luft
 title: Att plantera ren luft
-language: sv-SE
+language: sv
 wordpress_id: 7
 categories:
 - Svenska inlägg

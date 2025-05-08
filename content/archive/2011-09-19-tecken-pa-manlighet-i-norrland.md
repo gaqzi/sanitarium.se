@@ -7,7 +7,7 @@ date: 2011-09-19 19:30:53+00:00
 layout: post
 slug: tecken-pa-manlighet-i-norrland
 title: '...tecken på manlighet i norrland?'
-language: sv-SE
+language: sv
 wordpress_id: 425
 categories:
 - Svenska inlägg
