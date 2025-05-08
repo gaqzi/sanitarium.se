@@ -3,6 +3,7 @@ languageCode = 'en-us'
 title = 'the padded cell'
 theme = 'sanitarium'
 
+defaultContentLanguage = "en"
 
 cascade = [
   { _target = { path = "/blog/**" }, layout = "post" },
