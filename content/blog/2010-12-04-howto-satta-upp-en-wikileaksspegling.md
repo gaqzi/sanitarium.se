@@ -16,7 +16,7 @@ tags:
 - wikileaks
 ---
 
-[A translation of this post is available in English.](/blog/2010/12/05/howto-setting-up-a-wikileaks-mirror/)
+[A translation of this post is available in English.]({{< relref "2010-12-05-howto-setting-up-a-wikileaks-mirror.md" >}})
 
 En [kommentar] i Rick Falkvinges inlägg [Fullt krig om informationen][infokrig]
 så efterfrågades en snabbguide för att dra igång en Wikileaksspegling i ett
