@@ -11,8 +11,10 @@ cascade = [
 
 # URL structure 
 [permalinks]
+  author = "/blog/author/:slug/"
   blog = "/blog/:year/:month/:day/:slug/"
   archive = "/blog/:year/:month/:day/:slug/"
+  tags = "/blog/tags/:slug/"
 
 # Output formats
 [outputs]
