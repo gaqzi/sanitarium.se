@@ -3,6 +3,12 @@ languageCode = 'en-us'
 title = 'the padded cell'
 theme = 'sanitarium'
 
+
+cascade = [
+  { _target = { path = "/blog/**" }, layout = "post" },
+  { _target = { path = "/archive/**" }, layout = "post" },
+]
+
 # URL structure 
 [permalinks]
   blog = "/blog/:year/:month/:day/:slug/"
