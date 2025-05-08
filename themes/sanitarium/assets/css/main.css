@@ -117,11 +117,11 @@ h5 { font-size: 1.25rem; }
 h6 { font-size: 1rem; }
 
 hgroup {
-    & h1:has(+ p) {
+    & h1:has(+ p),h2:has(+ p),h3:has(+ p),h4:has(+ p),h5:has(+ p),h6:has(+ p) {
         margin-bottom: 0.2em;
     }
 
-    & h1 + p {
+    & h1 + p, & h2 + p, & h3 + p, & h4 + p, & h5 + p, & h6 + p {
         margin-top: 0.25em;
         margin-bottom: var(--space-md);
         font-size: 1.25em;
