@@ -1,0 +1,6 @@
+# Just to remove these from index
+User-agent: *
+Disallow: /w/
+Disallow: /wiki/
+
+Sitemap: https://sanitarium.se/sitemap.xml

@@ -1,0 +1,73 @@
+==================================================================
+https://keybase.io/gaqzi
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://sanitarium.se
+  * I am gaqzi (https://keybase.io/gaqzi) on keybase.
+  * I have a public key with fingerprint 984A 69AE 5426 A004 6260  DB2B 8CC4 FC67 C6D6 8BE7
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "984a69ae5426a0046260db2b8cc4fc67c6d68be7",
+            "host": "keybase.io",
+            "key_id": "8cc4fc67c6d68be7",
+            "kid": "0101d3478c4e582a1287bb54523f7fc8dc12fc7cd284788f457691765954d29894370a",
+            "uid": "47d116fcc9183863cc2f51e14b5f7d19",
+            "username": "gaqzi"
+        },
+        "service": {
+            "hostname": "sanitarium.se",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1433335713,
+    "expire_in": 157680000,
+    "prev": "c51f669cc59b341aba5b642c860edc0f48a2d3acbeec4042979ac767659f5ba1",
+    "seqno": 5,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
+Comment: GPGTools - https://gpgtools.org
+
+owFtUn1QFGUYvwOB+EiBSXOIbNwZEJSh3b39vEQ8aiSqYabCvpTOd99999w49ri7
+BQOk6WgGgqhOGRTHZgolisOJORAcqDOhunSSwYRBhUZOsvAalH+QLITaZey/nn/e
+eZ/fx/v+nnm8D0ca4oxN39+3BSc+mDX+NJQrGHYrf7ZXY4JDrMTM1VgJWj0kWbEh
+V5lLVlTMjPEcBRgeIJoiGYDjFEMyuCiQAgchJUGGhYzIcAJisSxsv8OtKzQbAbhR
+tuzQetrFKota93/4JasATuCEaKJYDlKI5khAkBwrCDRFkyaJlSAnQoKUIAtFktNI
+nETRLMMTLEPzNCWSPMdTJhYHml35qh3FigTBSBDyBGfiGBOEpEQTiKAEWtIgXie6
+kUsBpUhj24CzSsZqsjCtVSFDpOfXYzyA3UCRVeCSy0uz3UhTlrkcqgM67Bq0X1XL
+zLpSrSzTqQeQYH1gYhVkRdSGqAkqkMstOxTMTGhMqMq6K0GZtKJZwpSFobfLZBey
+yjpDy8XhWunPoArNEtKExDA8hDQvmCgCCIAWGIqEHIMjEeISxQFSNAEoIAQpnCJ5
+lgeQZfTRSLQACEyP5VQcmJnWvglseiDZpgC13IWwmriGiNQ1BmOcIToqQt8DQ1xs
+4n/bgR5Z94+lb63/TH/kxUYlsHmX1TF9Vb6ZVvL63FO9g+huyhc7nI8lej0ZHeKx
+0dPXjEumzL8tYxf7DXg4b3afL/mT1Nbp8i9bhR9TQHf2reSxwM68W84FeozKfdIY
+Cs0UTZ6c8lyrP59U5zoYOz1i9/dNpnbc/KMlNFw84Hlt/W9V585MNT534eedQnLF
+4Tz8hZpF4K+689nB2eVf/LO1xbuLwaO9Q4fU0mBCp214+8IIP+/cttX60Hfx7e3M
+yYLqDE/CXEbnXx4vUfNSV0P69O0tj+c8w5bnGwtOzM9c/iGjbsq+uS8/dd6SWVNw
+7zr9TXvPCnH9cExMU/+Hm3KawhNXfJ21LeFTR1t+55q7X5Tb4HK1+Otb+8LvfVsw
+s80bHcIjnohUne6vl6aOL57viVdybDe2lEa9PD0SlZDka0wzJ+a6pdHFnLRd4638
+840bLXSvRVQqjxYukgGz9WqX0MwoH02GjtjXn+LrCwY25DdEtU7NHpgrWjiXEvQ7
+DO7xZz13331zoD5sLwxmx4+Xdg3tRfG8WLQyPue8vMNcu8cX2OvddKlb9SVszAwX
+thkHryRNNrV8vAGlfHUpONjjHb1/YuudyiRmbd3CoehXYy0T6bbm7caO4T1npZKz
+SzHqzJr27oh0KbSycuN05rLvldufXvh85ul7R+raUHaAeX/I7n9n3Rv/Ag==
+=h5Gu
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/gaqzi
+
+==================================================================
+
