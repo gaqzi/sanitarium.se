@@ -186,6 +186,10 @@ article {
             color: CanvasText;
         }
 
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+        border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+
         a:hover h1, a:hover h2, a:hover h3, a:hover h4, a:hover h5, a:hover h6 {
             color: var(--main-accent-color);
         }
@@ -513,13 +517,6 @@ a {
 }
 
 /* Custom styling for post listings */
-
-.recent-posts article,
-.article-list article {
-    margin-bottom: var(--space-lg);
-    padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--border-color);
-}
 
 .recent-posts article:last-of-type,
 .article-list article:last-of-type {
