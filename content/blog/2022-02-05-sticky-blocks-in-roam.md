@@ -7,7 +7,6 @@ layout: post
 slug: sticky-blocks-in-roam-research
 title: Sticky blocks in Roam
 subtitle: floating along in your sidebar
-slug: sticky-blocks-in-roam
 description: >
   I use Roam Research to think and manage my tasks, and I wanted a way to
   make blocks float along in the sidebar, so I can quickly organize my task 
