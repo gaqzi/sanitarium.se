@@ -3,27 +3,34 @@
 Banner Generator for Hugo
 
 This script generates social media banner images for Hugo blog posts by:
-1. Reading a CSV file with post metadata
-2. Checking which posts need new banners based on content changes
-3. Using a screenshot service to capture HTML templates rendered by Hugo
-4. Maintaining a cache of checksums to avoid unnecessary regeneration
+1. Checking if Hugo and screenshot services are running (via Docker Compose)
+2. Automatically starting Docker Compose if services aren't available
+3. Reading a CSV file with post metadata
+4. Checking which posts need new banners based on content changes
+5. Using a screenshot service to capture HTML templates rendered by Hugo
+6. Maintaining a cache of checksums to avoid unnecessary regeneration
+
+The script expects a Docker Compose setup with:
+- A Hugo service named 'hugo' serving your site on port 1313
+- A ws-screenshot service providing screenshot capabilities on port 3000
+
+If these services aren't running, the script will attempt to start them using
+the 'docker-compose up -d' command from the current directory.
 
 Usage:
   python banner_generator.py [options]
 
 Requirements:
   - Python 3.6+
-  - Docker for automatic screenshot service (optional)
-  - Hugo for local development server (optional)
+  - Docker and Docker Compose installed
+  - A docker-compose.yaml file in the current directory
 """
 
 import argparse
-import contextlib
 import csv
 import hashlib
 import json
 import os
-import platform
 import subprocess
 import sys
 import time
@@ -39,8 +46,6 @@ class BannerGenerator:
     def __init__(self, args):
         """Initialize the banner generator with command line arguments."""
         self.args = args
-        self.hugo_process = None
-        self.screenshot_container_id = None
         self.cache = {}
 
     def calculate_checksum(self, content):
@@ -61,7 +66,7 @@ class BannerGenerator:
         return md5.hexdigest()
 
     def check_server(self, url, timeout=5):
-        """Check if server is running by making a HEAD request."""
+        """Check if server is running by making a request."""
         try:
             print(f"Checking server at http://{url}/")
             conn = urllib.request.urlopen(f"http://{url}/", timeout=timeout)
@@ -73,82 +78,81 @@ class BannerGenerator:
             return False
 
     def check_screenshot_service(self, timeout=2.0):
-        """Check if screenshot service is running with a short timeout."""
+        """Check if screenshot service is running."""
         try:
             url = self.args.screenshot_url
-            # Create a request object to add headers
             req = urllib.request.Request(url)
-            # Add the Accept-Encoding header for compression
             req.add_header('Accept-Encoding', 'gzip, deflate')
             req.add_header('User-Agent', 'Mozilla/5.0 Banner Generator')
 
-            # Open with the custom request
-            conn = urllib.request.urlopen(req, timeout=timeout)
-            status = conn.getcode()
-            print(f"Screenshot service check: HTTP {status}")
-            return status == 200
+            with urllib.request.urlopen(req, timeout=timeout) as response:
+                status = response.getcode()
+                print(f"Screenshot service check: HTTP {status}")
+                return status == 200
         except (urllib.error.URLError, ConnectionRefusedError) as e:
             print(f"Screenshot service check failed: {e}")
-            # Check if Docker container is still running
-            if self.screenshot_container_id:
-                try:
-                    inspect_cmd = ["docker", "inspect", "--format", "{{.State.Status}}", self.screenshot_container_id]
-                    result = subprocess.run(inspect_cmd, check=True, stdout=subprocess.PIPE, text=True, timeout=5)
-                    status = result.stdout.strip()
-                    print(f"Container status: {status}")
-
-                    # Get container logs
-                    logs_cmd = ["docker", "logs", "--tail", "20", self.screenshot_container_id]
-                    result = subprocess.run(logs_cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=5)
-                    logs = result.stdout.strip()
-                    print(f"Container logs:\n{logs}")
-                except Exception as debug_e:
-                    print(f"Error getting container debug info: {debug_e}")
             return False
 
-    def wait_for_server(self, url, max_attempts=10, initial_wait=0.5):
-        """Wait for server to become available with exponential backoff."""
-        wait_time = initial_wait
-        for attempt in range(max_attempts):
-            if self.check_server(url):
-                return True
-            print(f"Waiting for server at {url} (attempt {attempt+1}/{max_attempts})...")
-            time.sleep(wait_time)
-            wait_time *= 1.5  # Exponential backoff
+    def start_docker_compose(self):
+        """Start services using Docker Compose."""
+        try:
+            print("Starting Docker Compose services...")
+            subprocess.run(["docker-compose", "up", "-d"], check=True)
+            return self.wait_for_services()
+        except Exception as e:
+            print(f"Error starting Docker Compose: {e}")
+            return False
 
-        return False
+    def wait_for_services(self):
+        """Wait for services to become available after starting Docker Compose."""
+        print("Waiting for services to initialize...")
 
-    def wait_for_screenshot_service(self, max_attempts=10, initial_wait=0.5):
-        """Wait for screenshot service with exponential backoff."""
-        wait_time = initial_wait
-        for attempt in range(max_attempts):
-            if self.check_screenshot_service():
-                return True
-            print(f"Waiting for screenshot service (attempt {attempt+1}/{max_attempts})...")
-            time.sleep(wait_time)
-            wait_time *= 1.5
+        # Wait for screenshot service
+        for attempt in range(15):  # Wait up to 15 seconds
+            if self.check_screenshot_service(timeout=1.0):
+                print("Screenshot service is now available.")
+                break
+            print(f"Waiting for screenshot service (attempt {attempt+1}/15)...")
+            time.sleep(1)
+        else:
+            print("Screenshot service did not become available")
+            return False
 
-        return False
+        # Wait for Hugo service
+        for attempt in range(15):  # Wait up to 15 seconds
+            if self.check_server(self.args.banner_server, timeout=1.0):
+                print("Hugo server is now available.")
+                break
+            print(f"Waiting for Hugo server (attempt {attempt+1}/15)...")
+            time.sleep(1)
+        else:
+            print("Hugo server did not become available")
+            return False
+
+        # Both services are now available
+        return True
 
     def check_services(self):
-        """Check if required services are running."""
+        """Check if required services are available, start them if needed."""
+        # Check screenshot service
+        if not self.check_screenshot_service():
+            print("Screenshot service not available, attempting to start Docker Compose...")
+            if not self.start_docker_compose():
+                print("Failed to start services via Docker Compose")
+                return False
+            return True  # Services are now running
+
         # Check Hugo server
-        print("\n=== Checking Hugo Server ===")
         if not self.check_server(self.args.banner_server):
             print(f"ERROR: Hugo server at {self.args.banner_server} is not responding")
-            print("The screenshot service needs Hugo to be running")
-            print("Please make sure Hugo is running via docker-compose")
-            return False
-        print(f"✓ Hugo server is running at {self.args.banner_server}")
+            print("The screenshot service needs Hugo to be running.")
+            print("Attempting to start Docker Compose...")
+            if not self.start_docker_compose():
+                print("Failed to start services via Docker Compose")
+                return False
+            return True  # Services are now running
 
-        # Check screenshot service
-        print("\n=== Checking Screenshot Service ===")
-        if not self.check_screenshot_service():
-            print(f"ERROR: Screenshot service at {self.args.screenshot_url} is not responding")
-            print("Please make sure the ws-screenshot container is running via docker-compose")
-            return False
-        print(f"✓ Screenshot service is running at {self.args.screenshot_url}")
-
+        print("All required services are running")
         return True
 
     def translate_hugo_url(self, url):
@@ -157,206 +161,6 @@ class BannerGenerator:
         if self.args.hugo_container_hostname:
             return url.replace("localhost", self.args.hugo_container_hostname)
         return url
-
-    def is_docker_available(self):
-        """Check if Docker is available on the system."""
-        try:
-            result = subprocess.run(
-                ["docker", "--version"],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                check=False
-            )
-            return result.returncode == 0
-        except FileNotFoundError:
-            return False
-
-    def start_screenshot_container(self):
-        """Start a Docker container for the screenshot service."""
-        # Try a different Docker image - elestio/puppeteer which is more stable
-        if platform.machine() in ('arm64', 'aarch64', 'armv8l'):
-            image = "elestio/puppeteer:latest"
-        else:
-            image = "elestio/puppeteer:latest"
-
-        port = "3000"
-
-        try:
-            print(f"Starting screenshot container: {image}")
-
-            # Determine network configuration based on args or auto-detect
-            host_option = []
-
-            if self.args.docker_network == 'auto':
-                # Auto-detect based on platform
-                if sys.platform == 'darwin':  # macOS uses host.docker.internal
-                    host_option = ["--add-host", "host.docker.internal:host-gateway"]
-                elif sys.platform == 'linux':  # Linux needs network access
-                    host_option = ["--network", "host"]
-            elif self.args.docker_network == 'host':
-                host_option = ["--network", "host"]
-            elif self.args.docker_network == 'bridge':
-                # Bridge is default, no special options needed for network
-                pass
-            elif self.args.docker_network == 'none':
-                host_option = ["--network", "none"]
-
-            # If explicit hostname provided, add it
-            if self.args.docker_host_name:
-                host_option = ["--add-host", f"{self.args.docker_host_name}:host-gateway"]
-
-            # Create a simple HTTP server using Node.js
-            entrypoint_cmd = ["--entrypoint", "/bin/sh"]
-
-            run_cmd = [
-                "docker", "run",
-                "-d",  # Detached mode
-            ]
-
-            # For host network, don't specify port mapping
-            if self.args.docker_network != 'host' and '--network' not in ' '.join(host_option):
-                run_cmd.extend(["-p", f"{port}:{port}"])  # Port mapping
-
-            run_cmd.extend([
-                "--rm",  # Remove container when stopped
-            ])
-
-            # Add host options if available
-            if host_option:
-                run_cmd.extend(host_option)
-
-            # Add the entrypoint override
-            run_cmd.extend(entrypoint_cmd)
-
-            # Add the image name
-            run_cmd.append(image)
-
-            # Add the command to create a simple HTTP server
-            run_cmd.extend(["-c", f"""
-                echo 'Starting simple screenshot service...'
-                mkdir -p /tmp/server
-                cat > /tmp/server/server.js << 'EOF'
-                const http = require('http');
-                const { execSync } = require('child_process');
-                const url = require('url');
-                const fs = require('fs');
-                const path = require('path');
-                
-                const server = http.createServer((req, res) => {{
-                    console.log(`Received request: ${{req.url}}`);
-                    
-                    if (req.url.startsWith('/api/screenshot')) {{
-                        // Parse query parameters
-                        const queryParams = url.parse(req.url, true).query;
-                        const targetUrl = queryParams.url;
-                        const width = queryParams.resX || 1200;
-                        const height = queryParams.resY || 630;
-                        const waitTime = queryParams.waitTime || 100;
-                        
-                        if (!targetUrl) {{
-                            res.writeHead(400, {{ 'Content-Type': 'text/plain' }});
-                            res.end('Missing url parameter');
-                            return;
-                        }}
-                        
-                        console.log(`Taking screenshot of ${{targetUrl}} at ${{width}}x${{height}}`);
-                        
-                        // Generate a unique output filename
-                        const outputFile = `/tmp/screenshot-${{Date.now()}}.png`;
-                        
-                        try {{
-                            // Use npx for local version of puppeteer
-                            const script = `
-                            const puppeteer = require('puppeteer');
-                            
-                            (async () => {{
-                              const browser = await puppeteer.launch({{
-                                headless: 'new',
-                                args: ['--no-sandbox', '--disable-setuid-sandbox']
-                              }});
-                              const page = await browser.newPage();
-                              await page.setViewport({{ width: ${{width}}, height: ${{height}} }});
-                              await page.goto('${{targetUrl}}', {{ waitUntil: 'networkidle0' }});
-                              await page.screenshot({{ path: '${{outputFile}}' }});
-                              await browser.close();
-                              console.log('Screenshot saved to ${{outputFile}}');
-                            }})();
-                            `;
-                            
-                            // Write the script to a file
-                            fs.writeFileSync('/tmp/screenshot.js', script);
-                            
-                            // Execute the script
-                            execSync('node /tmp/screenshot.js', {{ timeout: 30000 }});
-                            
-                            // Read the screenshot file
-                            const screenshotData = fs.readFileSync(outputFile);
-                            
-                            // Respond with the screenshot
-                            res.writeHead(200, {{ 'Content-Type': 'image/png' }});
-                            res.end(screenshotData);
-                            
-                            // Delete the file
-                            fs.unlinkSync(outputFile);
-                        }} catch (error) {{
-                            console.error(`Error taking screenshot: ${{error.message}}`);
-                            res.writeHead(500, {{ 'Content-Type': 'text/plain' }});
-                            res.end(`Error taking screenshot: ${{error.message}}`);
-                        }}
-                    }} else {{
-                        // Root path
-                        res.writeHead(200, {{ 'Content-Type': 'text/plain' }});
-                        res.end('Screenshot service is running');
-                    }}
-                }});
-                
-                const PORT = {port};
-                server.listen(PORT, '0.0.0.0', () => {{
-                    console.log(`Screenshot server listening on port ${{PORT}}`);
-                }});
-                EOF
-                cd /tmp/server
-                node server.js
-            """])
-
-            print(f"Running docker command: {' '.join(run_cmd)}")
-            result = subprocess.run(run_cmd, check=True, stdout=subprocess.PIPE, text=True)
-            container_id = result.stdout.strip()
-            print(f"Started screenshot container: {container_id[:12]}")
-
-            # Give the Node.js server a moment to start
-            time.sleep(2)
-
-            return container_id
-        except subprocess.CalledProcessError as e:
-            print(f"Error starting Docker container: {e}")
-            return None
-
-    def stop_docker_container(self):
-        """Stop a Docker container."""
-        if not self.screenshot_container_id:
-            return
-
-        try:
-            stop_cmd = ["docker", "stop", self.screenshot_container_id]
-            subprocess.run(stop_cmd, check=True, stdout=subprocess.PIPE)
-            print(f"Stopped screenshot container: {self.screenshot_container_id[:12]}")
-        except subprocess.CalledProcessError as e:
-            print(f"Error stopping Docker container: {e}")
-
-    def start_hugo_server(self):
-        """Start Hugo server as a subprocess."""
-        try:
-            print(f"Starting Hugo server: {self.args.hugo_binary} server {self.args.hugo_args}")
-            process = subprocess.Popen(
-                [self.args.hugo_binary, "server"] + (self.args.hugo_args.split() if self.args.hugo_args else []),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
-            )
-            return process
-        except Exception as e:
-            print(f"Error starting Hugo server: {e}")
-            return None
 
     def load_cache(self):
         """Load the banner cache file or initialize if it doesn't exist."""
@@ -376,30 +180,6 @@ class BannerGenerator:
 
     def capture_screenshot(self, target_url, output_path):
         """Capture a screenshot using the screenshot service."""
-        # First check if the target URL is accessible
-        try:
-            print(f"Checking if target URL exists: {target_url}")
-            # Create a request object to add headers
-            req = urllib.request.Request(target_url)
-            req.add_header('Accept-Encoding', 'gzip, deflate')
-            req.add_header('User-Agent', 'Mozilla/5.0 Banner Generator')
-
-            # Try to open the URL directly (this will fail if containers can't talk to each other)
-            try:
-                with urllib.request.urlopen(req, timeout=5) as response:
-                    status = response.getcode()
-                    print(f"Target URL responded with HTTP {status}")
-                    if status == 404:
-                        print("WARNING: Page not found at the target URL")
-                        print("Check if banner.html template exists at this location")
-            except Exception as e:
-                print(f"Could not directly check target URL: {e}")
-                print("This is expected if checking container URLs from host")
-
-        except Exception as e:
-            print(f"Error checking target URL: {e}")
-
-        # Proceed with screenshot capture
         params = {
             'url': target_url,
             'resX': self.args.width,
@@ -452,7 +232,6 @@ class BannerGenerator:
         except ConnectionResetError as e:
             print(f"Connection reset error: {e}")
             print("This usually indicates a network issue between the script and the screenshot service.")
-            print("If using Docker, make sure the container can access your Hugo server.")
             return False
         except Exception as e:
             print(f"Error capturing screenshot: {e}")
@@ -563,9 +342,6 @@ class BannerGenerator:
 
                     # With posts prefix
                     f"http://{self.args.banner_server}/posts/{post['slug']}/banner.html",
-
-                    # Path with /index/banner.html
-                    f"http://{self.args.banner_server}/{post['path']}/index/banner.html",
                 ]
 
                 for fallback_url in fallback_urls:
@@ -592,207 +368,6 @@ class BannerGenerator:
 
         return True
 
-    def run_test_mode(self):
-        """Run a simple test to isolate Docker/Hugo connectivity issues."""
-        print("\n=== Running in Test Mode ===")
-
-        # Create a simple HTML file
-        test_html = """<!DOCTYPE html>
-<html>
-<head>
-    <title>Banner Test</title>
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: white;
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .content {
-            text-align: center;
-            max-width: 800px;
-        }
-        h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 24px;
-        }
-    </style>
-</head>
-<body>
-    <div class="content">
-        <h1>Banner Test</h1>
-        <p>This is a test banner for debugging purposes.</p>
-        <p>Generated: """ + time.strftime("%Y-%m-%d %H:%M:%S") + """</p>
-    </div>
-</body>
-</html>
-"""
-        # Create a temporary directory to serve the HTML file
-        import tempfile
-        import http.server
-        import socketserver
-        import threading
-
-        with tempfile.TemporaryDirectory() as temp_dir:
-            # Write the HTML file
-            test_file_path = os.path.join(temp_dir, "test.html")
-            with open(test_file_path, "w") as f:
-                f.write(test_html)
-
-            print(f"Created test HTML file at {test_file_path}")
-
-            # Start a simple HTTP server in a separate thread
-            port = 8000
-            handler = http.server.SimpleHTTPRequestHandler
-
-            # Change to the temporary directory for serving files
-            os.chdir(temp_dir)
-
-            httpd = socketserver.TCPServer(("", port), handler)
-            print(f"Starting test HTTP server on port {port}")
-
-            # Start the server in a separate thread
-            server_thread = threading.Thread(target=httpd.serve_forever)
-            server_thread.daemon = True
-            server_thread.start()
-
-            try:
-                # Test if the server is running
-                print("Testing local HTTP server...")
-                test_url = f"http://localhost:{port}/test.html"
-                try:
-                    with urllib.request.urlopen(test_url, timeout=5) as response:
-                        print(f"Local server test: {response.status} {response.reason}")
-                except Exception as e:
-                    print(f"Error testing local server: {e}")
-
-                # Try to capture a screenshot
-                print("\nAttempting to capture screenshot...")
-                output_path = os.path.join(self.args.output_dir, "test_banner.png")
-
-                # Use the screenshot service context manager
-                with self.screenshot_service() as screenshot_url:
-                    # Construct the target URL for the test HTML
-                    if self.screenshot_container_id:
-                        # Use appropriate URL for Docker
-                        target_url = self.translate_hugo_url(test_url)
-                        print(f"Using translated URL for Docker: {target_url}")
-                    else:
-                        target_url = test_url
-
-                    # Capture the screenshot
-                    success = self.capture_screenshot(target_url, output_path)
-
-                    if success:
-                        print(f"Success! Test banner saved to {output_path}")
-                    else:
-                        print("Failed to generate test banner")
-
-            finally:
-                # Shut down the server
-                print("Shutting down test HTTP server")
-                httpd.shutdown()
-                httpd.server_close()
-                server_thread.join(timeout=5)
-
-        return True
-
-    @contextlib.contextmanager
-    def screenshot_service(self):
-        """Context manager that ensures screenshot service is available."""
-        # Check if Hugo server is running first - this is critical
-        print("\n=== Checking Hugo Server ===")
-        if not self.check_server(self.args.banner_server):
-            print(f"ERROR: Hugo server at {self.args.banner_server} is not responding")
-            print("The ws-screenshot service needs Hugo to be running to capture banners.")
-            print("Please start Hugo server with: hugo server")
-            raise RuntimeError(f"Hugo server not running at {self.args.banner_server}")
-        else:
-            print(f"✓ Hugo server is running at {self.args.banner_server}")
-
-        # Check if service is already running
-        if self.check_screenshot_service():
-            print("Screenshot service is already running")
-            yield self.args.screenshot_url
-            return
-
-        # Make sure Docker is available
-        if not self.is_docker_available():
-            print("Warning: Docker not available, cannot auto-start screenshot service")
-            yield self.args.screenshot_url
-            return
-
-        # Start container if needed
-        self.screenshot_container_id = self.start_screenshot_container()
-        try:
-            if not self.screenshot_container_id:
-                print("Failed to start screenshot container")
-                yield self.args.screenshot_url
-                return
-
-            # Wait for the service to be ready
-            print("Waiting for screenshot service to initialize...")
-            max_attempts = 10
-            for attempt in range(max_attempts):
-                if self.check_screenshot_service():
-                    print(f"Screenshot service is ready after {attempt+1} attempts")
-                    yield self.args.screenshot_url
-                    return
-                print(f"Waiting for screenshot service (attempt {attempt+1}/{max_attempts})...")
-                time.sleep(1)  # Wait 1 second between checks
-
-            # If we got here, the service didn't initialize properly
-            print("\n=== Screenshot Service Troubleshooting ===")
-            print("Screenshot service did not start properly")
-            print("Testing URL translation to diagnose networking issues:")
-            print(f"Original Hugo URL: http://{self.args.banner_server}")
-            translated_url = self.translate_hugo_url(f"http://{self.args.banner_server}")
-            print(f"Translated URL for Docker: {translated_url}")
-
-            # Check container network settings
-            print("\nContainer network settings:")
-            net_cmd = ["docker", "inspect", "--format", "{{.NetworkSettings.Networks}}", self.screenshot_container_id]
-            subprocess.run(net_cmd, check=False, timeout=5)
-
-            raise RuntimeError("Screenshot service did not start properly")
-        finally:
-            if self.screenshot_container_id:
-                self.stop_docker_container()
-                self.screenshot_container_id = None
-
-    @contextlib.contextmanager
-    def hugo_server(self):
-        """Context manager that ensures Hugo server is running."""
-        # Check if server is already running
-        if self.check_server(self.args.banner_server):
-            print(f"Hugo server is already running at {self.args.banner_server}")
-            yield self.args.banner_server
-            return
-
-        # Start Hugo server if needed
-        if self.args.auto_start_hugo:
-            self.hugo_process = self.start_hugo_server()
-            try:
-                if self.wait_for_server(self.args.banner_server):
-                    yield self.args.banner_server
-                else:
-                    raise RuntimeError(f"Could not connect to Hugo server at {self.args.banner_server}")
-            finally:
-                if self.hugo_process:
-                    print("Shutting down Hugo server")
-                    self.hugo_process.terminate()
-                    self.hugo_process = None
-        else:
-            # If auto-start is disabled, just yield the server URL
-            yield self.args.banner_server
-
     def generate(self):
         """Main generation process."""
         # Load cache
@@ -802,10 +377,6 @@ class BannerGenerator:
             # Check if services are running
             if not self.check_services():
                 return False
-
-            # Special test mode
-            if self.args.test_mode:
-                return self.run_test_mode()
 
             # Process the CSV and generate banners
             if self.process_csv():
@@ -844,8 +415,6 @@ def parse_args():
     parser.add_argument('--hugo-container-hostname',
                         default='hugo',
                         help='Hostname for Hugo server within Docker network (default: hugo)')
-    parser.add_argument('--test-mode', action='store_true',
-                        help='Run in test mode with a simple HTML file instead of Hugo')
     parser.add_argument('--verbose', '-v', action='store_true',
                         help='Enable verbose output')
 
