@@ -16,18 +16,31 @@ cascade = [
   blog = "/blog/:year/:month/:day/:slug/"
   archive = "/blog/:year/:month/:day/:slug/"
   tags = "/blog/tags/:slug/"
+  tag = "/blog/tags/"
 
 # Output formats
 [outputs]
-  home = ["HTML", "RSS"]
+  home = ["HTML", "RSS", "PostData"]
+  page = ["HTML", "Banner"]
   section = ["HTML"]
 
 # RSS settings
 [outputFormats.RSS]
   baseName = "feed"
 
+[outputFormats.PostData]
+  mediaType = "text/csv"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.Banner]
+  mediaType = "text/html"
+  baseName = "banner"
+  isPlainText = true
+  permalinkable = true
+
 # Pagination
-paginate = 100
+paginate = 10
 paginatePath = "/page/:num"
 
 # Enable syntax highlighting
@@ -40,7 +53,7 @@ enableEmoji = true
 # Taxonomies
 [taxonomies]
   tag = "tags"
-  category = "categories"
+#  category = "categories"
 
 # Theme-specific settings
 [params]

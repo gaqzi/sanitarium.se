@@ -23,11 +23,36 @@
 {{ else }}
 <meta property="og:type" content="website">
 {{ end }}
-{{ $ogImage := "" }}
-{{ with .Params.image }}{{ $ogImage = . }}{{ end }}
-{{ if and (not $ogImage) .Site.Params.defaultImage }}{{ $ogImage = .Site.Params.defaultImage }}{{ end }}
+
+{{ $slug := "" }}
+{{ if .File }}
+    {{ $slug = .File.ContentBaseName }}
+{{ else if .Params.slug }}
+    {{ $slug = .Params.slug }}
+{{ else if .Slug }}
+    {{ $slug = .Slug }}
+{{ else }}
+    {{ $slug = path.Base .RelPermalink | strings.TrimSuffix ".html" }}
+{{ end }}
+{{ $defaultBannerPath := printf "/img/banners/%s.png" $slug }}
+{{ $ogImage := $defaultBannerPath }}
+
+{{ with .Params.image }}
+    {{ if reflect.IsMap . }}
+        {{ with .path }}{{ $ogImage = . }}{{ end }}
+    {{ else }}
+        {{ $ogImage = . }}
+    {{ end }}
+{{ end }}
+
+{{ if and (not $ogImage) .Site.Params.defaultImage }}
+    {{ $ogImage = .Site.Params.defaultImage }}
+{{ end }}
+
 {{ with $ogImage }}
-<meta property="og:image" content="{{ . | absURL }}">
+    <meta property="og:image" content="{{ . | absURL }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 {{ end }}
 
 <!-- Twitter Card -->
@@ -63,5 +88,3 @@
 
 <!-- Structured Data -->
 {{ partial "schema.html" . }}
-
-{{ block "head" . }}{{ end }}

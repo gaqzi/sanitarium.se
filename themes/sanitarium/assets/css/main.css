@@ -23,7 +23,6 @@
     /* Accent colors for light/dark modes - using system color keywords */
     --accent-color-dark: LinkText;  /* Browser's default link color in dark mode */
     --accent-color-light: #b30000; /* Red for light mode */
-    --main-accent-color: var(--accent-color-dark); /* Default to dark mode accent */
 
     /* Quote styling variables */
     --quote-bg-color-light: #f5f5f5;
@@ -42,10 +41,6 @@
     --code-inline-bg-dark: rgba(110, 118, 129, 0.4);
     --code-inline-fg-dark: #e6edf3;
     --code-inline-border-dark: rgba(139, 148, 158, 0.6);
-
-    --code-inline-bg: var(--code-inline-bg-dark);
-    --code-inline-fg: var(--code-inline-fg-dark);
-    --code-inline-border: var(--code-inline-border-dark);
 
     --quote-border-width: 4px;
     --quote-mark-color-dark: #5e5e5e;
@@ -67,7 +62,25 @@
     /* Content block margin for consistent alignment */
     --content-block-margin: var(--space-md) var(--space-lg);
 
-    @media (prefers-color-scheme: light) {
+    /* Default to dark mode values */
+    --main-accent-color: var(--accent-color-dark);
+    --quote-bg-color: var(--quote-bg-color-dark);
+    --quote-text-color: var(--quote-text-color-dark);
+    --quote-border-color: var(--quote-border-color-dark);
+    --code-inline-bg: var(--code-inline-bg-dark);
+    --code-inline-fg: var(--code-inline-fg-dark);
+    --code-inline-border: var(--code-inline-border-dark);
+
+    /* Computed variables for specific styles */
+    --quote-mark-color: var(--quote-mark-color-dark);
+    --social-link-bg: rgba(255, 255, 255, 0.08);
+    --social-link-hover-bg: rgba(255, 255, 255, 0.15);
+    --social-link-filter: none;
+    --pagination-active-bg: var(--accent-color-dark);
+    --heading-anchor-hover-color: var(--accent-color-dark);
+
+    /* Combined media query for system preference and forced light mode */
+    @media (prefers-color-scheme: light), (color-scheme: light) {
         --main-accent-color: var(--accent-color-light);
         --quote-bg-color: var(--quote-bg-color-light);
         --quote-text-color: var(--quote-text-color-light);
@@ -75,15 +88,14 @@
         --code-inline-bg: var(--code-inline-bg-light);
         --code-inline-fg: var(--code-inline-fg-light);
         --code-inline-border: var(--code-inline-border-light);
-    }
 
-    @media (prefers-color-scheme: dark) {
-        --quote-bg-color: var(--quote-bg-color-dark);
-        --quote-text-color: var(--quote-text-color-dark);
-        --quote-border-color: var(--quote-border-color-dark);
-        --code-inline-bg: var(--code-inline-bg-dark);
-        --code-inline-fg: var(--code-inline-fg-dark);
-        --code-inline-border: var(--code-inline-border-dark);
+        /* Computed variables for light mode */
+        --quote-mark-color: var(--quote-mark-color-light);
+        --social-link-bg: rgba(0, 0, 0, 0.05);
+        --social-link-hover-bg: rgba(0, 0, 0, 0.1);
+        --social-link-filter: brightness(0.2);
+        --pagination-active-bg: var(--accent-color-light);
+        --heading-anchor-hover-color: var(--accent-color-light);
     }
 
     font-size: clamp(1rem, 1vw + 0.75rem, 1.125rem);
@@ -174,9 +186,19 @@ article {
         padding-bottom: var(--space-md);
     }
 
+    /* the bottom border doesn't make sense when looking at the banner */
+    &.banner header {
+        border-bottom: none;
+    }
+
     & .meta {
         font-style: italic;
     }
+}
+
+/* Move the banner down a bit for some breathing room */
+body:has(main article.banner) {
+    padding-top: 15%;
 }
 
 .post-tags {
@@ -322,7 +344,7 @@ blockquote {
         font-size: 6em;
         left: 0.1em;
         top: -0.3em;
-        color: var(--quote-mark-color-dark);
+        color: var(--quote-mark-color);
         opacity: var(--quote-mark-opacity);
         z-index: 0;  /* Middle layer between background and content */
         pointer-events: none;
@@ -352,18 +374,6 @@ blockquote {
     & a {
         color: var(--main-accent-color);
         font-weight: 600;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    blockquote:before {
-        color: var(--quote-mark-color-dark);
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    blockquote:before {
-        color: var(--quote-mark-color-light);
     }
 }
 
@@ -407,22 +417,12 @@ ul.social-links {
     background-position: center;
     border-radius: 8px;
     transition: background-color 0.2s ease;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--social-link-bg);
+    filter: var(--social-link-filter);
 
     &:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .social-link {
-        background-color: rgba(0, 0, 0, 0.05);
-        filter: brightness(0.2);
-
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-            filter: brightness(0.2);
-        }
+        background-color: var(--social-link-hover-bg);
+        filter: var(--social-link-filter);
     }
 }
 
@@ -638,7 +638,7 @@ ul.pagination {
 /* Active pagination state */
 .pagination .active a,
 .pagination .page-item.active .page-link {
-    background-color: var(--main-accent-color);
+    background-color: var(--pagination-active-bg);
     color: white;
     font-weight: bold;
 }
@@ -649,58 +649,6 @@ ul.pagination {
     background-color: rgba(var(--border-color-standard-rgb), 0.05);
     color: rgba(CanvasText, 0.4);
     cursor: not-allowed;
-}
-
-/* Ensure pagination works well in both light and dark mode */
-@media (prefers-color-scheme: dark) {
-    .pagination .active a,
-    .pagination .page-item.active .page-link {
-        background-color: var(--accent-color-dark);
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .pagination .active a,
-    .pagination .page-item.active .page-link {
-        background-color: var(--accent-color-light);
-    }
-}
-
-/* Heading anchor links */
-.heading-anchor {
-    font-size: 0.8em;
-    margin-left: 0.1em; /* Reduced from 0.3em to bring it closer */
-    text-decoration: none;
-    color: var(--main-accent-color);
-    opacity: 0.4;  /* Always visible but subtle */
-}
-
-/* Slightly more visible on hover for desktop devices */
-@media (hover: hover) {
-    .heading-anchor {
-        opacity: 0.2;
-    }
-
-    h1:hover .heading-anchor,
-    h2:hover .heading-anchor,
-    h3:hover .heading-anchor,
-    h4:hover .heading-anchor,
-    h5:hover .heading-anchor,
-    h6:hover .heading-anchor {
-        opacity: 0.8;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .heading-anchor:hover {
-        color: var(--accent-color-light);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    .heading-anchor:hover {
-        color: var(--accent-color-dark);
-    }
 }
 
 /* Ensure anchors are positioned correctly when navigating to them */

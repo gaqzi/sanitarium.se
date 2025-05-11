@@ -1,0 +1,46 @@
+{
+  "static/img/banners/effective-meetings.png": {
+    "content_checksum": "cc7c1c7bfe98999f665db440ec35ba04",
+    "file_checksum": "9dab03987da3afd06a7c5f00ee10fd6f"
+  },
+  "static/img/banners/day-to-day-automation-using-alfred.png": {
+    "content_checksum": "52f0147fa8043f690a1d4f8a7b7561ef",
+    "file_checksum": "e2fa3eadb52eb440d50214ed3de70c66"
+  },
+  "static/img/banners/how-to-make-docker-pull-resume-layer-downloads.png": {
+    "content_checksum": "ba1e00a4aafa72da81cc602502ea996d",
+    "file_checksum": "f2d45fcb7b035958635d15e3c9c307f2"
+  },
+  "static/img/banners/sticky-blocks-in-roam-research.png": {
+    "content_checksum": "816ffe819b637240edb6b10841481474",
+    "file_checksum": "5ad34da51d4274355b6189e686c8a50c"
+  },
+  "static/img/banners/how-to-ping-a-lost-apple-watch.png": {
+    "content_checksum": "e4d8b3611ded88f13571007fdd401644",
+    "file_checksum": "aa9f57909115405912e25c62b008b85c"
+  },
+  "static/img/banners/testing-against-many-versions-of-python-on-snap-ci.png": {
+    "content_checksum": "23c3a63d2f9f5764b3d65d6753ce4f37",
+    "file_checksum": "c0664a94487d3befe26d7eae289799a6"
+  },
+  "static/img/banners/python-and-its-included-batteries.png": {
+    "content_checksum": "d2bdd051c7a172cce139e40d2d829ff4",
+    "file_checksum": "6d95cf678ceaf770c36faf44b3708dcb"
+  },
+  "static/img/banners/keeping-your-varnish-farm-in-sync.png": {
+    "content_checksum": "3c7a8f4f003ebec78b6a3c5aeb082985",
+    "file_checksum": "89edbf82517beee130b31ffa5093e3dc"
+  },
+  "static/img/banners/howto-setting-up-a-wikileaks-mirror.png": {
+    "content_checksum": "76f6db317da31529194bb08bb35ff63b",
+    "file_checksum": "65fb3d9829f1934c5d822dc6e0a24ee3"
+  },
+  "static/img/banners/howto-satta-upp-en-wikileaksspegling.png": {
+    "content_checksum": "eb0207aad6ccbf0e1d4f12715d463100",
+    "file_checksum": "b24d254c715bb453b55b9c832d60039c"
+  },
+  "static/img/banners/how-to-disable-bold-fonts-in-xterm.png": {
+    "content_checksum": "b8abc880196d2955694485242cbcea23",
+    "file_checksum": "886fe357bb7c72aa526a41dba8cb70cc"
+  }
+}

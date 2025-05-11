@@ -1,0 +1,141 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "head" }}
+<style>
+    /* Minimal dark mode CSS for the specified HTML snippet */
+
+    /* Box model and base styles */
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    :root {
+        /* System font stacks */
+        --system-sans: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+        --system-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+
+        /* Dark mode color variables */
+        --accent-color-dark: LinkText; /* Browser default link color in dark mode */
+        --border-color-standard: #888888;
+
+        /* Spacing variables */
+        --space-md: 1rem;
+        --space-lg: 2rem;
+
+        /* Set explicit dark mode */
+        color-scheme: dark;
+
+        font-size: clamp(1rem, 1vw + 0.75rem, 1.125rem);
+    }
+
+    /* Basic body styling */
+    body {
+        font-family: var(--system-serif);
+        max-width: 65ch;
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+        line-height: 1.5;
+    }
+
+    /* Masthead styling */
+    header.masthead {
+        padding: var(--space-md) 0;
+        margin-bottom: var(--space-md);
+        border-bottom: 0.1em solid var(--border-color-standard);
+    }
+
+    header.masthead a {
+        font-size: 1.75rem;
+        font-weight: 800;
+        font-family: var(--system-sans);
+        letter-spacing: -0.02em;
+        color: white; /* Dark mode text color */
+        text-decoration: underline;
+        text-decoration-color: var(--accent-color-dark);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+    }
+
+    header.masthead a:hover {
+        color: var(--accent-color-dark);
+    }
+
+    /* Main content area */
+    main {
+        margin-bottom: var(--space-lg);
+    }
+
+    /* Article styling */
+    article {
+        /* Base article styles */
+    }
+
+    article header {
+        border-bottom: 0.1em solid var(--border-color-standard);
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-md);
+    }
+
+    article.banner header {
+        border-bottom: none;
+    }
+
+    /* Typography for headings */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--system-sans);
+        font-weight: 800;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: white; /* Dark mode heading color */
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, 1.2rem + 2vw, 2.5rem);
+    }
+
+    /* Heading group styling */
+    hgroup h1 {
+        margin-bottom: 0.2em;
+    }
+
+    hgroup h1 + p {
+        margin-top: 0.25em;
+        margin-bottom: var(--space-md);
+        font-size: 1.25em;
+        color: rgba(255, 255, 255, 0.85); /* Dark mode subdued text */
+        font-weight: normal;
+        line-height: 1.4;
+    }
+
+    /* Link styling */
+    a {
+        color: var(--accent-color-dark);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Banner specific adjustments */
+    body:has(main article.banner) {
+        padding-top: 15%;
+    }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<article class="post single banner">
+    <header>
+        <hgroup {{ if .Params.language }} lang="{{ .Params.language }}"{{ end }}>
+            <h1 class="title">{{ .Title }}</h1>
+            {{ with .Params.subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
+        </hgroup>
+    </header>
+</article>
+{{ end }}
+
+{{ define "footer" }}
+    &nbsp;
+{{ end }}

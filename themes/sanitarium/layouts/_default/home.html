@@ -1,8 +1,12 @@
 {{ define "main" }}
   {{ .Content }}
   <div class="article-list">
-  {{ range where site.RegularPages "Section" "blog" }}
-    {{ partial "article-summary.html" (dict "headingLevel" "h2" "Title" .Title "Permalink" .Permalink "Params" .Params "Description" .Description "Summary" .Summary "Date" .Date "Lastmod" .Lastmod "Site" .Site) }}
-  {{ end }}
+      {{ $pages := where site.RegularPages "Section" "blog" }}
+      {{ $paginator := .Paginate $pages }}
+      {{ range $paginator.Pages }}
+        {{ partial "article-summary.html" (dict "headingLevel" "h2" "Title" .Title "Permalink" .Permalink "Params" .Params "Description" .Description "Summary" .Summary "Date" .Date "Lastmod" .Lastmod "Site" .Site) }}
+      {{ end }}
   </div>
+
+  {{ template "_internal/pagination.html" . }}
 {{ end }}

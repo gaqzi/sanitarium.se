@@ -1,0 +1,20 @@
+---
+services:
+  hugo:
+    image: "hugomods/hugo:0.147.1"
+    command: hugo server
+    expose:
+      - 1313
+    ports:
+      - "1313:1313"
+    volumes:
+      - "${PWD}:/src"  # Mount current directory as Hugo source
+      - "${HOME}/hugo_cache:/tmp/hugo_cache"  # Hugo cache directory
+    working_dir: /src
+
+  ws-screenshot:
+    image: "elestio/ws-screenshot.slim:latest-arm"
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"

@@ -2,6 +2,7 @@
 
 {{ define "main" }}
 <article class="post single">
+    {{/* When changing this layout remember to change page.banner.html too */}}
     <header>
         <hgroup {{ if .Params.language }} lang="{{ .Params.language }}"{{ end }}>
             <h1 class="title">{{ .Title }}</h1>
