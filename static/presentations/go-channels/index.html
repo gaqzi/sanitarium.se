@@ -1,17 +1,37 @@
----
-presentation: true
-author: björn
-date: 2020-02-16 23:00:00+08:00
-layout: presentation
-slug: go-channels
-title: Go channels
-subtitle: …a means of communication
-description: Takeaways from learning to use channels in Go.
-categories:
-- programming
-- go
----
-<section>
+<html>
+<head>
+  <title>Go channels</title>
+
+  <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+  <link rel="stylesheet" href="../reveal/css/theme/black.css">
+  <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+  <meta charset="UTF-8">
+  
+    <meta name="description" content="Takeaways from learning to use channels in Go.">
+    <meta property="og:description" content="Takeaways from learning to use channels in Go.">
+  
+  <meta property="og:title" content="Go channels">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sanitarium.se/presentations/go-channels/">
+    <meta property="twitter:card" content="summary_large_image">
+  
+  <meta name="twitter:creator" content="@gaqzi">
+  <link rel="canonical" href="https://sanitarium.se/presentations/go-channels/">
+
+  <style>
+    .fragment.visible {
+      color: darkgray;
+    }
+
+    .fragment.current-fragment {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+      <section>
   <h1>Go Channels</h1>
   <p>…a means of communication</p>
 
@@ -251,3 +271,21 @@ fmt.Printf("v=%v, open=%v\n", v, ok) // v=false, open=false
     <li class="fragment">Remember, a closed channel is always readable</li>
   </ul>
 </section>
+
+  </div>
+</div>
+<script src="../reveal/js/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true, // Adds a hash to the url so reload goes back
+    dependencies: [
+      // Syntax highlight for <code> elements
+      {src: '../reveal/plugin/highlight/highlight.js', async: true},
+
+      // Speaker notes
+      { src: '../reveal/plugin/notes/notes.js', async: true },
+    ]
+  });
+</script>
+</body>
+</html>
