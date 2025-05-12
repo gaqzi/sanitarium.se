@@ -1,6 +1,7 @@
 baseURL = 'https://sanitarium.se/'
 languageCode = 'en-us'
 title = 'the padded cell'
+description = 'ramblings of a technical nature'
 theme = 'sanitarium'
 
 defaultContentLanguage = "en"
