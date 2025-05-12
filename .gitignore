@@ -5,6 +5,3 @@ resources/
 
 # Temporary files
 tmp/
-
-# Claude configuration
-**/.claude/settings.local.json
