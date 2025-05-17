@@ -273,7 +273,7 @@ class BannerGenerator:
                         post_path = slug
 
                     # Determine banner path and calculate checksums
-                    banner_path = os.path.join(self.args.output_dir, f"{slug}.png")
+                    banner_path = os.path.join(self.args.output_dir, f"{date.split('T')[0]}-{slug}.png")
                     content_checksum = self.calculate_checksum(f"{date}--{title}--{subtitle}")
                     file_checksum = self.calculate_file_checksum(banner_path)
 
