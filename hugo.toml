@@ -14,7 +14,7 @@ cascade = [
 [permalinks]
   author = "/blog/author/:slug/"
   blog = "/blog/:year/:month/:day/:slug/"
-  archive = "/blog/:year/:month/:day/:slug/"
+  archive = "/archive/:year/:month/:day/:slug/"
   tags = "/blog/tags/:slug/"
   tag = "/blog/tags/"
 
