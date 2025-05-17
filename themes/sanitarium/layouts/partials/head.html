@@ -75,7 +75,8 @@
 
 {{ if .Site.Params.enableCodeHighlighting }}
 {{ $highlight := resources.Get "css/zenburn.css" | resources.Minify | resources.Fingerprint }}
-<link rel="stylesheet" href="{{ $highlight.RelPermalink }}">
+<link rel="preload" href="{{ $highlight.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ $highlight.RelPermalink }}"></noscript>
 {{ end }}
 
 <!-- RSS -->
