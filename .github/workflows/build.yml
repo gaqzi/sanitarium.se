@@ -57,4 +57,4 @@ jobs:
       - name: Deploy
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: make _deploy
+        run: script/deploy
