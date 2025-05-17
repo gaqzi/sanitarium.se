@@ -473,8 +473,8 @@ a {
 }
 
 /* Indicate which links are external, defined as not localhost or my hardcoded domain :) */
-a[href^="http://"]:not([href*="sanitarium.se"]):not([href*="localhost"])::after,
-a[href^="https://"]:not([href*="sanitarium.se"]):not([href*="localhost"])::after {
+a[href^="http://"]:not([href*="sanitarium.se"]):not([href*="localhost"]):not(.social-link)::after,
+a[href^="https://"]:not([href*="sanitarium.se"]):not([href*="localhost"]):not(.social-link)::after {
     content: "↗\FE0E"; /* the FE0E means don't render as an emoji but as text */
     font-size: 0.9em;
     margin-left: 0.2em;
