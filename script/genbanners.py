@@ -90,7 +90,7 @@ class BannerGenerator:
                 print(f"Screenshot service check: HTTP {status}")
                 return status == 200
         except (urllib.error.URLError, ConnectionRefusedError) as e:
-            print(f"Screenshot service check failed: {e}")
+            print(f"Screenshot service check failed ({url}): {e}")
             return False
 
     def start_docker_compose(self):
@@ -415,6 +415,8 @@ def parse_args():
     parser.add_argument('--hugo-container-hostname',
                         default='hugo',
                         help='Hostname for Hugo server within Docker network (default: hugo)')
+    parser.add_argument('--start-delay', type=float, default=0,
+                        help='Sleeps this many seconds before starting the work, to allow dependencies to start (default: 0)')
     parser.add_argument('--verbose', '-v', action='store_true',
                         help='Enable verbose output')
 
@@ -424,6 +426,10 @@ def parse_args():
 def main():
     """Main function."""
     args = parse_args()
+
+    if args.start_delay:
+        time.sleep(args.start_delay)
+
     generator = BannerGenerator(args)
     success = generator.generate()
     return 0 if success else 1

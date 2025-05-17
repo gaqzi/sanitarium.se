@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pushd public || exit
+
+rsync -rvz \
+    --perms --chmod=Dgo+rx,Fgo+r \
+    --delete-after --delete-excluded \
+    --exclude index.csv --exclude banner.html \
+    . sanitarium@cell.sanitarium.se:/srv/www/sanitarium.se/
+
+popd || exit
