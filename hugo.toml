@@ -1,7 +1,6 @@
 baseURL = 'https://sanitarium.se/'
 languageCode = 'en-us'
 title = 'the padded cell'
-description = 'ramblings of a technical nature'
 theme = 'sanitarium'
 
 defaultContentLanguage = "en"
@@ -71,7 +70,7 @@ enableEmoji = true
 
   # Site settings
   siteName = "the padded cell"
-  description = "Personal blog of Björn about programming, technology, and automation"
+  description = "ramblings of a technical nature"
   mainSections = ["posts"]
 
   # Theme appearance
