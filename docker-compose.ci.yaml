@@ -1,4 +1,5 @@
 services:
+  # Comment this out if testing locally on an ARM machine
   ws-screenshot:
     image: "elestio/ws-screenshot.slim"
 

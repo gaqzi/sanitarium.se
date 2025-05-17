@@ -12,7 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: isbang/compose-action@v2.2.0
+      - name: Generate banners
+        uses: isbang/compose-action@v2.2.0
         with:
           compose-file: |
             ./docker-compose.yaml
@@ -22,6 +23,11 @@ jobs:
             hugo
             ws-screenshot
             genbanners
+
+      - name: Build the deployment hugo artifact
+        uses: docker://hugomods/hugo:0.147.1
+        with:
+          args: build
 
       - uses: actions/upload-artifact@v4
         with:
