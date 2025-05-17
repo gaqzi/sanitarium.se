@@ -15,8 +15,8 @@ jobs:
       - uses: isbang/compose-action@v2.2.0
         with:
           compose-file: |
-            ./.devcontainer/docker-compose.yaml
-            ./.devcontainer/docker-compose.ci.yaml
+            ./docker-compose.yaml
+            ./docker-compose.ci.yaml
           up-flags: "--abort-on-container-exit --exit-code-from=genbanners"
           services: |-
             hugo
