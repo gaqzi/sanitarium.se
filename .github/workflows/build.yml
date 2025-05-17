@@ -27,7 +27,7 @@ jobs:
       - name: Build the deployment hugo artifact
         uses: docker://hugomods/hugo:0.147.1
         with:
-          args: build
+          args: build --minify
 
       - uses: actions/upload-artifact@v4
         with:
