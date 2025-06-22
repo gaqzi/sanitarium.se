@@ -3,7 +3,7 @@
 author: björn
 comments: false
 date: 2025-05-03T16:20:00+08:00
-last_modified_at: 2025-05-03T16:20:00+08:00
+lastmod: 2025-05-03T16:20:00+08:00
 layout: post
 title: Running effective meetings uses the same skills as running successful projects
 subtitle: From meeting minutes to project milestones

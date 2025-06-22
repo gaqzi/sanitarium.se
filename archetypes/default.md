@@ -1,7 +1,7 @@
 ---
 author: 'björn'
 date: '{{ .Date }}'
-last_modified_at: '{{ .Date }}'
+lastmod: '{{ .Date }}'
 draft: true
 title: '{{ replace .File.ContentBaseName "-" " " | title }}'
 subtitle: ''
