@@ -24,9 +24,6 @@ jobs:
             ws-screenshot
             genbanners
 
-      - name: Clean the public folder
-        run: rm -rf public/
-
       - name: Build the deployment hugo artifact
         uses: docker://hugomods/hugo:0.147.1
         with:
