@@ -3,7 +3,7 @@
     on <time class="published-at" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
         {{ .Date.Format "2 January, 2006 at 15:04" }}
     </time>
-    {{ if ne .Lastmod .Date }}
+    {{ if not (.Lastmod.Equal .Date) }}
     <span class="updated-separator">•</span> Updated <time class="modified-at" datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
         {{ .Lastmod.Format "2 January, 2006 at 15:04" }}
     </time>
