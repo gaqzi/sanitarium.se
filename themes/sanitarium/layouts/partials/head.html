@@ -83,7 +83,7 @@
 <link rel="alternate" type="application/rss+xml" href="{{ .Site.Params.feed }}" title="{{ .Site.Title }}">
 {{- if and (eq .Kind "term") (eq .Type "tags") -}}
 {{- $tagFeed := printf "%sfeed.xml" .RelPermalink }}
-<link rel="alternate" type="application/rss+xml" href="{{ $tagFeed }}" title="{{ .Title }} Feed">
+<link rel="alternate" type="application/rss+xml" href="{{ $tagFeed }}" title="{{ .Site.Title }} — Tag {{ .Title }} Feed">
 {{- end -}}
 
 <!-- Favicon -->
