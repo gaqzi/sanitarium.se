@@ -13,7 +13,7 @@ services:
     working_dir: /src
 
   ws-screenshot:
-    image: "elestio/ws-screenshot.slim:latest-arm"
+    image: "elestio/ws-screenshot.slim"
     expose:
       - 3000
     ports:

@@ -1,7 +1,9 @@
 services:
   # Comment this out if testing locally on an ARM machine
-  ws-screenshot:
-    image: "elestio/ws-screenshot.slim"
+#  ws-screenshot:
+#    image: "elestio/ws-screenshot.slim:latest-arm"
+#    ports:
+#      - "3000:3000"
 
   genbanners:
     image: "python:3.13.3-slim-bookworm"

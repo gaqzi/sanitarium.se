@@ -1,29 +1,30 @@
 #!/usr/bin/env python3
 """
-Banner Generator for Hugo
+Banner Generator for Blog Posts
 
-This script generates social media banner images for Hugo blog posts by:
-1. Checking if Hugo and screenshot services are running (via Docker Compose)
-2. Automatically starting Docker Compose if services aren't available
-3. Reading a CSV file with post metadata
-4. Checking which posts need new banners based on content changes
-5. Using a screenshot service to capture HTML templates rendered by Hugo
-6. Maintaining a cache of checksums to avoid unnecessary regeneration
+This script generates social media banner images for blog posts by:
+1. Checking that required services (banner server and screenshot service) are running
+2. Fetching a CSV file with post metadata from the banner server
+3. Checking which posts need new banners based on content changes
+4. Using a screenshot service to capture HTML banner templates served by the banner server
+5. Maintaining a cache of checksums to avoid unnecessary regeneration
 
-The script expects a Docker Compose setup with:
-- A Hugo service named 'hugo' serving your site on port 1313
-- A ws-screenshot service providing screenshot capabilities on port 3000
+Prerequisites:
+- A banner server serving your site with banner templates (typically on port 1313)
+- A screenshot service providing screenshot capabilities (typically on port 3000)
 
-If these services aren't running, the script will attempt to start them using
-the 'docker-compose up -d' command from the current directory.
+The script expects the banner server to:
+- Serve a CSV file with post metadata at the root level
+- Serve banner templates at /{post-path}/banner.html for each post
 
 Usage:
-  python banner_generator.py [options]
+  python genbanners.py [options]
+  python genbanners.py --csv-path public/posts.csv --output-dir static/banners
 
 Requirements:
   - Python 3.6+
-  - Docker and Docker Compose installed
-  - A docker-compose.yaml file in the current directory
+  - Running banner server with post templates
+  - Running screenshot service (e.g., ws-screenshot)
 """
 
 import argparse
@@ -37,11 +38,14 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from pathlib import Path
 
 
 class BannerGenerator:
-    """Main class for generating banner images for Hugo blog posts."""
+    """Main class for generating banner images for Hugo blog posts.
+
+    It expects to be run from within script/build or something equivalent,
+    where everything is running through docker.
+    """
 
     def __init__(self, args):
         """Initialize the banner generator with command line arguments."""
@@ -93,89 +97,52 @@ class BannerGenerator:
             print(f"Screenshot service check failed ({url}): {e}")
             return False
 
-    def start_docker_compose(self):
-        """Start services using Docker Compose."""
-        try:
-            print("Starting Docker Compose services...")
-            subprocess.run(["docker-compose", "up", "-d"], check=True)
-            return self.wait_for_services()
-        except Exception as e:
-            print(f"Error starting Docker Compose: {e}")
-            return False
-
-    def wait_for_services(self):
-        """Wait for services to become available after starting Docker Compose."""
-        print("Waiting for services to initialize...")
-
-        # Wait for screenshot service
-        for attempt in range(15):  # Wait up to 15 seconds
-            if self.check_screenshot_service(timeout=1.0):
-                print("Screenshot service is now available.")
-                break
-            print(f"Waiting for screenshot service (attempt {attempt+1}/15)...")
-            time.sleep(1)
-        else:
-            print("Screenshot service did not become available")
-            return False
-
-        # Wait for Hugo service
-        for attempt in range(15):  # Wait up to 15 seconds
-            if self.check_server(self.args.banner_server, timeout=1.0):
-                print("Hugo server is now available.")
-                break
-            print(f"Waiting for Hugo server (attempt {attempt+1}/15)...")
-            time.sleep(1)
-        else:
-            print("Hugo server did not become available")
-            return False
-
-        # Both services are now available
-        return True
-
     def check_services(self):
         """Check if required services are available, start them if needed."""
         # Check screenshot service
         if not self.check_screenshot_service():
-            print("Screenshot service not available, attempting to start Docker Compose...")
-            if not self.start_docker_compose():
-                print("Failed to start services via Docker Compose")
-                return False
-            return True  # Services are now running
+            print("Screenshot service not available")
+            return False
 
-        # Check Hugo server
+        # Check banner server
         if not self.check_server(self.args.banner_server):
-            print(f"ERROR: Hugo server at {self.args.banner_server} is not responding")
-            print("The screenshot service needs Hugo to be running.")
-            print("Attempting to start Docker Compose...")
-            if not self.start_docker_compose():
-                print("Failed to start services via Docker Compose")
-                return False
-            return True  # Services are now running
+            print(f"ERROR: banner server at {self.args.banner_server} is not responding")
+            print("The screenshot service needs banner to be running.")
+            return False
 
         print("All required services are running")
         return True
 
-    def translate_hugo_url(self, url):
-        """Translate Hugo URL for Docker network access."""
-        # Replace localhost with the container hostname
-        if self.args.hugo_container_hostname:
-            return url.replace("localhost", self.args.hugo_container_hostname)
-        return url
+    def normalize_content(self, content):
+        """Normalize content string to avoid unnecessary regeneration due to formatting differences."""
+        if not content:
+            return ""
+        # Remove extra whitespace and convert to lowercase
+        return ' '.join(content.lower().split())
 
     def load_cache(self):
         """Load the banner cache file or initialize if it doesn't exist."""
-        if os.path.exists(self.args.cache_file):
+        cache_file_path = self.args.cache_file
+
+        if os.path.exists(cache_file_path):
             try:
-                with open(self.args.cache_file, 'r') as f:
+                with open(cache_file_path, 'r') as f:
                     return json.load(f)
             except json.JSONDecodeError:
-                print(f"Warning: Cache file {self.args.cache_file} is corrupted. Initializing new cache.")
+                print(f"Warning: Cache file {cache_file_path} is corrupted. Initializing new cache.")
+        else:
+            print(f"Cache file {cache_file_path} does not exist. Initializing new cache.")
 
         return {}
 
     def save_cache(self):
         """Save the banner cache to a file."""
-        with open(self.args.cache_file, 'w') as f:
+        # Convert cache file path to absolute path if it's not already
+        cache_file_path = self.args.cache_file
+        if not os.path.isabs(cache_file_path):
+            cache_file_path = os.path.abspath(cache_file_path)
+
+        with open(cache_file_path, 'w') as f:
             json.dump(self.cache, f, indent=2)
 
     def capture_screenshot(self, target_url, output_path):
@@ -209,20 +176,52 @@ class BannerGenerator:
                     # Ensure output directory exists
                     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-                    with open(output_path, 'wb') as out_file:
-                        out_file.write(response.read())
+                    # Read the response with a timeout to prevent hanging
+                    try:
+                        # Set a socket timeout for reading the response
+                        response.fp.raw._sock.settimeout(60)
 
-                    print(f"Screenshot saved to {output_path}")
-                    return True
+                        # Read the response in chunks to avoid memory issues
+                        with open(output_path, 'wb') as out_file:
+                            chunk_size = 8192  # 8KB chunks
+                            while True:
+                                chunk = response.read(chunk_size)
+                                if not chunk:
+                                    break
+                                out_file.write(chunk)
+                                # Print a dot to show progress
+                                print(".", end="", flush=True)
+
+                        print(f"\nScreenshot saved to {output_path}")
+                        return True
+                    except socket.timeout:
+                        print(f"Timeout while reading screenshot response")
+                        return False
+                    except Exception as e:
+                        print(f"Error reading screenshot response: {e}")
+                        print(f"Error type: {type(e).__name__}")
+                        return False
                 else:
                     # We got a response but it's not an image
-                    data = response.read()
                     try:
-                        text = data.decode('utf-8')
-                        print(f"Non-image response received: {text[:200]}...")
-                    except:
-                        print(f"Non-image response received with content type: {content_type}")
-                    return False
+                        # Set a socket timeout for reading the response
+                        response.fp.raw._sock.settimeout(10)
+
+                        # Read the response with a timeout
+                        data = response.read(8192)  # Read only first 8KB to avoid hanging
+                        try:
+                            text = data.decode('utf-8')
+                            print(f"Non-image response received: {text[:200]}...")
+                        except:
+                            print(f"Non-image response received with content type: {content_type}")
+                        return False
+                    except socket.timeout:
+                        print(f"Timeout while reading non-image response")
+                        return False
+                    except Exception as e:
+                        print(f"Error reading non-image response: {e}")
+                        print(f"Error type: {type(e).__name__}")
+                        return False
 
             return True
         except urllib.error.URLError as e:
@@ -240,68 +239,99 @@ class BannerGenerator:
 
     def process_csv(self):
         """Process the CSV file and generate banners as needed."""
-        if not os.path.exists(self.args.csv_path):
-            print(f"Error: CSV file {self.args.csv_path} not found.")
-            return False
+        # Construct the URL to fetch the CSV from the webserver
+        csv_url = f"http://{self.args.banner_server}/{os.path.basename(self.args.csv_path)}"
 
         generation_queue = []
 
         try:
-            with open(self.args.csv_path, 'r') as csv_file:
-                reader = csv.DictReader(csv_file)
-                for row in reader:
-                    # Extract post data
-                    path = row.get('path', '')
-                    title = row.get('title', '')
-                    subtitle = row.get('subtitle', '')
-                    date = row.get('date', '')
-                    slug = row.get('slug', '')
+            # Fetch the CSV from the webserver
+            req = urllib.request.Request(csv_url)
+            req.add_header('User-Agent', 'Mozilla/5.0 Banner Generator')
 
-                    # If slug is not in the CSV, try to extract it from path
-                    if not slug and path:
-                        # Example: "/posts/my-post/" -> "my-post"
-                        slug = path.strip('/').split('/')[-1]
+            try:
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    # Check if we got a successful response
+                    if response.getcode() == 200:
+                        csv_content = response.read().decode('utf-8')
+                        reader = csv.DictReader(csv_content.splitlines())
 
-                    if not slug:
-                        print(f"Warning: Could not determine slug for post {title}")
-                        continue
+                        # Process each row in the CSV
+                        for row in reader:
+                            # Extract post data
+                            path = row.get('path', '')
+                            title = row.get('title', '')
+                            subtitle = row.get('subtitle', '')
+                            date = row.get('date', '')
+                            slug = row.get('slug', '')
 
-                    # Clean up the path for URL construction
-                    post_path = path.strip('/')
-                    if not post_path:
-                        # Default to using slug if no path is available
-                        post_path = slug
+                            # If slug is not in the CSV, try to extract it from path
+                            if not slug and path:
+                                # Example: "/posts/my-post/" -> "my-post"
+                                slug = path.strip('/').split('/')[-1]
 
-                    # Determine banner path and calculate checksums
-                    banner_path = os.path.join(self.args.output_dir, f"{date.split('T')[0]}-{slug}.png")
-                    content_checksum = self.calculate_checksum(f"{date}--{title}--{subtitle}")
-                    file_checksum = self.calculate_file_checksum(banner_path)
+                            if not slug:
+                                print(f"Warning: Could not determine slug for post {title}")
+                                continue
 
-                    # Check if banner needs to be generated
-                    cached_data = self.cache.get(banner_path, {})
-                    cached_content_checksum = cached_data.get("content_checksum", "")
-                    cached_file_checksum = cached_data.get("file_checksum", "")
+                            # Clean up the path for URL construction
+                            post_path = path.strip('/')
+                            if not post_path:
+                                # Default to using slug if no path is available
+                                post_path = slug
 
-                    needs_generation = False
+                            # Determine banner path and calculate checksums
+                            banner_path = os.path.join(self.args.output_dir, f"{date.split('T')[0]}-{slug}.png")
 
-                    if not file_checksum:
-                        print(f"Banner for '{title}' does not exist, will generate")
-                        needs_generation = True
-                    elif cached_content_checksum != content_checksum:
-                        print(f"Content for '{title}' changed, will regenerate banner")
-                        needs_generation = True
-                    elif cached_file_checksum != file_checksum:
-                        print(f"Banner file for '{title}' was modified, will regenerate")
-                        needs_generation = True
+                            # Normalize content before calculating checksum
+                            normalized_date = self.normalize_content(date)
+                            normalized_title = self.normalize_content(title)
+                            normalized_subtitle = self.normalize_content(subtitle)
+                            content_checksum = self.calculate_checksum(
+                                f"{normalized_date}--{normalized_title}--{normalized_subtitle}")
 
-                    if needs_generation:
-                        generation_queue.append({
-                            'slug': slug,
-                            'title': title,
-                            'path': post_path,
-                            'banner_path': banner_path,
-                            'content_checksum': content_checksum
-                        })
+                            file_checksum = self.calculate_file_checksum(banner_path)
+
+                            # Check if banner needs to be generated
+                            cached_data = self.cache.get(banner_path, {})
+                            cached_content_checksum = cached_data.get("content_checksum", "")
+                            cached_file_checksum = cached_data.get("file_checksum", "")
+
+                            needs_generation = False
+
+                            if not file_checksum:
+                                print(f"Banner for '{title}' does not exist, will generate")
+                                needs_generation = True
+                            elif cached_content_checksum != content_checksum:
+                                print(
+                                    f"Content for '{title}' changed, will regenerate banner ({cached_content_checksum})")
+                                needs_generation = True
+                            elif cached_file_checksum != file_checksum:
+                                print(
+                                    f"Banner file for '{title}' was modified, will regenerate ({cached_file_checksum})")
+                                needs_generation = True
+
+                            if needs_generation:
+                                generation_queue.append({
+                                    'slug': slug,
+                                    'title': title,
+                                    'path': post_path,
+                                    'banner_path': banner_path,
+                                    'content_checksum': content_checksum
+                                })
+
+                        print(f"Preparing to work on {len(generation_queue)} banners")
+                    else:
+                        print(f"Error: Failed to fetch CSV file. Server returned HTTP {response.getcode()}")
+                        return False
+            except urllib.error.URLError as e:
+                print(f"Error: Failed to fetch CSV file from {csv_url}")
+                print(f"URL Error: {e.reason}")
+                return False
+            except Exception as e:
+                print(f"Error: Failed to fetch CSV file from {csv_url}")
+                print(f"Error: {e}")
+                return False
 
         except Exception as e:
             print(f"Error processing CSV: {e}")
@@ -312,17 +342,7 @@ class BannerGenerator:
             # Primary URL: use the path from CSV directly with banner.html
             target_url = f"http://{self.args.banner_server}/{post['path']}/banner.html"
 
-            # Translate the URL for Docker network access
-            docker_url = self.translate_hugo_url(target_url)
-            if docker_url != target_url:
-                print(f"Using URL: {target_url} -> {docker_url}")
-            else:
-                print(f"Using URL: {target_url}")
-
-            success = self.capture_screenshot(
-                docker_url,
-                post['banner_path']
-            )
+            success = self.capture_screenshot(target_url, post['banner_path'])
 
             if success:
                 # Update cache with new checksums
@@ -334,37 +354,7 @@ class BannerGenerator:
                 print(f"Successfully generated banner for '{post['title']}'")
             else:
                 print(f"Failed to generate banner for '{post['title']}'")
-
-                # If the primary URL fails, try some alternative formats as fallbacks
-                fallback_urls = [
-                    # Direct slug approach
-                    f"http://{self.args.banner_server}/{post['slug']}/banner.html",
-
-                    # With posts prefix
-                    f"http://{self.args.banner_server}/posts/{post['slug']}/banner.html",
-                ]
-
-                for fallback_url in fallback_urls:
-                    translated_url = self.translate_hugo_url(fallback_url)
-                    print(f"Trying fallback URL: {fallback_url} -> {translated_url}")
-
-                    success = self.capture_screenshot(
-                        translated_url,
-                        post['banner_path']
-                    )
-
-                    if success:
-                        # Update cache with new checksums
-                        new_file_checksum = self.calculate_file_checksum(post['banner_path'])
-                        self.cache[post['banner_path']] = {
-                            "content_checksum": post['content_checksum'],
-                            "file_checksum": new_file_checksum
-                        }
-                        print(f"Successfully generated banner for '{post['title']}' using fallback URL")
-                        break
-
-                if not success:
-                    print(f"All URL patterns failed for '{post['title']}'")
+                return False
 
         return True
 
@@ -412,15 +402,14 @@ def parse_args():
                         help='Wait time in ms for screenshot service (default: 150)')
     parser.add_argument('--banner-server', default='localhost:1313',
                         help='Hugo server URL serving the templates (default: localhost:1313)')
-    parser.add_argument('--hugo-container-hostname',
-                        default='hugo',
-                        help='Hostname for Hugo server within Docker network (default: hugo)')
     parser.add_argument('--start-delay', type=float, default=0,
                         help='Sleeps this many seconds before starting the work, to allow dependencies to start (default: 0)')
-    parser.add_argument('--verbose', '-v', action='store_true',
-                        help='Enable verbose output')
-
-    return parser.parse_args()
+    try:
+        return parser.parse_args()
+    except SystemExit as e:
+        print(f"argparse failed with exit code: {e.code}")
+        print("This usually means invalid arguments or --help was called")
+        raise
 
 
 def main():
@@ -428,6 +417,7 @@ def main():
     args = parse_args()
 
     if args.start_delay:
+        print(f'Waiting {args.start_delay} seconds...')
         time.sleep(args.start_delay)
 
     generator = BannerGenerator(args)
