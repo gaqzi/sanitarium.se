@@ -1,0 +1,49 @@
+#!/bin/bash
+
+function installAsdf() {
+  if which -s asdf ; then
+    return
+  fi
+
+  echo "asdf not installed, will try to install with homebrew"
+  if ! brew install asdf; then
+    echo "Failed to install asdf" >&2
+    exit 1
+  fi
+
+  bash_line=$(brew info asdf | grep asdf/libexec/asdf.sh)
+  if [ -z "$bash_line" ]; then
+    echo "Didn't find the shell install script for bash/zsh to auto-install asdf in your shell" >&2
+    echo "Run 'brew info asdf' to see how" >&2
+    exit 1
+  fi
+
+  echo "Auto-installing asdf shell setup in:"
+  echo "    - $HOME/.bashrc for bash"
+  echo "$bash_line" >> $HOME/.bashrc
+
+  echo "    - $HOME/.zshrc for zsh"
+  echo "$bash_line" >> $HOME/.zshrc
+
+  echo "Restart your shell for changes to take effect"
+  exit 1
+}
+
+function installAsdfPlugins() {
+  cat .tool-versions | cut -d' ' -f1 | while IFS= read -r plugin; do
+    asdf plugin add $plugin || exit 1
+  done
+}
+
+## Check that homebrew is installed
+if ! which -s brew ; then
+  echo "Homebrew not installed, please install it and then run again" >&2
+  echo "    https://brew.sh/" >&2
+  exit 1
+fi
+
+## Install asdf if needed, then all asdf plugins, and all tools in asdf
+echo "Install tools at the correct version"
+installAsdf &&
+  installAsdfPlugins &&
+  asdf install

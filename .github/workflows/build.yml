@@ -25,7 +25,7 @@ jobs:
             genbanners
 
       - name: Build the deployment hugo artifact
-        uses: docker://hugomods/hugo:0.147.1
+        uses: docker://hugomods/hugo:0.147.8
         with:
           args: build --minify
 

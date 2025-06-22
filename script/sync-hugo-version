@@ -1,0 +1,20 @@
+#!/bin/bash
+# A script to help update the go version used across all the files that need
+# it set consistently, relies on asdf to manage the go version.
+
+: ${HUGO_VERSION:=$1}
+
+if [ -z "$HUGO_VERSION" ]; then
+  HUGO_VERSION="latest"
+fi
+
+## Set to the specified version, latest if none specified on the cli
+asdf install gohugo "$HUGO_VERSION"
+asdf local gohugo "$HUGO_VERSION"
+HUGO_VERSION=$(grep gohugo .tool-versions | cut -d' ' -f 2)
+
+## Update Github Actions
+sed -I '' -E "s/hugomods\/hugo:(.*)$/hugomods\/hugo:$HUGO_VERSION/" .github/workflows/build.yml
+
+## Update docker compose
+sed -I '' -E "s/hugomods\/hugo:(.*)\"/hugomods\/hugo:$HUGO_VERSION\"/" docker-compose.yaml

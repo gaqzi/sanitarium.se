@@ -1,7 +1,7 @@
 ---
 services:
   hugo:
-    image: "hugomods/hugo:0.147.1"
+    image: "hugomods/hugo:0.147.8"
     command: hugo server
     expose:
       - 1313
