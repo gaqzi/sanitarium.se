@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2009/08/webby-with-pingbacks-trackbacks", "/blog/2009/08/15/webby-with-pingbacks-trackbacks"]
 
 archived: true
 author: björn
@@ -14,7 +15,6 @@ tags:
 - ruby
 - web standards
 - webby
-
 ---
 
 

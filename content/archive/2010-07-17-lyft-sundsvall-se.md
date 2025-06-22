@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/07/lyft-sundsvall-se", "/blog/2010/07/17/lyft-sundsvall-se"]
 
 archived: true
 author: björn
@@ -16,7 +17,6 @@ tags:
 - politik
 - sociala-medier
 - sundsvall
-
 ---
 
 

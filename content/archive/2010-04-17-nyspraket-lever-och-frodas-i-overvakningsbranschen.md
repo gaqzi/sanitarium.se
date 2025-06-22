@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/04/nyspraket-lever-och-frodas-i-overvakningsbranschen", "/blog/2010/04/17/nyspraket-lever-och-frodas-i-overvakningsbranschen"]
 
 archived: true
 author: björn
@@ -15,7 +16,6 @@ tags:
 - bodströmsamhället
 - informationspolitik
 - piratpartiet
-
 ---
 
 

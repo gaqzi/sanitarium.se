@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/09/lokalpolitik-i-sundsvall-och-vasternorrland", "/blog/2010/09/11/lokalpolitik-i-sundsvall-och-vasternorrland"]
 
 archived: true
 author: björn
@@ -14,7 +15,6 @@ categories:
 tags:
 - lokalpolitik
 - sundsvall
-
 ---
 
 

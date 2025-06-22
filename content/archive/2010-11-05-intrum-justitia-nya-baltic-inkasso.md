@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/11/intrum-justitia-nya-baltic-inkasso", "/blog/2010/11/05/intrum-justitia-nya-baltic-inkasso"]
 
 archived: true
 author: björn
@@ -22,7 +23,6 @@ tags:
 - piratpartiet
 - rättshaverist
 - webbhotell
-
 ---
 
 

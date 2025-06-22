@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/05/how-to-get-your-hp-un2400-3g-modem-to-work-in-ubuntu-on-your-hp-110c-1020so-netbook", "/blog/2010/05/01/how-to-get-your-hp-un2400-3g-modem-to-work-in-ubuntu-on-your-hp-110c-1020so-netbook"]
 
 archived: true
 author: björn
@@ -14,7 +15,6 @@ tags:
 - 3g
 - howto
 - linux
-
 ---
 
 

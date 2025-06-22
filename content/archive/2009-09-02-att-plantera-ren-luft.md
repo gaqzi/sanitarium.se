@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2009/09/att-plantera-ren-luft", "/blog/2009/09/02/att-plantera-ren-luft"]
 
 archived: true
 author: björn
@@ -13,7 +14,6 @@ categories:
 - Svenska inlägg
 tags:
 - ted
-
 ---
 
 

@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2009/08/e-post-angaende-lagring-av-resedata-till-din-tur-och-datainspektionen", "/blog/2009/08/26/e-post-angaende-lagring-av-resedata-till-din-tur-och-datainspektionen"]
 
 archived: true
 author: björn
@@ -16,7 +17,6 @@ tags:
 - datainspektionen
 - din-tur
 - piratpartiet
-
 ---
 
 

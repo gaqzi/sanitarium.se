@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2009/08/the-very-last-post", "/blog/2009/08/05/the-very-last-post"]
 
 archived: true
 author: björn
@@ -10,7 +11,6 @@ title: The Very Last Post!
 wordpress_id: 12
 categories:
 - English posts
-
 ---
 
 

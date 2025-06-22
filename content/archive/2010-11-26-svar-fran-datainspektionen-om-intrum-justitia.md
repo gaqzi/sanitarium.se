@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/11/svar-fran-datainspektionen-om-intrum-justitia", "/blog/2010/11/26/svar-fran-datainspektionen-om-intrum-justitia"]
 
 archived: true
 author: björn
@@ -16,7 +17,6 @@ tags:
 - inkasso
 - intrum justitia
 - rättshaverist
-
 ---
 
 

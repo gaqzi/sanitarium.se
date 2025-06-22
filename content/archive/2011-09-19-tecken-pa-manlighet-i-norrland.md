@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2011/09/tecken-pa-manlighet-i-norrland", "/blog/2011/09/19/tecken-pa-manlighet-i-norrland"]
 
 archived: true
 author: björn
@@ -15,7 +16,6 @@ tags:
 - chasers
 - försök till humor
 - humor
-
 ---
 
 

@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/06/tva-ar-sedan-ett-svek", "/blog/2010/06/18/tva-ar-sedan-ett-svek"]
 
 archived: true
 author: björn
@@ -15,7 +16,6 @@ tags:
 - bodströmsamhället
 - fra
 - piratpartiet
-
 ---
 
 

@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/02/operation-titstorm-varfor-ska-du-bry-dej", "/blog/2010/02/17/operation-titstorm-varfor-ska-du-bry-dej"]
 
 archived: true
 author: björn
@@ -15,7 +16,6 @@ tags:
 - anonymous
 - informationspolitik
 - piratpartiet
-
 ---
 
 

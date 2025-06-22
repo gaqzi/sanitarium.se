@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/09/how-to-disable-spotify-from-making-p2p-connections-in-windows-xp", "/blog/2010/09/28/how-to-disable-spotify-from-making-p2p-connections-in-windows-xp"]
 
 archived: true
 author: björn
@@ -16,7 +17,6 @@ tags:
 - networking
 - spotify
 - windows
-
 ---
 
 

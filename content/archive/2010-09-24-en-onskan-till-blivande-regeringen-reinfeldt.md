@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2010/09/en-onskan-till-blivande-regeringen-reinfeldt", "/blog/2010/09/24/en-onskan-till-blivande-regeringen-reinfeldt"]
 
 archived: true
 author: björn
@@ -14,7 +15,6 @@ categories:
 tags:
 - beatrice-ask
 - piratpartiet
-
 ---
 
 

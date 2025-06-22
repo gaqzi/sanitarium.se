@@ -1,4 +1,5 @@
 ---
+aliases: ["/blog/2011/01/keeping-your-varnish-farm-in-sync", "/blog/blog/2011/01/keeping-your-varnish-farm-in-sync/", "/blog/blog/2011/01/07/keeping-your-varnish-farm-in-sync"]
 author: björn
 comments: true
 date: 2011-01-07 01:21:46+00:00
