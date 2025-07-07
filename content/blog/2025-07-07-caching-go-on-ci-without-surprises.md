@@ -103,7 +103,7 @@ If you want to explore how Go makes decisions around caching yourself, you can r
 
 ## The Results
 
-We cut our CI times in half with this caching approach, and I'm confident it's safe to roll out widely because I understand exactly how it works.
+We cut our CI times in half with this caching approach, and I'm confident it's safe to roll out widely because I understand exactly how it works and I can make the required changes to our shared integration testing library.
 
 What I appreciate about Go's design here is how it avoids clever optimizations in favor of predictable behavior. I knew caching wasn't just on/off, but I wasn't sure if there would be complex edge cases to worry about. Instead, Go picks the straightforward solution: package-level invalidation that's easy to reason about.
 
