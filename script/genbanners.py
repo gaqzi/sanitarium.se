@@ -32,6 +32,7 @@ import csv
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -281,7 +282,8 @@ class BannerGenerator:
                                 post_path = slug
 
                             # Determine banner path and calculate checksums
-                            banner_path = os.path.join(self.args.output_dir, f"{date.split('T')[0]}-{slug}.png")
+                            clean_slug = re.sub(r'^\d{4}-\d{2}-\d{2}-', '', slug)
+                            banner_path = os.path.join(self.args.output_dir, f"{date.split('T')[0]}-{clean_slug}.png")
 
                             # Normalize content before calculating checksum
                             normalized_date = self.normalize_content(date)
