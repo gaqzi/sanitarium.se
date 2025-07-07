@@ -38,6 +38,8 @@ This works by creating [a file with the current Unix time in nanoseconds](https:
 - Con: Need to change test execution and remember it everywhere, easy to miss (especially in monorepos with many go.mods)
 - When to use: Only some tests need cache invalidation
 
+This is the one you'll see when people ask how to make Go not cache tests, for our situation not super useful, but mentioning it for completeness.
+
 **Elegant Option: Environment Variables**
 - Pro: Automatic cache invalidation on CI when needed, maximum caching benefit when possible
 - Con: Requires thoughtful test design
