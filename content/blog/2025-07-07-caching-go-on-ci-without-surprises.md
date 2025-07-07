@@ -65,11 +65,11 @@ func IsIntegrationTest(t *testing.T) {
 // ... another file relying on integrationtesting
 
 func TestAPIIntegration(t *testing.T) {
-    integrationtesting.IsIntegrationTest(t)
-    
-    // Your actual integration test
-    resp := callAPIEndpoint()
-    assert.Equal(t, expected, resp)
+	integrationtesting.IsIntegrationTest(t)
+
+	// Your actual integration test
+	resp := callAPIEndpoint()
+	assert.Equal(t, expected, resp)
 }
 ```
 
