@@ -2,9 +2,9 @@
     <a href="{{ .Permalink }}">
         <hgroup>
         {{ if eq .headingLevel "h3" }}
-        <h3>{{ .Title }}</h3>
+        <h3 class="title">{{ .Title }}</h3>
         {{ else }}
-        <h2>{{ .Title }}</h2>
+        <h2 class="title">{{ .Title }}</h2>
         {{ end }}
         <p class="subtitle">{{ .Params.subtitle }}</p>
         </hgroup>

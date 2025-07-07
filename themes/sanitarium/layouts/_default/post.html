@@ -6,7 +6,7 @@
     <header>
         <hgroup {{ if .Params.language }} lang="{{ .Params.language }}"{{ end }}>
             <h1 class="title">{{ .Title }}</h1>
-            {{ with .Params.subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
+            {{ with .Params.subtitle }}<p class="subtitle">{{ . }}</p>{{ end }}
         </hgroup>
 
         {{ partial "post-meta.html" . }}
