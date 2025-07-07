@@ -307,6 +307,16 @@ code.language-plaintext {
     letter-spacing: -0.05em;
 }
 
+code:not(pre code) {
+    background-color: var(--code-inline-bg);
+    color: var(--code-inline-fg);
+    padding: 0.1em 0.2em;
+    font-size: .875em;
+    border-radius: 2px;
+    border-bottom: 1px solid var(--code-inline-border);
+    letter-spacing: -0.05em;
+}
+
 /* Shared styles for content blocks */
 blockquote, .highlight {
     position: relative;
