@@ -21,7 +21,7 @@
     --border-color-standard-rgb: 136, 136, 136; /* Match the hex #888888 */
 
     /* Accent colors for light/dark modes - using system color keywords */
-    --accent-color-dark: LinkText;  /* Browser's default link color in dark mode */
+    --accent-color-dark: #9e9eff;  /* Browser's default link color in dark mode for Firefox and Safari */
     --accent-color-light: #b30000; /* Red for light mode */
 
     /* Quote styling variables */
