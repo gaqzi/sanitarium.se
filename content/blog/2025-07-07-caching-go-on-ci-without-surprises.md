@@ -36,7 +36,7 @@ I knew from the Go docs that test caching has special handling for files and env
 
 This works by creating [a file with the current Unix time in nanoseconds](https://github.com/golang/go/blob/665af869920432879629c1d64cf59f129942dcd6/src/cmd/go/internal/test/test.go#L844-L848) and then, whenever Go runs tests, it checks if the cached test is newer than that timestamp. I appreciate the simplicity: the cache cleaner doesn't need to understand which cached items are tests (and there are only hashes in that folder), it just sets a "tests are invalid after this moment" marker and the code skips it or not.
 
-**Surgical Option: `--count=1`**
+**Explicit Option: `--count=1`**
 - Pro: Granular control per `go test` invocation
 - Con: Need to change test execution and remember it everywhere, easy to miss (especially in monorepos with many go.mods)
 - When to use: Only some tests need cache invalidation
