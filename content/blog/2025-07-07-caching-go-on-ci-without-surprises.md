@@ -2,7 +2,7 @@
 author: 'björn'
 date: '2025-07-07T21:50:00+08:00'
 lastmod: '2025-07-07T21:50:00+08:00'
-title: Working with Go's test caching on CI
+title: Working with Go's test cache on CI
 subtitle: 'be fast by avoiding work, while doing the important work'
 tags:
   - golang
@@ -12,6 +12,7 @@ tags:
   - integration-testing
 aliases:
   - "/blog/2025/07/07/caching-go-on-ci-without-surprises/"
+  - "/blog/2025/07/07/working-with-gos-test-caching-on-ci/"
 ---
 
 I was trying to speed up our slow CI by caching Go builds. The easy win was caching `GOMODCACHE` for dependencies, i.e. all the Go modules we've downloaded, but when I added `GOCACHE` for the build, which means that I don't have to recompile all the code that hasn't changed since the cache was made, I got a pleasant surprise: the tests were caching too. 🥳
