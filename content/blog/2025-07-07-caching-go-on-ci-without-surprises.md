@@ -55,7 +55,7 @@ This works because Go invalidates the entire package's test cache whenever an en
 - GitHub Actions: `GITHUB_SHA`
 - Drone CI: `DRONE_COMMIT_SHA`
 
-When your integration test reads this variable, Go automatically invalidates the cache for that package whenever you push new code. The key insight: you don't need to *use* the variable meaningfully, just *read* it. One thingg to keep in mind: consider keeping integration tests in separate packages from unit tests to avoid invalidating unit test caches unnecessarily when only the integration tests need cache invalidation.
+When your integration test reads this variable, Go automatically invalidates the cache for that package whenever you push new code. The key insight: you don't need to *use* the variable meaningfully, just *read* it. One thing to keep in mind: consider keeping integration tests in separate packages from unit tests to avoid invalidating unit test caches unnecessarily when only the integration tests need cache invalidation.
 
 ```go
 package integrationtesting
