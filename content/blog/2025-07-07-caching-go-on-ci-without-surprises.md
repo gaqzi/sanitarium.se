@@ -15,7 +15,7 @@ aliases:
   - "/blog/2025/07/07/working-with-gos-test-caching-on-ci/"
 ---
 
-I was trying to speed up our slow CI by caching Go builds. The easy win was caching `GOMODCACHE` for dependencies, i.e. all the Go modules we've downloaded, but when I added `GOCACHE` for the build, which means that I don't have to recompile all the code that hasn't changed since the cache was made, I got a pleasant surprise: the tests were caching too. 🥳
+I was trying to speed up our slow CI by caching Go builds. The easy win was caching `GOMODCACHE` for dependencies (or `GOPATH` if you also want binaries etc.), i.e. all the Go modules we've downloaded, but when I added `GOCACHE` for the build, which means that I don't have to recompile all the code that hasn't changed since the cache was made, I got a pleasant surprise: the tests were caching too. 🥳
 
 I shared the change for review, and a colleague raised a great point: "What about our black box integration tests?" These tests hit APIs and external services that Go can't track as dependencies. If they cache when they shouldn't, we might miss real failures: the tests would pass because they didn't re-run, not because the code actually works.
 
@@ -62,7 +62,9 @@ package integrationtesting
 
 func IsIntegrationTest(t *testing.T) {
 	t.Helper()
-	_ = os.Getenv("DRONE_COMMIT_SHA") // This ensures that we invalidate the cache on CI whenever we have a new git SHA
+  // This ensures that we invalidate the cache
+  // on CI whenever we have a new git SHA
+	_ = os.Getenv("DRONE_COMMIT_SHA")
 }
 
 // ... another file relying on integrationtesting
@@ -100,13 +102,13 @@ Key findings:
 
 The critical insight: Go runs tests per package and packages are run in parallel. If any test in the package touches an environment variable, the entire package's cache depends on that variable's value.
 
-This gave me confidence that the approach was predictable and wouldn't have surprising edge cases, especially because the way [testlog] works is by simply recording that _something_ called `os.Getenv` with this value, and it doesn't know which test or from where, just that in the course of running these tests this happened. Nice and simple.
+This made me comfortable that the approach was predictable and wouldn't have surprising edge cases, especially because the way [testlog] works is by simply recording that _something_ called `os.Getenv` with this value, and it doesn't know which test or from where, just that in the course of running these tests this happened. Nice and simple.
 
 If you want to explore how Go makes decisions around caching yourself, you can run tests with `GODEBUG=gocachetest=1` to see Go's caching decisions in real time. There are more debugging variables available in `go help cache`.
 
 ## The Results
 
-We cut our CI times in half with this caching approach, and I'm confident it's safe to roll out widely because I understand exactly how it works and I can make the required changes to our shared integration testing library.
+We cut our CI times in half with this caching approach, and I'm confident it's safe to roll out widely because I understand exactly how it works and I can make the required changes to our shared integration testing library so it will "just work" for the standard case.
 
 What I appreciate about Go's design here is how it avoids clever optimizations in favor of predictable behavior. I knew caching wasn't just on/off, but I wasn't sure if there would be complex edge cases to worry about. Instead, Go picks the straightforward solution: package-level invalidation that's easy to reason about.
 
