@@ -46,5 +46,9 @@
   "static/img/banners/2025-07-07-caching-go-on-ci-without-surprises.png": {
     "content_checksum": "510e3f3a64d9276e43c9f49ac2827a21",
     "file_checksum": "0a21e9333316dfb04bfe2b6f8b716a44"
+  },
+  "static/img/banners/2025-07-which-hats-are-you-wearing.png": {
+    "content_checksum": "8a873b3a5fa48fc47e75bb8a31b8307a",
+    "file_checksum": "b1669fb502f06f75dc3dfbadbda9d7fa"
   }
 }
