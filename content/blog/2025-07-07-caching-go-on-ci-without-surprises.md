@@ -54,6 +54,16 @@ This is the one you'll see when people ask how to make Go not cache tests, for o
 - Con: Requires thoughtful test design
 - When to use: You have enough tests that the speedup matters and you're willing to be intentional about cache invalidation
 
+Or laid out visually: 
+
+| Approach | Changes Needed           | Test Caching | Safety |
+|----------|--------------------------|--------------|--------|
+| `go clean -testcache` | CI config only           | ❌ None | ✅ Safest |
+| `--count=1` | Every test invocation    | ❌ None | ✅ Safe |
+| Environment variables | Shared code/library once | ✅ Full | ✅ Safe* |
+
+*_When implemented correctly_
+
 ### How the Environment Variable Approach Works
 
 This works because Go invalidates the entire package's test cache whenever an environment variable it depends on changes, and most CI systems expose a unique commit SHA as an environment variable. For example,
@@ -107,6 +117,15 @@ Key findings:
 - **File-level targeting = no cache**: `go test file_test.go` also never caches
 
 The big takeaway: Go runs tests per package, and packages are run in parallel. If any test in the package touches an environment variable, the entire package's cache depends on that variable's value, so the cache is invalidated when the value is different on the next run.
+
+Or as a semi-flowchart:
+```text
+Package reads env var? 
+    Yes → Env var value changed? 
+              Yes → Cache invalid
+              No  → Cache valid
+    No → Cache valid
+```
 
 This made me comfortable that the approach was predictable and wouldn't have surprising edge cases, especially because the way [testlog] works is by simply recording that _something_ called `os.Getenv` with this value, and it doesn't know which test or from where, just that in the course of running these tests this happened. Nice and simple.
 
