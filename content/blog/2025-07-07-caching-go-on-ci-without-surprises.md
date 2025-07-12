@@ -15,19 +15,25 @@ aliases:
   - "/blog/2025/07/07/working-with-gos-test-caching-on-ci/"
 ---
 
-I was trying to speed up our slow CI by caching Go builds. The easy win was caching `GOMODCACHE` for dependencies (or `GOPATH` if you also want binaries etc.), i.e. all the Go modules we've downloaded, but when I added `GOCACHE` for the build, which means that I don't have to recompile all the code that hasn't changed since the cache was made, I got a pleasant surprise: the tests were caching too. 🥳
+I was trying to speed up our slow CI by caching Go builds. The easy win was caching Go's module downloads (via `GOPATH`), but when I added `GOCACHE` for the build cache, I got a pleasant surprise: the tests were caching too. 🥳
 
 I shared the change for review, and a colleague raised a great point: "What about our black box integration tests?" These tests hit APIs and external services that Go can't track as dependencies. If they cache when they shouldn't, we might miss real failures: the tests would pass because they didn't re-run, not because the code actually works.
 
 ## The Fundamental Problem
 
-When my colleague warned me about integration test caching, I realized we had a fundamental issue: our black box integration tests don't "declare their dependencies" to the Go compiler, so it doesn't know that something the test is critically dependent upon has changed and requires a rerun (and practically, neither do we really), because they test network services and external binaries that Go has no visibility into. I always have to run these tests.
+When my colleague warned me about integration test caching, I realized we had a bigger problem than just my PR. How could I fix this across our entire org? We've got ~250 repos, and asking every team to remember special flags or change their test execution wasn't going to fly. I needed something that would just work everywhere with minimal changes.
+
+The fundamental issue: our black box integration tests don't "declare their dependencies" to the Go compiler, so it doesn't know that something the test is critically dependent upon has changed and requires a rerun (and practically, neither do we really), because they test network services and external binaries that Go has no visibility into. I always have to run these tests.
 
 I wanted the caching benefits without the risk, ideally with minimal changes since we have lots of codebases that could benefit from this caching improvement. Since our black box integration tests use a shared internal library, I was hoping to find a solution I could implement once there rather than asking teams to modify individual tests or change how they execute them.
 
-## Three Approaches, Three Tradeoffs
+## So... How Do I Make This Work?
 
-I knew from the Go docs that test caching has special handling for files and environment variables, so I wanted to know how it actually works. I found three approaches that each make different tradeoffs.
+I started by looking for the obvious solutions, there's probably a flag to ignore the test cache, right? And there were two straightforward options: `go clean -testcache` and `--count=1`. But here's the thing, both of them throw away ALL test caching, which felt like using a sledgehammer when I needed a scalpel.
+
+Then I remembered reading something about environment variables, and files, affecting test caching. I went into `go help test` and I remembered right, tests that read environment variables get invalidated when those variables change, so since this is about CI, and I know that CI systems give us unique commit SHAs as env vars… and we have a shared library to help write black box integration tests… so I can make the fix once in that library and everyone gets this benefit!
+
+Alright, that gives me three options, how do they compare?
 
 **Simple Option: `go clean -testcache`**
 - Pro: Dead simple - add one line to your CI config, no test changes needed
@@ -62,8 +68,8 @@ package integrationtesting
 
 func IsIntegrationTest(t *testing.T) {
 	t.Helper()
-  // This ensures that we invalidate the cache
-  // on CI whenever we have a new git SHA
+	// This ensures that we invalidate the cache
+	// on CI whenever we have a new git SHA
 	_ = os.Getenv("DRONE_COMMIT_SHA")
 }
 
@@ -80,7 +86,7 @@ func TestAPIIntegration(t *testing.T) {
 
 ## Understanding How It Actually Works
 
-The Go docs mentioned that tests won't cache if environment variables change, but they weren't clear about the scope. I got worried about edge cases: would reading an env var in one test invalidate *all* packages? Just that test? What about when the variable is read through a library call?
+I was getting worried about edge cases. The Go docs said tests won't cache if environment variables change, but what exactly did that mean? Would reading an env var in one test invalidate *all* tests everywhere? Just that package? What if the variable is read through a library call?
 
 I did some searching and found the [testlog package][testlog], which is how Go implements the tracking of when env vars are read and files opened. That gave me a good sense of how it should behave, so I made an experiment to validate what I expected from the documentation and the code I found.
 
@@ -100,7 +106,7 @@ Key findings:
 - **No arguments = no cache**: `go test` without targeting never caches
 - **File-level targeting = no cache**: `go test file_test.go` also never caches
 
-The critical insight: Go runs tests per package and packages are run in parallel. If any test in the package touches an environment variable, the entire package's cache depends on that variable's value.
+The big takeaway: Go runs tests per package, and packages are run in parallel. If any test in the package touches an environment variable, the entire package's cache depends on that variable's value, so the cache is invalidated when the value is different on the next run.
 
 This made me comfortable that the approach was predictable and wouldn't have surprising edge cases, especially because the way [testlog] works is by simply recording that _something_ called `os.Getenv` with this value, and it doesn't know which test or from where, just that in the course of running these tests this happened. Nice and simple.
 
@@ -108,13 +114,13 @@ If you want to explore how Go makes decisions around caching yourself, you can r
 
 ## The Results
 
-We cut our CI times in half with this caching approach, and I'm confident it's safe to roll out widely because I understand exactly how it works and I can make the required changes to our shared integration testing library so it will "just work" for the standard case.
+We cut our CI times in half with this caching approach, and I'm confident it's safe to roll out widely because I understand exactly how it works and I can make the required changes to our shared integration testing library so it will just work for the standard case.
 
 What I appreciate about Go's design here is how it avoids clever optimizations in favor of predictable behavior. I knew caching wasn't just on/off, but I wasn't sure if there would be complex edge cases to worry about. Instead, Go picks the straightforward solution: package-level invalidation that's easy to reason about.
 
 The "bigger packages than you think, but still not huge" philosophy means we get plenty of caching benefit, while keeping the invalidation scope manageable, and if we need finer control, we can always split into more packages.
 
-It's choices like this that make me love working with Go, simple solutions that just work reliably.
+And that's the thing, Go just picks the simple and boring solution that works, it's why I love working with Go.
 
 ---
 
