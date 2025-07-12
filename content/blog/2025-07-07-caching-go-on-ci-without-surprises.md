@@ -139,7 +139,7 @@ What I appreciate about Go's design here is how it avoids clever optimizations i
 
 The "bigger packages than you think, but still not huge" philosophy means we get plenty of caching benefit, while keeping the invalidation scope manageable, and if we need finer control, we can always split into more packages.
 
-And that's the thing, Go just picks the simple and boring solution that works, it's why I love working with Go.
+And that's the thing, Go just picks the simple and boring solution that works, it's why I love working with Go. 😁
 
 ---
 
