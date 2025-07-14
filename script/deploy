@@ -2,10 +2,81 @@
 
 pushd public || exit
 
+tmpfile=$(mktemp)
+
+# Run rsync and tee output to both console and temp file
 rsync -rvz \
     --perms --chmod=Dgo+rx,Fgo+r \
     --delete-after --delete-excluded \
     --exclude index.csv --exclude banner.html \
-    . sanitarium@cell.sanitarium.se:/srv/www/sanitarium.se/
+    --itemize-changes \
+    . sanitarium@cell.sanitarium.se:/srv/www/sanitarium.se/ | tee "$tmpfile"
+
+# Cloudflare cache purge
+if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ZONE_ID" ] && [ -n "$transferred_files" ]; then
+    # Extract transferred files (excluding directories, CSS, and JS files)
+    echo -e "\n=== Files to purge from cache ==="
+    transferred_files=$(grep -E '^[<>ch.][fdLDS]' "$tmpfile" | grep -v '/$' | awk '{print $2}' | grep -vE '\.(css|js)$' | sort | uniq)
+    echo "$transferred_files"
+
+    echo -e "\n=== Purging Cloudflare cache ==="
+
+    # Convert file paths to full URLs
+    urls=()
+    while IFS= read -r file; do
+        # Assuming your domain is sanitarium.se
+        urls+=("https://sanitarium.se/$file")
+    done <<< "$transferred_files"
+
+    # Process URLs in batches of 30 (Cloudflare API limit)
+    batch_size=30
+    total_urls=${#urls[@]}
+    failed_count=0
+
+    for ((i=0; i<total_urls; i+=batch_size)); do
+        # Get batch of URLs
+        batch=("${urls[@]:i:batch_size}")
+
+        # Create JSON array for this batch
+        json_urls=""
+        for url in "${batch[@]}"; do
+            if [ -n "$json_urls" ]; then
+                json_urls="$json_urls,"
+            fi
+            json_urls="$json_urls\"$url\""
+        done
+
+        # Display progress
+        batch_end=$((i + ${#batch[@]}))
+        echo "Purging batch $((i/batch_size + 1)) (URLs $((i+1))-$batch_end of $total_urls)..."
+
+        # Call Cloudflare API to purge cache
+        response=$(curl -s -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data "{\"files\": [$json_urls]}")
+
+        # Check if purge was successful
+        if echo "$response" | grep -q '"success":true'; then
+            echo "  ✓ Batch purge successful"
+        else
+            echo "  ✗ Batch purge failed. Response: $response"
+            ((failed_count++))
+        fi
+
+        # Small delay between batches to avoid rate limiting
+        if [ $batch_end -lt $total_urls ]; then
+            sleep 0.5
+        fi
+    done
+
+    if [ $failed_count -eq 0 ]; then
+        echo "All cache purges completed successfully!"
+    else
+        echo "Cache purge completed with $failed_count failed batch(es)"
+    fi
+elif [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -z "$CLOUDFLARE_ZONE_ID" ]; then
+    echo -e "\n=== Warning: CLOUDFLARE_API_TOKEN is set but CLOUDFLARE_ZONE_ID is missing ==="
+fi
 
 popd || exit
