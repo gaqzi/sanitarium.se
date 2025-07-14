@@ -77,6 +77,18 @@ I think that we often fail not because we lack skills, but because we're wearing
 
 The product engineer hat wants speed. The production guardian hat wants stability. The incident responder hat wants recovery. The planner hat wants predictability. These aren't compatible mindsets, you can't optimize for all of them simultaneously. The goal is to negotiate productively across them, which is hard as one person, and, this is also why working through problems with others is so powerful.
 
+```plaintext
+THE INCOMPATIBLE MINDSETS
+Product Engineer  
+  → Wants speed (ship it yesterday)
+Production Guardian
+  → Wants stability (safety today, here tomorrow)
+Incident Responder
+  → Wants recovery (fix it now)
+Planner           
+  → Wants predictability (sustainable pace)
+```
+
 So here's what I've been trying to do, or rather, what I should start doing: be explicit about which hat I'm wearing. Right now I say things like "okay, from a stability POV" before raising concerns about deployment risks. But I should actually say, "let me put on my **production guardian hat** for a second." It helps others understand which perspective I'm bringing, and it helps me focus on what matters for that role.
 
 ## Tying It On

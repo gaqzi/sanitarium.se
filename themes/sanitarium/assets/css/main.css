@@ -360,7 +360,6 @@ code.language-plaintext {
     padding: 0.2em 0.4em;
     font-size: .875em;
     border-radius: 3px;
-    border-bottom: 1px solid var(--code-inline-border);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     letter-spacing: -0.05em;
 }
