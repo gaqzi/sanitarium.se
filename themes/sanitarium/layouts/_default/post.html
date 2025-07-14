@@ -17,5 +17,23 @@
     </div>
 
     {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+    <nav class="post-nav">
+        {{ with .PrevInSection }}
+            <a href="{{ .RelPermalink }}" class="post-nav-link prev" title="{{ .Summary | plainify | truncate 150 }}">
+                <div class="post-nav-title">{{ .Title }}</div>
+                {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
+            </a>
+        {{ end }}
+
+        {{ with .NextInSection }}
+            <a href="{{ .RelPermalink }}" class="post-nav-link next" title="{{ .Summary | plainify | truncate 150 }}">
+                <div class="post-nav-content">
+                    <div class="post-nav-title">{{ .Title }}</div>
+                    {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
+                </div>
+            </a>
+        {{ end }}
+    </nav>
 </article>
 {{ end }}

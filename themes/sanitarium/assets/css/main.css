@@ -196,6 +196,63 @@ article {
     }
 }
 
+/* Next/previous buttons below the post */
+.post-nav {
+    margin-top: calc(var(--space-md) + var(--space-sm)); /* 1.5rem total */
+    margin-bottom: 0;
+    padding: 0 2em;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+    font-size: 1rem;
+}
+
+.post-nav-link {
+    flex: 1;
+    line-height: 1.4;
+    min-height: 44px;
+    display: block;
+    position: relative;
+
+    &.prev::before {
+        content: "←";
+        position: absolute;
+        left: -1.5em;
+        top: 0.1em; /* Align with first line of title */
+    }
+
+    &.next {
+        text-align: right;
+
+        &::after {
+            content: "→";
+            position: absolute;
+            right: -1.5em;
+            top: 0.1em; /* Align with first line of title */
+        }
+    }
+
+    /* Prevent arrows from being part of the underlined text */
+    &::before,
+    &::after {
+        text-decoration: none !important;
+    }
+}
+
+.post-nav-title {
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    display: inline;
+}
+
+.post-nav-subtitle {
+    font-size: 0.9em;
+    color: rgba(CanvasText, 0.7);
+    font-style: italic;
+    display: block;
+    margin-top: var(--space-xs);
+}
+
 /* Move the banner down a bit for some breathing room */
 body:has(main article.banner) {
     padding-top: 15%;
@@ -212,6 +269,7 @@ body:has(main article.banner) {
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
+        line-height: 1.0;
     }
 
     & li {
