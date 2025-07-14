@@ -69,7 +69,7 @@ When Ford got the $10,000 invoice, he asked for an itemized bill. Steinmetz sent
 
 And think about what Steinmetz did: he could have torn the whole generator apart, called in a team of engineers, or tried a dozen different approaches. Instead, he recognized this was a moment for careful analysis. He spent time listening, thinking, calculating. He put on his expert diagnostician hat, not his collaborative problem-solver hat or his hands-on mechanic hat.
 
-And this is it exactly. Knowing where to make the mark, knowing which hat to wear when, that's the $9,999 skill.
+And this is it exactly. Knowing where to make the mark, **knowing which hat to wear when, that's the $9,999 skill.**
 
 But it's not just about perspective: each hat comes with different expectations, different powers, different rights, and different responsibilities. The production guardian has the authority to halt deployments. The incident responder can stop all feature work immediately. The planning hat carries the responsibility to think long-term even when it slows things down. When you put on a hat, you're not only changing how you think and approach the situation: you're claiming the legitimate authority that comes with that role.
 
@@ -77,7 +77,7 @@ I think that we often fail not because we lack skills, but because we're wearing
 
 The product engineer hat wants speed. The production guardian hat wants stability. The incident responder hat wants recovery. The planner hat wants predictability. These aren't compatible mindsets, you can't optimize for all of them simultaneously. The goal is to negotiate productively across them, which is hard as one person, and, this is also why working through problems with others is so powerful.
 
-So here's what I've been trying to do, or rather, what I should start doing: be explicit about which hat I'm wearing. Right now I say things like "okay, from a stability POV" before raising concerns about deployment risks. But I should actually say, "let me put on my production guardian hat for a second." It helps others understand which perspective I'm bringing, and it helps me focus on what matters for that role.
+So here's what I've been trying to do, or rather, what I should start doing: be explicit about which hat I'm wearing. Right now I say things like "okay, from a stability POV" before raising concerns about deployment risks. But I should actually say, "let me put on my **production guardian hat** for a second." It helps others understand which perspective I'm bringing, and it helps me focus on what matters for that role.
 
 ## Tying It On
 
