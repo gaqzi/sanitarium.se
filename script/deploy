@@ -10,6 +10,7 @@ rsync -rvz \
     --delete-after --delete-excluded \
     --exclude index.csv --exclude banner.html \
     --itemize-changes \
+    --checksum \
     . sanitarium@cell.sanitarium.se:/srv/www/sanitarium.se/ | tee "$tmpfile"
 
 # Cloudflare cache purge
