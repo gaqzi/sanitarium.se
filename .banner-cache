@@ -1,54 +1,54 @@
 {
   "static/img/banners/2025-05-03-effective-meetings.png": {
     "content_checksum": "2e046ee3acf249141417dc062f512da3",
-    "file_checksum": "2f3cdf38b363a9d913e22044f37bb647"
+    "file_checksum": "98ca5be3106c11bc07ee4a75486f08e8"
   },
   "static/img/banners/2024-04-15-day-to-day-automation-using-alfred.png": {
     "content_checksum": "c66579f2893061855ba14307cac987e3",
-    "file_checksum": "3e0010fb3223a93c07792aa1e236f10d"
+    "file_checksum": "21bc3859f22df501f48c9d5abbc9db48"
   },
   "static/img/banners/2024-02-01-how-to-make-docker-pull-resume-layer-downloads.png": {
     "content_checksum": "59a622cc2ba5e00cea821603c6e46240",
-    "file_checksum": "839af01a1c57ec5efe34f88d1edfd3cc"
+    "file_checksum": "67576afb92a22d3c41c8cee3110f0b1f"
   },
   "static/img/banners/2022-02-05-sticky-blocks-in-roam-research.png": {
     "content_checksum": "9a22080e2d2406411645030528aee1b4",
-    "file_checksum": "0f1bed6c5dd3b6e2a659a17f63d99eac"
+    "file_checksum": "96adb24505855636a36945b68dce86fa"
   },
   "static/img/banners/2015-11-14-how-to-ping-a-lost-apple-watch.png": {
     "content_checksum": "1a0429f13da3979c4f2c64a4339e0cb4",
-    "file_checksum": "823784eafe788456f2c81c46fb19d7b7"
+    "file_checksum": "28ce092969793966c719e3bb512a6b43"
   },
   "static/img/banners/2015-10-27-testing-against-many-versions-of-python-on-snap-ci.png": {
     "content_checksum": "fba21e4dbd49516c2f9de3a5f96ae5e0",
-    "file_checksum": "3b5ef723bd26a069d07fa6940389c231"
+    "file_checksum": "a69dd1850c73f55d24026d57b43e8827"
   },
   "static/img/banners/2013-01-18-python-and-its-included-batteries.png": {
     "content_checksum": "3693d9ca2e8ce7401f40614c111934c6",
-    "file_checksum": "ba4f2d3ff2783cf4cc3f859970a47a09"
+    "file_checksum": "6142bee5183393f47c6bb38686a0bb05"
   },
   "static/img/banners/2011-01-07-keeping-your-varnish-farm-in-sync.png": {
     "content_checksum": "b10f0296315baa68ee181717f098c5aa",
-    "file_checksum": "8f97c5a7627dae898a85a7046f6e76c8"
+    "file_checksum": "04052cb0244b8f7dbc20208a64d2043e"
   },
   "static/img/banners/2010-12-05-howto-setting-up-a-wikileaks-mirror.png": {
     "content_checksum": "adb33cffe1d1af44ee90f501883a37ee",
-    "file_checksum": "ed965a3abe36a6b27978181aaf8ea378"
+    "file_checksum": "1e184bb78aa97e5fe183c475a1fa0b1d"
   },
   "static/img/banners/2010-12-04-howto-satta-upp-en-wikileaksspegling.png": {
     "content_checksum": "766bb12bb56e0199ecb463d402a2b587",
-    "file_checksum": "796cb5d926212163aa886a5705a66fa5"
+    "file_checksum": "d24ea7fea9474d2701bec04f0c96aa04"
   },
   "static/img/banners/2010-02-21-how-to-disable-bold-fonts-in-xterm.png": {
     "content_checksum": "b2ec288782b8f2c28a36030a08ab2096",
-    "file_checksum": "b10ebbeb368801b2cd6eddf87450ba3b"
+    "file_checksum": "ee39d36980eb379aaaf010503d85a985"
   },
   "static/img/banners/2025-07-07-caching-go-on-ci-without-surprises.png": {
     "content_checksum": "510e3f3a64d9276e43c9f49ac2827a21",
-    "file_checksum": "5cabe77615e19c3224a42fa22198ba61"
+    "file_checksum": "d1eefba0e7de7b55f7a4b1706549b996"
   },
   "static/img/banners/2025-07-which-hats-are-you-wearing.png": {
     "content_checksum": "8a873b3a5fa48fc47e75bb8a31b8307a",
-    "file_checksum": "953c352b05b986f970b78e41e1d348e1"
+    "file_checksum": "1a4677d6821aeb19c5003fe1b1d93919"
   }
 }

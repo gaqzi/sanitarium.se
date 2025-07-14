@@ -26,6 +26,8 @@
         color-scheme: dark;
 
         font-size: 18px;
+
+        --char-count: 20; /* Default for medium-length titles */
     }
 
     /* Basic body styling */
@@ -94,27 +96,13 @@
     }
 
     h1 {
-        font-size: 80px; /* Starting size, will be adjusted by JS */
+        font-size: min(120px, max(32px, 225ch / var(--char-count)));
         line-height: 1.1;
-        max-width: 1000px;
-    }
-
-    /* More aggressive scaling for very wide viewports to prioritize single-line */
-    @media (min-width: 768px) {
-        h1 {
-            font-size: clamp(2rem, 3vw + 0.8rem, 3.5rem);
-        }
-    }
-
-    @media (min-width: 1200px) {
-        h1 {
-            font-size: clamp(2.2rem, 2.5vw + 1rem, 3.2rem);
-        }
     }
 
     /* Heading group styling */
     hgroup h1 {
-        margin-bottom: 0.3em;
+        margin-bottom: 0.15em;
     }
 
     hgroup h1 + p {
@@ -124,7 +112,6 @@
         color: rgba(255, 255, 255, 0.85); /* Dark mode text color */
         font-weight: normal;
         line-height: 1.3;
-        /*font-style: italic;*/
     }
 
     /* Link styling */
@@ -143,23 +130,8 @@
         padding-top: 60px;
         display: flex;
         flex-direction: column;
-        /*border: 3px solid #ff0000;*/
-        /*box-sizing: border-box;*/
-        /*position: relative;*/
         overflow: hidden;
     }
-
-    /*body:has(main article.banner)::before {*/
-    /*    content: "1200×630px";*/
-    /*    position: absolute;*/
-    /*    top: 5px;*/
-    /*    right: 5px;*/
-    /*    background: #ff0000;*/
-    /*    color: white;*/
-    /*    padding: 2px 6px;*/
-    /*    font-size: 12px;*/
-    /*    font-family: monospace;*/
-    /*}*/
 
     body:has(main article.banner) main {
         flex: 1;
@@ -177,25 +149,14 @@
     function resizeTextToFit() {
         const title = document.querySelector('h1.title');
         const subtitle = document.querySelector('p.subtitle');
-        const maxWidth = 1000;
-        const minTitleSize = 32;
-        const maxTitleSize = 80;
-        const minSubtitleSize = 18;
-        const maxSubtitleSize = 40;
+        const titleText = title.textContent;
 
-        // Reset to max size
-        title.style.fontSize = maxTitleSize + 'px';
-        subtitle.style.fontSize = maxSubtitleSize + 'px';
+        // Set the character count as a CSS custom property
+        title.style.setProperty('--char-count', titleText.length);
 
-        // Reduce title size until it fits on one line
-        let titleSize = maxTitleSize;
-        while (title.scrollWidth > maxWidth && titleSize > minTitleSize) {
-            titleSize -= 2;
-            title.style.fontSize = titleSize + 'px';
-        }
-
-        // Scale subtitle proportionally - increased from 0.35 to 0.5 for more presence
-        const subtitleSize = Math.max(minSubtitleSize, Math.min(maxSubtitleSize, titleSize * 0.6));
+        // Calculate subtitle size based on what CSS calculated for title
+        const titleComputedSize = parseFloat(getComputedStyle(title).fontSize);
+        const subtitleSize = Math.max(28, Math.min(40, titleComputedSize * 0.6));
         subtitle.style.fontSize = subtitleSize + 'px';
     }
 
