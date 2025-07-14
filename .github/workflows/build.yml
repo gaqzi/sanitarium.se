@@ -63,4 +63,6 @@ jobs:
       - name: Deploy
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          CLOUDFLARE_ZONE_ID: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
+          CLOUDFLARE_API_TOKEN: "${{ secrets.CLOUDFLARE_API_TOKEN }}"
         run: script/deploy
