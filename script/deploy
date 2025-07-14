@@ -16,14 +16,15 @@ rsync -rvz \
 # Cloudflare cache purge
 if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ZONE_ID" ]; then
     # Extract transferred files (excluding directories, CSS, and JS files)
-    echo -e "\n=== Files to purge from cache ==="
     transferred_files=$(grep -E '^[<>ch.][fdLDS]' "$tmpfile" | grep -v '/$' | awk '{print $2}' | grep -vE '\.(css|js)$' | sort | uniq)
-    echo "$transferred_files"
 
     if [ -z "$transferred_files" ]; then
       popd || exit
       exit 0
     fi
+
+    echo -e "\n=== Files to purge from cache ==="
+    echo "$transferred_files"
 
     echo -e "\n=== Purging Cloudflare cache ==="
 
