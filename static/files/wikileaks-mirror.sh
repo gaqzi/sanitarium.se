@@ -31,5 +31,4 @@ else
 		/etc/init.d/apache2 reload && \
 		echo -e "\nEverything went well and you should now have a host ready to act as a Wikileaks mirror"
 	fi
-
 fi
