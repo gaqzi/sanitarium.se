@@ -836,7 +836,7 @@ ul.pagination {
 /* Regular pagination links */
 .pagination a:not(.active):not([aria-disabled="true"]) {
     background-color: rgba(var(--border-color-standard-rgb), 0.1);
-    color: CanvasText;
+    color: var(--main-accent-color);
 }
 
 .pagination a:hover:not([aria-disabled="true"]) {
@@ -847,8 +847,8 @@ ul.pagination {
 /* Active pagination state */
 .pagination .active a,
 .pagination .page-item.active .page-link {
-    background-color: var(--pagination-active-bg);
-    color: white;
+    background-color: var(--button-bg);
+    color: CanvasText;
     font-weight: bold;
 }
 
@@ -856,7 +856,7 @@ ul.pagination {
 .pagination [aria-disabled="true"],
 .pagination .disabled .page-link {
     background-color: rgba(var(--border-color-standard-rgb), 0.05);
-    color: rgba(CanvasText, 0.4);
+    color: CanvasText;
     cursor: not-allowed;
 }
 
