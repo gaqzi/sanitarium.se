@@ -1,0 +1,62 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+{{ $author := index .Site.Data.authors .Site.Params.author }}
+<article class="about single">
+    <header>
+        <hgroup>
+            <h1 class="title">{{ .Title }}</h1>
+        </hgroup>
+    </header>
+
+    <div class="content">
+        {{ if $author }}
+            <div class="author-info">
+                {{ with $author.avatar }}
+                    <img src="{{ . }}" alt="{{ $author.displayName }}" class="author-avatar" loading="lazy">
+                {{ end }}
+                
+                <div class="author-details">
+                    <h2>{{ $author.displayName }}</h2>
+                    <p class="author-bio">{{ $author.bio }}</p>
+                    
+                    {{ if $author.social }}
+                        <div class="author-social">
+                            {{ with $author.social.github }}
+                                <a href="https://github.com/{{ . }}" title="GitHub" rel="me">GitHub</a>
+                            {{ end }}
+                            {{ with $author.social.mastodonUrl }}
+                                <a href="{{ . }}" title="Mastodon" rel="me">Mastodon</a>
+                            {{ end }}
+                        </div>
+                    {{ end }}
+                </div>
+            </div>
+        {{ end }}
+
+        {{ .Content }}
+
+        {{ if and $author false }}
+            <section class="recent-posts">
+                <h2>Recent Posts</h2>
+                {{ $posts := (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+                {{ $recentPosts := first 5 $posts }}
+                
+                {{ if $recentPosts }}
+                    <div class="posts-list">
+                        {{ range $recentPosts }}
+                            {{ partial "article-summary.html" (dict "headingLevel" "h3" "Title" .Title "Permalink" .Permalink "Params" .Params "Description" .Description "Summary" .Summary "Date" .Date "Lastmod" .Lastmod "Site" .Site) }}
+                        {{ end }}
+                    </div>
+                    
+                    <p class="more-posts">
+                        <a href="/blog/">View all posts →</a>
+                    </p>
+                {{ else }}
+                    <p>No posts available.</p>
+                {{ end }}
+            </section>
+        {{ end }}
+    </div>
+</article>
+{{ end }}

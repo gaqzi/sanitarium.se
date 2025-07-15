@@ -68,6 +68,10 @@
 {{ with .Site.Params.twitterAuthor }}
 <meta name="twitter:creator" content="@{{ . }}">
 {{ end }}
+{{ with .ReadingTime -}}
+    <meta name="twitter:label1" content="Reading time">
+    <meta name="twitter:data1" content="{{ . }} min read">
+{{ end -}}
 
 <!-- Stylesheets -->
 {{ $style := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
