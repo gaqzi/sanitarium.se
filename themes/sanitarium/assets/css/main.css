@@ -211,9 +211,8 @@ main {
 
 article {
     & header {
-        border-bottom: var(--border-width-standard) solid var(--border-color-standard);
-        margin-bottom: var(--space-lg);
-        padding-bottom: var(--space-md);
+        margin-bottom: var(--space-xs);
+        padding-bottom: 0;
     }
 
     /* the bottom border doesn't make sense when looking at the banner */
@@ -223,6 +222,10 @@ article {
 
     & .meta {
         font-style: italic;
+    }
+
+    .content p:first-child {
+        margin-top: 0;
     }
 }
 
@@ -737,6 +740,7 @@ a {
     object-fit: cover;
     object-position: center;
     flex-shrink: 0;
+    margin: 0;
 }
 
 .meta-content {
