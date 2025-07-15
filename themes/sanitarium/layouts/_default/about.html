@@ -18,18 +18,8 @@
                 
                 <div class="author-details">
                     <h2>{{ $author.displayName }}</h2>
-                    <p class="author-bio">{{ $author.bio }}</p>
-                    
-                    {{ if $author.social }}
-                        <div class="author-social">
-                            {{ with $author.social.github }}
-                                <a href="https://github.com/{{ . }}" title="GitHub" rel="me">GitHub</a>
-                            {{ end }}
-                            {{ with $author.social.mastodonUrl }}
-                                <a href="{{ . }}" title="Mastodon" rel="me">Mastodon</a>
-                            {{ end }}
-                        </div>
-                    {{ end }}
+                    <p class="author-bio">{{ $author.bio | safeHTML }}</p>
+
                 </div>
             </div>
         {{ end }}
@@ -37,6 +27,20 @@
         {{ .Content }}
 
         {{ if and $author false }}
+            {{ if $author.social }}
+                <div class="author-social">
+                    {{ with $author.social.github }}
+                        <a href="https://github.com/{{ . }}" title="GitHub" rel="me">GitHub</a>
+                    {{ end }}
+                    {{ with $author.social.mastodonUrl }}
+                        <a href="{{ . }}" title="Mastodon" rel="me">Mastodon</a>
+                    {{ end }}
+                    {{ with $author.social.email }}
+                        <a href="{{ . }}" title="Email" rel="me">Email</a>
+                    {{ end }}
+                </div>
+            {{ end }}
+
             <section class="recent-posts">
                 <h2>Recent Posts</h2>
                 {{ $posts := (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}

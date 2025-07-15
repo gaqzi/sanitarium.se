@@ -1,3 +1,5 @@
+{{ $author := .Params.author | default .Site.Params.author -}}
+{{ $authorData := index .Site.Data.authors $author -}}
 <footer>
     <nav aria-label="Author related links">
         <ul class="social-links">
@@ -9,6 +11,9 @@
             {{ end }}
             {{ if .Site.Params.github }}
             <li><a href="{{ .Site.Params.github }}" class="social-link github" title="GitHub" rel="me"></a></li>
+            {{ end }}
+            {{ if isset $authorData.social "email" }}
+            <li><a href="mailto:{{ $authorData.social.email }}{{ if .IsPage }}?subject={{ .Title }}{{ end }}" class="social-link email" title="Email"></a></li>
             {{ end }}
         </ul>
     </nav>
