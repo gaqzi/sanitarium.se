@@ -2,7 +2,7 @@
 author: 'björn'
 date: '2025-07-12T15:06:00+08:00'
 lastmod: '2025-07-12T15:06:00+08:00'
-title: Which Hat Are You Wearing?
+title: Which hat are you wearing?
 subtitle: ...you wouldn't wear a beanie to the beach
 tags:
   - production
@@ -23,7 +23,7 @@ And there's something to this, right? Like in my own role as a principal enginee
 
 But, I have been wondering: what is your role and what is your ownership? What is it that you individually provide to whatever work you're doing? And is it always the same hat?
 
-## The Hat You Don't Know You're Wearing
+## The hat you don't know you're wearing
 
 I think your hat changes depending on the role you're fulfilling at the moment. When you're working as a software engineer, you wear an engineering hat where you think about the feasibility of what you're building, like, can I maintain this thing long term, how far will it scale, and how testable is this design?
 
@@ -41,7 +41,7 @@ Where I work today, we have some 250 backend components. We can test all we want
 
 The point and our challenge in mindset is: when we're taking things into production, we're not wearing the hat of the product engineer anymore. We're taking on the role of production's guardian, and we're shepherding changes safely into production.
 
-## It's Like Vim Modes, But for Work
+## It's like Vim modes, but for work
 
 Say whatever you want about Vim, but one really nice thing is that it's modal. The idea that I'm now doing this thing (inserting or editing text), and now I'm doing this other thing (normal or moving and transforming), and you behave differently in those modes.
 
@@ -51,7 +51,7 @@ It's like TDD in a way. When you're red, you rush towards green by just getting 
 
 We need to be more intentional about which hat we're wearing at the moment.
 
-## Becoming the Character
+## Becoming the character
 
 I saw this story about Christian Bale recently (and look, I can't find the original source, so this might be one of those stories that's too good to fact-check, but it perfectly captures what I'm talking about). He's a famous [method actor](https://en.wikipedia.org/wiki/Method_acting), someone who becomes their characters completely. Apparently, when he wasn't getting much work, he dreaded having to read through his insurance contract and have that conversation because it was boring.
 
@@ -59,7 +59,7 @@ But then he decided: if I were a character who really cared about understanding 
 
 And that's the thing, we kind of need to do this throughout our day. When you're taking something live, you're not the "ship fast" product engineer anymore. You have the right to say no, the right to say this has to be done slower because of these risks. Your responsibility is to make sure production is stable and things will continue to work.
 
-## The $9,999 Skill
+## The $9,999 skill
 
 There's this [great story about Charles Steinmetz](https://www.smithsonianmag.com/history/charles-proteus-steinmetz-the-wizard-of-schenectady-51912022/) and Henry Ford. Ford's engineers couldn't fix a generator problem, so they called in Steinmetz. He spent two days just listening to the generator and scribbling calculations. Then he climbed up, made a chalk mark, and told them to replace sixteen windings at that exact spot. It worked perfectly.
 
@@ -91,7 +91,7 @@ Planner
 
 So here's what I've been trying to do, or rather, what I should start doing: be explicit about which hat I'm wearing. Right now I say things like "okay, from a stability POV" before raising concerns about deployment risks. But I should actually say, "let me put on my **production guardian hat** for a second." It helps others understand which perspective I'm bringing, and it helps me focus on what matters for that role.
 
-## Tying It On
+## Tying it on
 
 I think there's more to the hats we wear throughout the day because it's not just at work: supporting partner, fun uncle, mentor, learner. Each comes with different expectations, powers, and responsibilities.
 
