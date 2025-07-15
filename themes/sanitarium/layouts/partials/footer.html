@@ -20,5 +20,4 @@
     {{ if .Site.Params.footerLogo }}
     <img src="{{ .Site.Params.footerLogo }}" loading="lazy" alt="{{ .Site.Params.footerLogoAlt | default "Site logo" }}">
     {{ end }}
-    <p>Copyright © {{ now.Year }} {{ .Site.Params.author | default .Site.Title }}. All rights reserved.</p>
 </footer>
