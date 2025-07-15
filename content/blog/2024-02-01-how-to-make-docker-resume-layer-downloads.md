@@ -7,8 +7,6 @@ layout: post
 slug: how-to-make-docker-pull-resume-layer-downloads
 title: "How to make Docker resume downloads" 
 subtitle: "…download that final 100KB and not 200MB again"
-description: >
-  TL;DR: enable the containerd-snapshotter feature.
 categories:
 - blog
 tags:

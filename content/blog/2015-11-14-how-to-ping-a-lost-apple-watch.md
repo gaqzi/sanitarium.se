@@ -16,9 +16,6 @@ tags:
 
 ---
 
-
-# Background
-
 I just misplaced my Apple Watch in my apartment. Walking around looking for it,
 and getting frustrated, I was thinking, "There ought to be a way to make it make
 some sound, then I can play [Marco Polo] with the watch". But my Google-fu

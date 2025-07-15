@@ -49,7 +49,7 @@
                 {{ if $recentPosts }}
                     <div class="posts-list">
                         {{ range $recentPosts }}
-                            {{ partial "article-summary.html" (dict "headingLevel" "h3" "Title" .Title "Permalink" .Permalink "Params" .Params "Description" .Description "Summary" .Summary "Date" .Date "Lastmod" .Lastmod "Site" .Site) }}
+                            {{ partial "article-summary.html" . }}
                         {{ end }}
                     </div>
                     

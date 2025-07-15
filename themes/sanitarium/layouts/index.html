@@ -12,7 +12,7 @@
         <h2>Recent Posts</h2>
         {{ $posts := where (where .Site.RegularPages "Section" "blog") "IsPage" true }}
         {{ range first 5 $posts }}
-        {{ partial "article-summary.html" (dict "headingLevel" "h3" "Title" .Title "Permalink" .Permalink "Params" .Params "Description" .Description "Summary" .Summary "Date" .Date "Lastmod" .Lastmod "Site" .Site) }}
+        {{ partial "article-summary.html" . }}
         {{ end }}
 
         <p class="all-posts-link">

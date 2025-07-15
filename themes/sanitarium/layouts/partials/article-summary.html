@@ -1,19 +1,17 @@
 <article>
     <a href="{{ .Permalink }}">
         <hgroup>
-        {{ if eq .headingLevel "h3" }}
-        <h3 class="title">{{ .Title }}</h3>
-        {{ else }}
-        <h2 class="title">{{ .Title }}</h2>
-        {{ end }}
+        <h1 class="title">{{ .Title }}</h1>
         <p class="subtitle">{{ .Params.subtitle }}</p>
         </hgroup>
     </a>
-    {{ partial "post-meta.html" . }}
-    {{ with .Description }}
-    <p class="post-preview">{{ . | truncate 120 }}</p>
-    {{ else }}
-    <p class="post-preview">{{ .Summary | plainify | truncate 120 }}</p>
+    {{ partial "post-meta.html" (dict "Page" . "isSummary" true) }}
+    <div class="{{ if .Truncated }}post-preview{{ else }}post{{ end }}">{{ .Summary }}
+
+    {{ if .Truncated }}
+        <a href="{{ .Permalink }}"
+           class="continue-reading"
+           aria-label="Continue reading {{ .Title }}">[… more]</a>
     {{ end }}
-    <p class="read-more"><a href="{{ .Permalink }}">Read more →</a></p>
+    </div>
 </article>

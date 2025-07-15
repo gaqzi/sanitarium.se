@@ -1,19 +1,23 @@
+{{ $isSummary := .isSummary -}}
+{{ with .Page }}
 <div class="meta">
     {{ $author := .Params.author | default .Site.Params.author -}}
     {{ $authorData := index .Site.Data.authors $author -}}
-    {{ if and (not (isset . "IsListing")) (isset $authorData "avatar") (fileExists (printf "static%s" $authorData.avatar)) -}}
+    {{ if and (not $isSummary) (isset $authorData "avatar") (fileExists (printf "static%s" $authorData.avatar)) -}}
     <div class="meta-avatar">
         <img src="{{ $authorData.avatar }}" alt="{{ $authorData.displayName }}" class="author-avatar" width="40" height="40">
     </div>
     {{ end -}}
     <div class="meta-content">
+        {{ if not $isSummary -}}
         <div class="meta-line">
             {{ if eq (lower $author) "björn" }}
                 <a href="/about" class="author">{{ if isset $authorData "displayName" }}{{ $authorData.displayName }}{{ else }}{{ $author }}{{ end }}</a>
             {{ else }}
                 <span class="author">{{ $author }}</span>
             {{ end }}
-                    </div>
+        </div>
+        {{ end -}}
         <div class="meta-line">
             <span class="icon-calendar" aria-hidden="true"></span>
             <time class="published-at" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
@@ -36,3 +40,4 @@
         </div>
     </div>
 </div>
+{{ end }}

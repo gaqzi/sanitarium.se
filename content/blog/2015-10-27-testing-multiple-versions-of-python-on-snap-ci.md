@@ -7,9 +7,6 @@ layout: post
 slug: testing-against-many-versions-of-python-on-snap-ci
 title: Using multiple versions of Python on Snap CI
 subtitle: Why just play with one snake?
-description: >
-  How you can configure Snap CI to run your unit tests against all their
-  supported Python verions. Don't worry, there's a clear $PATH to follow.
 categories:
 - blog
 tags:
@@ -19,9 +16,6 @@ tags:
 - snap-ci
 
 ---
-
-
-## Background
 
 I'm running an open source project called [gocd-cli] which is, well, a command
 line interface for [Go continuous delivery]. The intention is to make it

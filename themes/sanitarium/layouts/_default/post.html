@@ -9,7 +9,7 @@
             {{ with .Params.subtitle }}<p class="subtitle">{{ . }}</p>{{ end }}
         </hgroup>
 
-        {{ partial "post-meta.html" . }}
+        {{ partial "post-meta.html" (dict "Page" . "isSummary" false) }}
     </header>
 
     <div class="content" {{ if .Params.language }} lang="{{ .Params.language }}"{{ end }}>
