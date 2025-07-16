@@ -5,7 +5,9 @@
     {{ $authorData := index .Site.Data.authors $author -}}
     {{ if and (not $isSummary) (isset $authorData "avatar") (fileExists (printf "static%s" $authorData.avatar)) -}}
     <div class="meta-avatar">
+        {{ if eq (lower $author) "björn" }}<a href="/about" class="author">{{ end -}}
         <img src="{{ $authorData.avatar }}" alt="{{ $authorData.displayName }}" class="author-avatar" width="40" height="40">
+        {{ if eq (lower $author) "björn" }}</a>{{ end -}}
     </div>
     {{ end -}}
     <div class="meta-content">
