@@ -74,8 +74,12 @@
 {{ end -}}
 
 <!-- Stylesheets -->
-{{ $style := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
-<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+{{ $critical := resources.Get "css/critical.css" | minify -}}
+<style>{{ $critical.Content | safeCSS }}</style>
+
+{{ $mainCSS := resources.Get "css/main.css" | minify | fingerprint -}}
+<link rel="preload" href="{{ $mainCSS.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ $mainCSS.RelPermalink }}"></noscript>
 
 {{ if .Site.Params.enableCodeHighlighting }}
 {{ $highlight := resources.Get "css/zenburn.css" | resources.Minify | resources.Fingerprint }}

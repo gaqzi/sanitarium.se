@@ -1,7 +1,3 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
 :root {
     /* System font stacks from systemfontstack.com */
     --system-sans: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif, var(--main-emoji-font-family); /* Geometric Humanist */
@@ -9,9 +5,6 @@
     --system-mono: "Source Code Pro", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 
     /* Use the font stacks */
-    --main-emoji-font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --main-text-font-family: var(--system-serif);
-    --main-heading-font-family: var(--system-sans);
     --main-heading-font-weight: 800;
     --main-monospace-font-family: var(--system-mono);
     --main-code-highlight-bg-color: #eee;
@@ -21,8 +14,6 @@
     --border-color-standard-rgb: 136, 136, 136; /* Match the hex #888888 */
 
     /* Accent colors for light/dark modes - using system color keywords */
-    --accent-color-dark: #9e9eff;  /* Browser's default link color in dark mode for Firefox and Safari */
-    --accent-color-light: #b30000; /* Red for light mode */
 
     /* Quote styling variables */
     --quote-bg-color-light: #f5f5f5;
@@ -48,22 +39,15 @@
     --quote-mark-opacity: 0.8;
 
     /* Border variables */
-    --border-width-standard: 0.1em;
-    --border-color-standard: #888888;
     --border-color-light: white;
 
     /* Spacing variables for consistency */
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 2rem;
     --space-xl: 4rem;
 
     /* Content block margin for consistent alignment */
     --content-block-margin: var(--space-md) var(--space-lg);
 
     /* Default to dark mode values */
-    --main-accent-color: var(--accent-color-dark);
     --quote-bg-color: var(--quote-bg-color-dark);
     --quote-text-color: var(--quote-text-color-dark);
     --quote-border-color: var(--quote-border-color-dark);
@@ -104,7 +88,6 @@
 
     /* Combined media query for system preference and forced light mode */
     @media (prefers-color-scheme: light), (color-scheme: light) {
-        --main-accent-color: var(--accent-color-light);
         --quote-bg-color: var(--quote-bg-color-light);
         --quote-text-color: var(--quote-text-color-light);
         --quote-border-color: var(--quote-border-color-light);
@@ -128,15 +111,9 @@
         --icon-email: var(--icon-email-light);
     }
 
-    font-size: clamp(1rem, 1vw + 0.75rem, 1.125rem);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--main-heading-font-family);
-    font-weight: var(--main-heading-font-weight);
-    margin-top: 0;
-    margin-bottom: var(--space-sm);
-
     & a {
         text-decoration: none;
 
@@ -151,9 +128,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Fluid typography using clamp for better responsiveness */
-h1 { font-size: clamp(1.375rem, 1.125rem + 1vw, 1.75rem); }
-h2 { font-size: clamp(1.375rem, 1.125rem + 1vw, 1.75rem); }
-h3 { font-size: clamp(1.25rem, 1.125rem + 0.5vw, 1.5rem); }
 h4 { font-size: clamp(1.125rem, 1rem + 0.5vw, 1.35rem); }
 h5 { font-size: 1.125rem; }
 h6 { font-size: 1rem; }
@@ -174,29 +148,9 @@ hgroup {
 }
 
 /* Use a block layout instead of grid for sequential content flow */
-body {
-    font-family: var(--main-text-font-family);
-    max-width: 65ch;
-    margin: 0 auto;
-    padding: 0 var(--space-md);
-    line-height: 1.5;
-}
 
 header.masthead {
-    padding: var(--space-md) 0;
-    margin-bottom: var(--space-md);
-    border-bottom: var(--border-width-standard) solid var(--border-color-standard);
-
     & a {
-        font-size: 1.75rem;
-        font-weight: var(--main-heading-font-weight);
-        font-family: var(--main-heading-font-family);
-        letter-spacing: -0.02em;
-        color: CanvasText;
-        text-decoration: underline;
-        text-decoration-color: var(--main-accent-color);
-        text-decoration-thickness: 2px;
-        text-underline-offset: 4px;
         transition: color 0.2s ease;
 
         &:hover {
@@ -205,9 +159,6 @@ header.masthead {
     }
 }
 
-main {
-    margin-bottom: var(--space-lg);
-}
 
 article {
     & header {
@@ -340,10 +291,6 @@ body:has(main article.banner) {
         a h1, a h2, a h3, a h4, a h5, a h6, .subtitle {
             color: CanvasText;
         }
-
-        margin-bottom: var(--space-lg);
-        padding-bottom: var(--space-md);
-        border-bottom: 1px solid rgba(128, 128, 128, 0.2);
 
         a:hover h1, a:hover h2, a:hover h3, a:hover h4, a:hover h5, a:hover h6 {
             color: var(--main-accent-color);
@@ -509,6 +456,9 @@ pre code {
 }
 
 footer {
+    visibility: visible;
+    height: auto;
+
     text-align: center;
     padding: var(--space-md) 0;
     margin-top: var(--space-lg);
@@ -612,8 +562,6 @@ ul.social-links {
 
 /* Link styling */
 a {
-    color: var(--main-accent-color);
-    text-decoration: none;
     transition: color 0.2s ease;
 
     &:hover {
@@ -623,16 +571,8 @@ a {
 
 /* Small phones (portrait) */
 @media (max-width: 30rem) {
-    body {
-        padding: 0 var(--space-sm);
-    }
-
     header.masthead {
         padding: var(--space-sm) 0;
-
-        & a {
-            font-size: 1.5rem;
-        }
     }
 
     blockquote, .highlight {
@@ -706,10 +646,7 @@ a {
 }
 
 .meta {
-    font-size: 0.85em;
     color: var(--text-meta-color);
-    margin-bottom: var(--space-sm);
-    font-style: italic;
     display: flex;
     align-items: center;
     gap: var(--space-sm);

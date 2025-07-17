@@ -1,0 +1,116 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* System font stacks - critical for preventing layout shift */
+    --main-emoji-font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --system-sans: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif, var(--main-emoji-font-family);
+    --system-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif, var(--main-emoji-font-family);
+    --main-text-font-family: var(--system-serif);
+    --main-heading-font-family: var(--system-sans);
+    --main-heading-font-weight: 800;
+
+    /* Critical spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+
+    /* Critical colors for initial render */
+    --accent-color-dark: #9e9eff;
+    --accent-color-light: #b30000;
+    --main-accent-color: var(--accent-color-dark);
+
+    /* Critical layout variables */
+    --border-width-standard: 0.1em;
+    --border-color-standard: #888888;
+
+    /* Light mode overrides */
+    @media (prefers-color-scheme: light), (color-scheme: light) {
+        --main-accent-color: var(--accent-color-light);
+    }
+
+    font-size: clamp(1rem, 1vw + 0.75rem, 1.125rem);
+}
+
+/* Critical typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--main-heading-font-family);
+    font-weight: var(--main-heading-font-weight);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+}
+
+h1 { font-size: clamp(1.375rem, 1.125rem + 1vw, 1.75rem); }
+h2 { font-size: clamp(1.375rem, 1.125rem + 1vw, 1.75rem); }
+h3 { font-size: clamp(1.25rem, 1.125rem + 0.5vw, 1.5rem); }
+
+/* Critical layout */
+body {
+    font-family: var(--main-text-font-family);
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    line-height: 1.5;
+}
+
+/* Masthead - always visible */
+header.masthead {
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-md);
+    border-bottom: var(--border-width-standard) solid var(--border-color-standard);
+}
+
+header.masthead a {
+    font-size: 1.75rem;
+    font-weight: var(--main-heading-font-weight);
+    font-family: var(--main-heading-font-family);
+    letter-spacing: -0.02em;
+    color: CanvasText;
+    text-decoration: underline;
+    text-decoration-color: var(--main-accent-color);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+main {
+    margin-bottom: var(--space-lg);
+}
+
+/* Critical link styling */
+a {
+    color: var(--main-accent-color);
+    text-decoration: none;
+}
+
+/* Article list critical styles */
+.article-list article {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.article-list h1 {
+    color: CanvasText;
+}
+
+/* Basic meta styling for above-fold */
+.meta {
+    font-size: 0.85em;
+    margin-bottom: var(--space-sm);
+    font-style: italic;
+}
+
+/* Mobile critical */
+@media (max-width: 30rem) {
+    body {
+        padding: 0 var(--space-sm);
+    }
+    header.masthead a {
+        font-size: 1.5rem;
+    }
+}
+
+/* Hide initially because it has a bunch of extra stuff, only enable when main has loaded */
+footer { visibility: hidden; height: 0; }
