@@ -81,7 +81,13 @@ main {
 /* Critical link styling */
 a {
     color: var(--main-accent-color);
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}
+
+a:hover {
+    text-decoration-thickness: 3px;
 }
 
 /* Article list critical styles */

@@ -561,12 +561,12 @@ ul.social-links {
 }
 
 /* Link styling */
-a {
-    transition: color 0.2s ease;
-
-    &:hover {
-        text-decoration: underline;
-    }
+header.masthead a,
+.post-nav-link,
+.social-link,
+.article-list h1 a,
+a:has(hgroup){
+    text-decoration: none;
 }
 
 /* Small phones (portrait) */
