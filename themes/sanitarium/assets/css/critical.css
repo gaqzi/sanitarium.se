@@ -19,7 +19,7 @@
 
     /* Critical colors for initial render */
     --accent-color-dark: #9e9eff;
-    --accent-color-light: #b30000;
+    --accent-color-light: #a00000;
     --main-accent-color: var(--accent-color-dark);
 
     /* Critical layout variables */
