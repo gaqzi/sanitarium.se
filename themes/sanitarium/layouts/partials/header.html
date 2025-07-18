@@ -1,5 +1,6 @@
 <header class="masthead">
     <a href="{{ .Site.BaseURL }}">{{ .Site.Params.siteName | default .Site.Title }}</a>
+    <link rel="prefetch" href="{{ .Site.BaseURL }}">
     {{ if .Site.Menus.main }}
     {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
     {{ end }}

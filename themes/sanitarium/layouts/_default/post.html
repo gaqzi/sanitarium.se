@@ -24,6 +24,7 @@
                 <div class="post-nav-title">{{ .Title }}</div>
                 {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
             </a>
+            <link rel="prefetch" href="{{ .Permalink }}">
         {{ end }}
 
         {{ with .NextInSection }}
@@ -33,6 +34,7 @@
                     {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
                 </div>
             </a>
+            <link rel="prefetch" href="{{ .Permalink }}">
         {{ end }}
     </nav>
 </article>

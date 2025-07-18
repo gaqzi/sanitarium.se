@@ -12,6 +12,10 @@
     {{ range .Paginator.Pages }}
     {{ partial "article-summary.html" . }}
     {{ end }}
+
+    {{ range first 3 .Paginator.Pages }}
+        <link rel="prefetch" href="{{ .Permalink }}">
+    {{ end }}
 </div>
 
 {{ template "_internal/pagination.html" . }}
