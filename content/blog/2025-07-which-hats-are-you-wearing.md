@@ -9,7 +9,6 @@ tags:
   - incidents
   - thinking
   - roles
-  - mindset
   - leadership
 ---
 

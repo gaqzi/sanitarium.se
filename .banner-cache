@@ -50,5 +50,9 @@
   "static/img/banners/2025-07-which-hats-are-you-wearing.png": {
     "content_checksum": "8a873b3a5fa48fc47e75bb8a31b8307a",
     "file_checksum": "4617823480a5735050ac1a60ac2f5933"
+  },
+  "static/img/banners/2025-07-your-name-is-still-on-it.png": {
+    "content_checksum": "a0515bd3d81036a7e5ce901dd671f384",
+    "file_checksum": "e848dc87af91a94ce05b0877761c0ec3"
   }
 }
