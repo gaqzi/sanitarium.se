@@ -15,7 +15,7 @@ A colleague recently said something that's been rattling around in my head: "AI 
 
 I have been wondering how to think about AIs (or [genies](https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent)) and Steve Jobs said [computers are like bicycles for the mind](https://medium.learningbyshipping.com/bicycle-121262546097). I think these tools take it further. They are more like motorcycles for the mind. They go _really_ fast, and you better not treat them like a bike, because you need to know what you're doing. How to handle that thing. You need to make sure you don't try to go too fast too soon, or for too long, because you'll get speed blind and… things will happen.
 
-I'm pretty sure motorcycle insurance costs way more when you're in your 20s than in your 40s or 50s. There's a reason for that. People who are older generally know how to ride the thing, and they're not as crazy when doing it.
+I'm pretty sure motorcycle insurance costs way more when you're in your 20s than in your 40s or 50s. There's a reason for that. People who are older generally know how to ride the thing, and they're not as wild when doing it.
 
 But I think when it comes to using AI we're all kind of in our 20s because we're figuring it out.
 
@@ -37,7 +37,7 @@ Meeting notes are a perfect example. I have access to Google Gemini at work, and
 
 This reminds me of [Chesterton's Fence](https://fs.blog/chestertons-fence/), that principle about not removing a fence until you understand why it was put there. Before you automate away some "boring, pointless thing," maybe ask yourself: why is it that I'm doing this in the first place? Because if you don't understand why it's done, how do you know the automation did it well?
 
-And I wonder if what's really happening is that we're not automating the work, we're automating away our attention to the work. We're not automating the output. We're automating away our understanding of what that output should be. And here's what we lose: [experienced people are the ones who spot strange patterns (or taste)](https://www.benkuhn.net/impact/) precisely because they've stayed engaged with the work over time. You can't develop that instinct if you're not looking. 
+And I wonder if what's really happening is that we're not automating the work, we're automating away our attention to the work. We're not automating the output. We're automating away our understanding of what that output should be. And here's what we lose: [experienced people are the ones who spot strange patterns (or have taste)](https://www.benkuhn.net/impact/) precisely because they've stayed engaged with the work over time. You can't develop that instinct if you're not looking.
 
 ## The work worth doing
 
