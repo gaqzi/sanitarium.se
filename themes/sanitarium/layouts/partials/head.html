@@ -54,6 +54,11 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 {{ end }}
+{{- $author := .Params.author | default .Site.Params.author -}}
+{{- $authorData := index .Site.Data.authors $author -}}
+{{ with $authorData.social.mastodon -}}
+    <meta name="fediverse:creator" content="{{ . }}">
+{{ end -}}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="{{ if $ogImage }}summary_large_image{{ else }}summary{{ end }}">
@@ -68,9 +73,13 @@
 {{ with .Site.Params.twitterAuthor }}
 <meta name="twitter:creator" content="@{{ . }}">
 {{ end }}
+{{ with $authorData.displayName -}}
+    <meta name="twitter:label1" content="Author">
+    <meta name="twitter:data1" content="{{ . }}">
+{{ end }}
 {{ with .ReadingTime -}}
-    <meta name="twitter:label1" content="Reading time">
-    <meta name="twitter:data1" content="{{ . }} min read">
+    <meta name="twitter:label2" content="Reading time">
+    <meta name="twitter:data2" content="{{ . }} min">
 {{ end -}}
 
 <!-- Stylesheets -->
