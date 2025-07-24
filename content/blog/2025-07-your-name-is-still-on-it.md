@@ -58,7 +58,7 @@ The question isn't "can the genie do this task?" It's "when it does this task an
 
 In my experience, the engineers who are using AI most effectively are the ones who treat it like that lawyer treats it: as a powerful tool that still requires their full professional judgment. They understand they're being paid for the judgment part of the work, not just the execution part. The genie can help with execution, it can draw lots of Xs quickly. But knowing where to draw them? That's all you.
 
-Right now, these systems can't truly understand context the way a senior does. They can't make actual judgment calls, they're pattern matching (even if, admittedly, [slightly magical](https://en.wikipedia.org/wiki/Clarke%27s_three_laws) in how they do it). They give us speed, not judgment. Output, not understanding.
+Right now, these systems can't truly understand context the way a senior does. They can't make actual judgment calls, they're pattern matching (even if, admittedly, [slightly magical](https://en.wikipedia.org/wiki/Clarke%27s_three_laws) in how they do it). They give us speed, not judgment or direction. Output, not understanding.
 
 I'm still working out what learning looks like when AI can show you all the moves. My cooking has genuinely leveled up with an AI coach: I'm making dishes I never could before, and understanding why certain techniques work. But I know this is like training wheels. I couldn't fully do this alone yet, and that's the thing: I'm not mistaking this _speed_ for actual _skill_, not confusing making _progress_ with real _proficiency_.
 
