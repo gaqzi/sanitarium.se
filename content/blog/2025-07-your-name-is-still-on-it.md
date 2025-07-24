@@ -43,7 +43,7 @@ And I wonder if what's really happening is that we're not automating the work, w
 
 Which brings me to [something eyebrow raising](https://tidyfirst.substack.com/p/90-of-my-skills-are-now-worth-0) that Kent Beck said: with AI, 90% of his skills became worthless, but the leverage of the remaining 10% is now worth 1000x. The question is: which 10%? This is the "_knowing where to put the X_" skill, [that judgment call and experience][which-hat-4999] you bring: that's what makes the genie do what's needed.
 
-When you let the genie write code for you and it introduces bugs that you would have caught if you'd actually read the code... you're not doing your job as a product engineer. Yeah, you're slinging more code and doing it faster. But it's not about the code, it's about delivering the solutions we need when we need them.
+When you let the genie write code for you and it introduces bugs that you would have caught if you'd actually read the code… you're not doing your job as a product engineer. Yeah, you're slinging more code and doing it faster. But it's not about the code, it's about delivering the solutions we need when we need them.
 
 There's a difference between _delegating execution_ and _delegating responsibility_. You _can_ have the genie execute tasks, but you _can't_ delegate the responsibility for the outcome. That's still yours. [The hat][which-hat] is still on your head, even if AI is helping you get things done faster while wearing it.
 
