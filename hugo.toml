@@ -7,7 +7,7 @@ defaultContentLanguage = "en"
 
 cascade = [
   { _target = { path = "/blog/**" }, layout = "post" },
-  { _target = { path = "/archive/**" }, layout = "post", outputs = ["HTML"] },
+  { _target = { path = "/archive/**" }, layout = "post", outputs = ["HTML"], sitemap = { disable = true } },
 ]
 
 # URL structure 
