@@ -7,22 +7,22 @@ defaultContentLanguage = "en"
 
 cascade = [
   { _target = { path = "/blog/**" }, layout = "post" },
-  { _target = { path = "/archive/**" }, layout = "post" },
+  { _target = { path = "/archive/**" }, layout = "post", outputs = ["HTML"] },
 ]
 
 # URL structure 
 [permalinks]
-  author = "/blog/author/:slug/"
   blog = "/blog/:year/:month/:day/:slug/"
   archive = "/archive/:year-:month-:day-:slug/"
-  tags = "/blog/tags/:slug/"
-  tag = "/blog/tags/"
+
+  tag = "/tags/:slug/"
+  author = "/author/:slug/"
 
 # Output formats
 [outputs]
   home = ["HTML", "RSS", "PostData"]
   page = ["HTML", "Banner"]
-  section = ["HTML"]
+  section = ["HTML", "RSS"]
 
 # RSS settings
 [outputFormats.RSS]
