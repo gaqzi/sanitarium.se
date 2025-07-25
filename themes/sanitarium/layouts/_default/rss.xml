@@ -1,4 +1,4 @@
-{{- /* Copied from https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/rss.xml */ -}}
+{{- /* Copied and customized from https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/rss.xml */ -}}
 {{- $authorEmail := "" }}
 {{- with site.Params.author }}
 {{- if reflect.IsMap . }}
@@ -23,7 +23,7 @@
 {{- if .IsHome }}{{ $pctx = .Site }}{{ end }}
 {{- $pages := slice }}
 {{- if or $.IsHome $.IsSection }}
-{{- $pages = $pctx.RegularPages }}
+{{- $pages = where $pctx.RegularPages "Section" "in" .Site.Params.mainSections }}
 {{- else }}
 {{- $pages = $pctx.Pages }}
 {{- end }}

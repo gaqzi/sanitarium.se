@@ -1,7 +1,7 @@
 {{ define "main" }}
   {{ .Content }}
   <div class="article-list">
-      {{ $pages := where site.RegularPages "Section" "blog" }}
+      {{ $pages := where site.RegularPages "Section" "in" .Site.Params.mainSections }}
       {{ $paginator := .Paginate $pages }}
       {{ range $paginator.Pages }}
         {{ partial "article-summary.html" . }}

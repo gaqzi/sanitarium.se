@@ -71,7 +71,7 @@ enableEmoji = true
   # Site settings
   siteName = "the padded cell"
   description = "ramblings of a technical nature"
-  mainSections = ["posts"]
+  mainSections = ["blog"]
 
   # Theme appearance
   enableCodeHighlighting = true

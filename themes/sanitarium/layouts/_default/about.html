@@ -43,7 +43,7 @@
 
             <section class="recent-posts">
                 <h2>Recent Posts</h2>
-                {{ $posts := (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+                {{ $posts := (where .Site.RegularPages "Section" "in" .Site.Params.mainSections).ByDate.Reverse }}
                 {{ $recentPosts := first 5 $posts }}
                 
                 {{ if $recentPosts }}
