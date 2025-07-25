@@ -5,7 +5,7 @@
     {{- with .Params.subtitle -}}
         {{- $titleEndsWithPunct := or (hasSuffix $.Title "?") (hasSuffix $.Title "!") (hasSuffix $.Title "…") (hasSuffix $.Title ".") -}}
         {{- $subtitleStartsWithEllipsis := hasPrefix . "…" -}}
-        {{- if not (or $titleEndsWithPunct $subtitleStartsWithEllipsis) }} — {{ end -}}
+        {{- if not (or $titleEndsWithPunct $subtitleStartsWithEllipsis) }} — {{ else }} {{ end -}}
         {{- . -}}
     {{- end -}}
 {{- end -}}
