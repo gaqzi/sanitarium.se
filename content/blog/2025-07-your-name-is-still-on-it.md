@@ -13,7 +13,7 @@ tags:
 ---
 A colleague recently said something that's been rattling around in my head: "AI gives you speed, but it doesn't give you direction." And the more I use these tools, the more I think that undersells the danger.
 
-I have been wondering how to think about AIs (or [genies](https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent)) and Steve Jobs said [computers are like bicycles for the mind](https://medium.learningbyshipping.com/bicycle-121262546097). I think these tools take it further. They are more like motorcycles for the mind. They go _really_ fast, and you better not treat them like a bike, because you need to know what you're doing. How to handle that thing. You need to make sure you don't try to go too fast too soon, or for too long, because you'll get speed blind and… things will happen.
+I have been wondering how to think about AIs (or [genies](https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent)) and how [computers are like bicycles for the mind](https://medium.learningbyshipping.com/bicycle-121262546097), as Steve Jobs put it, and I think these tools take it further. They are more like motorcycles for the mind. They go _really_ fast, and you better not treat them like a bike, because you need to know what you're doing. How to handle that thing. You need to make sure you don't try to go too fast too soon, or for too long, because you'll get speed blind and… things will happen.
 
 I'm pretty sure motorcycle insurance costs way more when you're in your 20s than in your 40s or 50s. There's a reason for that. People who are older generally know how to ride the thing, and they're not as wild when doing it.
 
