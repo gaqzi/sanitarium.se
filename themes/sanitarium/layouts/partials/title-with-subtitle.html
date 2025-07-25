@@ -2,5 +2,10 @@
     {{- .Site.Title -}}
 {{- else -}}
     {{- .Title -}}
-    {{- with .Params.subtitle }} — {{ . }}{{ end -}}
+    {{- with .Params.subtitle -}}
+        {{- $titleEndsWithPunct := or (hasSuffix $.Title "?") (hasSuffix $.Title "!") (hasSuffix $.Title "…") (hasSuffix $.Title ".") -}}
+        {{- $subtitleStartsWithEllipsis := hasPrefix . "…" -}}
+        {{- if not (or $titleEndsWithPunct $subtitleStartsWithEllipsis) }} — {{ end -}}
+        {{- . -}}
+    {{- end -}}
 {{- end -}}
