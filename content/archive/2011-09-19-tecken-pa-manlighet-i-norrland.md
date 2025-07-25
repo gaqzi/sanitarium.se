@@ -2,7 +2,7 @@
 aliases: ["/blog/2011/09/tecken-pa-manlighet-i-norrland", "/blog/2011/09/19/tecken-pa-manlighet-i-norrland"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2011-09-19 19:30:53+00:00
 layout: post

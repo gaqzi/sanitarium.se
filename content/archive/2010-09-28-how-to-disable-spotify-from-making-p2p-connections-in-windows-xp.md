@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/09/how-to-disable-spotify-from-making-p2p-connections-in-windows-xp", "/blog/2010/09/28/how-to-disable-spotify-from-making-p2p-connections-in-windows-xp"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-09-28 17:07:24+00:00
 layout: post

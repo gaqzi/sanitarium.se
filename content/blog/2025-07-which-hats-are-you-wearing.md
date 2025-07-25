@@ -1,5 +1,5 @@
 ---
-author: 'björn'
+authors: ['björn']
 date: '2025-07-12T15:06:00+08:00'
 lastmod: '2025-07-12T15:06:00+08:00'
 title: Which hat are you wearing?

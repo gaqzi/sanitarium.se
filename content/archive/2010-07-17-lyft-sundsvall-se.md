@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/07/lyft-sundsvall-se", "/blog/2010/07/17/lyft-sundsvall-se"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-07-17 21:26:48+00:00
 layout: post

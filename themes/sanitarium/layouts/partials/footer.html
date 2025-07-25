@@ -1,5 +1,5 @@
-{{ $author := .Params.author | default .Site.Params.author -}}
-{{ $authorData := index .Site.Data.authors $author -}}
+{{ $firstAuthor := index (.Params.authors | default (slice .Site.Params.author)) 0 -}}
+{{ $authorData := index .Site.Data.authors $firstAuthor -}}
 <footer>
     <nav aria-label="Author related links">
         <ul class="social-links">

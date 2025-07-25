@@ -2,7 +2,7 @@
 aliases: ["/blog/2009/08/overvakad-av-din-tur", "/blog/2009/08/26/overvakad-av-dintur"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2009-08-26 10:51:29+00:00
 layout: post

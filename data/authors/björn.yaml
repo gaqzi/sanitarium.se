@@ -2,6 +2,7 @@ name: "björn"
 displayName: "Björn Andersson"
 bio: "Björn <em>(which means bear in the country of my people)</em> is a Swede living in Singapore with decades of deja-fu <em>(I've fucked up this way before)</em> from working at startups and big companies."
 avatar: "/img/authors/björn.jpg"
+customPage: "/about"
 social:
   github: "gaqzi"
   mastodon: "@gaqzi@hachyderm.io"

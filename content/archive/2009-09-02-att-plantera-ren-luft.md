@@ -2,7 +2,7 @@
 aliases: ["/blog/2009/09/att-plantera-ren-luft", "/blog/2009/09/02/att-plantera-ren-luft"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2009-09-02 19:55:45+00:00
 layout: post

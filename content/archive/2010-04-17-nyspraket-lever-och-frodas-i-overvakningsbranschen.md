@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/04/nyspraket-lever-och-frodas-i-overvakningsbranschen", "/blog/2010/04/17/nyspraket-lever-och-frodas-i-overvakningsbranschen"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-04-17 15:32:50+00:00
 layout: post

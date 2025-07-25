@@ -1,6 +1,6 @@
 ---
 
-author: björn
+authors: ['björn']
 comments: false
 date: 2024-04-15T19:15:00+08:00
 lastmod: 2024-04-16T12:30:00+08:00

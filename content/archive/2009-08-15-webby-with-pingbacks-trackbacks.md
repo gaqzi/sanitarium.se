@@ -2,7 +2,7 @@
 aliases: ["/blog/2009/08/webby-with-pingbacks-trackbacks", "/blog/2009/08/15/webby-with-pingbacks-trackbacks"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2009-08-15 21:54:31+00:00
 layout: post

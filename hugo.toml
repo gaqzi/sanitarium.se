@@ -53,6 +53,7 @@ enableEmoji = true
 # Taxonomies
 [taxonomies]
   tag = "tags"
+  author = "authors"
 #  category = "categories"
 
 # Theme-specific settings

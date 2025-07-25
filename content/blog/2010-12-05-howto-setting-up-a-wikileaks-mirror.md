@@ -1,6 +1,6 @@
 ---
 aliases: ["/blog/2010/12/howto-setting-up-a-wikileaks-mirror", "/blog/blog/2010/12/05/howto-setting-up-a-wikileaks-mirror", "/blog/blog/2010/12/howto-setting-up-a-wikileaks-mirror"]
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-12-05 21:11:18+00:00
 slug: howto-setting-up-a-wikileaks-mirror

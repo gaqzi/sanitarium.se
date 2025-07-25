@@ -1,6 +1,6 @@
 ---
 
-author: björn
+authors: ['björn']
 comments: false
 date: 2015-10-27 08:00:00 +08:00
 layout: post

@@ -1,6 +1,6 @@
 ---
 aliases: ["/blog/2013/01/python-and-its-included-batteries", "/blog/blog/2013/01/python-and-its-included-batteries/", "/blog/2013/01/18/python-and-its-included-batteries", "/blog/blog/2013/01/18/python-and-its-included-batteries"]
-author: björn
+authors: ['björn']
 comments: true
 date: 2013-01-18 16:22:32+00:00
 slug: python-and-its-included-batteries

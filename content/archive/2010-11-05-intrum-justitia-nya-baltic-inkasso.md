@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/11/intrum-justitia-nya-baltic-inkasso", "/blog/2010/11/05/intrum-justitia-nya-baltic-inkasso"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-11-05 22:55:46+00:00
 layout: post

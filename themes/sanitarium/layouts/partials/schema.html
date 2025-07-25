@@ -1,4 +1,5 @@
 {{ if .IsHome }}
+{{- $authorData := index $.Site.Data.authors .Site.Params.author -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -8,7 +9,7 @@
   "description": "{{ .Site.Params.description }}",
   "author": {
     "@type": "Person",
-    "name": "{{ .Site.Params.author }}"
+    "name": "{{ $authorData.displayName }}"
   },
   "potentialAction": {
     "@type": "SearchAction",
@@ -35,10 +36,10 @@
   "image": "{{ . | absURL }}",
   {{ end }}
   "url": "{{ .Permalink }}",
-  "author": {
+  "author": [{{ range $i, $author := (.Params.authors | default (slice .Site.Params.author)) }}{{ if $i }},{{ end }}{{ $authorData := index $.Site.Data.authors $author }}{
     "@type": "Person",
-    "name": "{{ if .Params.author }}{{ .Params.author }}{{ else }}{{ .Site.Params.author }}{{ end }}"
-  },
+    "name": "{{ $authorData.displayName | default $author }}"
+  }{{ end }}],
   "publisher": {
     "@type": "Organization",
     "name": "{{ .Site.Title }}",

@@ -1,22 +1,28 @@
 {{ $isSummary := .isSummary -}}
 {{ with .Page }}
 <div class="meta">
-    {{ $author := .Params.author | default .Site.Params.author -}}
-    {{ $authorData := index .Site.Data.authors $author -}}
-    {{ if and (not $isSummary) (isset $authorData "avatar") (fileExists (printf "static%s" $authorData.avatar)) -}}
-    <div class="meta-avatar">
-        {{ if eq (lower $author) "björn" }}<a href="/about" class="author">{{ end -}}
-        <img src="{{ $authorData.avatar }}" alt="{{ $authorData.displayName }}" class="author-avatar" width="40" height="40">
-        {{ if eq (lower $author) "björn" }}</a>{{ end -}}
-    </div>
+    {{ $authors := .Params.authors | default (slice .Site.Params.author) -}}
+    {{ if and (not $isSummary) (gt (len $authors) 0) -}}
+        {{ $firstAuthor := index $authors 0 -}}
+        {{ $authorData := index .Site.Data.authors $firstAuthor -}}
+        {{ if and (isset $authorData "avatar") (fileExists (printf "static%s" $authorData.avatar)) -}}
+        <div class="meta-avatar">
+            <a href="{{ $authorData.customPage | default (printf "/authors/%s/" ($firstAuthor | urlize)) }}" class="author">
+                <img src="{{ $authorData.avatar }}" alt="{{ $authorData.displayName }}" class="author-avatar" width="40" height="40">
+            </a>
+        </div>
+        {{ end -}}
     {{ end -}}
     <div class="meta-content">
         {{ if not $isSummary -}}
         <div class="meta-line">
-            {{ if eq (lower $author) "björn" }}
-                <a href="/about" class="author">{{ if isset $authorData "displayName" }}{{ $authorData.displayName }}{{ else }}{{ $author }}{{ end }}</a>
-            {{ else }}
-                <span class="author">{{ $author }}</span>
+            {{ $page := . }}
+            {{- range $i, $author := $authors -}}
+                {{- if $i }} & {{ end -}}
+                {{- $authorData := index $page.Site.Data.authors $author -}}
+                <a href="{{ $authorData.customPage | default (printf "/authors/%s/" ($author | urlize)) }}" class="author">
+                    {{ $authorData.displayName | default $author }}
+                </a>
             {{ end }}
         </div>
         {{ end -}}

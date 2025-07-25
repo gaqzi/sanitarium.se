@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/11/svar-fran-datainspektionen-om-intrum-justitia", "/blog/2010/11/26/svar-fran-datainspektionen-om-intrum-justitia"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-11-26 19:18:22+00:00
 layout: post

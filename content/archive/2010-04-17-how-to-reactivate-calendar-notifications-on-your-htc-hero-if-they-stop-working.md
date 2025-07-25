@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/04/how-to-reactivate-calendar-notifications-on-your-htc-hero-if-they-stop-working", "/blog/2010/04/17/how-to-reactivate-calendar-notifications-on-your-htc-hero-if-they-stop-working"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-04-17 12:59:03+00:00
 layout: post

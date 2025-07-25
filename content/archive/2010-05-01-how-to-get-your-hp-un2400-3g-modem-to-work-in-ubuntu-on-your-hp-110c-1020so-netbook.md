@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/05/how-to-get-your-hp-un2400-3g-modem-to-work-in-ubuntu-on-your-hp-110c-1020so-netbook", "/blog/2010/05/01/how-to-get-your-hp-un2400-3g-modem-to-work-in-ubuntu-on-your-hp-110c-1020so-netbook"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-05-01 16:32:21+00:00
 layout: post

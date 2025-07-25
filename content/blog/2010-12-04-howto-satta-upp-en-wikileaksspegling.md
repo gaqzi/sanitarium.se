@@ -1,6 +1,6 @@
 ---
 aliases: ["/blog/2010/12/howto-satta-upp-en-wikileaksspegling", "/blog/blog/2010/12/howto-satta-upp-en-wikileaksspegling/", "/blog/blog/2010/12/04/howto-satta-upp-en-wikileaksspegling", "/blog/blog/2010/12/howto-satta-upp-en-wikileaksspegling"]
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-12-04 21:27:26+00:00
 lastmod: 2010-12-04 21:27:26+00:00

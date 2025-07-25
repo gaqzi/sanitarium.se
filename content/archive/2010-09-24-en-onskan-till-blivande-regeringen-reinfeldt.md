@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/09/en-onskan-till-blivande-regeringen-reinfeldt", "/blog/2010/09/24/en-onskan-till-blivande-regeringen-reinfeldt"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-09-24 17:17:21+00:00
 layout: post

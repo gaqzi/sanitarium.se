@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/03/beskrivning-av-en-professionell-pirat", "/blog/2010/03/19/beskrivning-av-en-professionell-pirat"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-03-19 20:08:21+00:00
 layout: post

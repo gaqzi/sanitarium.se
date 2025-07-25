@@ -2,7 +2,7 @@
 aliases: ["/blog/2009/08/the-very-last-post", "/blog/2009/08/05/the-very-last-post"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2009-08-05 20:20:05+00:00
 layout: post

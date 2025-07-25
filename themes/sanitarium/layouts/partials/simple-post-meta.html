@@ -1,4 +1,11 @@
-Posted by <span class="author">{{ if .Params.author }}{{ .Params.author }}{{ else }}{{ .Site.Params.author }}{{ end }}</span> 
+Posted by
+{{ range $i, $author := (.Params.authors | default (slice .Site.Params.author)) -}}
+    {{ if $i }}, {{ end -}}
+    {{- $authorData := index $.Site.Data.authors $author -}}
+    <a href="{{ $authorData.customPage | default (printf "/authors/%s/" ($author | urlize)) }}" class="author">
+        {{ $authorData.displayName | default $author }}
+    </a>
+{{ end }}
 on <time class="published-at" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
     {{ .Date.Format "January 2, 2006 at 15:04" }}
 </time>

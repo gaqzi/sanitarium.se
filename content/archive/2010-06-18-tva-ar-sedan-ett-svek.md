@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/06/tva-ar-sedan-ett-svek", "/blog/2010/06/18/tva-ar-sedan-ett-svek"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-06-18 09:00:25+00:00
 layout: post

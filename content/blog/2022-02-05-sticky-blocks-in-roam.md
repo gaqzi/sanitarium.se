@@ -1,6 +1,6 @@
 ---
 
-author: björn
+authors: ['björn']
 comments: false
 date: 2022-02-05 16:30:00 +08:00
 layout: post

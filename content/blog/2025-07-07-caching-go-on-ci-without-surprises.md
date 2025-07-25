@@ -1,5 +1,5 @@
 ---
-author: 'björn'
+authors: ['björn']
 date: '2025-07-07T21:50:00+08:00'
 lastmod: '2025-07-07T21:50:00+08:00'
 title: Working with Go's test cache on CI

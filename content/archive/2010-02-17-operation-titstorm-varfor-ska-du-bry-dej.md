@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/02/operation-titstorm-varfor-ska-du-bry-dej", "/blog/2010/02/17/operation-titstorm-varfor-ska-du-bry-dej"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-02-17 08:51:00+00:00
 layout: post

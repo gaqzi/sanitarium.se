@@ -2,7 +2,7 @@
 aliases: ["/blog/2010/09/lokalpolitik-i-sundsvall-och-vasternorrland", "/blog/2010/09/11/lokalpolitik-i-sundsvall-och-vasternorrland"]
 
 archived: true
-author: björn
+authors: ['björn']
 comments: true
 date: 2010-09-11 16:09:29+00:00
 layout: post
