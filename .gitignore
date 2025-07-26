@@ -3,5 +3,9 @@ public/
 resources/
 .hugo_build.lock
 
+# Ignore local machine settings
+.claude/settings.local.json
+plan.md
+
 # Temporary files
 tmp/
