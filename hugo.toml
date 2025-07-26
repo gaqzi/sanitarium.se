@@ -53,7 +53,6 @@ enableEmoji = true
   favicon = "/favicon.ico"
 
   # Site settings
-  siteName = "the padded cell"
   description = "ramblings of a technical nature"
   mainSections = ["blog"]
 
