@@ -13,7 +13,11 @@
 - **Tag Analysis**: `script/all-tags.py` - Extract and count all tags from markdown content
 
 ## Testing
-- Build with `hugo`, check files in `public/` directory
+- **Test Suite**: `script/test` - Run Python code formatting then execute pytest
+  - Automatically runs `script/fmt` before tests to ensure code is formatted
+  - Pass pytest arguments directly: `script/test -v --tb=short`
+  - Use `DEBUG=true script/test` to see formatting output
+- **Manual Testing**: Build with `hugo`, check files in `public/` directory
 
 ## Content
 - New post: `hugo new content/posts/my-post.md`
