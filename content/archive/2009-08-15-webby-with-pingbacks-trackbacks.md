@@ -10,10 +10,6 @@ title: Webby with pingbacks/trackbacks
 wordpress_id: 11
 categories:
 - English posts
-tags:
-- ruby
-- web standards
-- webby
 ---
 
 

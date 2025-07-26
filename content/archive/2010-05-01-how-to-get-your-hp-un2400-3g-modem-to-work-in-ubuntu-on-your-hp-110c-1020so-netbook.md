@@ -10,10 +10,6 @@ title: How to get your HP un2400 3G modem to work in Ubuntu on a HP 110c-1020SO 
 wordpress_id: 142
 categories:
 - English posts
-tags:
-- 3g
-- howto
-- linux
 ---
 
 

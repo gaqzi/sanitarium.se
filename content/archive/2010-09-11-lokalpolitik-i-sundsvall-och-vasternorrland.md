@@ -11,9 +11,6 @@ language: sv
 wordpress_id: 211
 categories:
 - Svenska inlägg
-tags:
-- lokalpolitik
-- sundsvall
 ---
 
 

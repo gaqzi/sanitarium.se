@@ -11,9 +11,6 @@ language: sv
 wordpress_id: 227
 categories:
 - Svenska inlägg
-tags:
-- beatrice-ask
-- piratpartiet
 ---
 
 

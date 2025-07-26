@@ -11,10 +11,6 @@ language: sv
 wordpress_id: 425
 categories:
 - Svenska inlägg
-tags:
-- chasers
-- försök till humor
-- humor
 ---
 
 

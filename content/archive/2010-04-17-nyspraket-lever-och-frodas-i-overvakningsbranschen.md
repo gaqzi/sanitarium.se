@@ -11,10 +11,6 @@ language: sv
 wordpress_id: 129
 categories:
 - Svenska inlägg
-tags:
-- bodströmsamhället
-- informationspolitik
-- piratpartiet
 ---
 
 

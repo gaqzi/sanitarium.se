@@ -11,11 +11,6 @@ language: sv
 wordpress_id: 182
 categories:
 - Svenska inlägg
-tags:
-- folkpartiet
-- politik
-- sociala-medier
-- sundsvall
 ---
 
 

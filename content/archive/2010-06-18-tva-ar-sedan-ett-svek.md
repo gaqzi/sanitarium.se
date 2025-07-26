@@ -11,10 +11,6 @@ language: sv
 wordpress_id: 151
 categories:
 - Svenska inlägg
-tags:
-- bodströmsamhället
-- fra
-- piratpartiet
 ---
 
 

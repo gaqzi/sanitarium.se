@@ -10,12 +10,6 @@ title: 'How to: disable Spotify from making P2P connections in Windows XP'
 wordpress_id: 238
 categories:
 - English posts
-tags:
-- firewall
-- howto
-- networking
-- spotify
-- windows
 ---
 
 

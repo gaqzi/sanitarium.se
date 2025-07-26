@@ -11,11 +11,6 @@ language: sv
 wordpress_id: 10
 categories:
 - Svenska inlägg
-tags:
-- bodströmsamhället
-- datainspektionen
-- din-tur
-- piratpartiet
 ---
 
 

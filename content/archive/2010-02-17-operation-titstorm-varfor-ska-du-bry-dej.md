@@ -11,10 +11,6 @@ language: sv
 wordpress_id: 6
 categories:
 - Svenska inlägg
-tags:
-- anonymous
-- informationspolitik
-- piratpartiet
 ---
 
 

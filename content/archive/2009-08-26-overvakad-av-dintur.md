@@ -11,10 +11,6 @@ language: sv
 wordpress_id: 8
 categories:
 - Svenska inlägg
-tags:
-- bodströmsamhället
-- din-tur
-- piratpartiet
 ---
 
 

@@ -11,9 +11,6 @@ language: sv
 wordpress_id: 91
 categories:
 - Svenska inlägg
-tags:
-- piratidentitiet
-- piratpartiet
 ---
 
 

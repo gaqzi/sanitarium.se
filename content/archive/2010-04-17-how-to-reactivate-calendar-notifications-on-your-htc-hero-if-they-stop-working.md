@@ -10,12 +10,6 @@ title: How to reactivate calendar notifications on your HTC Hero if they stop wo
 wordpress_id: 119
 categories:
 - English posts
-tags:
-- android
-- calendar
-- howto
-- htc hero
-- notifications
 ---
 
 

@@ -11,8 +11,6 @@ language: sv
 wordpress_id: 7
 categories:
 - Svenska inlägg
-tags:
-- ted
 ---
 
 
