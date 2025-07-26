@@ -4,6 +4,14 @@
 - Development: `hugo server` or `hugo server --disableFastRender`
 - Production: `hugo` or `hugo --minify`
 
+## Scripts
+- **Setup**: `script/bootstrap` - Install tools and dependencies
+- **Build**: `script/build` - Run linting checks then build with Docker Compose
+- **Linting**: `script/lint` - Validate project consistency (runs silently unless errors found)
+  - Validates `data/tags.yaml` against `schemas/tags-schema.yaml`
+  - Ensures all content tags are declared in `data/tags.yaml`
+- **Tag Analysis**: `script/all-tags.py` - Extract and count all tags from markdown content
+
 ## Testing
 - Build with `hugo`, check files in `public/` directory
 
@@ -39,46 +47,52 @@
 - `_default/baseof.html` - Main site structure
 
 ### Homepage
-- `index.html` - Custom homepage
 - `_default/home.html` - Default homepage fallback
 
 ### List Templates
 - `_default/list.html` - Default for list pages with pagination
-- `posts/list.html` - Custom posts list
-- `section.html` - For section pages without pagination
-- `taxonomy.html` - For taxonomy pages
-- `term.html` - For taxonomy term pages
+
+### Section Templates
+- `authors/single.html` - Author profile pages
 
 ### Single Page Templates
-- `_default/single.html` - Default for single content
-- `_default/post.html` - For posts
-- `_default/page.html` - For regular pages
+- `_default/single.html` - Individual posts and pages
+- `_default/single.banner.html` - Banner variant for posts
 
 ### Partial Templates
 - `partials/` - Reusable components:
-  - `article-summary.html` - Article summary for lists
+  - `post-in-listing.html` - Article display in list views
   - `footer.html`, `head.html`, `header.html`
   - `menu.html` - Navigation
-  - `post-meta.html`, `simple-post-meta.html`
+  - `post-meta.html` - Post metadata display
   - `schema.html` - SEO structured data
   - `terms.html` - Taxonomy terms display
-  - `head/css.html`, `head/js.html`
+  - `title-with-subtitle.html` - Page title formatting
+  - `head/` - Head section sub-partials:
+    - `css.html` - Stylesheet loading
+    - `meta-basic.html` - Basic HTML meta tags
+    - `meta-social.html` - Social media meta tags
+    - `banner-image.html` - Banner image detection
+    - `feeds.html` - RSS feed links
 
 ### Shortcodes
 - `shortcodes/define.html`, `shortcodes/img.html`
 
 ### Markdown Rendering
-- `_default/_markup/render-heading.html`
+- `_default/_markup/render-heading.html` - Custom heading renderer
+- `_markup/render-codeblock-mermaid.html` - Mermaid diagram support
+
+### Data Templates
+- `index.post-data.csv` - Post metadata export
 
 ## Modification Guidelines
 - Site structure: `_default/baseof.html`
-- Homepage: `index.html`
-- Post lists: `posts/list.html`
-- Individual posts: `_default/post.html`
-- Regular pages: `_default/page.html`
+- Individual posts/pages: `_default/single.html`
+- Author pages: `authors/single.html`
+- List pages: `_default/list.html`
 - Components: `partials/` directory
 - Custom shortcodes: `shortcodes/` directory
-- Markdown rendering: `_default/_markup/` directory
+- Markdown rendering: `_default/_markup/` and `_markup/` directories
 
 ## Template Lookup Order
 1. `/layouts/{section}/{kind}.html`
