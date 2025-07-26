@@ -78,5 +78,12 @@ enableEmoji = true
   priority = 0.5
   filename = "sitemap.xml"
 
+# Markup settings
+[markup]
+  [markup.highlight]
+    codeFences = true
+    style = "zenburn"
+    noClasses = false
+
 [markup.goldmark.renderer]
   unsafe = true  # Allow HTML in markdown

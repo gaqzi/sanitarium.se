@@ -40,12 +40,5 @@ title = 'My New Hugo Site'
     extended = false
     min = '0.146.0'
 
-# Markup settings
-[markup]
-[markup.highlight]
-codeFences = true
-style = "zenburn"
-noClasses = false
-
 [markup.goldmark.renderer]
 unsafe = true  # Allow HTML in markdown
