@@ -4,7 +4,7 @@
       {{ $pages := where site.RegularPages "Section" "in" .Site.Params.mainSections }}
       {{ $paginator := .Paginate $pages }}
       {{ range $paginator.Pages }}
-        {{ partial "article-summary.html" . }}
+        {{ partial "post-in-listing.html" . }}
       {{ end }}
   </div>
 

@@ -1,0 +1,26 @@
+{{ $slug := "" }}
+{{ if .File }}
+    {{ $slug = .File.ContentBaseName }}
+{{ else if .Params.slug }}
+    {{ $slug = .Params.slug }}
+{{ else if .Slug }}
+    {{ $slug = .Slug }}
+{{ else }}
+    {{ $slug = path.Base .RelPermalink | strings.TrimSuffix ".html" }}
+{{ end }}
+{{ $defaultBannerPath := printf "/img/banners/%s.png" $slug }}
+{{ $ogImage := $defaultBannerPath }}
+
+{{ with .Params.image }}
+    {{ if reflect.IsMap . }}
+        {{ with .path }}{{ $ogImage = . }}{{ end }}
+    {{ else }}
+        {{ $ogImage = . }}
+    {{ end }}
+{{ end }}
+
+{{ if and (not $ogImage) .Site.Params.defaultImage }}
+    {{ $ogImage = .Site.Params.defaultImage }}
+{{ end }}
+
+{{ return $ogImage }}

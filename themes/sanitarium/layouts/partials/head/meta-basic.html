@@ -1,0 +1,9 @@
+<meta charset="UTF-8">
+<title>{{ partial "title-with-subtitle.html" . }}{{ if not .IsHome }} | {{ .Site.Title }}{{ end }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+
+<!-- Standard SEO metadata -->
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+{{ range (.Params.authors | default (slice .Site.Params.author)) }}{{ $authorData := index $.Site.Data.authors . }}<meta name="author" content="{{ $authorData.displayName | default . }}">{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">

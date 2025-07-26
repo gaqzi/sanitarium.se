@@ -10,9 +10,7 @@
     <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 </head>
 <body>
-<header class="masthead">
-    <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-</header>
+{{ partial "header.html" . }}
 
 <main>
     {{ block "main" . }}{{ end }}

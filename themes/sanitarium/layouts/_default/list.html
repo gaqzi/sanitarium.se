@@ -10,7 +10,7 @@
 
 <div class="article-list">
     {{ range .Paginator.Pages }}
-    {{ partial "article-summary.html" . }}
+    {{ partial "post-in-listing.html" . }}
     {{ end }}
 
     {{ range first 3 .Paginator.Pages }}

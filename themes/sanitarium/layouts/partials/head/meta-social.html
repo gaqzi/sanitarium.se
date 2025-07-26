@@ -1,0 +1,49 @@
+{{ $ogImage := partial "head/banner-image.html" . }}
+<!-- Open Graph (Facebook, LinkedIn) -->
+<meta property="og:title" content="{{ partial "title-with-subtitle.html" . }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:locale" content="{{ .Site.Language.Lang }}">
+{{ if .IsPage }}
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+{{ with .Params.tags }}{{ range first 6 . }}
+<meta property="article:tag" content="{{ . }}">{{ end }}{{ end }}
+{{ else }}
+<meta property="og:type" content="website">
+{{ end }}
+
+{{ with $ogImage }}
+    <meta property="og:image" content="{{ . | absURL }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+{{ end }}
+{{- $firstAuthor := index (.Params.authors | default (slice .Site.Params.author)) 0 -}}
+{{- $authorData := index .Site.Data.authors $firstAuthor -}}
+{{ with $authorData.social.mastodon -}}
+    <meta name="fediverse:creator" content="{{ . }}">
+{{ end -}}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="{{ if $ogImage }}summary_large_image{{ else }}summary{{ end }}">
+<meta name="twitter:title" content="{{ partial "title-with-subtitle.html" . }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+{{ with $ogImage }}
+<meta name="twitter:image" content="{{ . | absURL }}">
+{{ end }}
+{{ with .Site.Params.twitter }}
+<meta name="twitter:site" content="@{{ . }}">
+{{ end }}
+{{ with .Site.Params.twitterAuthor }}
+<meta name="twitter:creator" content="@{{ . }}">
+{{ end }}
+{{ with $authorData.displayName -}}
+    <meta name="twitter:label1" content="Author">
+    <meta name="twitter:data1" content="{{ . }}">
+{{ end }}
+{{ with .ReadingTime -}}
+    <meta name="twitter:label2" content="Reading time">
+    <meta name="twitter:data2" content="{{ . }} min">
+{{ end -}}

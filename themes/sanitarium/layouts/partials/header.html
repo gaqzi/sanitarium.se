@@ -1,7 +1,8 @@
 <header class="masthead">
     <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
     <link rel="prefetch" href="{{ .Site.BaseURL }}">
-    {{ if .Site.Menus.main }}
+
+    {{ if and .Site.Menus.main false }}
     {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
     {{ end }}
 </header>
