@@ -5,7 +5,7 @@
         <p class="subtitle">{{ .Params.subtitle }}</p>
         </hgroup>
     </a>
-    {{ partial "post-meta.html" (dict "Page" . "isSummary" true) }}
+    {{ partial "post-meta.html" (dict "Page" . "hideAuthor" true) }}
     <div class="{{ if .Truncated }}post-preview{{ else }}post{{ end }}">{{ .Summary }}
 
     {{ if .Truncated }}

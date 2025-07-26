@@ -1,8 +1,8 @@
-{{ $isSummary := .isSummary -}}
+{{ $hideAuthor := .hideAuthor -}}
 {{ with .Page }}
 <div class="meta">
     {{ $authors := .Params.authors | default (slice .Site.Params.author) -}}
-    {{ if and (not $isSummary) (gt (len $authors) 0) -}}
+    {{ if and (not $hideAuthor) (gt (len $authors) 0) -}}
         {{ $firstAuthor := index $authors 0 -}}
         {{ $authorData := index .Site.Data.authors $firstAuthor -}}
         {{ if and (isset $authorData "avatar") (fileExists (printf "static%s" $authorData.avatar)) -}}
@@ -14,7 +14,7 @@
         {{ end -}}
     {{ end -}}
     <div class="meta-content">
-        {{ if not $isSummary -}}
+        {{ if not $hideAuthor -}}
         <div class="meta-line">
             {{ $page := . }}
             {{- range $i, $author := $authors -}}
