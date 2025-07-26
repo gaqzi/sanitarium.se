@@ -2,12 +2,6 @@ baseURL = 'https://example.org/'
 languageCode = 'en-US'
 title = 'My New Hugo Site'
 
-# Output formats
-[outputs]
-  home = ["HTML", "RSS", "PostData"]
-  page = ["HTML", "Banner"]
-  section = ["HTML", "RSS"]
-
 [outputFormats.PostData]
   mediaType = "text/csv"
   isPlainText = true

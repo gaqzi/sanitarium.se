@@ -6,7 +6,6 @@ theme = 'sanitarium'
 defaultContentLanguage = "en"
 
 cascade = [
-  { _target = { path = "/blog/**" } },
   { _target = { path = "/archive/**" }, outputs = ["HTML"], sitemap = { disable = true } },
 ]
 
@@ -17,6 +16,12 @@ cascade = [
 
   tag = "/tags/:slug/"
   author = "/author/:slug/"
+
+# Output formats
+[outputs]
+  home = ["HTML", "RSS", "PostData"]
+  page = ["HTML", "Banner"]
+  section = ["HTML", "RSS"]
 
 # RSS settings
 [outputFormats.RSS]
@@ -73,3 +78,5 @@ enableEmoji = true
   priority = 0.5
   filename = "sitemap.xml"
 
+[markup.goldmark.renderer]
+  unsafe = true  # Allow HTML in markdown
