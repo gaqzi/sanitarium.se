@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2010-05-01 16:32:21+00:00
-layout: post
 slug: how-to-get-your-hp-un2400-3g-modem-to-work-in-ubuntu-on-your-hp-110c-1020so-netbook
 title: How to get your HP un2400 3G modem to work in Ubuntu on a HP 110c-1020SO netbook
 wordpress_id: 142

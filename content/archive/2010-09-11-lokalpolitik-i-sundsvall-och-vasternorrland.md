@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2010-09-11 16:09:29+00:00
-layout: post
 slug: lokalpolitik-i-sundsvall-och-vasternorrland
 title: Lokalpolitik i Sundsvall och Västernorrland
 language: sv

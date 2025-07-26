@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2010-04-17 15:32:50+00:00
-layout: post
 slug: nyspraket-lever-och-frodas-i-overvakningsbranschen
 title: Nyspråket lever och frodas i övervakningsbranschen
 language: sv

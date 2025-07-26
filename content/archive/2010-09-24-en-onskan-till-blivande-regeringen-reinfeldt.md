@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2010-09-24 17:17:21+00:00
-layout: post
 slug: en-onskan-till-blivande-regeringen-reinfeldt
 title: En önskan till blivande regeringen Reinfeldt
 language: sv

@@ -6,8 +6,8 @@ theme = 'sanitarium'
 defaultContentLanguage = "en"
 
 cascade = [
-  { _target = { path = "/blog/**" }, layout = "post" },
-  { _target = { path = "/archive/**" }, layout = "post", outputs = ["HTML"], sitemap = { disable = true } },
+  { _target = { path = "/blog/**" } },
+  { _target = { path = "/archive/**" }, outputs = ["HTML"], sitemap = { disable = true } },
 ]
 
 # URL structure 

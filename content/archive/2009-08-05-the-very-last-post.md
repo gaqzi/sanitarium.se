@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2009-08-05 20:20:05+00:00
-layout: post
 slug: the-very-last-post
 title: The Very Last Post!
 wordpress_id: 12

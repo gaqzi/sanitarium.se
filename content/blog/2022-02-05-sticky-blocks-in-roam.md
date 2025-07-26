@@ -3,7 +3,6 @@
 authors: ['björn']
 comments: false
 date: 2022-02-05 16:30:00 +08:00
-layout: post
 slug: sticky-blocks-in-roam-research
 title: Sticky blocks in Roam
 subtitle: floating along in your sidebar

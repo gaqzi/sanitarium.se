@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2009-08-26 10:51:29+00:00
-layout: post
 slug: overvakad-av-dintur
 title: Övervakad av Din Tur
 language: sv

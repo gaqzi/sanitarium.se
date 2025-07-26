@@ -3,7 +3,6 @@
 authors: ['björn']
 comments: false
 date: 2015-11-14 21:03:42 +08:00
-layout: post
 slug: how-to-ping-a-lost-apple-watch
 title: "How to find your Apple Watch when you've misplaced it"
 subtitle: How I ended up being a sonar bear

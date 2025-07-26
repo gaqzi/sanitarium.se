@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2010-04-17 12:59:03+00:00
-layout: post
 slug: how-to-reactivate-calendar-notifications-on-your-htc-hero-if-they-stop-working
 title: How to reactivate calendar notifications on your HTC Hero if they stop working
 wordpress_id: 119

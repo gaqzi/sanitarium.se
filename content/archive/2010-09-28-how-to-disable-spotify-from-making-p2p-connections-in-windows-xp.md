@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2010-09-28 17:07:24+00:00
-layout: post
 slug: how-to-disable-spotify-from-making-p2p-connections-in-windows-xp
 title: 'How to: disable Spotify from making P2P connections in Windows XP'
 wordpress_id: 238

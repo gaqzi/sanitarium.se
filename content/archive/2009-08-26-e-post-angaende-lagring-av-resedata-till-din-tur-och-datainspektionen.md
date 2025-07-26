@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2009-08-26 17:31:00+00:00
-layout: post
 slug: e-post-angaende-lagring-av-resedata-till-din-tur-och-datainspektionen
 title: E-post angående lagring av resedata till Din Tur och Datainspektionen
 language: sv

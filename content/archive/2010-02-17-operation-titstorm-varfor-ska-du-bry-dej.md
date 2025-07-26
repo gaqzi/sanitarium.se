@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2010-02-17 08:51:00+00:00
-layout: post
 slug: operation-titstorm-varfor-ska-du-bry-dej
 title: Operation Titstorm, varför ska du bry dej?
 language: sv

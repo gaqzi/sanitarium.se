@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2010-06-18 09:00:25+00:00
-layout: post
 slug: tva-ar-sedan-ett-svek
 title: Två år sedan sveket
 language: sv

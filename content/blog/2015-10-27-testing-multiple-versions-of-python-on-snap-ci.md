@@ -3,7 +3,6 @@
 authors: ['björn']
 comments: false
 date: 2015-10-27 08:00:00 +08:00
-layout: post
 slug: testing-against-many-versions-of-python-on-snap-ci
 title: Using multiple versions of Python on Snap CI
 subtitle: Why just play with one snake?

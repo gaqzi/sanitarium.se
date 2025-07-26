@@ -6,7 +6,6 @@ date: 2010-12-04 21:27:26+00:00
 lastmod: 2010-12-04 21:27:26+00:00
 slug: howto-satta-upp-en-wikileaksspegling
 title: "How to: Sätta upp en Wikileaksspegling"
-layout: post
 language: se
 wordpress_id: 327
 categories:

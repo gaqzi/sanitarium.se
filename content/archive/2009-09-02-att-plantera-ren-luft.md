@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2009-09-02 19:55:45+00:00
-layout: post
 slug: att-plantera-ren-luft
 title: Att plantera ren luft
 language: sv

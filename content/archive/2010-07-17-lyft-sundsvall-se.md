@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2010-07-17 21:26:48+00:00
-layout: post
 slug: lyft-sundsvall-se
 title: LyftSundsvall.se
 language: sv

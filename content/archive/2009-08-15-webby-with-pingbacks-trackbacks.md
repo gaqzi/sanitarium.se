@@ -5,7 +5,6 @@ archived: true
 authors: ['björn']
 comments: true
 date: 2009-08-15 21:54:31+00:00
-layout: post
 slug: webby-with-pingbacks-trackbacks
 title: Webby with pingbacks/trackbacks
 wordpress_id: 11
