@@ -18,26 +18,9 @@ cascade = [
   tag = "/tags/:slug/"
   author = "/author/:slug/"
 
-# Output formats
-[outputs]
-  home = ["HTML", "RSS", "PostData"]
-  page = ["HTML", "Banner"]
-  section = ["HTML", "RSS"]
-
 # RSS settings
 [outputFormats.RSS]
   baseName = "feed"
-
-[outputFormats.PostData]
-  mediaType = "text/csv"
-  isPlainText = true
-  notAlternative = true
-
-[outputFormats.Banner]
-  mediaType = "text/html"
-  baseName = "banner"
-  isPlainText = true
-  permalinkable = true
 
 # Pagination
 paginate = 10
@@ -91,12 +74,3 @@ enableEmoji = true
   priority = 0.5
   filename = "sitemap.xml"
 
-# Markup settings
-[markup]
-  [markup.highlight]
-    codeFences = true
-    style = "zenburn"
-    noClasses = false
-
-  [markup.goldmark.renderer]
-    unsafe = true  # Allow HTML in markdown

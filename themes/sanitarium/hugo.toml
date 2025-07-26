@@ -2,6 +2,29 @@ baseURL = 'https://example.org/'
 languageCode = 'en-US'
 title = 'My New Hugo Site'
 
+# Output formats
+[outputs]
+  home = ["HTML", "RSS", "PostData"]
+  page = ["HTML", "Banner"]
+  section = ["HTML", "RSS"]
+
+[outputFormats.PostData]
+  mediaType = "text/csv"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.Banner]
+  mediaType = "text/html"
+  baseName = "banner"
+  isPlainText = true
+  permalinkable = true
+
+# Taxonomies
+[taxonomies]
+  tag = "tags"
+  author = "authors"
+  series = "series"
+
 [menus]
   [[menus.main]]
     name = 'Home'
@@ -22,3 +45,13 @@ title = 'My New Hugo Site'
   [module.hugoVersion]
     extended = false
     min = '0.146.0'
+
+# Markup settings
+[markup]
+[markup.highlight]
+codeFences = true
+style = "zenburn"
+noClasses = false
+
+[markup.goldmark.renderer]
+unsafe = true  # Allow HTML in markdown
