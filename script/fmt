@@ -1,0 +1,78 @@
+#!/bin/bash
+
+set -e
+
+# Colors for output
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+function log_info() {
+    if [ "${DEBUG}" = "true" ]; then
+        echo -e "${BLUE}[INFO][fmt]${NC} $1"
+    fi
+}
+
+function log_error() {
+    echo -e "${RED}[ERROR][fmt]${NC} $1" >&2
+}
+
+function format_python_files() {
+    # Find all Python files, excluding .venv directory
+    local python_files
+    python_files=$(find . -name "*.py" -not -path "./.venv/*" -type f)
+    
+    if [ -z "$python_files" ]; then
+        log_info "No Python files found to format"
+        return 0
+    fi
+    
+    local file_count
+    file_count=$(echo "$python_files" | wc -l)
+    log_info "Formatting $file_count Python files with isort and black"
+    
+    # Run isort on all Python files
+    log_info "Running isort..."
+    local isort_output
+    local isort_exit_code
+    if [ "${DEBUG}" = "true" ]; then
+        echo "$python_files" | xargs uv run isort
+        isort_exit_code=$?
+    else
+        isort_output=$(echo "$python_files" | xargs uv run isort 2>&1)
+        isort_exit_code=$?
+        if [ $isort_exit_code -ne 0 ]; then
+            log_error "isort failed with exit code $isort_exit_code:"
+            echo "$isort_output" >&2
+        fi
+    fi
+    
+    # Run black on all Python files
+    log_info "Running black..."
+    local black_output
+    local black_exit_code
+    if [ "${DEBUG}" = "true" ]; then
+        echo "$python_files" | xargs uv run black
+        black_exit_code=$?
+    else
+        black_output=$(echo "$python_files" | xargs uv run black --quiet 2>&1)
+        black_exit_code=$?
+        if [ $black_exit_code -ne 0 ]; then
+            log_error "black failed with exit code $black_exit_code:"
+            echo "$black_output" >&2
+        fi
+    fi
+    
+    # Check for any failures
+    if [ $isort_exit_code -ne 0 ] || [ $black_exit_code -ne 0 ]; then
+        return 1
+    fi
+    
+    log_info "Formatting complete"
+}
+
+function main() {
+    format_python_files
+}
+
+main "$@"

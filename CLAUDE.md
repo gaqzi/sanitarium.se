@@ -7,6 +7,9 @@
 ## Scripts
 - **Setup**: `script/bootstrap` - Install tools and dependencies
 - **Build**: `script/build` - Run linting checks then build with Docker Compose
+- **Formatting**: `script/fmt` - Format Python code with isort and black (excludes `.venv/`)
+  - Runs silently by default, use `DEBUG=true script/fmt` for verbose output
+  - Only shows output on errors or when DEBUG mode is enabled
 - **Linting**: `script/lint` - Validate project consistency (runs silently unless errors found)
   - Validates `data/tags.yaml` against `schemas/tags-schema.yaml`
   - Ensures all content tags are declared in `data/tags.yaml`

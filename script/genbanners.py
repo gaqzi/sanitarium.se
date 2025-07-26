@@ -56,7 +56,7 @@ class BannerGenerator:
     def calculate_checksum(self, content):
         """Calculate MD5 checksum of a string."""
         md5 = hashlib.md5()
-        md5.update(content.encode('utf-8'))
+        md5.update(content.encode("utf-8"))
         return md5.hexdigest()
 
     def calculate_file_checksum(self, file_path):
@@ -65,8 +65,8 @@ class BannerGenerator:
             return None
 
         md5 = hashlib.md5()
-        with open(file_path, 'rb') as f:
-            for chunk in iter(lambda: f.read(4096), b''):
+        with open(file_path, "rb") as f:
+            for chunk in iter(lambda: f.read(4096), b""):
                 md5.update(chunk)
         return md5.hexdigest()
 
@@ -87,8 +87,8 @@ class BannerGenerator:
         try:
             url = self.args.screenshot_url
             req = urllib.request.Request(url)
-            req.add_header('Accept-Encoding', 'gzip, deflate')
-            req.add_header('User-Agent', 'Mozilla/5.0 Banner Generator')
+            req.add_header("Accept-Encoding", "gzip, deflate")
+            req.add_header("User-Agent", "Mozilla/5.0 Banner Generator")
 
             with urllib.request.urlopen(req, timeout=timeout) as response:
                 status = response.getcode()
@@ -107,7 +107,9 @@ class BannerGenerator:
 
         # Check banner server
         if not self.check_server(self.args.banner_server):
-            print(f"ERROR: banner server at {self.args.banner_server} is not responding")
+            print(
+                f"ERROR: banner server at {self.args.banner_server} is not responding"
+            )
             print("The screenshot service needs banner to be running.")
             return False
 
@@ -119,7 +121,7 @@ class BannerGenerator:
         if not content:
             return ""
         # Remove extra whitespace and convert to lowercase
-        return ' '.join(content.lower().split())
+        return " ".join(content.lower().split())
 
     def load_cache(self):
         """Load the banner cache file or initialize if it doesn't exist."""
@@ -127,12 +129,16 @@ class BannerGenerator:
 
         if os.path.exists(cache_file_path):
             try:
-                with open(cache_file_path, 'r') as f:
+                with open(cache_file_path, "r") as f:
                     return json.load(f)
             except json.JSONDecodeError:
-                print(f"Warning: Cache file {cache_file_path} is corrupted. Initializing new cache.")
+                print(
+                    f"Warning: Cache file {cache_file_path} is corrupted. Initializing new cache."
+                )
         else:
-            print(f"Cache file {cache_file_path} does not exist. Initializing new cache.")
+            print(
+                f"Cache file {cache_file_path} does not exist. Initializing new cache."
+            )
 
         return {}
 
@@ -143,18 +149,18 @@ class BannerGenerator:
         if not os.path.isabs(cache_file_path):
             cache_file_path = os.path.abspath(cache_file_path)
 
-        with open(cache_file_path, 'w') as f:
+        with open(cache_file_path, "w") as f:
             json.dump(self.cache, f, indent=2)
 
     def capture_screenshot(self, target_url, output_path):
         """Capture a screenshot using the screenshot service."""
         params = {
-            'url': target_url,
-            'resX': self.args.width,
-            'resY': self.args.height,
-            'waitTime': self.args.wait_time,
-            'isFullPage': 'false',
-            'outFormat': 'png'
+            "url": target_url,
+            "resX": self.args.width,
+            "resY": self.args.height,
+            "waitTime": self.args.wait_time,
+            "isFullPage": "false",
+            "outFormat": "png",
         }
 
         query_string = urllib.parse.urlencode(params)
@@ -166,14 +172,14 @@ class BannerGenerator:
 
             # Create a request with appropriate headers
             req = urllib.request.Request(request_url)
-            req.add_header('Accept-Encoding', 'gzip, deflate')
-            req.add_header('User-Agent', 'Mozilla/5.0 Banner Generator')
+            req.add_header("Accept-Encoding", "gzip, deflate")
+            req.add_header("User-Agent", "Mozilla/5.0 Banner Generator")
 
             # Make the request with a longer timeout
             with urllib.request.urlopen(req, timeout=30) as response:
                 # Check the content type to see if we actually got an image
-                content_type = response.getheader('Content-Type')
-                if content_type and 'image' in content_type:
+                content_type = response.getheader("Content-Type")
+                if content_type and "image" in content_type:
                     # Ensure output directory exists
                     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
@@ -183,7 +189,7 @@ class BannerGenerator:
                         response.fp.raw._sock.settimeout(60)
 
                         # Read the response in chunks to avoid memory issues
-                        with open(output_path, 'wb') as out_file:
+                        with open(output_path, "wb") as out_file:
                             chunk_size = 8192  # 8KB chunks
                             while True:
                                 chunk = response.read(chunk_size)
@@ -209,12 +215,16 @@ class BannerGenerator:
                         response.fp.raw._sock.settimeout(10)
 
                         # Read the response with a timeout
-                        data = response.read(8192)  # Read only first 8KB to avoid hanging
+                        data = response.read(
+                            8192
+                        )  # Read only first 8KB to avoid hanging
                         try:
-                            text = data.decode('utf-8')
+                            text = data.decode("utf-8")
                             print(f"Non-image response received: {text[:200]}...")
                         except:
-                            print(f"Non-image response received with content type: {content_type}")
+                            print(
+                                f"Non-image response received with content type: {content_type}"
+                            )
                         return False
                     except socket.timeout:
                         print(f"Timeout while reading non-image response")
@@ -231,7 +241,9 @@ class BannerGenerator:
             return False
         except ConnectionResetError as e:
             print(f"Connection reset error: {e}")
-            print("This usually indicates a network issue between the script and the screenshot service.")
+            print(
+                "This usually indicates a network issue between the script and the screenshot service."
+            )
             return False
         except Exception as e:
             print(f"Error capturing screenshot: {e}")
@@ -241,90 +253,111 @@ class BannerGenerator:
     def process_csv(self):
         """Process the CSV file and generate banners as needed."""
         # Construct the URL to fetch the CSV from the webserver
-        csv_url = f"http://{self.args.banner_server}/{os.path.basename(self.args.csv_path)}"
+        csv_url = (
+            f"http://{self.args.banner_server}/{os.path.basename(self.args.csv_path)}"
+        )
 
         generation_queue = []
 
         try:
             # Fetch the CSV from the webserver
             req = urllib.request.Request(csv_url)
-            req.add_header('User-Agent', 'Mozilla/5.0 Banner Generator')
+            req.add_header("User-Agent", "Mozilla/5.0 Banner Generator")
 
             try:
                 with urllib.request.urlopen(req, timeout=10) as response:
                     # Check if we got a successful response
                     if response.getcode() == 200:
-                        csv_content = response.read().decode('utf-8')
+                        csv_content = response.read().decode("utf-8")
                         reader = csv.DictReader(csv_content.splitlines())
 
                         # Process each row in the CSV
                         for row in reader:
                             # Extract post data
-                            path = row.get('path', '')
-                            title = row.get('title', '')
-                            subtitle = row.get('subtitle', '')
-                            date = row.get('date', '')
-                            slug = row.get('slug', '')
+                            path = row.get("path", "")
+                            title = row.get("title", "")
+                            subtitle = row.get("subtitle", "")
+                            date = row.get("date", "")
+                            slug = row.get("slug", "")
 
                             # If slug is not in the CSV, try to extract it from path
                             if not slug and path:
                                 # Example: "/posts/my-post/" -> "my-post"
-                                slug = path.strip('/').split('/')[-1]
+                                slug = path.strip("/").split("/")[-1]
 
                             if not slug:
-                                print(f"Warning: Could not determine slug for post {title}")
+                                print(
+                                    f"Warning: Could not determine slug for post {title}"
+                                )
                                 continue
 
                             # Clean up the path for URL construction
-                            post_path = path.strip('/')
+                            post_path = path.strip("/")
                             if not post_path:
                                 # Default to using slug if no path is available
                                 post_path = slug
 
                             # Determine banner path and calculate checksums
-                            pre = f'{date.split('T')[0]}-' if not re.match(r'^\d{4}-\d{2}-(\d{2}-)?', slug) else ''
-                            banner_path = os.path.join(self.args.output_dir, f"{pre}{slug}.png")
+                            pre = (
+                                f"{date.split('T')[0]}-"
+                                if not re.match(r"^\d{4}-\d{2}-(\d{2}-)?", slug)
+                                else ""
+                            )
+                            banner_path = os.path.join(
+                                self.args.output_dir, f"{pre}{slug}.png"
+                            )
 
                             # Normalize content before calculating checksum
                             normalized_date = self.normalize_content(date)
                             normalized_title = self.normalize_content(title)
                             normalized_subtitle = self.normalize_content(subtitle)
                             content_checksum = self.calculate_checksum(
-                                f"{normalized_date}--{normalized_title}--{normalized_subtitle}")
+                                f"{normalized_date}--{normalized_title}--{normalized_subtitle}"
+                            )
 
                             file_checksum = self.calculate_file_checksum(banner_path)
 
                             # Check if banner needs to be generated
                             cached_data = self.cache.get(banner_path, {})
-                            cached_content_checksum = cached_data.get("content_checksum", "")
+                            cached_content_checksum = cached_data.get(
+                                "content_checksum", ""
+                            )
                             cached_file_checksum = cached_data.get("file_checksum", "")
 
                             needs_generation = False
 
                             if not file_checksum:
-                                print(f"Banner for '{title}' does not exist, will generate")
+                                print(
+                                    f"Banner for '{title}' does not exist, will generate"
+                                )
                                 needs_generation = True
                             elif cached_content_checksum != content_checksum:
                                 print(
-                                    f"Content for '{title}' changed, will regenerate banner ({cached_content_checksum})")
+                                    f"Content for '{title}' changed, will regenerate banner ({cached_content_checksum})"
+                                )
                                 needs_generation = True
                             elif cached_file_checksum != file_checksum:
                                 print(
-                                    f"Banner file for '{title}' was modified, will regenerate ({cached_file_checksum})")
+                                    f"Banner file for '{title}' was modified, will regenerate ({cached_file_checksum})"
+                                )
                                 needs_generation = True
 
                             if needs_generation:
-                                generation_queue.append({
-                                    'slug': slug,
-                                    'title': title,
-                                    'path': post_path,
-                                    'banner_path': banner_path,
-                                    'content_checksum': content_checksum
-                                })
+                                generation_queue.append(
+                                    {
+                                        "slug": slug,
+                                        "title": title,
+                                        "path": post_path,
+                                        "banner_path": banner_path,
+                                        "content_checksum": content_checksum,
+                                    }
+                                )
 
                         print(f"Preparing to work on {len(generation_queue)} banners")
                     else:
-                        print(f"Error: Failed to fetch CSV file. Server returned HTTP {response.getcode()}")
+                        print(
+                            f"Error: Failed to fetch CSV file. Server returned HTTP {response.getcode()}"
+                        )
                         return False
             except urllib.error.URLError as e:
                 print(f"Error: Failed to fetch CSV file from {csv_url}")
@@ -344,14 +377,14 @@ class BannerGenerator:
             # Primary URL: use the path from CSV directly with banner.html
             target_url = f"http://{self.args.banner_server}/{post['path']}/banner.html"
 
-            success = self.capture_screenshot(target_url, post['banner_path'])
+            success = self.capture_screenshot(target_url, post["banner_path"])
 
             if success:
                 # Update cache with new checksums
-                new_file_checksum = self.calculate_file_checksum(post['banner_path'])
-                self.cache[post['banner_path']] = {
-                    "content_checksum": post['content_checksum'],
-                    "file_checksum": new_file_checksum
+                new_file_checksum = self.calculate_file_checksum(post["banner_path"])
+                self.cache[post["banner_path"]] = {
+                    "content_checksum": post["content_checksum"],
+                    "file_checksum": new_file_checksum,
                 }
                 print(f"Successfully generated banner for '{post['title']}'")
             else:
@@ -385,27 +418,53 @@ class BannerGenerator:
 
 def parse_args():
     """Parse command line arguments."""
-    parser = argparse.ArgumentParser(description='Generate banner images for Hugo posts')
+    parser = argparse.ArgumentParser(
+        description="Generate banner images for Hugo posts"
+    )
 
-    parser.add_argument('--csv-path', default='public/index.csv',
-                        help='Path to Hugo-generated CSV file (default: public/index.csv)')
-    parser.add_argument('--output-dir', default='static/img/banners',
-                        help='Directory to save banner images (default: static/img/banners)')
-    parser.add_argument('--cache-file', default='.banner-cache',
-                        help='Path to banner cache file (default: .banner-cache)')
-    parser.add_argument('--width', type=int, default=1200,
-                        help='Banner width in pixels (default: 1200)')
-    parser.add_argument('--height', type=int, default=630,
-                        help='Banner height in pixels (default: 630)')
-    parser.add_argument('--screenshot-url',
-                        default='http://localhost:3000/api/screenshot',
-                        help='Screenshot service URL (default: http://localhost:3000/api/screenshot)')
-    parser.add_argument('--wait-time', type=int, default=150,
-                        help='Wait time in ms for screenshot service (default: 150)')
-    parser.add_argument('--banner-server', default='localhost:1313',
-                        help='Hugo server URL serving the templates (default: localhost:1313)')
-    parser.add_argument('--start-delay', type=float, default=0,
-                        help='Sleeps this many seconds before starting the work, to allow dependencies to start (default: 0)')
+    parser.add_argument(
+        "--csv-path",
+        default="public/index.csv",
+        help="Path to Hugo-generated CSV file (default: public/index.csv)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default="static/img/banners",
+        help="Directory to save banner images (default: static/img/banners)",
+    )
+    parser.add_argument(
+        "--cache-file",
+        default=".banner-cache",
+        help="Path to banner cache file (default: .banner-cache)",
+    )
+    parser.add_argument(
+        "--width", type=int, default=1200, help="Banner width in pixels (default: 1200)"
+    )
+    parser.add_argument(
+        "--height", type=int, default=630, help="Banner height in pixels (default: 630)"
+    )
+    parser.add_argument(
+        "--screenshot-url",
+        default="http://localhost:3000/api/screenshot",
+        help="Screenshot service URL (default: http://localhost:3000/api/screenshot)",
+    )
+    parser.add_argument(
+        "--wait-time",
+        type=int,
+        default=150,
+        help="Wait time in ms for screenshot service (default: 150)",
+    )
+    parser.add_argument(
+        "--banner-server",
+        default="localhost:1313",
+        help="Hugo server URL serving the templates (default: localhost:1313)",
+    )
+    parser.add_argument(
+        "--start-delay",
+        type=float,
+        default=0,
+        help="Sleeps this many seconds before starting the work, to allow dependencies to start (default: 0)",
+    )
     try:
         return parser.parse_args()
     except SystemExit as e:
@@ -419,7 +478,7 @@ def main():
     args = parse_args()
 
     if args.start_delay:
-        print(f'Waiting {args.start_delay} seconds...')
+        print(f"Waiting {args.start_delay} seconds...")
         time.sleep(args.start_delay)
 
     generator = BannerGenerator(args)

@@ -1,3 +1,9 @@
 #!/bin/bash
 
+set -e
+
+# Run formatting first
+script/fmt
+
+# Run tests
 uv run pytest -v --tb=short "$@"
