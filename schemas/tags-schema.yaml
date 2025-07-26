@@ -1,0 +1,27 @@
+$schema: "https://json-schema.org/draft-07/schema#"
+title: Blog Tags Configuration
+description: Schema for blog tag definitions
+type: object
+patternProperties:
+  "^[a-z0-9-]+$":
+    type: object
+    required:
+      - type
+    properties:
+      display:
+        type: string
+        description: How the tag appears to users (defaults to tag name)
+      type:
+        type: string
+        enum:
+          - format
+          - concept
+          - programming-language
+          - tool
+          - person
+        description: Category of the tag
+      description:
+        type: string
+        description: Brief explanation of when and why to use this tag
+    additionalProperties: false
+additionalProperties: false

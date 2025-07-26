@@ -10,7 +10,8 @@ categories:
 - blog
 tags:
 - python
-- programming
+- ruby
+- rant
 ---
 
 I've for almost a year now been using [Python] as my day to day language as it's

@@ -11,9 +11,8 @@ wordpress_id: 327
 categories:
 - blog
 tags:
-- howto
+- how-to
 - linux
-- wikileaks
 ---
 
 [A translation of this post is available in English.]({{< relref "2010-12-05-howto-setting-up-a-wikileaks-mirror.md" >}})

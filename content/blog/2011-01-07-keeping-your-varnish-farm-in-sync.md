@@ -9,9 +9,8 @@ wordpress_id: 378
 categories:
 - blog
 tags:
-- varnish
+- how-to
 - linux
-- devops
 ---
 
 I spend some of my free time helping out with server administration and

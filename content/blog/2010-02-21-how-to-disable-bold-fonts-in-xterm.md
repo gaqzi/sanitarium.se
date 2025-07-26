@@ -10,9 +10,8 @@ wordpress_id: 67
 categories:
 - blog
 tags:
-- howto
+- how-to
 - linux
-- terminal
 ---
 
 I've so far in all my travels never found a terminal I like better than [xterm], maybe [urxvt], but I've had a problem disabling bold fonts for a very long time. **Update:** Seems this is a [known bug for xterm][xterm-bug].

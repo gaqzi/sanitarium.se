@@ -5,11 +5,11 @@ lastmod: '2025-07-24T23:00:00+08:00'
 title: Your name is still on it
 subtitle: learning to ride the AI motorcycle without crashing
 tags:
+  - thinking-out-loud
   - ai
   - genie
-  - roles
-  - leadership
-  - programming
+  - which-role
+  - kent-beck
 ---
 A colleague recently said something that's been rattling around in my head: "AI gives you speed, but it doesn't give you direction." And the more I use these tools, the more I think that undersells the danger.
 

@@ -9,9 +9,8 @@ wordpress_id: 366
 categories:
 - blog
 tags:
-- howto
+- how-to
 - linux
-- wikileaks
 ---
 
 Yesterday I wrote a quick step-by-step guide for installing apache and setting

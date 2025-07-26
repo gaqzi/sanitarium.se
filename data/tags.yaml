@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=../schemas/tags-schema.yaml
+# Tag Configuration File
+# =====================
+#
+# Template:
+# tag-name:
+#   display: Display Name
+#   type: tool|language|concept|format|person
+#   description: When and why to use this tag
+
+# Format tags
+how-to:
+  type: format
+  description: Tutorial-style posts with concrete steps
+
+rant:
+  type: format
+  description: Frustrated but (hopefully) constructive criticism
+
+thinking-out-loud:
+  type: format
+  description: Exploratory posts where I work through ideas
+
+# Concept tags
+agile:
+  type: concept
+  description: Agile methodology, practices, and mindset
+
+ai:
+  display: AI
+  type: concept
+  description: Artificial intelligence, LLMs, and their implications
+
+genie:
+  type: concept
+  description: The mischievous, wish-granting nature of AI tools (via Kent Beck)
+
+automation:
+  type: concept
+  description: Reducing manual work through scripting and tools
+
+ci:
+  display: CI
+  type: concept
+  description: Continuous integration practices and tooling
+
+meetings:
+  type: concept
+  description: Running effective meetings and meeting practices
+
+productivity:
+  type: concept
+  description: Personal productivity, workflow optimization
+
+testing:
+  type: concept
+  description: General software testing practices
+
+integration-testing:
+  type: concept
+  description: Testing that verifies components work together, especially with external dependencies
+
+which-role:
+  display: Which role?
+  type: concept
+  description: Consciously switching between different (professional) roles/mindsets
+
+# Programming language tags
+golang:
+  display: Go
+  type: programming-language
+
+python:
+  display: Python
+  type: programming-language
+
+ruby:
+  display: Ruby
+  type: programming-language
+
+# Tool tags
+alfredapp:
+  display: Alfred
+  type: tool
+  description: Alfred productivity app for macOS
+
+docker:
+  display: Docker
+  type: tool
+
+linux:
+  type: tool
+  description: Desktop or server, love to use it
+
+macos:
+  display: macOS
+  type: tool
+  description: Apple's operating system
+
+roam-research:
+  display: Roam Research
+  type: tool
+  description: Note-taking and thinking tool
+
+# Person tags
+kent-beck:
+  display: Kent Beck
+  type: person
+  description: Software engineer and author who influences my thinking on design, testing, and engineering practice

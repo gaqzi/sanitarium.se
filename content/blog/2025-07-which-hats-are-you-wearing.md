@@ -5,11 +5,9 @@ lastmod: '2025-07-12T15:06:00+08:00'
 title: Which hat are you wearing?
 subtitle: ...you wouldn't wear a beanie to the beach
 tags:
-  - production
-  - incidents
-  - thinking
-  - roles
-  - leadership
+  - thinking-out-loud
+  - which-role
+  - kent-beck
 ---
 
 I was in an incident review recently where one of the problems was a human going too fast. This process is very manual, repetitive, and boring, and it rarely fails, so we skip some steps. That mostly works (see [Why Do Things Go right?](https://safetydifferently.com/why-do-things-go-right/)), except when it doesn't. Ripe for occasional issues and likely in need of automation.

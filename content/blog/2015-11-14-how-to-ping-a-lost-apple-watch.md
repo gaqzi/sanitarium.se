@@ -9,9 +9,7 @@ subtitle: How I ended up being a sonar bear
 categories:
 - blog
 tags:
-- how to
-- inconveniences
-- apple watch
+- how-to
 
 ---
 

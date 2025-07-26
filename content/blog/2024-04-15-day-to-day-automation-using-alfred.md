@@ -10,9 +10,10 @@ slug: day-to-day-automation-using-alfred
 categories:
   - blog
 tags:
-  - toil
   - automation
   - alfredapp
+  - productivity
+  - macos
 
 ---
 

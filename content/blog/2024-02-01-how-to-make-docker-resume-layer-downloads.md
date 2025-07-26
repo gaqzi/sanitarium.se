@@ -10,8 +10,6 @@ categories:
 - blog
 tags:
 - docker
-- containers
-- devlog
 - how-to
 
 ---

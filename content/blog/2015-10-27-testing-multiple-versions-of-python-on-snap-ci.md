@@ -9,10 +9,8 @@ subtitle: Why just play with one snake?
 categories:
 - blog
 tags:
-- programming
 - python
-- gocd-cli
-- snap-ci
+- ci
 
 ---
 

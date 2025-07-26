@@ -9,9 +9,8 @@ subtitle: floating along in your sidebar
 categories:
 - blog
 tags:
-- css
-- roam research
-- workflow
+- roam-research
+- how-to
 
 ---
 

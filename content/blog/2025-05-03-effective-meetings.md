@@ -10,11 +10,10 @@ slug: effective-meetings
 categories:
   - blog
 tags:
+  - thinking-out-loud
   - meetings
-  - project-planning
-  - planning
   - agile
-  - facilitation
+  - which-role
 
 ---
 
