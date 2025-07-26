@@ -35,6 +35,39 @@ function installAsdfPlugins() {
   done
 }
 
+function installUv() {
+  if which -s uv ; then
+    return
+  fi
+
+  echo "uv not installed, will try to install with homebrew"
+  if ! brew install uv; then
+    echo "Failed to install uv" >&2
+    exit 1
+  fi
+}
+
+function installPreCommitHook() {
+  local hook_path=".git/hooks/pre-commit"
+  
+  if [ -f "$hook_path" ]; then
+    echo "Pre-commit hook already exists, skipping installation"
+    return
+  fi
+
+  echo "Installing pre-commit hook to run linting checks"
+  
+  cat > "$hook_path" << 'EOF'
+#!/bin/bash
+# Pre-commit hook to run linting checks
+
+exec script/lint
+EOF
+
+  chmod +x "$hook_path"
+  echo "Pre-commit hook installed successfully"
+}
+
 ## Check that homebrew is installed
 if ! which -s brew ; then
   echo "Homebrew not installed, please install it and then run again" >&2
@@ -47,3 +80,11 @@ echo "Install tools at the correct version"
 installAsdf &&
   installAsdfPlugins &&
   asdf install
+
+## Install uv and sync project dependencies
+echo "Install uv and sync project dependencies"
+installUv &&
+  uv sync --group dev
+
+## Install pre-commit hook
+installPreCommitHook

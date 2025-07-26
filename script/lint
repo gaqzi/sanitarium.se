@@ -1,0 +1,60 @@
+#!/bin/bash
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+function log_error() {
+    echo -e "${RED}[ERROR][lint]${NC} $1"
+}
+
+function validate_tags_schema() {
+    if ! uv run check-jsonschema --schemafile schemas/tags-schema.yaml data/tags.yaml >/dev/null 2>&1; then
+        log_error "data/tags.yaml does not conform to schema"
+        return 1
+    fi
+}
+
+function validate_all_tags_exist() {
+    # Get all tags from markdown files
+    local used_tags_file=$(mktemp)
+    python script/all-tags.py 2>/dev/null | grep -E '^- [^:]+:' | sed 's/^- \([^:]*\):.*/\1/' | sort > "$used_tags_file"
+    
+    # Get all defined tags from data/tags.yaml
+    local defined_tags_file=$(mktemp)
+    grep -E '^[a-z0-9-]+:$' data/tags.yaml | sed 's/:$//' | sort > "$defined_tags_file"
+    
+    # Find tags that are used but not defined
+    local missing_tags_file=$(mktemp)
+    comm -23 "$used_tags_file" "$defined_tags_file" > "$missing_tags_file"
+    
+    local missing_count=$(wc -l < "$missing_tags_file")
+    
+    if [ "$missing_count" -gt 0 ]; then
+        log_error "Found $missing_count tags used in content but not defined in data/tags.yaml:"
+        while IFS= read -r tag; do
+            log_error "  - $tag"
+        done < "$missing_tags_file"
+        
+        log_error ""
+        log_error "Please add these tags to data/tags.yaml with appropriate metadata:"
+        log_error "  type: format|concept|programming-language|tool|person"
+        log_error "  description: Brief explanation of when and why to use this tag"
+        log_error "  display: Optional display name (defaults to tag name)"
+        
+        rm -f "$used_tags_file" "$defined_tags_file" "$missing_tags_file"
+        return 1
+    fi
+    
+    # Clean up temp files
+    rm -f "$used_tags_file" "$defined_tags_file" "$missing_tags_file"
+}
+
+function main() {
+    validate_tags_schema
+    validate_all_tags_exist
+}
+
+main "$@"
