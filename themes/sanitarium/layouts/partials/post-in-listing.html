@@ -14,4 +14,5 @@
            aria-label="Continue reading {{ .Title }}">[… more]</a>
     {{ end }}
     </div>
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 </article>

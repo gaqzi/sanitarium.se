@@ -38,6 +38,11 @@
     --quote-mark-color-light: #ccc;
     --quote-mark-opacity: 0.8;
 
+    /* Meta information styling */
+    --text-meta-opacity: 0.8;
+    --text-meta-color-dark: #ccc;
+    --text-meta-color-light: #666;
+
     /* Border variables */
     --border-color-light: white;
 
@@ -54,6 +59,7 @@
     --code-inline-bg: var(--code-inline-bg-dark);
     --code-inline-fg: var(--code-inline-fg-dark);
     --code-inline-border: var(--code-inline-border-dark);
+    --text-meta-color: var(--text-meta-color-dark);
 
     /* Computed variables for specific styles */
     --quote-mark-color: var(--quote-mark-color-dark);
@@ -94,6 +100,7 @@
         --code-inline-bg: var(--code-inline-bg-light);
         --code-inline-fg: var(--code-inline-fg-light);
         --code-inline-border: var(--code-inline-border-light);
+        --text-meta-color: var(--text-meta-color-light);
 
         /* Computed variables for light mode */
         --quote-mark-color: var(--quote-mark-color-light);
@@ -245,29 +252,33 @@ body:has(main article.banner) {
     padding-top: 15%;
 }
 
+/** Tags **/
 .post-tags {
-    margin-top: var(--space-md);
-    margin-bottom: var(--space-md);
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-sm);
+    margin-top: var(--space-sm);
 
-    & ul {
+    ul {
         list-style: none;
         padding: 0;
         margin: 0;
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        line-height: 1.0;
     }
 
-    & li {
+    li {
         margin: 0;
     }
+}
 
-    & li a {
-        color: var(--code-inline-fg) !important;
+/* Context: Full article page */
+.single .post-tags {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+    gap: var(--space-sm);
+
+    a {
+        color: var(--text-meta-color) !important;
+        opacity: var(--text-meta-opacity);
         text-decoration: none !important;
         font-size: 0.85em;
         font-weight: 500;
@@ -284,6 +295,23 @@ body:has(main article.banner) {
         }
     }
 }
+
+/* Context: Article listing */
+.article-list .post-tags {
+    font-size: smaller;
+    opacity: var(--text-meta-opacity);
+
+    a {
+        color: var(--text-meta-color);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+/** /Tags **/
 
 /* Article listing styles */
 .article-list {
@@ -647,6 +675,7 @@ a:has(hgroup){
 
 .meta {
     color: var(--text-meta-color);
+    opacity: var(--text-meta-opacity);
     display: flex;
     align-items: center;
     gap: var(--space-sm);
@@ -664,7 +693,7 @@ a:has(hgroup){
 
 .author {
     font-weight: 600;
-    color: CanvasText !important;
+    color: var(--text-meta-color) !important;
     text-decoration: none !important;
     font-style: normal;
 
