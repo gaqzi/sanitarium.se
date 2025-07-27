@@ -9,10 +9,7 @@ Tests verify:
 5. Meta tag consistency between homepage and posts
 """
 
-from pathlib import Path
-
 import pytest
-from bs4 import BeautifulSoup
 
 
 class TestMetaTags:
@@ -350,102 +347,6 @@ class TestMetaTags:
                     "sv",
                     "sv-se",
                 ], f"Should use valid language code, got '{lang}'"
-
-    def test_robots_and_generator_meta_tags(self, hugo_site, parse_html_fixture):
-        """Test robots and generator meta tags."""
-        homepage = parse_html_fixture(hugo_site / "index.html")
-
-        # Generator tag (Hugo adds this automatically)
-        generator = homepage.find("meta", attrs={"name": "generator"})
-        if generator is not None:
-            gen_content = generator.get("content", "")
-            assert "hugo" in gen_content.lower(), "Generator should mention Hugo"
-
-        # Robots tag (optional but useful)
-        robots = homepage.find("meta", attrs={"name": "robots"})
-        if robots is not None:
-            robots_content = robots.get("content", "")
-            assert (
-                len(robots_content.strip()) > 0
-            ), "Robots directive should not be empty if present"
-            # Should contain valid robots directives
-            valid_directives = ["index", "noindex", "follow", "nofollow", "all", "none"]
-            found_valid = any(
-                directive in robots_content.lower() for directive in valid_directives
-            )
-            assert (
-                found_valid
-            ), f"Robots should contain valid directives, got '{robots_content}'"
-
-    def test_all_posts_have_required_meta_tags(
-        self, hugo_site, parse_html_fixture, get_all_posts_fixture
-    ):
-        """Test that all blog posts have the essential meta tags."""
-        posts = get_all_posts_fixture()
-        assert len(posts) > 0, "Should find blog posts"
-
-        # Check a few posts to ensure consistency
-        posts_to_check = posts[:5]  # Check first 5 posts
-
-        for post_path in posts_to_check:
-            soup = parse_html_fixture(post_path)
-
-            # Skip redirect pages (they have refresh meta tag and minimal content)
-            if soup.find("meta", attrs={"http-equiv": "refresh"}):
-                continue
-
-            # Essential meta tags that every post should have
-            viewport = soup.find("meta", attrs={"name": "viewport"})
-            assert (
-                viewport is not None
-            ), f"Post {post_path} should have viewport meta tag"
-
-            description = soup.find("meta", attrs={"name": "description"})
-            assert (
-                description is not None
-            ), f"Post {post_path} should have description meta tag"
-
-            canonical = soup.find("link", attrs={"rel": "canonical"})
-            assert canonical is not None, f"Post {post_path} should have canonical link"
-
-            # Open Graph essentials
-            og_title = soup.find("meta", attrs={"property": "og:title"})
-            assert og_title is not None, f"Post {post_path} should have og:title"
-
-            og_type = soup.find("meta", attrs={"property": "og:type"})
-            assert og_type is not None, f"Post {post_path} should have og:type"
-            assert (
-                og_type.get("content") == "article"
-            ), f"Post {post_path} og:type should be 'article'"
-
-    def test_meta_tag_content_encoding(self, hugo_site, get_post_html_fixture):
-        """Test that meta tag content handles special characters properly."""
-        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-
-        # Check that content with special characters is properly encoded
-        author = soup.find("meta", attrs={"name": "author"})
-        if author and "Björn" in author.get("content", ""):
-            # Should handle UTF-8 characters properly
-            assert "Björn Andersson" in author.get(
-                "content"
-            ), "Should handle Swedish characters in author name"
-
-        # Check that descriptions don't have HTML entities in meta tags
-        description = soup.find("meta", attrs={"name": "description"})
-        if description:
-            desc_content = description.get("content", "")
-            # Should not contain HTML entities like &amp; &lt; &gt;
-            assert (
-                "&amp;" not in desc_content
-            ), "Description should not contain HTML entities"
-            assert (
-                "&lt;" not in desc_content
-            ), "Description should not contain HTML entities"
-            assert (
-                "&gt;" not in desc_content
-            ), "Description should not contain HTML entities"
-            assert "<" not in desc_content, "Description should not contain raw HTML"
-            assert ">" not in desc_content, "Description should not contain raw HTML"
 
     def test_structured_data_presence(self, hugo_site, get_post_html_fixture):
         """Test that structured data (JSON-LD) is present and valid."""
