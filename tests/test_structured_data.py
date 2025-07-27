@@ -20,56 +20,99 @@ from bs4 import BeautifulSoup
 class TestStructuredData:
     """Test suite for JSON-LD structured data functionality."""
 
-    def test_homepage_website_schema(self, hugo_site, parse_html_fixture):
-        """Test that homepage has valid WebSite schema with required fields."""
-        homepage = parse_html_fixture(hugo_site / "index.html")
+    def _extract_json_ld_scripts(self, soup):
+        """Extract and validate JSON-LD script tags from soup."""
+        json_ld_scripts = soup.find_all("script", attrs={"type": "application/ld+json"})
+        assert len(json_ld_scripts) > 0, "Page should have JSON-LD structured data"
+        return json_ld_scripts
 
-        # Find JSON-LD script tags
-        json_ld_scripts = homepage.find_all(
-            "script", attrs={"type": "application/ld+json"}
-        )
-        assert len(json_ld_scripts) > 0, "Homepage should have JSON-LD structured data"
+    def _get_schema_by_type(self, soup, schema_type):
+        """Get schema of specific @type from page, with JSON validation."""
+        json_ld_scripts = self._extract_json_ld_scripts(soup)
 
-        # Parse and validate JSON structure
-        website_schema = None
         for script in json_ld_scripts:
             if script.string:
                 try:
                     data = json.loads(script.string.strip())
-                    if data.get("@type") == "WebSite":
-                        website_schema = data
-                        break
+                    if data.get("@type") == schema_type:
+                        return data
                 except json.JSONDecodeError as e:
                     pytest.fail(f"Invalid JSON-LD structure: {e}")
 
-        assert website_schema is not None, "Homepage should have WebSite schema"
+        return None
 
-        # Validate required schema.org fields
+    def _validate_schema_context(self, schema):
+        """Validate schema uses correct schema.org context."""
         assert (
-            website_schema.get("@context") == "https://schema.org"
+            schema.get("@context") == "https://schema.org"
         ), "Should use schema.org context"
-        assert website_schema.get("@type") == "WebSite", "Should have WebSite type"
 
-        # Validate required WebSite properties
-        assert "url" in website_schema, "WebSite should have url property"
-        assert website_schema["url"].startswith("http"), "URL should be absolute"
-
-        assert "name" in website_schema, "WebSite should have name property"
-        assert len(website_schema["name"].strip()) > 0, "Name should not be empty"
-
-        assert (
-            "description" in website_schema
-        ), "WebSite should have description property"
-        assert (
-            len(website_schema["description"].strip()) > 0
-        ), "Description should not be empty"
-
-        # Validate author information
-        assert "author" in website_schema, "WebSite should have author property"
-        author = website_schema["author"]
+    def _validate_person_author(self, author):
+        """Validate Person schema structure for author."""
         assert author.get("@type") == "Person", "Author should be a Person"
         assert "name" in author, "Author should have name"
         assert len(author["name"].strip()) > 0, "Author name should not be empty"
+
+    def _validate_absolute_url(self, url, field_name="URL"):
+        """Validate URL is absolute (starts with http)."""
+        assert url.startswith("http"), f"{field_name} should be absolute"
+
+    def _validate_iso_date(self, date_string, field_name):
+        """Validate date string is valid ISO 8601 format."""
+        try:
+            return datetime.fromisoformat(date_string.replace("Z", "+00:00"))
+        except ValueError:
+            pytest.fail(f"{field_name} should be valid ISO 8601 format: {date_string}")
+
+    def _get_and_validate_schema(self, soup, schema_type):
+        """Get schema and validate basic structure (context and type)."""
+        schema = self._get_schema_by_type(soup, schema_type)
+        assert schema is not None, f"Page should have {schema_type} schema"
+
+        self._validate_schema_context(schema)
+        assert schema.get("@type") == schema_type, f"Should have {schema_type} type"
+
+        return schema
+
+    def _validate_content_metadata(self, schema):
+        """Validate common content metadata (url, name/headline, description)."""
+        assert "url" in schema, "Schema should have url property"
+        self._validate_absolute_url(schema["url"])
+
+        # Handle both 'name' (WebSite) and 'headline' (BlogPosting)
+        title_field = "name" if "name" in schema else "headline"
+        assert title_field in schema, f"Schema should have {title_field} property"
+        assert (
+            len(schema[title_field].strip()) > 0
+        ), f"{title_field.title()} should not be empty"
+
+        assert "description" in schema, "Schema should have description property"
+        assert len(schema["description"].strip()) > 0, "Description should not be empty"
+
+    def _validate_author_structure(self, schema):
+        """Validate author structure, handling both single and multiple authors."""
+        assert "author" in schema, "Schema should have author property"
+
+        authors = schema["author"]
+        if isinstance(authors, list):
+            assert len(authors) > 0, "Should have at least one author"
+            for author in authors:
+                self._validate_person_author(author)
+        else:
+            self._validate_person_author(authors)
+
+    def _get_blog_posting_schema(self, get_post_html_fixture):
+        """Get BlogPosting schema from the test post."""
+        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
+        return self._get_and_validate_schema(soup, "BlogPosting")
+
+    def test_homepage_website_schema(self, hugo_site, parse_html_fixture):
+        """Test that homepage has valid WebSite schema with required fields."""
+        homepage = parse_html_fixture(hugo_site / "index.html")
+        website_schema = self._get_and_validate_schema(homepage, "WebSite")
+
+        self._validate_content_metadata(website_schema)
+        self._validate_author_structure(website_schema)
 
         # Validate potential action (search)
         if "potentialAction" in website_schema:
@@ -85,91 +128,27 @@ class TestStructuredData:
     ):
         """Test that individual posts have valid BlogPosting schema with required fields."""
         soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
+        blog_posting_schema = self._get_and_validate_schema(soup, "BlogPosting")
 
-        # Find JSON-LD script tags
-        json_ld_scripts = soup.find_all("script", attrs={"type": "application/ld+json"})
-        assert len(json_ld_scripts) > 0, "Post should have JSON-LD structured data"
+        self._validate_content_metadata(blog_posting_schema)
+        self._validate_author_structure(blog_posting_schema)
 
-        # Parse and validate JSON structure
-        blog_posting_schema = None
-        for script in json_ld_scripts:
-            if script.string:
-                try:
-                    data = json.loads(script.string.strip())
-                    if data.get("@type") == "BlogPosting":
-                        blog_posting_schema = data
-                        break
-                except json.JSONDecodeError as e:
-                    pytest.fail(f"Invalid JSON-LD structure: {e}")
-
-        assert blog_posting_schema is not None, "Post should have BlogPosting schema"
-
-        # Validate required schema.org fields
-        assert (
-            blog_posting_schema.get("@context") == "https://schema.org"
-        ), "Should use schema.org context"
-        assert (
-            blog_posting_schema.get("@type") == "BlogPosting"
-        ), "Should have BlogPosting type"
-
-        # Validate required BlogPosting properties
-        assert "headline" in blog_posting_schema, "BlogPosting should have headline"
+        # Validate post-specific content
         headline = blog_posting_schema["headline"]
-        assert len(headline.strip()) > 0, "Headline should not be empty"
         assert "hat" in headline.lower(), "Headline should relate to post content"
 
-        assert "author" in blog_posting_schema, "BlogPosting should have author"
-        authors = blog_posting_schema["author"]
-        assert isinstance(authors, list), "Authors should be a list"
-        assert len(authors) > 0, "Should have at least one author"
-
-        # Validate first author
-        author = authors[0]
-        assert author.get("@type") == "Person", "Author should be a Person"
-        assert "name" in author, "Author should have name"
-        assert len(author["name"].strip()) > 0, "Author name should not be empty"
-
-        assert (
-            "datePublished" in blog_posting_schema
-        ), "BlogPosting should have datePublished"
-        date_published = blog_posting_schema["datePublished"]
-        # Validate ISO 8601 date format
-        try:
-            datetime.fromisoformat(date_published.replace("Z", "+00:00"))
-        except ValueError:
-            pytest.fail(
-                f"datePublished should be valid ISO 8601 format: {date_published}"
-            )
-
-        # Validate other important properties
-        assert "url" in blog_posting_schema, "BlogPosting should have url"
-        assert blog_posting_schema["url"].startswith("http"), "URL should be absolute"
         assert (
             "which-hat-are-you-wearing" in blog_posting_schema["url"]
         ), "URL should include post slug"
 
         assert (
-            "description" in blog_posting_schema
-        ), "BlogPosting should have description"
-        assert (
-            len(blog_posting_schema["description"].strip()) > 0
-        ), "Description should not be empty"
+            "datePublished" in blog_posting_schema
+        ), "BlogPosting should have datePublished"
+        self._validate_iso_date(blog_posting_schema["datePublished"], "datePublished")
 
     def test_blog_posting_publisher_information(self, hugo_site, get_post_html_fixture):
         """Test that BlogPosting schema includes proper publisher information."""
-        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-
-        # Get BlogPosting schema
-        json_ld_scripts = soup.find_all("script", attrs={"type": "application/ld+json"})
-        blog_posting_schema = None
-        for script in json_ld_scripts:
-            if script.string:
-                data = json.loads(script.string.strip())
-                if data.get("@type") == "BlogPosting":
-                    blog_posting_schema = data
-                    break
-
-        assert blog_posting_schema is not None, "Should have BlogPosting schema"
+        blog_posting_schema = self._get_blog_posting_schema(get_post_html_fixture)
 
         # Validate publisher information
         assert "publisher" in blog_posting_schema, "BlogPosting should have publisher"
@@ -187,23 +166,11 @@ class TestStructuredData:
                 logo.get("@type") == "ImageObject"
             ), "Publisher logo should be ImageObject"
             assert "url" in logo, "Logo should have url"
-            assert logo["url"].startswith("http"), "Logo URL should be absolute"
+            self._validate_absolute_url(logo["url"], "Logo URL")
 
     def test_blog_posting_main_entity_of_page(self, hugo_site, get_post_html_fixture):
         """Test that BlogPosting schema includes mainEntityOfPage property."""
-        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-
-        # Get BlogPosting schema
-        json_ld_scripts = soup.find_all("script", attrs={"type": "application/ld+json"})
-        blog_posting_schema = None
-        for script in json_ld_scripts:
-            if script.string:
-                data = json.loads(script.string.strip())
-                if data.get("@type") == "BlogPosting":
-                    blog_posting_schema = data
-                    break
-
-        assert blog_posting_schema is not None, "Should have BlogPosting schema"
+        blog_posting_schema = self._get_blog_posting_schema(get_post_html_fixture)
 
         # Validate mainEntityOfPage
         assert (
@@ -214,64 +181,34 @@ class TestStructuredData:
             main_entity.get("@type") == "WebPage"
         ), "mainEntityOfPage should be WebPage"
         assert "@id" in main_entity, "WebPage should have @id"
-        assert main_entity["@id"].startswith(
-            "http"
-        ), "WebPage @id should be absolute URL"
+        self._validate_absolute_url(main_entity["@id"], "WebPage @id")
 
     def test_blog_posting_date_fields(self, hugo_site, get_post_html_fixture):
         """Test that BlogPosting schema includes proper date fields."""
-        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-
-        # Get BlogPosting schema
-        json_ld_scripts = soup.find_all("script", attrs={"type": "application/ld+json"})
-        blog_posting_schema = None
-        for script in json_ld_scripts:
-            if script.string:
-                data = json.loads(script.string.strip())
-                if data.get("@type") == "BlogPosting":
-                    blog_posting_schema = data
-                    break
-
-        assert blog_posting_schema is not None, "Should have BlogPosting schema"
+        blog_posting_schema = self._get_blog_posting_schema(get_post_html_fixture)
 
         # Validate datePublished (required)
         assert (
             "datePublished" in blog_posting_schema
         ), "BlogPosting should have datePublished"
-        date_published = blog_posting_schema["datePublished"]
-        try:
-            pub_date = datetime.fromisoformat(date_published.replace("Z", "+00:00"))
-        except ValueError:
-            pytest.fail(f"datePublished should be valid ISO 8601: {date_published}")
+        pub_date = self._validate_iso_date(
+            blog_posting_schema["datePublished"], "datePublished"
+        )
 
         # Validate dateModified (should be present)
         assert (
             "dateModified" in blog_posting_schema
         ), "BlogPosting should have dateModified"
-        date_modified = blog_posting_schema["dateModified"]
-        try:
-            mod_date = datetime.fromisoformat(date_modified.replace("Z", "+00:00"))
-        except ValueError:
-            pytest.fail(f"dateModified should be valid ISO 8601: {date_modified}")
+        mod_date = self._validate_iso_date(
+            blog_posting_schema["dateModified"], "dateModified"
+        )
 
         # dateModified should be >= datePublished
         assert mod_date >= pub_date, "dateModified should be >= datePublished"
 
     def test_blog_posting_word_count(self, hugo_site, get_post_html_fixture):
         """Test that BlogPosting schema includes wordCount property."""
-        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-
-        # Get BlogPosting schema
-        json_ld_scripts = soup.find_all("script", attrs={"type": "application/ld+json"})
-        blog_posting_schema = None
-        for script in json_ld_scripts:
-            if script.string:
-                data = json.loads(script.string.strip())
-                if data.get("@type") == "BlogPosting":
-                    blog_posting_schema = data
-                    break
-
-        assert blog_posting_schema is not None, "Should have BlogPosting schema"
+        blog_posting_schema = self._get_blog_posting_schema(get_post_html_fixture)
 
         # Validate wordCount
         if "wordCount" in blog_posting_schema:
@@ -290,29 +227,11 @@ class TestStructuredData:
         """Test that all JSON-LD on site has valid JSON syntax."""
         # Test homepage
         homepage = parse_html_fixture(hugo_site / "index.html")
-        json_ld_scripts = homepage.find_all(
-            "script", attrs={"type": "application/ld+json"}
-        )
-
-        for script in json_ld_scripts:
-            if script.string:
-                try:
-                    json.loads(script.string.strip())
-                except json.JSONDecodeError as e:
-                    pytest.fail(f"Homepage JSON-LD syntax error: {e}")
+        self._extract_json_ld_scripts(homepage)  # This validates JSON syntax
 
         # Test individual post
         post_soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-        json_ld_scripts = post_soup.find_all(
-            "script", attrs={"type": "application/ld+json"}
-        )
-
-        for script in json_ld_scripts:
-            if script.string:
-                try:
-                    json.loads(script.string.strip())
-                except json.JSONDecodeError as e:
-                    pytest.fail(f"Post JSON-LD syntax error: {e}")
+        self._extract_json_ld_scripts(post_soup)  # This validates JSON syntax
 
     def test_schema_org_context_consistency(
         self, hugo_site, get_post_html_fixture, parse_html_fixture
@@ -320,124 +239,36 @@ class TestStructuredData:
         """Test that all JSON-LD uses consistent schema.org context."""
         # Test homepage
         homepage = parse_html_fixture(hugo_site / "index.html")
-        json_ld_scripts = homepage.find_all(
-            "script", attrs={"type": "application/ld+json"}
-        )
-
+        json_ld_scripts = self._extract_json_ld_scripts(homepage)
         for script in json_ld_scripts:
             if script.string:
                 data = json.loads(script.string.strip())
-                assert (
-                    data.get("@context") == "https://schema.org"
-                ), "Should use https://schema.org context"
+                self._validate_schema_context(data)
 
         # Test individual post
         post_soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-        json_ld_scripts = post_soup.find_all(
-            "script", attrs={"type": "application/ld+json"}
-        )
-
+        json_ld_scripts = self._extract_json_ld_scripts(post_soup)
         for script in json_ld_scripts:
             if script.string:
                 data = json.loads(script.string.strip())
-                assert (
-                    data.get("@context") == "https://schema.org"
-                ), "Should use https://schema.org context"
+                self._validate_schema_context(data)
 
     def test_blog_posting_image_handling(self, hugo_site, get_post_html_fixture):
         """Test that BlogPosting schema handles image property correctly."""
-        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-
-        # Get BlogPosting schema
-        json_ld_scripts = soup.find_all("script", attrs={"type": "application/ld+json"})
-        blog_posting_schema = None
-        for script in json_ld_scripts:
-            if script.string:
-                data = json.loads(script.string.strip())
-                if data.get("@type") == "BlogPosting":
-                    blog_posting_schema = data
-                    break
-
-        assert blog_posting_schema is not None, "Should have BlogPosting schema"
+        blog_posting_schema = self._get_blog_posting_schema(get_post_html_fixture)
 
         # If image is present, validate it
         if "image" in blog_posting_schema:
             image = blog_posting_schema["image"]
             assert isinstance(image, str), "Image should be a URL string"
-            assert image.startswith("http"), "Image should be absolute URL"
+            self._validate_absolute_url(image, "Image")
 
     def test_multiple_authors_handling(self, hugo_site, get_post_html_fixture):
         """Test that BlogPosting schema handles multiple authors correctly."""
-        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
+        blog_posting_schema = self._get_blog_posting_schema(get_post_html_fixture)
 
-        # Get BlogPosting schema
-        json_ld_scripts = soup.find_all("script", attrs={"type": "application/ld+json"})
-        blog_posting_schema = None
-        for script in json_ld_scripts:
-            if script.string:
-                data = json.loads(script.string.strip())
-                if data.get("@type") == "BlogPosting":
-                    blog_posting_schema = data
-                    break
+        self._validate_author_structure(blog_posting_schema)
 
-        assert blog_posting_schema is not None, "Should have BlogPosting schema"
-
-        # Validate author structure
-        assert "author" in blog_posting_schema, "Should have author property"
+        # Validate authors are in list format (test-specific assertion)
         authors = blog_posting_schema["author"]
         assert isinstance(authors, list), "Authors should be in list format"
-
-        # Validate each author
-        for author in authors:
-            assert author.get("@type") == "Person", "Each author should be a Person"
-            assert "name" in author, "Each author should have name"
-            assert len(author["name"].strip()) > 0, "Author name should not be empty"
-
-    def test_all_posts_have_structured_data(
-        self, hugo_site, parse_html_fixture, get_all_posts_fixture
-    ):
-        """Test that all blog posts have valid structured data."""
-        posts = get_all_posts_fixture()
-        assert len(posts) > 0, "Should find blog posts"
-
-        # Check a few posts to ensure consistency
-        posts_to_check = posts[:3]  # Check first 3 posts
-
-        for post_path in posts_to_check:
-            soup = parse_html_fixture(post_path)
-
-            # Skip redirect pages (they have refresh meta tag and minimal content)
-            if soup.find("meta", attrs={"http-equiv": "refresh"}):
-                continue
-
-            # Should have JSON-LD structured data
-            json_ld_scripts = soup.find_all(
-                "script", attrs={"type": "application/ld+json"}
-            )
-            assert (
-                len(json_ld_scripts) > 0
-            ), f"Post {post_path} should have JSON-LD structured data"
-
-            # Should have at least one BlogPosting schema
-            has_blog_posting = False
-            for script in json_ld_scripts:
-                if script.string:
-                    try:
-                        data = json.loads(script.string.strip())
-                        if data.get("@type") == "BlogPosting":
-                            has_blog_posting = True
-                            # Validate required fields
-                            assert (
-                                "headline" in data
-                            ), f"Post {post_path} should have headline"
-                            assert (
-                                "author" in data
-                            ), f"Post {post_path} should have author"
-                            assert (
-                                "datePublished" in data
-                            ), f"Post {post_path} should have datePublished"
-                            break
-                    except json.JSONDecodeError:
-                        pytest.fail(f"Post {post_path} has invalid JSON-LD")
-
-            assert has_blog_posting, f"Post {post_path} should have BlogPosting schema"
