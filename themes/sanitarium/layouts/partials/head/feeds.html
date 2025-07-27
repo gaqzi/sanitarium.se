@@ -1,5 +1,11 @@
 <!-- RSS -->
-<link rel="alternate" type="application/rss+xml" href="{{ .Site.Params.feed }}" title="{{ .Site.Title }} - All Feed">
+{{- $homePage := $.Site.GetPage "/" -}}
+{{- with $homePage.OutputFormats.Get "RSS" -}}
+<link rel="alternate" type="application/rss+xml"
+      href="{{ .Permalink }}"
+      title="{{ $.Site.Title }} - All Feed">
+{{ end }}
+
 {{ range .Site.Params.mainSections -}}
     {{ $section := $.Site.GetPage . -}}
     {{ with $section.OutputFormats.Get "RSS" -}}
@@ -10,6 +16,6 @@
 {{- end -}}
 
 {{- if and (eq .Kind "term") (eq .Type "tags") -}}
-{{- $tagFeed := printf "%sfeed.xml" .RelPermalink }}
+{{- $tagFeed := printf "%sfeed.xml" .Permalink }}
 <link rel="alternate" type="application/rss+xml" href="{{ $tagFeed }}" title="{{ .Site.Title }} — Tag {{ .Title }} Feed">
 {{- end -}}
