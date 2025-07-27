@@ -10,6 +10,7 @@ slug: day-to-day-automation-using-alfred
 categories:
   - blog
 tags:
+  - how-to
   - automation
   - alfredapp
   - productivity
