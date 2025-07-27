@@ -2,190 +2,228 @@
 Test title and subtitle rendering across the Hugo site.
 
 Tests verify:
-1. The title-with-subtitle partial is used everywhere
-2. Title tags combine title + subtitle correctly
-3. Subtitle renders as <p class="subtitle"> in post headers
-4. Edge cases (no subtitle, punctuation handling)
-5. Specific post rendering
+1. Title tags combine title + subtitle correctly
+2. Subtitle renders as <p class="subtitle"> in post headers
+3. Edge cases (no subtitle, punctuation handling)
+4. Homepage and list page titles
+5. Open Graph and article structure consistency
 """
 
-from pathlib import Path
+import typing
+from dataclasses import dataclass
 
 import pytest
 from bs4 import BeautifulSoup
 
 
+@dataclass
+class TitleSubtitleTestCase:
+    """Test case definition for title/subtitle combinations."""
+
+    slug: str
+    title: str
+    subtitle: typing.Optional[str] = None
+    has_punctuation: bool = False
+
+    @property
+    def expected_title_tag(self) -> str:
+        """Generate expected title tag content."""
+        if self.subtitle is None:
+            return f"{self.title} | the padded cell"
+
+        if self.has_punctuation:
+            return f"{self.title} {self.subtitle} | the padded cell"
+        else:
+            return f"{self.title} — {self.subtitle} | the padded cell"
+
+
+def assert_title_tag(soup: BeautifulSoup, expected_title: str) -> None:
+    """Assert that the HTML title tag matches the expected value."""
+    title_tag = soup.find("title")
+    assert title_tag is not None, "Title tag should exist"
+    assert (
+        title_tag.string == expected_title
+    ), f"Title tag should be '{expected_title}' but was '{title_tag.string}'"
+
+
+def assert_subtitle_element(soup: BeautifulSoup, expected_subtitle: str) -> None:
+    """Assert that the subtitle renders as <p class="subtitle"> with expected content."""
+    subtitle_p = soup.find("p", class_="subtitle")
+    assert subtitle_p is not None, "Subtitle should be rendered as <p class='subtitle'>"
+    assert (
+        subtitle_p.string.strip() == expected_subtitle
+    ), f"Subtitle content should be '{expected_subtitle}', but was '{subtitle_p.string.strip()}'"
+
+
+def assert_title_subtitle_combination(
+    soup: BeautifulSoup,
+    title: str,
+    subtitle: typing.Optional[str] = None,
+    has_punctuation: bool = False,
+) -> None:
+    """Assert that title and subtitle are combined correctly in the title tag."""
+    if subtitle is None:
+        # Post without subtitle - should just be title + site name
+        expected_title = f"{title} | the padded cell"
+        assert_title_tag(soup, expected_title)
+
+        # Should not have em dash
+        title_tag = soup.find("title")
+        assert (
+            " — " not in title_tag.string
+        ), "Post without subtitle should not have em dash in title"
+    else:
+        # Post with subtitle
+        if has_punctuation:
+            # Title ends with punctuation - use space only
+            expected_title = f"{title} {subtitle} | the padded cell"
+        else:
+            # Title doesn't end with punctuation - use em dash
+            expected_title = f"{title} — {subtitle} | the padded cell"
+
+        assert_title_tag(soup, expected_title)
+        assert_subtitle_element(soup, subtitle)
+
+
+def assert_og_title(soup: BeautifulSoup, expected_og_title: str) -> None:
+    """Assert that Open Graph title meta tag matches expected value."""
+    og_title = soup.find("meta", attrs={"property": "og:title"})
+    assert og_title is not None, "Should have Open Graph title"
+    og_content = og_title.get("content")
+    assert (
+        expected_og_title in og_content
+    ), f"OG title should contain '{expected_og_title}', but was '{og_content}'"
+
+
+def assert_article_structure(soup: BeautifulSoup, expected_h1_text: str) -> None:
+    """Assert that article has proper header structure with h1 and optional subtitle."""
+    # Find the article or main content area
+    article = soup.find("article") or soup.find("main")
+    assert article is not None, "Should have article or main element"
+
+    # Look for h1 within article
+    h1 = article.find("h1")
+    assert h1 is not None, "Article should have an h1"
+    assert expected_h1_text in h1.get_text(), f"H1 should contain '{expected_h1_text}'"
+
+
+def assert_no_em_dash_in_title(soup: BeautifulSoup) -> None:
+    """Assert that the title tag does not contain an em dash."""
+    title_tag = soup.find("title")
+    assert title_tag is not None, "Title tag should exist"
+    assert " — " not in title_tag.string, "Title should not contain em dash"
+
+
+def assert_em_dash_in_title(soup: BeautifulSoup) -> None:
+    """Assert that the title tag contains an em dash (for title-subtitle separation)."""
+    title_tag = soup.find("title")
+    assert title_tag is not None, "Title tag should exist"
+    assert (
+        " — " in title_tag.string
+    ), "Title should contain em dash for title-subtitle separation"
+
+
+# Test data for parametrized tests
+TITLE_SUBTITLE_TEST_CASES = [
+    TitleSubtitleTestCase(
+        slug="blog/2025/07/12/which-hat-are-you-wearing",
+        title="Which hat are you wearing?",
+        subtitle="...you wouldn't wear a beanie to the beach",
+        has_punctuation=True,
+    ),
+    TitleSubtitleTestCase(
+        slug="blog/2025/07/24/your-name-is-still-on-it",
+        title="Your name is still on it",
+        subtitle="learning to ride the AI motorcycle without crashing",
+        has_punctuation=False,
+    ),
+    TitleSubtitleTestCase(
+        slug="blog/2010/12/04/howto-satta-upp-en-wikileaksspegling",
+        title="How to: Sätta upp en Wikileaksspegling",
+        subtitle=None,  # Post without subtitle
+    ),
+]
+
+LIST_PAGE_TEST_CASES = [
+    ("tags/index.html", "Tags | the padded cell"),
+    ("authors/index.html", "Authors | the padded cell"),
+    ("blog/index.html", "Posts | the padded cell"),
+]
+
+
 class TestTitleSubtitle:
     """Test suite for title and subtitle functionality."""
 
-    def test_specific_post_title_tag(self, hugo_site, get_post_html_fixture):
-        """Test that the specific post combines title and subtitle correctly in title tag."""
-        # Test the specific post mentioned in requirements
-        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
+    @pytest.mark.parametrize(
+        "test_case", TITLE_SUBTITLE_TEST_CASES, ids=lambda tc: tc.slug.split("/")[-1]
+    )
+    def test_title_subtitle_combinations(
+        self, hugo_site, get_post_html_fixture, test_case
+    ):
+        """Test representative posts with different title/subtitle patterns."""
+        soup = get_post_html_fixture(test_case.slug)
+        assert_title_subtitle_combination(
+            soup,
+            test_case.title,
+            test_case.subtitle,
+            test_case.has_punctuation,
+        )
 
-        title_tag = soup.find("title")
-        assert title_tag is not None, "Title tag should exist"
+    def test_em_dash_formatting(self, hugo_site, get_post_html_fixture):
+        """Test that posts without ending punctuation use em-dash between title and subtitle."""
+        soup = get_post_html_fixture(
+            "blog/2025/07/07/working-with-gos-test-cache-on-ci"
+        )
 
-        expected_title = "Which hat are you wearing? ...you wouldn't wear a beanie to the beach | the padded cell"
-        assert (
-            title_tag.string == expected_title
-        ), f"Title tag should be '{expected_title}' but was '{title_tag.string}'"
-
-    def test_post_with_subtitle_title_tag(self, hugo_site, get_post_html_fixture):
-        """Test posts with subtitles have combined title tags."""
-        # Test various posts with subtitles
-        test_cases = [
-            {
-                "slug": "blog/2025/07/12/which-hat-are-you-wearing",
-                "expected": "Which hat are you wearing? ...you wouldn't wear a beanie to the beach | the padded cell",
-            },
-            {
-                "slug": "blog/2025/07/24/your-name-is-still-on-it",
-                "expected_title": "Your name is still on it",
-                "has_subtitle": False,  # We'll check if this post has a subtitle
-            },
-        ]
-
-        for test_case in test_cases:
-            soup = get_post_html_fixture(test_case["slug"])
-            title_tag = soup.find("title")
-
-            if "expected" in test_case:
-                assert title_tag.string == test_case["expected"]
-            else:
-                # Just verify title tag exists
-                assert title_tag is not None
-
-    def test_subtitle_renders_as_paragraph(self, hugo_site, get_post_html_fixture):
-        """Test that subtitle renders as <p class="subtitle"> in post headers."""
-        soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-
-        # Find the subtitle paragraph
-        subtitle_p = soup.find("p", class_="subtitle")
-        assert (
-            subtitle_p is not None
-        ), "Subtitle should be rendered as <p class='subtitle'>"
-        assert (
-            subtitle_p.string.strip() == "...you wouldn't wear a beanie to the beach"
-        ), f"Subtitle content should match, but was '{subtitle_p.string.strip()}'"
+        # This post should have em-dash since title doesn't end with punctuation
+        expected_title = "Working with Go's test cache on CI — be fast by avoiding work, while doing the important work | the padded cell"
+        assert_title_tag(soup, expected_title)
+        assert_em_dash_in_title(soup)
 
     def test_punctuation_handling(self, hugo_site, get_post_html_fixture):
         """Test that punctuation is handled correctly between title and subtitle."""
-        # Test the specific post which has a question mark
+        # Test post with question mark - should have space but no em dash
         soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
         title_tag = soup.find("title")
 
         # Should have a space but no em dash because title ends with punctuation
         assert "Which hat are you wearing? ...you" in title_tag.string
-        assert (
-            " — " not in title_tag.string
-        ), "Should not have em dash when title ends with punctuation"
+        assert_no_em_dash_in_title(soup)
 
     def test_homepage_title(self, hugo_site, parse_html_fixture):
         """Test that homepage uses site title correctly."""
         homepage = parse_html_fixture(hugo_site / "index.html")
-        title_tag = homepage.find("title")
+        assert_title_tag(homepage, "the padded cell")
 
-        assert title_tag is not None, "Homepage should have a title tag"
-        # Homepage should use site title (not post title)
-        assert (
-            title_tag.string == "the padded cell"
-        ), f"Homepage title should be site title, but was '{title_tag.string}'"
-
-    def test_all_posts_have_title_tags(
-        self, hugo_site, parse_html_fixture, get_all_posts_fixture
+    @pytest.mark.parametrize(
+        "page_path,expected_title",
+        LIST_PAGE_TEST_CASES,
+        ids=lambda x: x[0] if isinstance(x, tuple) else x,
+    )
+    def test_list_page_titles(
+        self, hugo_site, parse_html_fixture, page_path, expected_title
     ):
-        """Test that all posts have title tags."""
-        posts = get_all_posts_fixture()
-        assert len(posts) > 0, "Should find blog posts"
-
-        for post_path in posts:
-            soup = parse_html_fixture(post_path)
-            title_tag = soup.find("title")
-            assert title_tag is not None, f"Post {post_path} should have a title tag"
-            assert (
-                title_tag.string and len(title_tag.string.strip()) > 0
-            ), f"Post {post_path} should have non-empty title tag"
-
-    def test_list_pages_have_titles(self, hugo_site, parse_html_fixture):
-        """Test that list pages (tags, authors, etc.) have proper titles."""
-        list_pages = [
-            "tags/index.html",
-            "authors/index.html",
-            "blog/index.html",
-        ]
-
-        for page_path in list_pages:
-            full_path = hugo_site / page_path
-            if full_path.exists():
-                soup = parse_html_fixture(full_path)
-                title_tag = soup.find("title")
-                assert (
-                    title_tag is not None
-                ), f"List page {page_path} should have a title tag"
-
-    def test_post_without_subtitle(
-        self, hugo_site, parse_html_fixture, get_all_posts_fixture
-    ):
-        """Test that posts without subtitles render correctly."""
-        # Find a post without a subtitle by checking multiple posts
-        posts = get_all_posts_fixture()
-        found_post_without_subtitle = False
-
-        for post_path in posts[:10]:  # Check first 10 posts
-            soup = parse_html_fixture(post_path)
-            subtitle_p = soup.find("p", class_="subtitle")
-
-            if subtitle_p is None:
-                # Found a post without subtitle
-                found_post_without_subtitle = True
-                title_tag = soup.find("title")
-                assert (
-                    title_tag is not None
-                ), f"Post without subtitle should still have title tag"
-
-                # Title should not have em dash or ellipsis pattern
-                assert (
-                    " — " not in title_tag.string
-                ), "Post without subtitle should not have em dash in title"
-                break
-
-        # We expect at least one post without subtitle in the blog
-        assert (
-            found_post_without_subtitle
-        ), "Should find at least one post without subtitle"
+        """Test that list pages (tags, authors, etc.) have correct titles."""
+        full_path = hugo_site / page_path
+        if full_path.exists():
+            soup = parse_html_fixture(full_path)
+            assert_title_tag(soup, expected_title)
+        else:
+            pytest.skip(f"List page {page_path} does not exist")
 
     def test_og_title_consistency(self, hugo_site, get_post_html_fixture):
         """Test that Open Graph titles are consistent with page titles."""
         soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
-
-        title_tag = soup.find("title")
-        og_title = soup.find("meta", attrs={"property": "og:title"})
-
-        assert og_title is not None, "Should have Open Graph title"
-        # OG title might be just the post title without subtitle, or the full title
-        og_content = og_title.get("content")
-        assert (
-            "Which hat are you wearing?" in og_content
-        ), f"OG title should contain main title, but was '{og_content}'"
+        assert_og_title(soup, "Which hat are you wearing?")
 
     def test_article_header_structure(self, hugo_site, get_post_html_fixture):
         """Test that article headers have proper structure with title and subtitle."""
         soup = get_post_html_fixture("blog/2025/07/12/which-hat-are-you-wearing")
+        assert_article_structure(soup, "Which hat are you wearing?")
 
-        # Find the article or main content area
+        # Look for subtitle in article header structure
         article = soup.find("article") or soup.find("main")
-        assert article is not None, "Should have article or main element"
-
-        # Look for h1 within article
         h1 = article.find("h1")
-        assert h1 is not None, "Article should have an h1"
-        assert (
-            "Which hat are you wearing?" in h1.get_text()
-        ), "H1 should contain the title"
-
-        # Look for subtitle after h1
-        # It should be a sibling of h1 or within the same header structure
         header = h1.parent
         subtitle_p = header.find("p", class_="subtitle")
         assert subtitle_p is not None, "Should find subtitle paragraph near h1"
