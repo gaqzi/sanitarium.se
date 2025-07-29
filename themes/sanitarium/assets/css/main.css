@@ -383,7 +383,7 @@ code, pre, kbd, samp {
 code.language-plaintext {
     background-color: var(--code-inline-bg);
     color: var(--code-inline-fg);
-    padding: 0.2em 0.4em;
+    padding: 0;
     font-size: .875em;
     border-radius: 3px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
