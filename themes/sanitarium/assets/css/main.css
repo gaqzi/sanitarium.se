@@ -297,19 +297,18 @@ body:has(main article.banner) {
 }
 
 /* Context: Article listing */
-.article-list .post-tags {
-    font-size: smaller;
-    opacity: var(--text-meta-opacity);
 
-    a {
+.article-list {
+    & .day__date {
+        text-align: left;
+        margin: 2rem 0 1.5rem;
+        position: relative;
         color: var(--text-meta-color);
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
+        opacity: var(--text-meta-opacity);
+        font-weight: normal;
     }
 }
+
 
 /** /Tags **/
 
@@ -691,8 +690,9 @@ a:has(hgroup){
     flex-shrink: 0;
 }
 
-.author {
-    font-weight: 600;
+.author,
+.meta a {
+    font-weight: normal;
     color: var(--text-meta-color) !important;
     text-decoration: none !important;
     font-style: normal;

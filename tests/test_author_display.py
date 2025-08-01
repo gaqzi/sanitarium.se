@@ -52,8 +52,8 @@ class TestAuthorDisplay:
             text_author_link is not None
         ), "Should find author name link with 'Björn Andersson'"
         assert (
-            text_author_link.get("href") == "/about"
-        ), f"Author link should go to '/about' but was '{text_author_link.get('href')}'"
+            text_author_link.get("href") == "/about/"
+        ), f"Author link should go to '/about/' but was '{text_author_link.get('href')}'"
 
         urls = [link.get("href") for link in author_links]
         unique_urls = set(urls)
@@ -61,8 +61,8 @@ class TestAuthorDisplay:
             len(unique_urls) == 1
         ), f"All author links should point to same URL, but found: {unique_urls}"
         assert (
-            urls[0] == "/about"
-        ), f"Author links should point to '/about' but pointed to '{urls[0]}'"
+            urls[0] == "/about/"
+        ), f"Author links should point to '/about/' but pointed to '{urls[0]}'"
 
         meta_div = soup.find("div", class_="meta")
         assert meta_div is not None, "Should have meta div"

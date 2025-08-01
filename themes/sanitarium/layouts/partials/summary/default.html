@@ -1,0 +1,22 @@
+<article class="{{ .Section }}">
+    <a href="{{ .Permalink }}">
+        <hgroup>
+            <h1 class="title">{{ .Title }}</h1>
+            {{ with .Params.subtitle }}
+                <p class="subtitle">{{ . }}</p>
+            {{ end }}
+        </hgroup>
+    </a>
+
+    <div class="{{ if .Truncated }}preview{{ end }} post">
+        {{ .Summary }}
+
+        {{ if .Truncated }}
+            <a href="{{ .Permalink }}"
+               class="continue-reading"
+               aria-label="Continue reading {{ .Title }}">[… more]</a>
+        {{ end }}
+    </div>
+
+    {{ partial "summary__meta.html" . }}
+</article>

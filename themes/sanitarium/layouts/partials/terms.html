@@ -3,20 +3,29 @@ For a given taxonomy, renders a list of terms assigned to the page.
 
 @context {page} page The current page.
 @context {string} taxonomy The taxonomy.
+@context {string} style Optional rendering style: "block" (default) or "inline".
 
 @example: {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+@example: {{ partial "terms.html" (dict "taxonomy" "tags" "page" . "style" "inline") }}
 */}}
 
 {{- $page := .page }}
 {{- $taxonomy := .taxonomy }}
+{{- $style := .style | default "block" }}
 
 {{- with $page.GetTerms $taxonomy }}
   {{- $label := (index . 0).Parent.LinkTitle }}
-  <div class="post-tags">
-    <ul>
-      {{- range . }}
-        <li><a href="{{ .RelPermalink }}">#{{ .LinkTitle |lower }}</a></li>
-      {{- end }}
-    </ul>
-  </div>
+  {{- if eq $style "inline" }}
+    {{- range $index, $term := . }}
+      {{- if $index }}, {{ end }}<a href="{{ $term.RelPermalink }}" class="tag-inline">#{{ $term.LinkTitle | lower }}</a>
+    {{- end }}
+  {{- else }}
+    <div class="post-tags">
+      <ul>
+        {{- range . }}
+          <li><a href="{{ .RelPermalink }}">#{{ .LinkTitle |lower }}</a></li>
+        {{- end }}
+      </ul>
+    </div>
+  {{- end }}
 {{- end }}

@@ -1,0 +1,21 @@
+<div class="article-list">
+    {{ $lastDate := "" -}}
+    {{ $openDay := false -}}
+    {{ range .Paginator.Pages }}
+        {{ $currentDate := .Date.Format "2006-01-02" -}}
+        {{ if ne $currentDate $lastDate -}}
+            {{ with $openDay }}</section>{{ end -}}
+            <section class="day">
+                <h1 class="day__date">{{ .Date.Format "02 January, 2006" }}</h1>
+            {{ $openDay = true -}}
+        {{ end -}}
+
+        {{ partial "summary.html" . }}
+    {{ end }}
+
+    {{ range first 3 .Paginator.Pages }}
+        <link rel="prefetch" href="{{ .Permalink }}">
+    {{ end }}
+</div>
+
+{{ template "_internal/pagination.html" . }}

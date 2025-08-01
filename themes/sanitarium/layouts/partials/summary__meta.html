@@ -1,0 +1,9 @@
+<div class="meta">
+    <div class="meta-line">
+            <span class="section">
+                <a href="{{ (site.GetPage (printf "/%s" .Section)).RelPermalink }}">{{ .Section }}</a>
+            </span>
+        • {{ partial "post-meta__time.html" (dict "Page" . "publishedAtFormat" "15:04" "showReadTime" .Truncated "publishedAtLink" true "hideCalendarIcon" true) }}
+        • {{ partial "terms.html" (dict "taxonomy" "tags" "page" . "style" "inline") }}
+    </div>
+</div>

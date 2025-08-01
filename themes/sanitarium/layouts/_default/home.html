@@ -1,12 +1,8 @@
 {{ define "main" }}
   {{ .Content }}
-  <div class="article-list">
-      {{ $pages := where site.RegularPages "Section" "in" .Site.Params.mainSections }}
-      {{ $paginator := .Paginate $pages }}
-      {{ range $paginator.Pages }}
-        {{ partial "post-in-listing.html" . }}
-      {{ end }}
-  </div>
 
-  {{ template "_internal/pagination.html" . }}
+  {{ $pages := where site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+  {{ $_ := .Paginate $pages -}}
+
+  {{ partial "list.html" . -}}
 {{ end }}

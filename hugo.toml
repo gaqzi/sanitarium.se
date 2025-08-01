@@ -59,7 +59,7 @@ enableEmoji = true
 
   # Site settings
   description = "ramblings of a technical nature"
-  mainSections = ["blog"]
+  mainSections = ["blog", "til"]
 
   # Theme appearance
   enableCodeHighlighting = true

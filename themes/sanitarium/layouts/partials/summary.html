@@ -1,0 +1,6 @@
+{{ $partial := printf "summary/%s.html" (.Section | default "default") -}}
+{{ if templates.Exists (printf "partials/%s" $partial) -}}
+    {{ partial $partial . }}
+{{ else -}}
+    {{ partial "summary/default.html" . }}
+{{ end -}}

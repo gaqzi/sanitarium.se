@@ -1,0 +1,31 @@
+<div class="meta">
+    {{ $authors := .Params.authors | default (slice .Site.Params.author) -}}
+    {{ if (gt (len $authors) 0) -}}
+        {{ $firstAuthor := index $authors 0 -}}
+        {{ $authorData := index .Site.Data.authors $firstAuthor -}}
+        {{ if and (isset $authorData "avatar") (fileExists (printf "static%s" $authorData.avatar)) -}}
+            <div class="meta-avatar">
+                <a href="{{ $authorData.customPage | default (printf "/authors/%s/" ($firstAuthor | urlize)) }}"
+                   class="author">
+                    <img src="{{ $authorData.avatar }}" alt="{{ $authorData.displayName }}" class="author-avatar"
+                         width="40" height="40">
+                </a>
+            </div>
+        {{ end -}}
+    {{ end -}}
+    <div class="meta-content">
+        <div class="meta-line">
+            {{- range $i, $author := $authors -}}
+                {{- if $i }} & {{ end -}}
+                {{- $authorData := index $.Site.Data.authors $author -}}
+                <a href="{{ $authorData.customPage | default (printf "/authors/%s/" ($author | urlize)) }}"
+                   class="author">
+                    {{ $authorData.displayName | default $author }}
+                </a>
+            {{ end }}
+        </div>
+        <div class="meta-line">
+            {{ partial "post-meta__time.html" (dict "Page" .) }}
+        </div>
+    </div>
+</div>

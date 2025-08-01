@@ -8,15 +8,5 @@
     {{ end }}
 </header>
 
-<div class="article-list">
-    {{ range .Paginator.Pages }}
-    {{ partial "post-in-listing.html" . }}
-    {{ end }}
-
-    {{ range first 3 .Paginator.Pages }}
-        <link rel="prefetch" href="{{ .Permalink }}">
-    {{ end }}
-</div>
-
-{{ template "_internal/pagination.html" . }}
+{{ partial "list.html" . -}}
 {{ end }}
