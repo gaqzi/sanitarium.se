@@ -8,6 +8,7 @@
             <section class="day">
                 <h1 class="day__date">{{ .Date.Format "02 January, 2006" }}</h1>
             {{ $openDay = true -}}
+            {{ $lastDate = $currentDate -}}
         {{ end -}}
 
         {{ partial "summary.html" . }}
