@@ -21,6 +21,10 @@ thinking-out-loud:
   type: format
   description: Exploratory posts where I work through ideas
 
+announcement:
+  type: format
+  description: Letting y'all know something
+
 # Concept tags
 agile:
   type: concept
