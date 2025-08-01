@@ -54,3 +54,18 @@ class TestBannerImages:
         assert (
             card_type == "summary_large_image"
         ), f"Posts with banner images should use summary_large_image, got: {card_type}"
+
+    def test_til_post_no_banner(self, hugo_site, get_post_html_fixture):
+        soup = get_post_html_fixture("til/2025-08-01-macos-fingerprint-reader-sudo")
+
+        og_image = soup.find("meta", attrs={"property": "og:image"})
+        assert (
+            og_image is None
+        ), "TIL post should not have og:image meta tag when defaultImage is empty"
+
+        twitter_card = soup.find("meta", attrs={"name": "twitter:card"})
+        assert twitter_card is not None, "Should have twitter:card meta tag"
+        card_type = twitter_card.get("content", "")
+        assert (
+            card_type == "summary"
+        ), f"Posts without images should use summary card, got: {card_type}"

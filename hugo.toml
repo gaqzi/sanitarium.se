@@ -53,13 +53,14 @@ enableEmoji = true
   mastodonHandle = "@gaqzi@hachyderm.io"
 
   # SEO settings
-  defaultImage = "/img/site-default-image.jpg"  # Default image for social media when not specified in post
+  defaultImage = ""  # Default image for social media when not specified in post
   twitterAuthor = "gaqzi"  # Twitter handle without @
   favicon = "/favicon.ico"
 
   # Site settings
   description = "ramblings of a technical nature"
   mainSections = ["blog", "til"]
+  bannerSections = ["blog"]
 
   # Theme appearance
   enableCodeHighlighting = true

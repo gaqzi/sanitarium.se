@@ -1,15 +1,19 @@
-{{ $slug := "" }}
-{{ if .File }}
-    {{ $slug = .File.ContentBaseName }}
-{{ else if .Params.slug }}
-    {{ $slug = .Params.slug }}
-{{ else if .Slug }}
-    {{ $slug = .Slug }}
-{{ else }}
-    {{ $slug = path.Base .RelPermalink | strings.TrimSuffix ".html" }}
+{{ $ogImage := "" }}
+
+{{ if in .Site.Params.bannerSections .Section }}
+    {{ $slug := "" }}
+    {{ if .File }}
+        {{ $slug = .File.ContentBaseName }}
+    {{ else if .Params.slug }}
+        {{ $slug = .Params.slug }}
+    {{ else if .Slug }}
+        {{ $slug = .Slug }}
+    {{ else }}
+        {{ $slug = path.Base .RelPermalink | strings.TrimSuffix ".html" }}
+    {{ end }}
+    {{ $defaultBannerPath := printf "/img/banners/%s.png" $slug }}
+    {{ $ogImage = $defaultBannerPath }}
 {{ end }}
-{{ $defaultBannerPath := printf "/img/banners/%s.png" $slug }}
-{{ $ogImage := $defaultBannerPath }}
 
 {{ with .Params.image }}
     {{ if reflect.IsMap . }}
