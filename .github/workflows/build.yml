@@ -12,17 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate banners
-        uses: isbang/compose-action@v2.3.0
-        with:
-          compose-file: |
-            ./docker-compose.yaml
-            ./docker-compose.ci.yaml
-          up-flags: "--abort-on-container-exit --exit-code-from=genbanners"
-          services: |-
-            hugo
-            ws-screenshot
-            genbanners
+#      - name: Generate banners
+#        uses: isbang/compose-action@v2.3.0
+#        with:
+#          compose-file: |
+#            ./docker-compose.yaml
+#            ./docker-compose.once.yaml
+#          up-flags: "--abort-on-container-exit --exit-code-from=genbanners"
+#          services: |-
+#            hugo
+#            ws-screenshot
+#            genbanners
 
       - name: Build the deployment hugo artifact
         uses: docker://hugomods/hugo:0.147.8

@@ -6,4 +6,4 @@ set -e
 script/lint
 
 # Starts the hugo server and then creates all the banners
-exec docker compose -f docker-compose.yaml -f docker-compose.ci.yaml up --abort-on-container-exit --exit-code-from=genbanners
+exec docker compose -f docker-compose.yaml -f docker-compose.once.yaml up --abort-on-container-exit --exit-code-from=genbanners
