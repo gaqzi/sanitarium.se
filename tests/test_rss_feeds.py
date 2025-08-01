@@ -141,3 +141,75 @@ class TestRSSFeeds:
             pytest.fail(f"Feed {feed_path} is not valid XML: {e}")
         except Exception as e:
             pytest.fail(f"Error validating feed {feed_path}: {e}")
+
+    def test_footer_feed_link_on_homepage(self, hugo_site, parse_html_fixture):
+        """Test that footer feed link points to main feed on homepage."""
+        homepage = parse_html_fixture(hugo_site / "index.html")
+
+        footer_feed_link = homepage.select_one("footer .social-link.feed")
+        assert footer_feed_link is not None, "Homepage footer should have feed link"
+
+        expected_href = "https://sanitarium.se/feed.xml"
+        actual_href = footer_feed_link.get("href")
+        assert (
+            actual_href == expected_href
+        ), f"Homepage footer feed should link to {expected_href}, got {actual_href}"
+
+    def test_footer_feed_link_on_tag_page(self, hugo_site, parse_html_fixture):
+        """Test that footer feed link points to tag feed on tag pages."""
+        how_to_tag_page = hugo_site / "tags" / "how-to" / "index.html"
+        if not how_to_tag_page.exists():
+            pytest.skip("How-to tag page not found")
+
+        tag_page = parse_html_fixture(how_to_tag_page)
+
+        footer_feed_link = tag_page.select_one("footer .social-link.feed")
+        assert footer_feed_link is not None, "Tag page footer should have feed link"
+
+        expected_href = "https://sanitarium.se/tags/how-to/feed.xml"
+        actual_href = footer_feed_link.get("href")
+        assert (
+            actual_href == expected_href
+        ), f"Tag page footer feed should link to {expected_href}, got {actual_href}"
+
+    def test_footer_feed_link_on_section_page(self, hugo_site, parse_html_fixture):
+        """Test that footer feed link points to section feed on section pages."""
+        til_section_page = hugo_site / "til" / "index.html"
+        if not til_section_page.exists():
+            pytest.skip("TIL section page not found")
+
+        section_page = parse_html_fixture(til_section_page)
+
+        footer_feed_link = section_page.select_one("footer .social-link.feed")
+        assert footer_feed_link is not None, "Section page footer should have feed link"
+
+        expected_href = "https://sanitarium.se/til/feed.xml"
+        actual_href = footer_feed_link.get("href")
+        assert (
+            actual_href == expected_href
+        ), f"Section page footer feed should link to {expected_href}, got {actual_href}"
+
+    def test_footer_feed_link_on_individual_post(self, hugo_site, parse_html_fixture):
+        """Test that footer feed link points to main feed on individual posts."""
+        # Find a TIL post as example
+        til_post = (
+            hugo_site
+            / "til"
+            / "2025-08-01-macos-fingerprint-reader-sudo"
+            / "index.html"
+        )
+        if not til_post.exists():
+            pytest.skip("TIL post not found")
+
+        post_page = parse_html_fixture(til_post)
+
+        footer_feed_link = post_page.select_one("footer .social-link.feed")
+        assert (
+            footer_feed_link is not None
+        ), "Individual post footer should have feed link"
+
+        expected_href = "https://sanitarium.se/feed.xml"
+        actual_href = footer_feed_link.get("href")
+        assert (
+            actual_href == expected_href
+        ), f"Individual post footer feed should link to {expected_href}, got {actual_href}"

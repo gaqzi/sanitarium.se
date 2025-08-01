@@ -3,8 +3,28 @@
 <footer>
     <nav aria-label="Author related links">
         <ul class="social-links">
-            {{ if .Site.Params.feed }}
-            <li><a href="{{ .Site.Params.feed }}" class="social-link feed" title="Feed" rel="me"></a></li>
+            {{- $feedUrl := "" -}}
+            {{- if eq .Kind "term" -}}
+              {{- if eq .Type "tags" -}}
+                {{- $feedUrl = printf "%sfeed.xml" .Permalink -}}
+              {{- else -}}
+                {{- $homePage := $.Site.GetPage "/" -}}
+                {{- with $homePage.OutputFormats.Get "RSS" -}}
+                  {{- $feedUrl = .Permalink -}}
+                {{- end -}}
+              {{- end -}}
+            {{- else if eq .Kind "section" -}}
+              {{- with .OutputFormats.Get "RSS" -}}
+                {{- $feedUrl = .Permalink -}}
+              {{- end -}}
+            {{- else -}}
+              {{- $homePage := $.Site.GetPage "/" -}}
+              {{- with $homePage.OutputFormats.Get "RSS" -}}
+                {{- $feedUrl = .Permalink -}}
+              {{- end -}}
+            {{- end -}}
+            {{ if $feedUrl }}
+            <li><a href="{{ $feedUrl }}" class="social-link feed" title="Feed" rel="me"></a></li>
             {{ end }}
             {{ if .Site.Params.mastodon }}
             <li><a href="{{ .Site.Params.mastodon }}" class="social-link mastodon" title="Mastodon" rel="me"></a></li>
