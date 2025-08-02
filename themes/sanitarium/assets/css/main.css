@@ -320,7 +320,6 @@ body:has(main article.banner) {
             
             &:hover {
                 color: var(--main-accent-color);
-                background-color: var(--button-bg);
                 text-decoration: none;
                 opacity: 1;
             }
