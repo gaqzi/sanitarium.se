@@ -21,8 +21,12 @@
     <nav class="post-nav">
         {{ with .PrevInSection }}
             <a href="{{ .RelPermalink }}" class="post-nav-link prev" title="{{ .Summary | plainify | truncate 150 }}">
-                <div class="post-nav-title">{{ .Title }}</div>
-                {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
+                {{- if and .Title (not (strings.HasPrefix .Title .File.BaseFileName)) -}}
+                    <div class="post-nav-title">{{ .Title }}</div>
+                    {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
+                {{- else -}}
+                    <div class="post-nav-title">{{ .Summary | plainify | truncate 40 }}</div>
+                {{- end -}}
             </a>
             <link rel="prefetch" href="{{ .Permalink }}">
         {{ end }}
@@ -30,8 +34,12 @@
         {{ with .NextInSection }}
             <a href="{{ .RelPermalink }}" class="post-nav-link next" title="{{ .Summary | plainify | truncate 150 }}">
                 <div class="post-nav-content">
-                    <div class="post-nav-title">{{ .Title }}</div>
-                    {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
+                    {{- if and .Title (not (strings.HasPrefix .Title .File.BaseFileName)) -}}
+                        <div class="post-nav-title">{{ .Title }}</div>
+                        {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
+                    {{- else -}}
+                        <div class="post-nav-title">{{ .Summary | plainify | truncate 40 }}</div>
+                    {{- end -}}
                 </div>
             </a>
             <link rel="prefetch" href="{{ .Permalink }}">
