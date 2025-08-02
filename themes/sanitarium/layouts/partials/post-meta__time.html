@@ -16,7 +16,11 @@
     <span class="icon-pen" aria-hidden="true"></span>
     Updated
     <time class="modified-at" datetime="{{ $page.Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
-        {{ $page.Lastmod.Format "2 January, 2006 at 15:04" }}
+        {{ if eq ($page.Date.Format "2006-01-02") ($page.Lastmod.Format "2006-01-02") -}}
+            {{ $page.Lastmod.Format "15:04" }}
+        {{- else -}}
+            {{ $page.Lastmod.Format "2 January, 2006 at 15:04" }}
+        {{- end }}
     </time>
 {{ end }}
 {{ if and $showReadTime $page.ReadingTime }}
