@@ -64,6 +64,10 @@ integration-testing:
   type: concept
   description: Testing that verifies components work together, especially with external dependencies
 
+shell-scripting:
+  type: concept
+  description: Using various shell to script your day-to-day, likely a lot of bash or sh
+
 which-role:
   display: Which role?
   type: concept
@@ -73,6 +77,10 @@ which-role:
 golang:
   display: Go
   type: programming-language
+
+html:
+  display: HTML
+  type: programming-language # ;)
 
 python:
   display: Python
@@ -90,6 +98,14 @@ alfredapp:
 
 docker:
   display: Docker
+  type: tool
+
+drone-ci:
+  display: Drone CI
+  type: tool
+
+github:
+  display: GitHub
   type: tool
 
 linux:
