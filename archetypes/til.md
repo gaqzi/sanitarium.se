@@ -1,6 +1,7 @@
 ---
 author: 'björn'
 date: '{{ .Date }}'
-lastmod: ''
+lastmod: '{{ .Date }}'
 tags: []
+daily: ['{{ .Date.Format "2006-01-02" }}']
 ---

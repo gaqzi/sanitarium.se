@@ -1,0 +1,31 @@
+{{ define "title" }}Daily Archives - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<header>
+    <h1>Daily Archives</h1>
+    <div class="description">Days the voices didn't stay inside my head.</div>
+</header>
+
+<div class="daily-terms-list">
+    {{/* Sort days in reverse chronological order (newest first) */}}
+    {{ $terms := .Data.Terms.ByCount.Reverse }}
+    {{ range .Paginator.Pages }}
+        {{ $date := .Name }}
+        {{ $postCount := len .Pages }}
+        
+        <div class="daily-term">
+            <a href="{{ .Page.Permalink }}">
+                {{ if $date | time }}
+                    {{ (time $date).Format "Monday, January 2, 2006" }}
+                {{ else }}
+                    {{ $date }}
+                {{ end }}
+            </a>
+            <span class="term-count">{{ $postCount }} {{ if eq $postCount 1 }}post{{ else }}posts{{ end }}</span>
+        </div>
+    {{ end }}
+</div>
+
+{{ template "_internal/pagination.html" . }}
+
+{{ end }}

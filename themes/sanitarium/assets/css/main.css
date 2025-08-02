@@ -306,6 +306,25 @@ body:has(main article.banner) {
         color: var(--text-meta-color);
         opacity: var(--text-meta-opacity);
         font-weight: normal;
+        
+        /* Enhanced styling for linked day headers */
+        & a.daily-link {
+            color: inherit;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xxs, 0.125rem) var(--space-xs);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            
+            &:hover {
+                color: var(--main-accent-color);
+                background-color: var(--button-bg);
+                text-decoration: none;
+                opacity: 1;
+            }
+        }
     }
 }
 
@@ -822,6 +841,100 @@ ul.pagination {
     background-color: rgba(var(--border-color-standard-rgb), 0.05);
     color: CanvasText;
     cursor: not-allowed;
+}
+
+/* Daily Taxonomy Styles */
+
+/* Daily navigation */
+.day-navigation {
+    margin: var(--space-lg) 0;
+    text-align: center;
+    border-top: 1px solid rgba(var(--border-color-standard-rgb), 0.2);
+    border-bottom: 1px solid rgba(var(--border-color-standard-rgb), 0.2);
+    padding: var(--space-md) 0;
+}
+
+.day-navigation-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    max-width: 20rem;
+    margin: 0 auto;
+}
+
+.day-navigation-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--button-bg);
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: var(--system-sans);
+    font-weight: 500;
+    color: var(--text-meta-color);
+    opacity: var(--text-meta-opacity);
+    transition: all 0.2s ease;
+    filter: var(--button-filter);
+    
+    &:hover {
+        background-color: var(--button-hover-bg);
+        color: var(--main-accent-color);
+        opacity: 1;
+        text-decoration: none;
+    }
+}
+
+/* Daily terms list */
+.daily-terms-list {
+    margin: var(--space-lg) 0;
+    display: grid;
+    gap: var(--space-sm);
+}
+
+.daily-term {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--button-bg);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    filter: var(--button-filter);
+    
+    &:hover {
+        background-color: var(--button-hover-bg);
+        transform: translateY(-1px);
+    }
+    
+    & a {
+        color: var(--text-meta-color);
+        text-decoration: none;
+        font-family: var(--system-sans);
+        font-weight: 500;
+        opacity: var(--text-meta-opacity);
+        
+        &:hover {
+            color: var(--main-accent-color);
+            opacity: 1;
+            text-decoration: none;
+        }
+    }
+    
+    .term-count {
+        font-size: 0.9em;
+        color: var(--text-meta-color);
+        opacity: calc(var(--text-meta-opacity) * 0.8);
+    }
+}
+
+.daily-stats {
+    color: var(--text-meta-color);
+    font-style: italic;
+    margin: var(--space-md) 0 var(--space-lg);
+    opacity: var(--text-meta-opacity);
+    text-align: center;
 }
 
 /* Ensure anchors are positioned correctly when navigating to them */

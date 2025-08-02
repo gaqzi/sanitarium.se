@@ -16,6 +16,7 @@ cascade = [
 
   tag = "/tags/:slug/"
   author = "/author/:slug/"
+  daily = "/daily/:slug/"
 
 # Output formats
 [outputs]
@@ -42,6 +43,7 @@ enableEmoji = true
 [taxonomies]
   tag = "tags"
   author = "authors"
+  daily = "daily"
 #  category = "categories"
 
 # Theme-specific settings
