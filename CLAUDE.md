@@ -16,7 +16,7 @@
 - **Tag Analysis**: `script/all-tags.py` - Extract and count all tags from markdown content
 
 ## Testing
-- **Test Suite**: `script/test` - Run Python code formatting then execute pytest
+- **Test Suite**: `script/test` - Run Python code formatting then execute pytest. ALWAYS run tests using this script.
   - Automatically runs `script/fmt` before tests to ensure code is formatted
   - Pass pytest arguments directly: `script/test -v --tb=short`
   - Use `DEBUG=true script/test` to see formatting output
