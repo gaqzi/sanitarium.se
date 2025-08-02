@@ -26,6 +26,27 @@
 - New post: `hugo new content/posts/my-post.md`
 - New page: `hugo new content/pages/my-page.md`
 
+### Sections
+
+#### Blog Section
+- Default longform content with explicit titles and subtitles
+- Full front matter including title, subtitle, author, date, tags
+- Navigation shows actual titles + subtitles in prev/next links
+- Uses standard Hugo post structure
+
+#### TIL (Today I Learned) Section
+- Short-form content without explicit titles (content-only)
+- Minimal front matter: author, date, lastmod, tags, daily
+- Titles derived from filenames for display
+- Navigation shows ~40 chars of content preview instead of titles
+- Uses conditional logic in `single.html` template for navigation
+- Content is the main body without formal title/subtitle structure
+
+#### Navigation Behavior Differences
+- Blog posts: Show explicit titles + subtitles in navigation
+- TILs: Show truncated content preview using `.Summary | plainify | truncate 40`
+- Template automatically detects content type and adjusts navigation display
+
 ## Structure
 - Content: `content/` (Markdown)
 - Templates: `themes/sanitarium/layouts/`
