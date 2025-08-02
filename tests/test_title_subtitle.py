@@ -147,7 +147,7 @@ TITLE_SUBTITLE_TEST_CASES = [
 LIST_PAGE_TEST_CASES = [
     ("tags/index.html", "Tags | the padded cell"),
     ("authors/index.html", "Authors | the padded cell"),
-    ("blog/index.html", "Posts | the padded cell"),
+    ("blog/index.html", "Blog | the padded cell"),
 ]
 
 
