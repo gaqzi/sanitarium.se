@@ -29,8 +29,8 @@ cascade = [
   baseName = "feed"
 
 # Pagination
-paginate = 10
-paginatePath = "/page/:num"
+[pagination]
+  pagersize = 20
 
 # Enable syntax highlighting
 pygmentsUseClasses = true
