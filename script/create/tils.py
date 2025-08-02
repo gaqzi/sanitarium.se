@@ -128,6 +128,7 @@ class TIL:
             "---",
             "author: 'björn'",
             f"date: {timestamp}",
+            f"lastmod: {timestamp}",
             f"daily: ['{timestamp.split('T')[0]}']",
             "lastmod: ''",
         ]

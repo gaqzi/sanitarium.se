@@ -1,7 +1,8 @@
 ---
 author: 'björn'
 date: '2025-08-01 23:15:00+08:00'
-lastmod: ''
+daily: ['2025-08-01']
+lastmod: '2025-08-01 23:15:00+08:00'
 tags:
   - how-to
   - macos

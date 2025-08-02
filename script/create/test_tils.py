@@ -206,6 +206,7 @@ class TestContentGeneration:
         expected = f"""---
 author: 'björn'
 date: 2025-08-01T23:10:02+08:00
+lastmod: 2025-08-01T23:10:02+08:00
 daily: ['2025-08-01']
 lastmod: ''
 {expected_tags_yaml}
