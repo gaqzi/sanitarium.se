@@ -59,9 +59,10 @@ function installPreCommitHook() {
   
   cat > "$hook_path" << 'EOF'
 #!/bin/bash
-# Pre-commit hook to run linting checks
+# Pre-commit hook to run linting and tests
 
-exec script/lint
+script/lint &&
+  script/test
 EOF
 
   chmod +x "$hook_path"
