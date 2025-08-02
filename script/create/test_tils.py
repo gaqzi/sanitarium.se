@@ -77,6 +77,11 @@ class TestTILParsing:
                 'If you do `"$@"` it will expand correctly.',
                 ["shell-scripting"],
             ),
+            (
+                "- TIL:: [[Drone CI]]'s `when` for deciding in which cases to run steps/pipelines [targets](https://docs.drone.io/pipeline/docker/syntax/conditions/#by-branch) the __merge target__ branch for PRs and not the actual PR's, also it pulls from `refs/pull/<num>/head` instead of `refs/heads/<branch>` so you can't target the branch itself using the `pull_request` event (use `push` on the pipeline and then `branch` for the step instead).",
+                "Drone CI's `when` for deciding in which cases to run steps/pipelines [targets](https://docs.drone.io/pipeline/docker/syntax/conditions/#by-branch) the __merge target__ branch for PRs and not the actual PR's, also it pulls from `refs/pull/<num>/head` instead of `refs/heads/<branch>` so you can't target the branch itself using the `pull_request` event (use `push` on the pipeline and then `branch` for the step instead).",
+                ["drone-ci"],
+            ),
         ],
     )
     def test_tag_handling_variations(self, input_text, expected_body, expected_tags):

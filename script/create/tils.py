@@ -54,6 +54,61 @@ def _extract_til_content(line: str) -> str:
     return ""
 
 
+def _process_hashtags(
+    text: str, extract_tags: bool = True, remove_from_body: bool = True
+) -> tuple[set[str], str]:
+    """
+    Process hashtags in text, optionally extracting tags and/or removing them from body.
+
+    Args:
+        text: The text to process
+        extract_tags: Whether to extract hashtags as tags (excluding those in markdown links)
+        remove_from_body: Whether to remove hashtags from the returned text (excluding those in markdown links)
+
+    Returns:
+        tuple: (set of extracted tags, processed text)
+    """
+    import re
+
+    hashtag_pattern = r"#([a-zA-Z0-9\-_]+)"
+    markdown_link_pattern = r"\[([^\]]*)\]\(([^)]+)\)"
+    extracted_tags = set()
+
+    # Find all markdown links to exclude hashtags within them
+    markdown_links = []
+    for match in re.finditer(markdown_link_pattern, text):
+        markdown_links.append((match.start(), match.end()))
+
+    # Process hashtags
+    hashtags_to_remove = []
+    for match in re.finditer(hashtag_pattern, text):
+        hashtag_start = match.start()
+        hashtag_end = match.end()
+
+        # Check if this hashtag is within a markdown link
+        is_in_link = any(
+            link_start <= hashtag_start < link_end
+            for link_start, link_end in markdown_links
+        )
+
+        if not is_in_link:
+            if extract_tags:
+                tag = _clean_tag(match.group(1))
+                if tag:  # Only add non-empty tags
+                    extracted_tags.add(tag)
+
+            if remove_from_body:
+                hashtags_to_remove.append((hashtag_start, hashtag_end))
+
+    # Remove hashtags from body in reverse order to maintain correct positions
+    processed_text = text
+    if remove_from_body:
+        for start, end in sorted(hashtags_to_remove, reverse=True):
+            processed_text = processed_text[:start] + processed_text[end:]
+
+    return extracted_tags, processed_text
+
+
 @dataclass
 class TIL:
     body: str
@@ -154,7 +209,6 @@ def parse_til(input_text: str) -> TIL:
     # Extract tags from [[tag]] patterns (including nested ones like [text]([[tag]])) and hashtags
     tag_pattern = r"\[\[([^\]]+)\]\]"
     nested_pattern = r"\[([^\]]+)\]\(\[\[([^\]]+)\]\]\)"
-    hashtag_pattern = r"#([a-zA-Z0-9\-_]+)"
     tags = set()
 
     # Handle nested patterns first: [text][[tag]] -> extract tag from second brackets
@@ -171,19 +225,19 @@ def parse_til(input_text: str) -> TIL:
             if tag:  # Only add non-empty tags
                 tags.add(tag)
 
-    # Handle hashtag patterns
-    for match in re.finditer(hashtag_pattern, text):
-        tag = _clean_tag(match.group(1))
-        if tag:  # Only add non-empty tags
-            tags.add(tag)
+    # Handle hashtag patterns using unified helper function
+    hashtag_tags, _ = _process_hashtags(text, extract_tags=True, remove_from_body=False)
+    tags.update(hashtag_tags)
 
     # Remove patterns from body text
     # First remove nested patterns: [text]([[tag]]) -> text
     body = re.sub(nested_pattern, r"\1", text)
     # Then remove regular [[tag]] patterns: [[tag]] -> tag
     body = re.sub(tag_pattern, r"\1", body)
-    # Then remove hashtags from body text
-    body = re.sub(hashtag_pattern, "", body).strip()
+    # Then remove hashtags from body text using unified helper function
+    _, body = _process_hashtags(body, extract_tags=False, remove_from_body=True)
+
+    body = body.strip()
 
     # Capitalize first letter if body starts with lowercase
     if body and body[0].islower():
