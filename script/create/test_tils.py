@@ -221,9 +221,10 @@ class TestTimestamp:
         assert match, "Timestamp not found in content"
         timestamp = match.group(1)
 
-        # Verify RFC3339 format with timezone
-        # Format should be: YYYY-MM-DDTHH:MM:SS+TZ:TZ or YYYY-MM-DDTHH:MM:SS-TZ:TZ
-        rfc3339_pattern = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}"
+        # Verify RFC3339 format with timezone and microseconds
+        # Format should be: YYYY-MM-DDTHH:MM:SS.mmmmmm+TZ:TZ or YYYY-MM-DDTHH:MM:SS.mmmmmm-TZ:TZ
+        # Microseconds ensure TILs are sorted in the order they were added
+        rfc3339_pattern = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}[+-]\d{2}:\d{2}"
         assert re.match(
             rfc3339_pattern, timestamp
         ), f"Timestamp {timestamp} is not in RFC3339 format with timezone"

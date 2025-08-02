@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse
 import sys
 from dataclasses import dataclass
@@ -7,9 +8,10 @@ def _generate_timestamp() -> str:
     """Generate RFC3339 formatted timestamp with local timezone"""
     from datetime import datetime
 
-    # Use local timezone and RFC3339 format without microseconds
+    # Use local timezone and RFC3339 format with microseconds
+    # Microseconds ensure TILs are sorted in the order they were added
     dt = datetime.now().astimezone()
-    timestamp = dt.strftime("%Y-%m-%dT%H:%M:%S%z")
+    timestamp = dt.strftime("%Y-%m-%dT%H:%M:%S.%f%z")
     # Insert colon in timezone offset for RFC3339 compliance
     if len(timestamp) >= 5 and timestamp[-5] in "+-":
         timestamp = timestamp[:-2] + ":" + timestamp[-2:]
