@@ -1170,7 +1170,7 @@ ul.pagination {
 .heading-anchor {
     /* Base styles */
     text-decoration: none;
-    color: var(--heading-anchor-hover-color);
+    color: var(--text-meta-color);
     transition: opacity 0.2s ease;
 
     /* Size with room to the left, place on the left */
@@ -1183,11 +1183,12 @@ ul.pagination {
 
     /* When it can hover, hide, and on hover show */
     @media (hover: hover) {
-        opacity: 0;
+        opacity: var(--text-meta-opacity);
 
         &:hover,
         h1:hover &, h2:hover &, h3:hover &,
         h4:hover &, h5:hover &, h6:hover & {
+            color: var(--heading-anchor-hover-color);
             opacity: 1;
         }
     }
