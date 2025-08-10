@@ -44,6 +44,8 @@ enableEmoji = true
   tag = "tags"
   author = "authors"
   daily = "daily"
+  series = "series"
+  link = "links"
 #  category = "categories"
 
 # Theme-specific settings
@@ -61,7 +63,7 @@ enableEmoji = true
 
   # Site settings
   description = "ramblings of a technical nature"
-  mainSections = ["blog", "til"]
+  mainSections = ["blog", "til", "link"]
   bannerSections = ["blog"]
 
   # Theme appearance
