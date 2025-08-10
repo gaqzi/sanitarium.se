@@ -1,4 +1,13 @@
 <article class="{{ .Section }}">
+    <a href="{{ .Permalink }}">
+        <hgroup>
+            <h1 class="title">{{ .Title }}</h1>
+            {{ with .Params.subtitle }}
+                <p class="subtitle">{{ . }}</p>
+            {{ end }}
+        </hgroup>
+    </a>
+
     <div class="{{ if and (not .Params.full) .Truncated }}preview{{ end }} post">
         {{ if .Params.full }}
             {{ .Content }}
