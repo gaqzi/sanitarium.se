@@ -4,6 +4,7 @@ date: '2025-08-10T21:42:17+08:00'
 lastmod: '2025-08-10T21:42:17+08:00'
 full: true
 tags:
+  - ai
   - genie
   - learning
 series: ['learning-with-genies']
