@@ -76,7 +76,7 @@ This is like my relationship with cars. I can drive, change oil, swap tires. Am 
 
 Some skills I want, some I don't care about. And that's fine, until the world expects me to be good at the ones I've skipped.
 
-Testing is one of those skills that shows this tension perfectly. I'm a TDD person, it's a fantastic design tool, not just bug-catching. But many programmers still treat it as an afterthought because "how can you know what to implement before you build it?" That resistance is exactly why it's valuable: it forces you to think differently and know what _outcome_ you want. And that's why genies make things dangerous: they can write tests that look good, but if you don't understand testing as design, you won't know when you're building the wrong thing with great test coverage.
+Testing is one of those skills that shows this tension perfectly. I'm a {{< define "TDD" "Test Driven Development" >}} person, it's a fantastic design tool, not just bug-catching. But many programmers still treat it as an afterthought because "how can you know what to implement before you build it?" That resistance is exactly why it's valuable: it forces you to think differently and know what _outcome_ you want. And that's why genies make things dangerous: they can write tests that look good, but if you don't understand testing as design, you won't know when you're building the wrong thing with great test coverage.
 
 ## Deciding what sticks
 
