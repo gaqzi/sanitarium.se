@@ -1,0 +1,31 @@
+{{ define "title" }}Series - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<header>
+    <h1>Series</h1>
+    <div class="description">Explore ongoing series of related posts</div>
+</header>
+
+<div class="series-grid">
+    {{ range .Site.Taxonomies.series }}
+        {{ $seriesName := .Page.Title }}
+        {{ $seriesSlug := .Page.File.BaseFileName }}
+
+        <article class="series-card">
+            <header>
+                <h2>
+                    <a href="{{ .Page.RelPermalink }}">{{ $seriesName }}</a>
+                </h2>
+            </header>
+            
+            {{ if .Page }}
+                {{ with .Page.Content }}
+                    <div class="series-description">
+                        {{ . }}
+                    </div>
+                {{ end }}
+            {{ end }}
+        </article>
+    {{ end }}
+</div>
+{{ end }}

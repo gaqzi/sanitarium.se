@@ -1,0 +1,22 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+{{ $seriesName := .Data.Term }}
+{{ $seriesPage := printf "/series/%s" $seriesName | .Site.GetPage }}
+{{ $seriesPages := where .Site.RegularPages "Params.series" "intersect" (slice $seriesName) }}
+{{ $seriesPages = $seriesPages.ByDate }}
+{{ $postCount := len $seriesPages }}
+
+{{ $context := dict 
+    "Page" .
+    "Title" .Title
+    "Description" $seriesPage.Description
+    "Content" $seriesPage.Content
+    "Stats" (printf "%d %s in this series" $postCount (cond (eq $postCount 1) "post" "posts"))
+    "TaxonomyName" "series"
+    "AllLinkText" "All series"
+    "AllLinkURL" "/series/"
+}}
+
+{{ partial "taxonomy-term-listing.html" $context }}
+{{ end }}

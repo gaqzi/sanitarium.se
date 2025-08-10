@@ -1,0 +1,85 @@
+
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<header>
+    <hgroup>
+        <h1 class="title">{{ .Title }}</h1>
+        {{ with .Description }}<p class="subtitle">{{ . }}</p>{{ end }}
+    </hgroup>
+    
+    <div class="series-overview-meta">
+        {{ $seriesName := .File.BaseFileName }}
+        {{ $seriesPages := where .Site.RegularPages "Params.series" "intersect" (slice $seriesName) }}
+        {{ $seriesPages = $seriesPages | sort "Date" }}
+        {{ $postCount := len $seriesPages }}
+        
+        <span class="series-count">{{ $postCount }} {{ if eq $postCount 1 }}post{{ else }}posts{{ end }}</span>
+        {{ if gt $postCount 0 }}
+            {{ $oldestPost := index $seriesPages 0 }}
+            {{ $latestPost := index $seriesPages (sub $postCount 1) }}
+            {{ if and $oldestPost $latestPost (ne $oldestPost.Date $latestPost.Date) }}
+                <span class="series-dates">{{ $oldestPost.Date.Format "Jan 2006" }} - {{ $latestPost.Date.Format "Jan 2006" }}</span>
+            {{ else if $latestPost }}
+                <span class="series-dates">{{ $latestPost.Date.Format "Jan 2006" }}</span>
+            {{ end }}
+        {{ end }}
+    </div>
+</header>
+
+{{ if .Content }}
+<div class="content">
+    {{ .Content }}
+</div>
+{{ end }}
+
+{{ $seriesName := .File.BaseFileName }}
+{{ $seriesPages := where .Site.RegularPages "Params.series" "intersect" (slice $seriesName) }}
+{{ $seriesPages = $seriesPages | sort "Date" }}
+
+{{ if gt (len $seriesPages) 0 }}
+<div class="series-posts">
+    <h2>Posts in this series</h2>
+    <ol class="series-post-list">
+        {{ range $index, $post := $seriesPages }}
+            <li class="series-post-item">
+                <article>
+                    <header>
+                        <h3>
+                            <a href="{{ $post.RelPermalink }}">
+                                {{ if and $post.Title (not (strings.HasPrefix $post.Title $post.File.BaseFileName)) }}
+                                    {{ $post.Title }}
+                                {{ else }}
+                                    {{ $post.Summary | plainify | truncate 60 }}
+                                {{ end }}
+                            </a>
+                        </h3>
+                        {{ with $post.Params.subtitle }}
+                            <p class="subtitle">{{ . }}</p>
+                        {{ end }}
+                    </header>
+                    
+                    <div class="post-meta">
+                        <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "Jan 2, 2006" }}</time>
+                        {{ if ne $post.Section "til" }}
+                            {{ with $post.Params.authors }}
+                                {{ range . }}
+                                    <span class="author">{{ . }}</span>
+                                {{ end }}
+                            {{ end }}
+                        {{ end }}
+                    </div>
+                    
+                    {{ if $post.Summary }}
+                        <div class="post-preview">
+                            {{ $post.Summary | truncate 200 }}
+                        </div>
+                    {{ end }}
+                </article>
+            </li>
+        {{ end }}
+    </ol>
+</div>
+{{ end }}
+
+{{ end }}

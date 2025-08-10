@@ -1,57 +1,16 @@
 {{ define "title" }}{{ .Data.Term | time.Format "January 2, 2006" }} - {{ .Site.Title }}{{ end }}
 
 {{ define "main" }}
-<header>
-    <h1>{{ .Data.Term | time.Format "January 2, 2006" }}</h1>
-    <div class="description">All I got up to this day (as far as you know)</div>
-</header>
+{{ $postCount := len .Pages }}
+{{ $context := dict 
+    "Page" .
+    "Title" (.Data.Term | time.Format "January 2, 2006")
+    "Description" "All I got up to this day (as far as you know)"
+    "Stats" (printf "%d %s on this day" $postCount (cond (eq $postCount 1) "post" "posts"))
+    "TaxonomyName" "daily"
+    "AllLinkText" "All days"
+    "AllLinkURL" "/daily/"
+}}
 
-<div class="article-list">
-    {{/* Sort posts in ascending order (earliest first) */}}
-    {{ $posts := .Pages.ByDate }}
-    
-    <div class="daily-stats">
-        <p>{{ len $posts }} {{ if eq (len $posts) 1 }}post{{ else }}posts{{ end }} on this day</p>
-    </div>
-
-    {{ range $posts }}
-        {{ partial "summary.html" . }}
-    {{ end }}
-
-    {{/* Prefetch first 3 posts for performance */}}
-    {{ range first 3 $posts }}
-        <link rel="prefetch" href="{{ .Permalink }}">
-    {{ end }}
-</div>
-
-{{/* Daily navigation */}}
-{{ $currentDate := .Data.Term }}
-{{ $allDailyTerms := .Site.Taxonomies.daily }}
-{{ $sortedTerms := sort $allDailyTerms.ByCount "Name" }}
-
-{{ $currentIndex := -1 }}
-{{ range $index, $term := $sortedTerms }}
-    {{ if eq $term.Name $currentDate }}
-        {{ $currentIndex = $index }}
-    {{ end }}
-{{ end }}
-
-{{ if ge $currentIndex 0 }}
-<nav class="day-navigation">
-    <div class="day-navigation-links">
-        {{ if gt $currentIndex 0 }}
-            {{ $prevTerm := index $sortedTerms (sub $currentIndex 1) }}
-            <a href="{{ $prevTerm.Page.Permalink }}" class="prev">← {{ $prevTerm.Name | time.Format "January 2, 2006" }}</a>
-        {{ end }}
-        
-        <a href="/daily/" class="daily-index">All days</a>
-        
-        {{ if lt $currentIndex (sub (len $sortedTerms) 1) }}
-            {{ $nextTerm := index $sortedTerms (add $currentIndex 1) }}
-            <a href="{{ $nextTerm.Page.Permalink }}" class="next">{{ $nextTerm.Name | time.Format "January 2, 2006" }} →</a>
-        {{ end }}
-    </div>
-</nav>
-{{ end }}
-
+{{ partial "taxonomy-term-listing.html" $context }}
 {{ end }}

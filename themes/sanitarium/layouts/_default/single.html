@@ -18,6 +18,8 @@
 
     {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 
+    {{ partial "series-nav.html" . }}
+
     <nav class="post-nav">
         {{ with .PrevInSection }}
             <a href="{{ .RelPermalink }}" class="post-nav-link prev" title="{{ .Summary | plainify | truncate 150 }}">

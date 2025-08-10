@@ -1,0 +1,66 @@
+{{- if .Params.series -}}
+    {{- range .Params.series -}}
+        {{- $seriesName := . -}}
+        {{- $seriesPages := where $.Site.RegularPages "Params.series" "intersect" (slice .) -}}
+        {{- $seriesPages = $seriesPages.ByDate -}}
+        {{- $currentIndex := 0 -}}
+        {{- $totalPosts := len $seriesPages -}}
+        
+        {{- range $index, $page := $seriesPages -}}
+            {{- if eq $page.RelPermalink $.RelPermalink -}}
+                {{- $currentIndex = add $index 1 -}}
+            {{- end -}}
+        {{- end -}}
+        
+        {{- if gt $totalPosts 1 -}}
+            {{- $prevPost := index $seriesPages (sub $currentIndex 2) -}}
+            {{- $nextPost := index $seriesPages $currentIndex -}}
+            {{- $seriesPage := printf "/series/%s" $seriesName | $.Site.GetPage -}}
+            {{- $seriesTitle := $seriesName -}}
+            {{- if $seriesPage -}}
+                {{- $seriesTitle = $seriesPage.Title -}}
+            {{- end -}}
+            
+            <nav class="series-nav">
+                <div class="series-context">
+                    <span class="series-label">Part {{ $currentIndex }} of {{ $totalPosts }} in</span>
+                    {{- if $seriesPage -}}
+                        <a href="{{ $seriesPage.RelPermalink }}" class="series-title">{{ $seriesTitle }}</a>
+                    {{- else -}}
+                        <span class="series-title">{{ $seriesTitle }}</span>
+                    {{- end -}}
+                </div>
+                
+                <div class="series-nav-links">
+                    {{- if $prevPost -}}
+                        <a href="{{ $prevPost.RelPermalink }}" class="series-nav-link prev" title="{{ $prevPost.Summary | plainify | truncate 150 }}">
+                            <div class="series-nav-direction">← Previous</div>
+                            {{- if and $prevPost.Title (not (strings.HasPrefix $prevPost.Title $prevPost.File.BaseFileName)) -}}
+                                <div class="series-nav-title">{{ $prevPost.Title }}</div>
+                                {{ with $prevPost.Params.subtitle }}<div class="series-nav-subtitle">{{ . }}</div>{{ end }}
+                            {{- else -}}
+                                <div class="series-nav-title">{{ $prevPost.Summary | plainify | truncate 40 }}</div>
+                            {{- end -}}
+                        </a>
+                    {{- else -}}
+                        <div class="series-nav-placeholder"></div>
+                    {{- end -}}
+                    
+                    {{- if $nextPost -}}
+                        <a href="{{ $nextPost.RelPermalink }}" class="series-nav-link next" title="{{ $nextPost.Summary | plainify | truncate 150 }}">
+                            <div class="series-nav-direction">Next →</div>
+                            {{- if and $nextPost.Title (not (strings.HasPrefix $nextPost.Title $nextPost.File.BaseFileName)) -}}
+                                <div class="series-nav-title">{{ $nextPost.Title }}</div>
+                                {{ with $nextPost.Params.subtitle }}<div class="series-nav-subtitle">{{ . }}</div>{{ end }}
+                            {{- else -}}
+                                <div class="series-nav-title">{{ $nextPost.Summary | plainify | truncate 40 }}</div>
+                            {{- end -}}
+                        </a>
+                    {{- else -}}
+                        <div class="series-nav-placeholder"></div>
+                    {{- end -}}
+                </div>
+            </nav>
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
