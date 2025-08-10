@@ -23,7 +23,7 @@ What hasn't changed is we've always had to figure out who to trust. What's chang
 
 I went for dinner with Mr. Bossman, or Mark as he's also known, and we ended up talking about AI because we're looking to make genies available to all programmers at work, and we want to do it safely. While talking about what we're doing, he says he doesn't think we'll have programmers like we do today, that programming is probably going to end up being more like normal language that compiles down into software (all about that prompt).
 
-I'm not sure that's the full story, thinking about how we've progressed with, for example, assembly programming. Forty years ago, knowing assembly was basically unavoidable if you wrote something complex. Now? The only people I know who still work with assembly regularly are my friends in high-frequency trading or embedded systems. Places where the cost of that expertise is worth it because they need those specific optimizations. But it doesn't mean it went away, but yeah, we use high-level languages (more akin to spoken languages than assembly) to write software now.
+I'm not sure that's the full story, thinking about how we've progressed with, for example, assembly programming. Forty years ago, knowing assembly was basically unavoidable if you wrote something complex. Now? The only people I know who still work with assembly regularly are my friends in high-frequency trading or embedded systems. Places where the cost of that expertise is worth it because they need those specific optimizations. It doesn't mean it **went away**, but yeah, we use high-level languages (more akin to spoken languages than assembly) to write software now.
 
 Us seniors have always thought that the 'kids today' don't know the basics, where the basics are defined as whatever level of abstraction we learned when we got started. Assembly folks complained about C programmers. C programmers complained about scripting languages. Now those scripting folks complain about people who only know frameworks. A lot of people I come across don't really know how to set up a Linux box, and that was required for me because otherwise I couldn't host anything. But why should they know it now?
 
@@ -33,7 +33,7 @@ I think we're coming to a point where more people are able to get the output of 
 
 ## The commoditization pattern
 
-Every technology does this. Think about typing. Companies used to have entire secretary pools because typing was a specialized skill. Now? Everyone types. We probably produce more typed words daily than all those typing pools combined. The skill didn't disappear, it just became so commoditized that we don't even think of it as a skill anymore. But writing, oh boy, that's a skill and we recognize good vs. bad even if everyone can type.
+Every technology does this. Think about typing. Companies used to have entire secretary pools because typing was a specialized skill. Now? Everyone types. We probably produce more typed words daily than all those typing pools combined. The skill didn't disappear, it just became so commoditized that we don't even think of it as a skill anymore. But writing, _oh boy_, that's a skill and we recognize good vs. bad even if everyone can type.
 
 Socrates complained that writing was [a terrible way to share knowledge](https://fs.blog/an-old-argument-against-writing/), that it would make people "seem to know much while for the most part they know nothing." (Sound familiar?) When calculators came out, people panicked that kids wouldn't understand math anymore and society would collapse!!
 
@@ -74,7 +74,7 @@ Kind of like how most companies have someone who's 'good with computers' to fix 
 
 This is like my relationship with cars. I can drive, change oil, swap tires. Am I the best at parallel parking? Nope, and I'll drive a bit further to avoid a tight spot. Should you trust me to race? Definitely not. But I can safely get on the highway and go reasonably fast when it's appropriate (those spots we've built up to [let Gripen land and take off](https://www.joint-forces.com/exercise-news/73407-swedish-gripen-fighters-landing-on-highways)).
 
-Some skills I want, some I don't care about. And that's fine, until the world expects me to be good at the ones I've skipped.
+Some skills I want, some I don't care about. And that's fine, **until** the world expects me to be good at the ones I've skipped.
 
 Testing is one of those skills that shows this tension perfectly. I'm a {{< define "TDD" "Test Driven Development" >}} person, it's a fantastic design tool, not just bug-catching. But many programmers still treat it as an afterthought because "how can you know what to implement before you build it?" That resistance is exactly why it's valuable: it forces you to think differently and know what _outcome_ you want. And that's why genies make things dangerous: they can write tests that look good, but if you don't understand testing as design, you won't know when you're building the wrong thing with great test coverage.
 
