@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
-<title>{{ partial "title-with-subtitle.html" . }}{{ if not .IsHome }} | {{ .Site.Title }}{{ end }}</title>
+<title>{{- $pageTitle := partial "title-with-subtitle.html" . -}}{{- $pageTitle -}}{{- if and (not .IsHome) $pageTitle }} | {{ .Site.Title }}{{ else if .IsHome }}{{ else }}{{ .Site.Title }}{{ end }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 
