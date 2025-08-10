@@ -48,6 +48,10 @@ ci:
   type: concept
   description: Continuous integration practices and tooling
 
+learning:
+  type: concept
+  description: How we learn and grow
+
 meetings:
   type: concept
   description: Running effective meetings and meeting practices

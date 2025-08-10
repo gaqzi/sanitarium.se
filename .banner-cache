@@ -54,5 +54,13 @@
   "static/img/banners/2025-07-your-name-is-still-on-it.png": {
     "content_checksum": "a0515bd3d81036a7e5ce901dd671f384",
     "file_checksum": "f4de11f6883bc0f20d5c2006bfbf2f65"
+  },
+  "static/img/banners/2025-08-when-everyone-gets-a-genie.png": {
+    "content_checksum": "92f85a8f2965f355056b5fce32d14e18",
+    "file_checksum": "d3ddbbb21e96736535eaf3136607fe76"
+  },
+  "static/img/banners/2025-08-more-frequent-smaller-posts.png": {
+    "content_checksum": "4a84d5ac373572ebd59abd3dff411c0b",
+    "file_checksum": "7f456be33771f2e0cb0f0c2d5f0b5b8d"
   }
 }
