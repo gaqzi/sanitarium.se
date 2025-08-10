@@ -204,7 +204,7 @@ class TestContentGeneration:
         til = TIL(body=body, tags=tags)
         content = til.as_content(timestamp="2025-08-01T23:10:02+08:00")
         expected = f"""---
-author: 'björn'
+authors: ['björn']
 date: 2025-08-01T23:10:02+08:00
 lastmod: 2025-08-01T23:10:02+08:00
 daily: ['2025-08-01']

@@ -126,7 +126,7 @@ class TIL:
         """Generate YAML front matter"""
         lines = [
             "---",
-            "author: 'björn'",
+            "authors: ['björn']",
             f"date: {timestamp}",
             f"lastmod: {timestamp}",
             f"daily: ['{timestamp.split('T')[0]}']",

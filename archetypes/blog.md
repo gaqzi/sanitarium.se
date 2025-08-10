@@ -1,5 +1,5 @@
 ---
-author: 'björn'
+authors: ['björn']
 date: '{{ .Date }}'
 lastmod: '{{ .Date }}'
 draft: true
