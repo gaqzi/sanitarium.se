@@ -8,5 +8,11 @@
     {{ end }}
 </header>
 
+{{ if .Content }}
+<div class="content">
+    {{ .Content }}
+</div>
+{{ end }}
+
 {{ partial "list.html" . -}}
 {{ end }}
