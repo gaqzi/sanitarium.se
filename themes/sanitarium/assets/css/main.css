@@ -1166,13 +1166,41 @@ ul.pagination {
     text-align: center;
 }
 
-/* Ensure anchors are positioned correctly when navigating to them */
+/* Heading anchor styles */
+.heading-anchor {
+    /* Base styles */
+    text-decoration: none;
+    color: var(--heading-anchor-hover-color);
+    transition: opacity 0.2s ease;
+
+    /* Size with room to the left, place on the left */
+    @media (min-width: 48.01rem) {
+        position: absolute;
+        left: -0.8em;
+        top: 0;
+        margin-left: 0;
+    }
+
+    /* When it can hover, hide, and on hover show */
+    @media (hover: hover) {
+        opacity: 0;
+
+        &:hover,
+        h1:hover &, h2:hover &, h3:hover &,
+        h4:hover &, h5:hover &, h6:hover & {
+            opacity: 1;
+        }
+    }
+}
+
+/* Ensure headings can contain absolutely positioned anchors and are positioned correctly when navigating to them */
 h1[id],
 h2[id],
 h3[id],
 h4[id],
 h5[id],
 h6[id] {
+    position: relative;
     scroll-margin-top: 1em;
 }
 
