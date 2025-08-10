@@ -1175,3 +1175,9 @@ h5[id],
 h6[id] {
     scroll-margin-top: 1em;
 }
+
+dfn {
+    font-style: inherit; /* Reset */
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
