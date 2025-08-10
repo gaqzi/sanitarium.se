@@ -3,6 +3,7 @@ authors: ['björn']
 date: 2025-08-02T09:37:29.210453+08:00
 daily: ['2025-08-02']
 lastmod: 2025-08-02T09:37:29.210453+08:00
+title: Link rel="canonical" is like a correlation ID
 tags:
   - html
 ---

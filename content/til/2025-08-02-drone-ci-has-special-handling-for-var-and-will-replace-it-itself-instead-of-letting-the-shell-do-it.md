@@ -3,6 +3,7 @@ authors: ['björn']
 date: 2025-08-02T09:37:29.210041+08:00
 daily: ['2025-08-02']
 lastmod: 2025-08-02T09:37:29.210041+08:00
+title: Drone CI handling of ${VAR} vs. $VAR
 tags:
   - drone-ci
 ---

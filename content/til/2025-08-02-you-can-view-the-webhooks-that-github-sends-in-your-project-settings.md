@@ -3,6 +3,7 @@ authors: ['björn']
 date: 2025-08-02T09:37:29.209823+08:00
 daily: ['2025-08-02']
 lastmod: 2025-08-02T09:37:29.209823+08:00
+title: You can view the webhooks that GitHub sends in your project settings
 tags:
   - github
 ---

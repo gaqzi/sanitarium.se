@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-10T21:42:17+08:00'
 lastmod: '2025-08-10T21:42:17+08:00'
+title: Simon Sinek on AI and the value of struggle
 full: true
 tags:
   - ai
@@ -10,7 +11,7 @@ tags:
 series: ['learning-with-genies']
 daily: ['2025-08-10']
 ---
-[Simon Sinek on AI](https://podscripts.co/podcasts/the-diary-of-a-ceo-with-steven-bartlett/simon-sinek-youre-being-lied-to-about-ais-real-purpose-and-were-teaching-our-kids-to-not-be-human) via Arjit:
+[Simon Sinek on AI and the value of struggle](https://podscripts.co/podcasts/the-diary-of-a-ceo-with-steven-bartlett/simon-sinek-youre-being-lied-to-about-ais-real-purpose-and-were-teaching-our-kids-to-not-be-human), via Arjit:
 
 > People keep telling us life is not about the destination. Life is about the journey. But when we think about AI, we only think about the destination. And it's remarkable ability to write the book, paint the painting, solve the problem, but we forget the importance of doing the work yourself.
 > 
