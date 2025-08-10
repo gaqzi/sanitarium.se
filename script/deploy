@@ -11,7 +11,7 @@ rsync -rvz \
     --exclude index.csv --exclude banner.html \
     --itemize-changes \
     --checksum \
-    . sanitarium@cell.sanitarium.se:/srv/www/sanitarium.se/ | tee "$tmpfile"
+    . sanitarium@the.padded.cell.sanitarium.se:/srv/www/sanitarium.se/ | tee "$tmpfile"
 
 # Cloudflare cache purge
 if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ZONE_ID" ]; then
