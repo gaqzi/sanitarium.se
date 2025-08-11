@@ -19,6 +19,8 @@ The internet changed things, sure. Suddenly you could reach out to actual expert
 
 What hasn't changed is we've always had to figure out who to trust. What's changing is how we get our answers, and who gets to sound like an expert.
 
+<!--more-->
+
 ## My dinner with Mark
 
 I went for dinner with Mr. Bossman, or Mark as he's also known, and we ended up talking about AI because we're looking to make genies available to all programmers at work, and we want to do it safely. While talking about what we're doing, he says he doesn't think we'll have programmers like we do today, that programming is probably going to end up being more like normal language that compiles down into software (all about that prompt).
