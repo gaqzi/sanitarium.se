@@ -10,6 +10,7 @@ tags:
   - genie
   - which-role
   - kent-beck
+series: ['learning-with-genies']
 ---
 A colleague recently said something that's been rattling around in my head: "AI gives you speed, but it doesn't give you direction." And the more I use these tools, the more I think that undersells the danger.
 
