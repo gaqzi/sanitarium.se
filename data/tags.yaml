@@ -48,6 +48,10 @@ ci:
   type: concept
   description: Continuous integration practices and tooling
 
+context-engineering:
+  type: concept
+  description: How to provide context to AIs/genies and make sure they can magic autocomplete the best
+
 learning:
   type: concept
   description: How we learn and grow
@@ -55,6 +59,10 @@ learning:
 meetings:
   type: concept
   description: Running effective meetings and meeting practices
+
+mentoring:
+  type: concept
+  description: How to help others grow and learn new skills (might include genies)
 
 productivity:
   type: concept
