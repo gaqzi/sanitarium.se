@@ -11,7 +11,7 @@ tags:
 series: ['learning-with-genies']
 daily: ['2025-08-12']
 ---
-Anthropic has released some recordings from their Code w/ Claude event in May and the [Prompting for Agents](https://www.youtube.com/watch?v=XSZP9GhhuAc) presentation's "key principles" are basically to _empathise_ with your agent, imagine it's a brilliant new grad, book smart but missing all things practical at the new job: You need clear concepts, unambiguous instructions, and well-named and designed tools.
+Anthropic has released some recordings from their Code w/ Claude event in May and the [Prompting for Agents](https://www.youtube.com/watch?v=XSZP9GhhuAc) presentation's "key principles" are basically to _empathise_ with your agent, imagine it's a brilliant new grad, book smart but missing all things practical at their first job: You need clear concepts, unambiguous instructions, and well-named and designed tools.
 
 {{< youtube XSZP9GhhuAc >}}
 
