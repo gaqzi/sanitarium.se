@@ -62,5 +62,9 @@
   "static/img/banners/2025-08-more-frequent-smaller-posts.png": {
     "content_checksum": "4a84d5ac373572ebd59abd3dff411c0b",
     "file_checksum": "7f456be33771f2e0cb0f0c2d5f0b5b8d"
+  },
+  "static/img/banners/2025-08-12-anthropic-on-prompting-for-agents.png": {
+    "content_checksum": "5cae9938785886b634984d7b3ae38d46",
+    "file_checksum": "79a8546e7429b5469b0d0013fdc677be"
   }
 }

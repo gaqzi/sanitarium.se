@@ -67,7 +67,7 @@ enableEmoji = true
   # Site settings
   description = "ramblings of a technical nature"
   mainSections = ["blog", "til", "link", "crumb"]
-  bannerSections = ["blog"]
+  bannerSections = ["blog", "crumb"]
 
   # Theme appearance
   enableCodeHighlighting = true
