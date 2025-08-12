@@ -1,6 +1,9 @@
-{{ $partial := printf "summary/%s.html" (.Section | default "default") -}}
-{{ if templates.Exists (printf "partials/%s" $partial) -}}
-    {{ partial $partial . }}
-{{ else -}}
-    {{ partial "summary/default.html" . }}
-{{ end -}}
+{{- $template := "" -}}
+{{- if in (slice "blog" "crumb") .Section -}}
+    {{- $template = "with-title" -}}
+{{- else if in (slice "til" "link") .Section -}}
+    {{- $template = "without-title" -}}
+{{- else -}}
+    {{- $template = "unconfigured" -}}
+{{- end -}}
+{{ partial (printf "summary/%s.html" $template) . }}

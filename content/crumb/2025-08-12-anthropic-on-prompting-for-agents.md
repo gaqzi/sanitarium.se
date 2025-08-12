@@ -1,8 +1,9 @@
 ---
 authors: ['björn']
 date: '2025-08-12T23:53:04+08:00'
-lastmod: '2025-08-12T23:54:04+08:00'
-title: Anthropic on prompting for agents and musing on genies possibly teaching empathy
+lastmod: '2025-08-12T23:53:04+08:00'
+title: Anthropic on prompting for agents
+subtitle: …and musing on genies possibly teaching empathy
 tags:
   - genie
   - mentoring
