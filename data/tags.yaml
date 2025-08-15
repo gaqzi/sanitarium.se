@@ -102,6 +102,10 @@ ruby:
   display: Ruby
   type: programming-language
 
+yaml:
+  display: YAML
+  type: programming-language  # questionable, but closest for current taxonomy
+
 # Tool tags
 alfredapp:
   display: Alfred
