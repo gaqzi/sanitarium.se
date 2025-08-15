@@ -29,11 +29,11 @@ this feels correct somehow. But also this:
 
 > Knowledge is a fluid mix of framed experience, values, contextual information, expert insight and grounded intuition that provides an environment and framework for evaluating and incorporating new experiences and information. It originates and is applied in the minds of knowers. In organizations it often becomes embedded not only in documents and repositories but also in organizational routines, processes, practices and norms.
 
-It feels like _knowledge_ is personal. Also why I like the idea of knowledge "made specific" becomes information, and then needs to be contextualized into someones situation as knowledge -> and then that combination can then be "made specific" again into information that others can use in that context.
+It feels like _knowledge_ is personal. Also why I like the idea of knowledge "made specific" becomes information, and then needs to be contextualized into someones situation as knowledge → and then that combination can then be "made specific" again into information that others can use in that context.
 
 No idea if that makes sense 🙂
 
-Wisdom even fluffier, but I kinda wonder if that's moving from tacit -> explicit, but the difference from `information` is that it's not only contextual to _one concrete_ situation, it's when you can teach/identify the meta "skill" of whatever you have knowledge?
+Wisdom even fluffier, but I kinda wonder if that's moving from tacit → explicit, but the difference from `information` is that it's not only contextual to _one concrete_ situation, it's when you can teach/identify the meta "skill" of whatever you have knowledge?
 
 Then again, I also like the simple version of "knowledge is that a tomato is a fruit. wisdom is to not put it in a fruit salad."
 (and talking it through with a genie it pointed out that while funny the classification is wrong, tomato is a fruit is information, and not using it in a fruit salad is knowledge because how it's contextualized)
