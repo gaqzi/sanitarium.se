@@ -4,7 +4,10 @@ date: '2025-08-15T23:30:00+08:00'
 lastmod: '2025-08-15T23:30:00+08:00'
 title: 'DIKW pyramid when working with genies'
 subtitle: '…classification of different types of understanding'
-tags: []
+tags:
+  - thinking-out-loud
+  - genie
+  - learning
 daily: ['2025-08-14']
 ---
 Curtis shared the [DIKW pyramid](https://en.wikipedia.org/wiki/DIKW_pyramid), that I hadn't heard of, and said that he feels that the genies helps him process the first two layers much more quickly than he can alone, that it can somewhat help penetrate into knowledge but not much.
