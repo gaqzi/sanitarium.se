@@ -8,6 +8,7 @@ tags:
   - thinking-out-loud
   - genie
   - learning
+series: ['learning-with-genies']
 daily: ['2025-08-14']
 ---
 Curtis shared the [DIKW pyramid](https://en.wikipedia.org/wiki/DIKW_pyramid), that I hadn't heard of, and said that he feels that the genies helps him process the first two layers much more quickly than he can alone, that it can somewhat help penetrate into knowledge but not much.
