@@ -2,6 +2,7 @@
 authors: ['björn']
 date: 2025-08-15T21:19:18.362542+08:00
 lastmod: 2025-08-15T21:19:18.362542+08:00
+title: Non-interactive shells will source the file pointed at by a variable at launch
 daily: ['2025-08-15']
 tags:
   - shell-scripting

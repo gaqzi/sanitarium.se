@@ -2,6 +2,7 @@
 authors: ['bjơrn']
 date: 2025-08-15T21:19:18.362876+08:00
 lastmod: 2025-08-15T21:19:18.362876+08:00
+title: Syntax for declaring and using YAML anchors
 daily: ['2025-08-15']
 tags:
   - yaml

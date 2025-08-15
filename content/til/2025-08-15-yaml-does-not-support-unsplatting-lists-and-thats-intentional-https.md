@@ -2,6 +2,7 @@
 authors: ['björn']
 date: 2025-08-15T21:19:18.363059+08:00
 lastmod: 2025-08-15T21:19:18.363059+08:00
+title: YAML does *not* support unsplatting/merging lists
 daily: ['2025-08-15']
 tags:
   - yaml
