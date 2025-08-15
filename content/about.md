@@ -12,11 +12,12 @@ I think there are [some](https://justin.searls.co) [great](https://simonwillison
 I've been thinking about different ways to share what I'm learning. Not everything needs to be a full blog post, so I'm experimenting with different formats:
 
 **[TIL](/til/):** Things I learned (not necessarily today) that I want to remember and might help others. Quick discoveries from debugging sessions, neat tricks, useful commands.
-<!-- 
+
 **[crumb](/crumb/):** Breadcrumbs. Half-finished thoughts, notes to future me, questions I'm mulling over. These might grow into something bigger or just stay as markers along the way.
 
 **[link](/link/):** Things I found useful and want to find again. I'll try to add context about why I'm saving it.
 
+<!--
 **[presentation](/presentation/):** Talks I've given that I want to keep track of. Slides and video when available.
 -->
 **[blog](/blog/):** The longer pieces where I've worked through something more completely. Still thinking out loud, just… more of it.
