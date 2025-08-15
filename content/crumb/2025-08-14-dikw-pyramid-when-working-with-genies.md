@@ -51,6 +51,8 @@ I wanted to see if I had gotten the full idea after the tomato in my face, so I 
 - Knowledge: I'm trying to spend less so halving the cost helps me get there, while also giving me _some_ good coffee per day
 - Wisdom: If I make a thermos of good coffee at home and bring to the office, then I'll get two good cups and it's cheaper
 
-And to be fair, after I read the Wikipedia article and then asked Gemini to describe the DIKW pyramid based on all this. Then I used the coffee example to validate that I got it (I also dug deeper into wisdom and it seems there's no clear agreed on definition?).
+I started a chat with Gemini and shared all the notes above ([transcript](https://gist.github.com/gaqzi/2d9d8987805e677a8f8860aeb5ea0269)), and it felt this was a good example of wisdom, and when I asked Claude it felt my answer was too strategic and that I wasn't explaining the full "why do", and suggested:
 
-I ended up exploring this with Gemini and here's the transcript if you'd like to read: https://gist.github.com/gaqzi/2d9d8987805e677a8f8860aeb5ea0269
+> Wisdom: "Small daily expenses compound dramatically over time, so sustainable cost-cutting requires finding cheaper alternatives that I'll actually stick with (hence keeping good coffee, just changing the source)."
+
+And that connects in a whole other way, I'll keep that in mind for next time, and it also highlights some _unspoken context_ that was tacit, the habit is one I could likely sustain because it's small and something I do most days when working from home, but I didn't call it out.
