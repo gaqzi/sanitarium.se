@@ -47,6 +47,18 @@ function installUv() {
   fi
 }
 
+function installXsv() {
+  if which -s xsv ; then
+    return
+  fi
+
+  echo "xsv not installed, will try to install with homebrew"
+  if ! brew install xsv; then
+    echo "Failed to install xsv" >&2
+    exit 1
+  fi
+}
+
 function installPreCommitHook() {
   local hook_path=".git/hooks/pre-commit"
 
@@ -86,6 +98,10 @@ installAsdf &&
 echo "Install uv and sync project dependencies"
 installUv &&
   uv sync --group dev
+
+## Install xsv for CSV processing
+echo "Install xsv for CSV processing"
+installXsv
 
 ## Install pre-commit hook
 installPreCommitHook

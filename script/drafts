@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+# Get drafts list (skip header, sort by date most recent first)
+drafts=$(hugo list drafts | xsv select date,path | xsv sort -R -s date | tail -n +2)
+
+# Check if any drafts exist
+if [ -z "$drafts" ]; then
+    echo "No drafts found"
+    exit 0
+fi
+
+# Use gum to select a draft
+selected=$(echo "$drafts" | gum choose)
+
+# Extract the file path (second column after comma)
+filepath=$(echo "$selected" | cut -d',' -f2)
+
+# Open in IntelliJ
+idea "$filepath"
