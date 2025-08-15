@@ -1,60 +1,214 @@
-#!/bin/bash
+#!/usr/bin/env uv run python3
+"""
+Blog Linting Tool
 
-set -e
+Validates:
+1. Tags schema compliance and existence
+2. Series format (array only) and directory existence
+"""
 
-# Colors for output
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+import argparse
+import glob
+import os
+import subprocess
+import sys
+from pathlib import Path
+from typing import Dict, List, Set
 
-function log_error() {
-    echo -e "${RED}[ERROR][lint]${NC} $1"
-}
+import yaml
 
-function validate_tags_schema() {
-    if ! uv run check-jsonschema --schemafile schemas/tags-schema.yaml data/tags.yaml >/dev/null 2>&1; then
-        log_error "data/tags.yaml does not conform to schema"
-        return 1
-    fi
-}
+def log_error(message: str) -> None:
+    """Log error message with red color."""
+    print(f"\033[0;31m[ERROR][lint]\033[0m {message}", file=sys.stderr)
 
-function validate_all_tags_exist() {
-    # Get all tags from markdown files
-    local used_tags_file=$(mktemp)
-    python script/all-tags.py 2>/dev/null | grep -E '^- [^:]+:' | sed 's/^- \([^:]*\):.*/\1/' | sort > "$used_tags_file"
+
+def extract_frontmatter(content: str) -> Dict:
+    """Extract YAML frontmatter from markdown content."""
+    if not content.startswith("---"):
+        return {}
+
+    try:
+        # Find the end of frontmatter
+        end_delimiter = content.find("---", 3)
+        if end_delimiter == -1:
+            return {}
+
+        frontmatter_text = content[3:end_delimiter].strip()
+        return yaml.safe_load(frontmatter_text) or {}
+    except yaml.YAMLError as e:
+        log_error(f"Invalid YAML in frontmatter: {e}")
+        return {}
+    except Exception:
+        return {}
+
+
+def collect_frontmatter_from_files(content_dir: str = "content") -> List[Dict]:
+    """Collect frontmatter from all markdown files, excluding content/internal/."""
+    if not os.path.exists(content_dir):
+        return []
+
+    frontmatter_data = []
+    pattern = os.path.join(content_dir, "**", "*.md")
+    markdown_files = glob.glob(pattern, recursive=True)
+
+    for filepath in markdown_files:
+        # Skip files in content/internal/ directory
+        if "/internal/" in filepath or filepath.startswith("content/internal/"):
+            continue
+            
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            frontmatter = extract_frontmatter(content)
+            if frontmatter:
+                frontmatter["_file"] = filepath
+                frontmatter_data.append(frontmatter)
+
+        except (IOError, UnicodeDecodeError) as e:
+            log_error(f"Could not read {filepath}: {e}")
+
+    return frontmatter_data
+
+
+def validate_tags_schema() -> bool:
+    """Validate that data/tags.yaml conforms to schema."""
+    try:
+        result = subprocess.run(
+            ["uv", "run", "check-jsonschema", "--schemafile", "schemas/tags-schema.yaml", "data/tags.yaml"],
+            capture_output=True,
+            text=True
+        )
+        return result.returncode == 0
+    except Exception:
+        log_error("Failed to run jsonschema validation")
+        return False
+
+
+def validate_all_tags_exist() -> bool:
+    """Validate that all used tags are defined in data/tags.yaml."""
+    # Get all used tags
+    used_tags = set()
+    frontmatter_data = collect_frontmatter_from_files()
     
-    # Get all defined tags from data/tags.yaml
-    local defined_tags_file=$(mktemp)
-    grep -E '^[a-z0-9-]+:$' data/tags.yaml | sed 's/:$//' | sort > "$defined_tags_file"
+    for fm in frontmatter_data:
+        tags = fm.get("tags", [])
+        if isinstance(tags, list):
+            used_tags.update(tag.strip() for tag in tags if tag and tag.strip())
+        elif isinstance(tags, str):
+            used_tags.add(tags.strip())
+
+    # Get defined tags
+    defined_tags = set()
+    try:
+        with open("data/tags.yaml", "r", encoding="utf-8") as f:
+            tags_data = yaml.safe_load(f) or {}
+            defined_tags = set(tags_data.keys())
+    except (IOError, yaml.YAMLError) as e:
+        log_error(f"Could not read data/tags.yaml: {e}")
+        return False
+
+    # Find missing tags
+    missing_tags = used_tags - defined_tags
     
-    # Find tags that are used but not defined
-    local missing_tags_file=$(mktemp)
-    comm -23 "$used_tags_file" "$defined_tags_file" > "$missing_tags_file"
-    
-    local missing_count=$(wc -l < "$missing_tags_file")
-    
-    if [ "$missing_count" -gt 0 ]; then
-        log_error "Found $missing_count tags used in content but not defined in data/tags.yaml:"
-        while IFS= read -r tag; do
-            log_error "  - $tag"
-        done < "$missing_tags_file"
+    if missing_tags:
+        log_error(f"Found {len(missing_tags)} tags used in content but not defined in data/tags.yaml:")
+        for tag in sorted(missing_tags):
+            log_error(f"  - {tag}")
         
-        log_error ""
-        log_error "Please add these tags to data/tags.yaml with appropriate metadata:"
-        log_error "  type: format|concept|programming-language|tool|person"
-        log_error "  description: Brief explanation of when and why to use this tag"
-        log_error "  display: Optional display name (defaults to tag name)"
+        log_error("")
+        log_error("Please add these tags to data/tags.yaml with appropriate metadata:")
+        log_error("  type: format|concept|programming-language|tool|person")
+        log_error("  description: Brief explanation of when and why to use this tag")
+        log_error("  display: Optional display name (defaults to tag name)")
+        return False
+
+    return True
+
+
+def validate_series_format() -> bool:
+    """Validate that all series use array format only."""
+    frontmatter_data = collect_frontmatter_from_files()
+    invalid_files = []
+
+    for fm in frontmatter_data:
+        if "series" in fm:
+            series = fm["series"]
+            # Series must be a list (array format)
+            if not isinstance(series, list):
+                invalid_files.append(fm["_file"])
+
+    if invalid_files:
+        log_error(f"Found {len(invalid_files)} files using non-array series format:")
+        for filepath in invalid_files:
+            log_error(f"  {filepath}")
         
-        rm -f "$used_tags_file" "$defined_tags_file" "$missing_tags_file"
-        return 1
-    fi
+        log_error("")
+        log_error("Please use array format: series: ['series-name']")
+        return False
+
+    return True
+
+
+def validate_all_series_exist() -> bool:
+    """Validate that all used series have directories in content/series/."""
+    # Get all used series
+    used_series = set()
+    frontmatter_data = collect_frontmatter_from_files()
     
-    # Clean up temp files
-    rm -f "$used_tags_file" "$defined_tags_file" "$missing_tags_file"
-}
+    for fm in frontmatter_data:
+        series = fm.get("series", [])
+        if isinstance(series, list):
+            used_series.update(s.strip() for s in series if s and s.strip())
 
-function main() {
-    validate_tags_schema
-    validate_all_tags_exist
-}
+    # Get available series directories
+    series_dir = Path("content/series")
+    available_series = set()
+    if series_dir.exists() and series_dir.is_dir():
+        available_series = {d.name for d in series_dir.iterdir() if d.is_dir()}
 
-main "$@"
+    # Find missing series directories
+    missing_series = used_series - available_series
+    
+    if missing_series:
+        log_error(f"Found {len(missing_series)} series used in content but missing directories in content/series/:")
+        for series in sorted(missing_series):
+            log_error(f"  - {series}")
+        
+        log_error("")
+        log_error("Please create directories for these series in content/series/")
+        return False
+
+    return True
+
+
+def main():
+    """Run all validation checks."""
+    parser = argparse.ArgumentParser(description="Validate blog content consistency")
+    args = parser.parse_args()
+
+    success = True
+
+    # Validate tags schema
+    if not validate_tags_schema():
+        log_error("data/tags.yaml does not conform to schema")
+        success = False
+
+    # Validate all tags exist
+    if not validate_all_tags_exist():
+        success = False
+
+    # Validate series format
+    if not validate_series_format():
+        success = False
+
+    # Validate all series exist
+    if not validate_all_series_exist():
+        success = False
+
+    if not success:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
