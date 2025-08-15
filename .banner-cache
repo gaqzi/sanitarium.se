@@ -66,5 +66,9 @@
   "static/img/banners/2025-08-12-anthropic-on-prompting-for-agents.png": {
     "content_checksum": "5cae9938785886b634984d7b3ae38d46",
     "file_checksum": "79a8546e7429b5469b0d0013fdc677be"
+  },
+  "static/img/banners/2025-08-14-dikw-pyramid-when-working-with-genies.png": {
+    "content_checksum": "19fa2b7a4fa6cac85897e81a0352f3d5",
+    "file_checksum": "a3f8ed015725d6876a231ca05c8be055"
   }
 }
