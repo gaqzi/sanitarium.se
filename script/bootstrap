@@ -40,8 +40,8 @@ function installUv() {
     return
   fi
 
-  echo "uv not installed, will try to install with homebrew"
-  if ! brew install uv; then
+  echo "uv not installed, will try to install with pip"
+  if ! pip install uv; then
     echo "Failed to install uv" >&2
     exit 1
   fi
@@ -49,14 +49,14 @@ function installUv() {
 
 function installPreCommitHook() {
   local hook_path=".git/hooks/pre-commit"
-  
+
   if [ -f "$hook_path" ]; then
     echo "Pre-commit hook already exists, skipping installation"
     return
   fi
 
   echo "Installing pre-commit hook to run linting checks"
-  
+
   cat > "$hook_path" << 'EOF'
 #!/bin/bash
 # Pre-commit hook to run linting and tests
