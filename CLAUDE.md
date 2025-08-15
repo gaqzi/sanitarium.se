@@ -47,6 +47,11 @@
 - TILs: Show truncated content preview using `.Summary | plainify | truncate 40`
 - Template automatically detects content type and adjusts navigation display
 
+#### Full Content Posts (`full: true`)
+- Posts with `full: true` hide visual titles from page headers and listing displays
+- Titles are preserved for navigation links, series navigation, and metadata (better than truncated content)
+- Used for shorter posts where content speaks for itself but title provides context for linking
+
 ## Structure
 - Content: `content/` (Markdown)
 - Templates: `themes/sanitarium/layouts/`
