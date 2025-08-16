@@ -74,6 +74,37 @@
   - Test all color combinations for sufficient contrast in both themes
   - For SVGs and icons, use filters rather than duplicate assets
 
+## Code Block Styling
+
+### Default Behavior
+All code blocks use centered styling with horizontal scroll when content is too wide:
+
+```javascript
+function example() { return "code"; }
+```
+
+```
+ASCII art and diagrams work well with default styling
+```
+
+### Full-Width Option
+Add `{class="full-width"}` to any code block for full-width display with text wrapping:
+
+```text {class="full-width"}
+Long content like AI prompts, logs, or wide ASCII diagrams
+```
+
+```javascript {class="full-width"}
+// Even code can be full-width when needed
+function veryLongFunctionName() { return "wraps instead of scrolling"; }
+```
+
+### Usage Guidelines
+- **Default styling**: Use for most code, ASCII art, and short content
+- **Full-width styling**: Use for long text content, logs, AI prompts, or wide diagrams
+- **Language flexibility**: The `{class="full-width"}` attribute works with any language
+- **Choose based on content**: Consider readability and layout when deciding
+
 ## Template Structure
 
 ### Base Templates

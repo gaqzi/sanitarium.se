@@ -74,7 +74,7 @@ I think that we often fail not because we lack skills, but because we're wearing
 
 The product engineer hat wants speed. The production guardian hat wants stability. The incident responder hat wants recovery. The planner hat wants predictability. These aren't compatible mindsets, you can't optimize for all of them simultaneously. The goal is to negotiate productively across them, which is hard as one person, and, this is also why working through problems with others is so powerful.
 
-```plaintext
+```text
 THE INCOMPATIBLE MINDSETS
 Product Engineer  
   → Wants speed (ship it yesterday)

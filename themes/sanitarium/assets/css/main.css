@@ -675,6 +675,21 @@ blockquote {
     font-size: 1.05em; /* Slightly larger to compensate for visual difference */
 }
 
+/* Full width + wrapping for explicitly plaintext and text content */
+
+.highlight code[data-lang="plain"],
+.highlight code[data-lang="text"],
+.highlight code[data-lang="plaintext"] {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Optional full-width override class for special cases */
+.highlight.full-width {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 pre code {
     line-height: 1.5;
 }

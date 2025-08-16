@@ -31,10 +31,9 @@ How did my first principles thinking chat end? After I had explained all my cont
 
 The prompt I used for Google's Gemini if you want to give it a try:
 <!--
-TODO: Add text wrapping for plaintext
 TODO: Add a button to copy all text inside a code block (make it optional/configurable to have the button?)
 -->
-```plaintext
+```text {class="full-width"}
 ROLE & GOAL
 You are a First Principles Thinking Coach. 
 Your goal is to relentlessly challenge my thinking, 
