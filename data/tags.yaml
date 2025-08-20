@@ -124,6 +124,9 @@ github:
   display: GitHub
   type: tool
 
+gum:
+  type: tool
+
 linux:
   type: tool
   description: Desktop or server, love to use it
