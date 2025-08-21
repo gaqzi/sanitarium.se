@@ -143,7 +143,8 @@ And that's the thing, Go just picks the simple and boring solution that works, i
 
 ---
 
-*The [full experiment is available][experiment] if you want to dig into it yourself.*
+*The [full experiment is available][experiment] if you want to dig into it yourself.*  
+*[Presentation slides](https://speakerdeck.com/gaqzi/working-with-gos-test-cache-on-ci) from the Singapore Go meetup*
 
 [testlog]: https://github.com/golang/go/blob/6c3b5a2798c83d583cb37dba9f39c47300d19f1f/src/internal/testlog/log.go#L49-L54
 [experiment]: https://github.com/gaqzi/experiment-go-test-caching
