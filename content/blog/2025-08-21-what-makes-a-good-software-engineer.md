@@ -15,6 +15,7 @@ I was in an AMA at work, and someone asked me what makes a good software enginee
 The more I think about it, the more I realize that curiosity is the foundation. You need curiosity about the system you're building, the organization's actual goals, and especially about the people you're working with. But curiosity alone isn't enough, you also need to be intellectually honest about what you find.
 
 The principle I try to live by is: **I would rather be correct than right**.
+<!--more-->
 
 ## Difference between right and correct
 
