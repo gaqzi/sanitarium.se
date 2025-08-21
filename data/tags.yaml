@@ -52,6 +52,10 @@ context-engineering:
   type: concept
   description: How to provide context to AIs/genies and make sure they can magic autocomplete the best
 
+engineering-culture:
+  type: concept
+  description: How we engineer our culture, or what culture I think engineering should strive for
+
 learning:
   type: concept
   description: How we learn and grow
