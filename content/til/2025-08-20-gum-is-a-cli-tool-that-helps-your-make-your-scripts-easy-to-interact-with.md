@@ -11,7 +11,7 @@ daily: ['2025-08-20']
 ---
 [gum](https://github.com/charmbracelet/gum) simplifies making shell scripts interactive: no more wrestling with read commands and ANSI escape codes for user input: just proper text editing, defaults, and clean UI.
 
-Their demo: {{< img src="/img/2025/gum-demo.gif" alt="gum gemo" >}}
+[Their demo](https://github.com/charmbracelet/gum/blob/9ab722ca4fe1e248283091626bd9fe5ecea65e1b/examples/demo.sh): {{< img src="/img/2025/gum-demo.gif" alt="gum gemo" >}}
 
 For example, if you run:
 
