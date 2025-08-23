@@ -96,4 +96,4 @@ So when someone asks me what makes a good software engineer, that's what I think
 
 I'm never as awesome as I might fool myself into believing. My ideas get better when discussed and improved upon as a group, and that's the way it works. The best engineers I know aren't trying to be the hero with all the answers. They're the ones asking "what would change your mind?" while offering "this is what would change mine."
 
-A friend once told me that a high-performing team is one that wants to be. A team that decides they want to be correct in their outcomes, they'll set ego aside and work together. I bet they'll be high-performing, because they're actually working together, not just sitting in the same room competing to be right.
+My friend Andreas once told me that a high-performing team is one that wants to be. A team that decides they want to be correct in their outcomes, they'll set ego aside and work together. I bet they'll be high-performing, because they're actually working together, not just sitting in the same room competing to be right.
