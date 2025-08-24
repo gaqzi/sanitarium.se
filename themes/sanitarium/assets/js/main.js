@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     copyButtons.forEach(button => {
         button.addEventListener('click', async function() {
             // Find the code element within the same highlight div
-            const highlightDiv = button.closest('.highlight');
+            const highlightDiv = button.closest('.copy-enabled');
             const codeElement = highlightDiv.querySelector('pre code');
             
             if (!codeElement) {
