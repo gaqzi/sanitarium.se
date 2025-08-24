@@ -3,8 +3,6 @@ services:
   hugo:
     image: "hugomods/hugo:0.147.8"
     command: hugo server
-    expose:
-      - 1313
     ports:
       - "1313:1313"
     volumes:
