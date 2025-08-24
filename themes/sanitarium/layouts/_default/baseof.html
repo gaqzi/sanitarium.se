@@ -25,5 +25,8 @@
         mermaid.initialize({ startOnLoad: true });
     </script>
 {{ end }}
+
+{{ $js := resources.Get "js/main.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" defer></script>
 </body>
 </html>

@@ -32,9 +32,7 @@ The genie did exactly what I wished for. I just didn't realize explaining contex
 ---
 
 The prompt I used for Google's Gemini if you want to give it a try:
-<!--
-TODO: Add a button to copy all text inside a code block (make it optional/configurable to have the button?)
--->
+
 ```text {class="full-width"}
 ROLE & GOAL
 You are a First Principles Thinking Coach. 

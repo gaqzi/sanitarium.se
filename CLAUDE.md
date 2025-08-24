@@ -99,10 +99,38 @@ Long content like AI prompts, logs, or wide ASCII diagrams
 function veryLongFunctionName() { return "wraps instead of scrolling"; }
 ```
 
+### Copy Button Feature
+All code blocks automatically include a copy button for easy text copying:
+
+```javascript
+function example() { return "code"; }
+// Copy button appears automatically
+```
+
+#### Copy Button Positioning
+- **Desktop**: Button positioned in right gutter area (when viewport allows space)
+- **Mobile**: Button positioned above code block with adequate padding to prevent text overlap
+- **Responsive**: Automatically adapts positioning based on viewport width
+
+#### Disabling Copy Button
+Add `{class="no-copy-button"}` to disable the copy button for specific code blocks:
+
+```text {class="no-copy-button"}
+This code block will not have a copy button
+```
+
+#### Combining Classes
+The copy button feature works with other code block classes:
+
+```text {class="full-width no-copy-button"}
+Full-width code block without copy button
+```
+
 ### Usage Guidelines
 - **Default styling**: Use for most code, ASCII art, and short content
 - **Full-width styling**: Use for long text content, logs, AI prompts, or wide diagrams
 - **Language flexibility**: The `{class="full-width"}` attribute works with any language
+- **Copy button**: Automatically enabled unless `no-copy-button` class is used
 - **Choose based on content**: Consider readability and layout when deciding
 
 ## Template Structure

@@ -667,7 +667,7 @@ blockquote {
 }
 
 /* Code block styling */
-.highlight pre.highlight {
+.highlight pre.highlight, pre.chroma {
     padding: 1em 1em 1em 1.5em; /* Adjusted left padding to match blockquote */
     margin: 0;
     overflow-x: auto;
@@ -693,6 +693,75 @@ blockquote {
 pre code {
     line-height: 1.5;
 }
+
+/* Copy button for code blocks */
+.copy-enabled {
+    position: relative;
+    margin-top: 0;
+    padding-top: 1.5rem !important; /* Space for button above on mobile */
+    overflow: visible;
+}
+
+.copy-button {
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+    z-index: 10;
+
+    /* Visual styling */
+    background: Canvas;
+    border: 1px solid rgba(var(--border-color-standard-rgb), 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 0.5rem;
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    /* Typography */
+    font: 0.85rem var(--system-sans);
+    color: var(--text-meta-color);
+
+    /* Interaction */
+    cursor: pointer;
+    opacity: 0.9;
+    transition: all 0.2s ease;
+}
+
+/* Hide/show text states */
+.copy-button .copied-text { display: none; }
+.copy-button.copied .copy-text { display: none; }
+.copy-button.copied .copied-text { display: inline; }
+
+/* Hover and copied states */
+.copy-button:hover,
+.copy-button.copied {
+    color: var(--main-accent-color);
+    border-color: var(--main-accent-color);
+    opacity: 1;
+}
+
+/* Focus state */
+.copy-button:focus {
+    outline: 2px solid var(--main-accent-color);
+    outline-offset: 2px;
+}
+
+/* Desktop: position to the right side */
+@media (min-width: calc(48.01rem + 3rem)) {
+    .copy-enabled { padding-top: 0 !important; }
+    .copy-button {
+        top: 1.00rem;
+        right: -2.5rem;
+        opacity: 0.7;
+    }
+    .copy-enabled:hover .copy-button { opacity: 1; }
+}
+
+/* SVG icon styling */
+.copy-button svg { flex-shrink: 0; }
 
 footer {
     visibility: visible;
