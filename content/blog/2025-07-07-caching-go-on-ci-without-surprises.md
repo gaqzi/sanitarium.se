@@ -29,7 +29,7 @@ I wanted the caching benefits without the risk, ideally with minimal changes sin
 
 ## So... How Do I Make This Work?
 
-I started by looking for the obvious solutions, there's probably a flag to ignore the test cache, right? And there were two straightforward options: `go clean -testcache` and `--count=1`. But here's the thing, both of them throw away ALL test caching, which felt like using a sledgehammer when I needed a scalpel.
+I started by looking for the obvious solutions, there's probably a flag to ignore the test cache, right? And there were two straightforward options: `go clean -testcache` and `-count=1`. But here's the thing, both of them throw away ALL test caching, which felt like using a sledgehammer when I needed a scalpel.
 
 Then I remembered reading something about environment variables, and files, affecting test caching. I went into `go help test` and I remembered right, tests that read environment variables get invalidated when those variables change, so since this is about CI, and I know that CI systems give us unique commit SHAs as env vars… and we have a shared library to help write black box integration tests… so I can make the fix once in that library and everyone gets this benefit!
 
@@ -42,7 +42,7 @@ Alright, that gives me three options, how do they compare?
 
 This works by creating [a file with the current Unix time in nanoseconds](https://github.com/golang/go/blob/665af869920432879629c1d64cf59f129942dcd6/src/cmd/go/internal/test/test.go#L844-L848) and then, whenever Go runs tests, it checks if the cached test is newer than that timestamp. I appreciate the simplicity: the cache cleaner doesn't need to understand which cached items are tests (and there are only hashes in that folder), it just sets a "tests are invalid after this moment" marker and the code skips it or not.
 
-**Explicit Option: `--count=1`**
+**Explicit Option: `-count=1`**
 - Pro: Granular control per `go test` invocation
 - Con: Need to change test execution and remember it everywhere, easy to miss (especially in monorepos with many go.mods)
 - When to use: Only some tests need cache invalidation
@@ -59,7 +59,7 @@ Or laid out visually:
 | Approach | Changes Needed           | Test Caching | Safety |
 |----------|--------------------------|--------------|--------|
 | `go clean -testcache` | CI config only           | ❌ None | ✅ Safest |
-| `--count=1` | Every test invocation    | ❌ None | ✅ Safe |
+| `-count=1` | Every test invocation    | ❌ None | ✅ Safe |
 | Environment variables | Shared code/library once | ✅ Full | ✅ Safe* |
 
 *_When implemented correctly_
