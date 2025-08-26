@@ -31,6 +31,10 @@ The genie did exactly what I wished for. I just didn't realize explaining contex
 
 ---
 
+**Related:** At least humans are better at this, right? This directly led me to [reasonable assumptions ...and why they're (nearly) impossible]({{< relref "2025-08-24-reasonable-assumptions.md" >}}).
+
+---
+
 The prompt I used for Google's Gemini if you want to give it a try:
 
 ```text {class="full-width"}
