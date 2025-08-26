@@ -35,6 +35,10 @@ ai:
   type: concept
   description: Artificial intelligence, LLMs, and their implications
 
+funny:
+  type: concept
+  description: Something that's intended to be seen as funny (humor is of course universal)
+
 genie:
   type: concept
   description: The mischievous, wish-granting nature of AI tools (via Kent Beck)
