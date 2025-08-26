@@ -1,0 +1,242 @@
+#!/usr/bin/env python3
+"""Hugo draft publisher - Updates timestamps and publishes Hugo drafts"""
+
+from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
+from typing import Optional, Protocol
+from abc import ABC, abstractmethod
+import re
+import sys
+import argparse
+
+
+@dataclass
+class FrontMatter:
+    """Represents Hugo front matter data"""
+    date: Optional[str]
+    lastmod: Optional[str]
+    is_draft: bool
+    raw_content: str
+    
+    def needs_date_update(self) -> bool:
+        """Check if date should be updated (was same as lastmod)"""
+        return self.date == self.lastmod and self.date is not None
+    
+    def needs_date_creation(self) -> bool:
+        """Check if date field needs to be created"""
+        return self.date is None
+
+
+@dataclass
+class PublishingPlan:
+    """Describes what changes are needed to publish a post"""
+    update_date: bool
+    new_date_value: str
+    update_lastmod: bool
+    new_lastmod_value: str
+    remove_draft: bool
+    
+    def describe_changes(self, original: FrontMatter) -> list[str]:
+        """Generate human-readable change descriptions"""
+        changes = []
+        if self.remove_draft:
+            changes.append("  draft: true → (removed)")
+        if self.update_lastmod:
+            if original.lastmod:
+                changes.append(f"  lastmod: {original.lastmod} → {self.new_lastmod_value}")
+            else:
+                changes.append(f"  lastmod: (added) → {self.new_lastmod_value}")
+        if self.update_date:
+            if original.date:
+                changes.append(f"  date: {original.date} → {self.new_date_value}")
+            else:
+                changes.append(f"  date: (added) → {self.new_date_value}")
+        return changes
+
+
+class FrontMatterParser:
+    """Parses Hugo front matter from content"""
+    
+    DATE_PATTERN = re.compile(r"^date:\s*['\"]?([^'\"]+)['\"]?$", re.MULTILINE)
+    LASTMOD_PATTERN = re.compile(r"^lastmod:\s*['\"]?([^'\"]+)['\"]?$", re.MULTILINE)
+    DRAFT_PATTERN = re.compile(r"^draft:\s*true\s*\n", re.MULTILINE)
+    
+    def parse(self, content: str) -> tuple[FrontMatter, str]:
+        """Parse front matter and return it with the remaining body"""
+        if not content.startswith('---'):
+            raise ValueError("Content doesn't have YAML front matter")
+            
+        parts = content.split('---', 2)
+        if len(parts) < 3:
+            raise ValueError("Invalid front matter format")
+            
+        fm_text = parts[1]
+        body = '---' + parts[2]
+        
+        date_match = self.DATE_PATTERN.search(fm_text)
+        lastmod_match = self.LASTMOD_PATTERN.search(fm_text)
+        has_draft = bool(self.DRAFT_PATTERN.search(fm_text))
+        
+        return FrontMatter(
+            date=date_match.group(1) if date_match else None,
+            lastmod=lastmod_match.group(1) if lastmod_match else None,
+            is_draft=has_draft,
+            raw_content=fm_text
+        ), body
+
+
+class FrontMatterUpdater:
+    """Applies publishing changes to front matter"""
+    
+    def apply_plan(self, front_matter: FrontMatter, plan: PublishingPlan) -> str:
+        """Apply a publishing plan to front matter content"""
+        content = front_matter.raw_content
+        
+        if plan.remove_draft:
+            content = FrontMatterParser.DRAFT_PATTERN.sub("", content)
+        
+        if plan.update_lastmod:
+            if front_matter.lastmod:
+                content = FrontMatterParser.LASTMOD_PATTERN.sub(
+                    f"lastmod: '{plan.new_lastmod_value}'", content, count=1)
+            else:
+                # Add after date if exists, otherwise at start
+                if front_matter.date:
+                    content = re.sub(r"^(date:\s*['\"]?[^'\"]+['\"]?)$",
+                                   f"\\1\nlastmod: '{plan.new_lastmod_value}'",
+                                   content, count=1, flags=re.MULTILINE)
+                else:
+                    content = f"lastmod: '{plan.new_lastmod_value}'\n" + content
+        
+        if plan.update_date:
+            if front_matter.date:
+                content = FrontMatterParser.DATE_PATTERN.sub(
+                    f"date: '{plan.new_date_value}'", content, count=1)
+            else:
+                content = f"date: '{plan.new_date_value}'\n" + content
+                
+        return content
+
+
+class HugoTimestamp:
+    """Handles Hugo-compatible timestamp generation"""
+    
+    @staticmethod
+    def now() -> str:
+        """Generate current timestamp in Hugo's expected format"""
+        current = datetime.now().astimezone()
+        timestamp = current.strftime('%Y-%m-%dT%H:%M:%S%z')
+        # Insert colon in timezone for ISO 8601
+        return timestamp[:-2] + ':' + timestamp[-2:]
+
+
+class FileHandler(Protocol):
+    """Protocol for file operations"""
+    def read(self, path: Path) -> str: ...
+    def write(self, path: Path, content: str) -> None: ...
+
+
+class RealFileHandler:
+    """Actual file I/O operations"""
+    def read(self, path: Path) -> str:
+        return path.read_text(encoding='utf-8')
+    
+    def write(self, path: Path, content: str) -> None:
+        path.write_text(content, encoding='utf-8')
+
+
+class DryRunFileHandler:
+    """Simulated file I/O for dry runs"""
+    def read(self, path: Path) -> str:
+        return path.read_text(encoding='utf-8')
+    
+    def write(self, path: Path, content: str) -> None:
+        pass  # Don't write anything
+
+
+class HugoPublisher:
+    """Publishes Hugo draft posts"""
+    
+    def __init__(self, file_handler: FileHandler):
+        self.file_handler = file_handler
+        self.parser = FrontMatterParser()
+        self.updater = FrontMatterUpdater()
+    
+    def create_publishing_plan(self, front_matter: FrontMatter) -> PublishingPlan:
+        """Determine what changes are needed to publish this post"""
+        timestamp = HugoTimestamp.now()
+        
+        return PublishingPlan(
+            update_date=(front_matter.needs_date_update() or 
+                        front_matter.needs_date_creation()),
+            new_date_value=timestamp,
+            update_lastmod=True,  # Always update
+            new_lastmod_value=timestamp,
+            remove_draft=front_matter.is_draft
+        )
+    
+    def publish(self, filepath: Path) -> PublishingPlan:
+        """Publish a draft post and return what was changed"""
+        # Read file
+        content = self.file_handler.read(filepath)
+        
+        # Parse it
+        front_matter, body = self.parser.parse(content)
+        
+        # Plan changes
+        plan = self.create_publishing_plan(front_matter)
+        
+        # Apply changes
+        new_fm = self.updater.apply_plan(front_matter, plan)
+        new_content = f"---{new_fm}---{body}"
+        
+        # Write it back
+        self.file_handler.write(filepath, new_content)
+        
+        return plan
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Publish a Hugo draft by updating timestamps'
+    )
+    parser.add_argument('filepath', type=Path, help='Path to Hugo post')
+    parser.add_argument('--dry-run', action='store_true',
+                       help='Show changes without applying them')
+    
+    args = parser.parse_args()
+    
+    if not args.filepath.exists():
+        print(f"Error: File '{args.filepath}' not found", file=sys.stderr)
+        sys.exit(1)
+    
+    # Select file handler based on mode
+    file_handler = DryRunFileHandler() if args.dry_run else RealFileHandler()
+    
+    # Publish the post
+    publisher = HugoPublisher(file_handler)
+    
+    try:
+        # Read original for comparison
+        original_content = args.filepath.read_text(encoding='utf-8')
+        original_fm, _ = FrontMatterParser().parse(original_content)
+        
+        # Execute publishing
+        plan = publisher.publish(args.filepath)
+        
+        # Report results
+        prefix = "[DRY RUN] Would update" if args.dry_run else "✓ Updated"
+        print(f"{prefix} '{args.filepath}':")
+        
+        changes = plan.describe_changes(original_fm)
+        for change in changes:
+            print(change)
+            
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()

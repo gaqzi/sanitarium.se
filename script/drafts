@@ -2,6 +2,19 @@
 
 set -e
 
+: ${MODE:=$1}
+case "${MODE}" in
+  publish)
+    MODE=publish
+    ;;
+  "")
+    MODE=edit
+    ;;
+  *)
+    echo "Unknown mode. Expected edit or publish." >&2
+    exit 1
+esac
+
 # Get drafts list (skip header, sort by date most recent first)
 drafts=$(hugo list drafts | xsv select date,path | xsv sort -R -s date | tail -n +2)
 
@@ -17,5 +30,14 @@ selected=$(echo "$drafts" | gum choose)
 # Extract the file path (second column after comma)
 filepath=$(echo "$selected" | cut -d',' -f2)
 
-# Open in IntelliJ
-idea "$filepath"
+if [ "$MODE" = 'edit' ] ; then
+  # Open in IntelliJ
+  idea "$filepath"
+else
+  if [ "$MODE" = "publish" ]; then
+    script/update-post-timestamps "$filepath"
+  else
+    echo "Unknown mode: $MODE" >&2
+    exit 1
+  fi
+fi
