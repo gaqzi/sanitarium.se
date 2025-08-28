@@ -10,7 +10,7 @@ daily: ['2025-08-28']
 series: ['learning-with-genies']
 ---
 
-[Which of your colleagues are screwed?](https://justin.searls.co/posts/which-of-your-colleagues-are-screwed/)
+Justin Searls asks [which of your colleagues are screwed?](https://justin.searls.co/posts/which-of-your-colleagues-are-screwed/)
 
 > I've been writing about how AI is likely to affect white-collar (or no-collar or hoodie-wearing) computer programmers […] 
 > Think about a random colleague you don't feel particularly strongly about as you read the following pithy and reductive bullet points. […]
