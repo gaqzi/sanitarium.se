@@ -1,7 +1,7 @@
 {{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
 
 {{ define "main" }}
-<article class="post single">
+<article class="post {{ .Section }} single">
     {{/* When changing this layout remember to change single.banner.html too */}}
     {{ if not .Params.full }}
     <header>
