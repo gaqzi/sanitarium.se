@@ -19,7 +19,7 @@ In the group chat for the wedding the groom said that a very helpful word to exp
 
 Fair enough, make do with what you have, I love that, but I still felt… uncomfortable even if I can appreciate that it works. (as an aside, it's worth reading the whole Wikipedia article for the examples!)
 
-I showed some of these photos to Mari who then pointed out that this is the **physical manifestation of "getting it done at any cost"** we've seen in some projects at work. Which made me realize where some of my discomfort was coming from. 
+I showed some of these photos to Mari who then pointed out that this is the **physical manifestation of 'getting it done at any cost'** we've seen in some projects at work. Which made me realize where some of my discomfort was coming from.
 
 While reading the Wikipedia page I saw the related article for "[kludge](https://en.wikipedia.org/wiki/Kludge)" which is defined as:
 
