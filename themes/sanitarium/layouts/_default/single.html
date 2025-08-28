@@ -67,6 +67,7 @@
         {{ end -}}
     {{ end -}}
     {{ with $backlinks -}}
+        {{ $backlinks = sort $backlinks "Date" "desc" -}}
         <nav class="backlinks meta" aria-label="Posts that mention this one">
             <dl>
                 <dt>Mentioned in:</dt>
