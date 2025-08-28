@@ -25,7 +25,7 @@ While reading the Wikipedia page I saw the related article for "[kludge](https:/
 
 > a workaround or makeshift solution that is clumsy, inelegant, inefficient, difficult to extend, and hard to maintain. **Its only benefit is that it rapidly solves an important problem using available resources.**
 
-Something clicked: for work, that's the definition I want to use (because the company is [in extract](https://medium.com/@kentbeck_7670/fast-slow-in-3x-explore-expand-extract-6d4c94a7539) so making it well is what we need most of the time). Then, reading on I saw in the section of the [use in computer science](https://en.wikipedia.org/wiki/Kludge#Computer_science), that hack is often used interchangeably with kludge, but that:
+Something clicked: for work, that's the definition I want to use (because the company is [in extract](https://medium.com/@kentbeck_7670/fast-slow-in-3x-explore-expand-extract-6d4c94a7539) so making it well is what we need most of the time). Then, reading on, I saw in the section of [use in computer science](https://en.wikipedia.org/wiki/Kludge#Computer_science), that hack is often used interchangeably with kludge, but that:
 
 > Hack can also be used with a positive connotation, for a quick solution to a frustrating problem.
 
