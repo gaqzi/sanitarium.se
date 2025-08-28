@@ -29,7 +29,7 @@ Something clicked: for work, that's the definition I want to use (because the co
 
 > Hack can also be used with a positive connotation, for a quick solution to a frustrating problem.
 
-I have definitely used hack both ways. Beautiful for creative solutions. Horrible when I worry about the insurance premium. And "a hack that works isn't a hack." Which I always read a bit as "an unusual solution that works is good," but, that means you're muddying the waters. One person's hack is another person's hack. 🤦
+I have definitely used hack both ways. Beautiful for creative solutions. Horrible when I worry about the insurance premium. And "a hack that works isn't a hack." Which I always read a bit as 'an unusual solution that works is good,' but, that means you're muddying the waters. One person's hack is another person's hack. 🤦
 
 And it makes me wonder how much connotation we're putting in the words, because some of these absolutely atrocious kludges we've put in at work to hit a deadline were necessary, and some weren't. The deadline was a sadline and we could've taken the time to do it correctly. But if you have internalized a version where delivering at any cost is the highest value, even if it future work will be harder… then that's the tradeoff we're making.
 
