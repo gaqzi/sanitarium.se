@@ -26,7 +26,7 @@
 
     {{ partial "series-nav.html" . }}
 
-    <nav class="post-nav">
+    <nav class="post-nav" aria-label="Previous and next posts">
         {{ with .PrevInSection }}
             <a href="{{ .RelPermalink }}" class="post-nav-link prev" title="{{ .Summary | plainify | truncate 150 }}">
                 {{- if and .Title (not (strings.HasPrefix .Title .File.BaseFileName)) -}}
@@ -53,5 +53,28 @@
             <link rel="prefetch" href="{{ .Permalink }}">
         {{ end }}
     </nav>
+
+    {{ $currentPage := . -}}
+    {{ $backlinks := slice -}}
+    {{/* Find all pages that link to this one, this *could* become slow at some point in the future */}}
+    {{ range site.RegularPages -}}
+        {{ if ne .Permalink $currentPage -}}
+            {{/* Only match links inside <a href> */}}
+            {{ $pattern := printf `<a[^>]+href=["']%s` $currentPage.RelPermalink -}}
+            {{ if findRE $pattern .Content -}}
+                {{ $backlinks = $backlinks | append . -}}
+            {{ end -}}
+        {{ end -}}
+    {{ end -}}
+    {{ with $backlinks -}}
+        <nav class="backlinks meta" aria-label="Posts that mention this one">
+            <dl>
+                <dt>Mentioned in:</dt>
+                {{ range $backlinks -}}
+                <dd><a href="{{ .RelPermalink }}">{{ partial "title-with-subtitle.html" . }}</a></dd>
+                {{ end -}}
+            </dl>
+        </nav>
+    {{ end }}
 </article>
 {{ end }}
