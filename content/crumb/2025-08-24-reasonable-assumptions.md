@@ -53,6 +53,8 @@ So what are the reasonable assumptions that actually work? Some that I've found:
 - Assume you need to signal that you're happy/helping by peppering liberally with emojis (you can't read the smile otherwise)
 - And when you catch yourself getting frustrated, assume you need to apologize and reset
 
+One more thing that helps: show your thinking. "Are you saying X because Y? And therefore Z would be right out??" hits different than "what should I do?" or the umpteenth "why?" from a five-year old. The first shows you're engaging with the problem. The second sounds like you're expecting me to serve manna from the heavens. Even wrong thinking shows you're trying to connect our contexts.
+
 So which is it? Make assumptions or don't? Turns out it's both and neither, just like I wanted 🙄. These "reasonable assumptions" assume the best of others while assuming nothing about what they know. Trying to resolve the contradiction by changing what we're assuming about, not their knowledge or context, but their intent and goodwill.
 
 I keep learning this same lesson: with bots, with new colleagues, with anyone who hasn't been marinating in my context for years. You'd think I'd remember by now that my obvious is everyone else's mystery. But here I am, getting frustrated again when someone asks me to explain my obvious. Or getting equally frustrated when they assume _their obvious is mine._
