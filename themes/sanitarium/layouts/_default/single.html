@@ -72,7 +72,13 @@
             <dl>
                 <dt>Mentioned in:</dt>
                 {{ range $backlinks -}}
-                <dd><a href="{{ .RelPermalink }}">{{ partial "title-with-subtitle.html" . }}</a></dd>
+                <dd><a href="{{ .RelPermalink }}">
+                    {{ if and .Title (not (strings.HasPrefix .Title .File.BaseFileName)) -}}
+                        {{ partial "title-with-subtitle.html" . }}
+                    {{ else -}}
+                        {{ .Summary | plainify | truncate 40 }}
+                    {{ end -}}
+                    </a></dd>
                 {{ end -}}
             </dl>
         </nav>
