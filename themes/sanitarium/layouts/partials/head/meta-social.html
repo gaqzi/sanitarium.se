@@ -17,8 +17,15 @@
 
 {{ with $ogImage }}
     <meta property="og:image" content="{{ . | absURL }}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    {{- $imageConfig := false -}}
+    {{- $imagePath := printf "static%s" . -}}
+    {{- if fileExists $imagePath -}}
+        {{- $imageConfig = imageConfig $imagePath -}}
+    {{- end -}}
+    {{- if $imageConfig -}}
+    <meta property="og:image:width" content="{{ $imageConfig.Width }}">
+    <meta property="og:image:height" content="{{ $imageConfig.Height }}">
+    {{- end -}}
 {{ end }}
 {{- $firstAuthor := index (.Params.authors | default (slice .Site.Params.author)) 0 -}}
 {{- $authorData := index .Site.Data.authors $firstAuthor -}}
