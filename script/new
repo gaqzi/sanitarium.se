@@ -1,0 +1,89 @@
+#!/bin/bash
+
+set -e
+
+# Parse arguments to detect --edit flag
+EDIT_FLAG=false
+ARGS=()
+
+for arg in "$@"; do
+    if [ "$arg" = "--edit" ]; then
+        EDIT_FLAG=true
+    else
+        ARGS+=("$arg")
+    fi
+done
+
+# Get arguments (after filtering out --edit)
+CONTENT_TYPE=${ARGS[0]}
+SLUG_OR_CONTENT=${ARGS[1]}
+
+# Get valid content types from archetypes directory
+get_valid_types() {
+    ls archetypes/ | sed 's/\.md$//' | grep -v -E '^(archive|series)$' || true
+}
+
+# Validate content type
+validate_type() {
+    local type=$1
+    local valid_types
+    valid_types=$(get_valid_types)
+    
+    if ! echo "$valid_types" | grep -q "^${type}$"; then
+        echo "Invalid content type: $type" >&2
+        echo "Valid types: $(echo "$valid_types" | tr '\n' ' ')" >&2
+        exit 1
+    fi
+}
+
+# Get content type
+if [ -z "$CONTENT_TYPE" ]; then
+    valid_types=$(get_valid_types)
+    CONTENT_TYPE=$(echo "$valid_types" | gum choose --header="Select content type:")
+else
+    validate_type "$CONTENT_TYPE"
+fi
+
+# Generate timestamps
+current_date=$(date +%Y-%m-%d)
+current_datetime=$(date +%Y-%m-%dT%H%M%S)
+
+# Handle different content types
+case "$CONTENT_TYPE" in
+    scrap)
+        # For scrap, use datetime format and handle content differently
+        filename="content/scrap/${current_datetime}.md"
+        
+        if [ -z "$SLUG_OR_CONTENT" ]; then
+            content=$(gum input --header="Enter content for scrap:")
+        else
+            content="$SLUG_OR_CONTENT"
+        fi
+        
+        # Create the file with hugo
+        hugo new "$filename"
+        
+        # Append the content to the file
+        echo "$content" >> "$filename"
+        ;;
+    *)
+        # For all other types, use date format with slug
+        if [ -z "$SLUG_OR_CONTENT" ]; then
+            slug=$(gum input --header="Enter slug for $CONTENT_TYPE:")
+        else
+            slug="$SLUG_OR_CONTENT"
+        fi
+        
+        filename="content/${CONTENT_TYPE}/${current_date}-${slug}.md"
+        
+        # Create the file with hugo
+        hugo new "$filename"
+        ;;
+esac
+
+echo "Created: $filename"
+
+# Open in editor if --edit flag was provided
+if [ "$EDIT_FLAG" = true ]; then
+    idea --line 10000 "$filename"
+fi

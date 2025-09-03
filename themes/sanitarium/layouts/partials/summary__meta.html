@@ -5,6 +5,8 @@
             </span>
         {{ $showReadTime := and .Truncated (not .Params.full) -}}
         • {{ partial "post-meta__time.html" (dict "Page" . "publishedAtFormat" "15:04" "showReadTime" $showReadTime "publishedAtLink" true "hideCalendarIcon" true) }}
+        {{ if .GetTerms "tags" -}}
         • {{ partial "terms.html" (dict "taxonomy" "tags" "page" . "style" "inline") }}
+        {{ end -}}
     </div>
 </div>

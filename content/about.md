@@ -15,6 +15,8 @@ I've been thinking about different ways to share what I'm learning. Not everythi
 
 **[crumb](/crumb/):** Breadcrumbs. Half-finished thoughts, notes to future me, questions I'm mulling over. These might grow into something bigger or just stay as markers along the way.
 
+**[scrap](/scrap/):** Tiny thoughts, moments, or random things that pop to mind. The tweets or toots but here. Hot takes, brain farts, shower thoughts, you know, whatever.
+
 **[link](/link/):** Things I found useful and want to find again. I'll try to add context about why I'm saving it.
 
 <!--
