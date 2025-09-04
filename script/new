@@ -2,14 +2,17 @@
 
 set -e
 
-# Parse arguments to detect --edit and --series flags
+# Parse arguments to detect --edit, --series, and --commit flags
 EDIT_FLAG=false
+COMMIT_FLAG=false
 SERIES_VALUE=""
 ARGS=()
 
 for arg in "$@"; do
     if [ "$arg" = "--edit" ]; then
         EDIT_FLAG=true
+    elif [ "$arg" = "--commit" ]; then
+        COMMIT_FLAG=true
     elif [ "$arg" = "--series" ]; then
         # Next argument will be the series value
         EXPECT_SERIES_VALUE=true
@@ -122,6 +125,12 @@ fi
 
 echo "Created: $filename"
 git add "$filename"
+
+# Commit the file if --commit flag was provided
+if [ "$COMMIT_FLAG" = true ]; then
+    commit_filename=$(basename "$filename")
+    git commit -m "Add $commit_filename"
+fi
 
 # Open in editor if --edit flag was provided
 if [ "$EDIT_FLAG" = true ]; then
