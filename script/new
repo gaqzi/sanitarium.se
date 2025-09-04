@@ -2,19 +2,30 @@
 
 set -e
 
-# Parse arguments to detect --edit flag
+# Parse arguments to detect --edit and --series flags
 EDIT_FLAG=false
+SERIES_VALUE=""
 ARGS=()
 
 for arg in "$@"; do
     if [ "$arg" = "--edit" ]; then
         EDIT_FLAG=true
+    elif [ "$arg" = "--series" ]; then
+        # Next argument will be the series value
+        EXPECT_SERIES_VALUE=true
+    elif [[ "$arg" == --series=* ]]; then
+        # Handle --series=value format
+        SERIES_VALUE="${arg#--series=}"
+    elif [ "${EXPECT_SERIES_VALUE:-false}" = true ]; then
+        # This is the series value following --series
+        SERIES_VALUE="$arg"
+        EXPECT_SERIES_VALUE=false
     else
         ARGS+=("$arg")
     fi
 done
 
-# Get arguments (after filtering out --edit)
+# Get arguments (after filtering out --edit and --series flags)
 CONTENT_TYPE=${ARGS[0]}
 SLUG_OR_CONTENT=${ARGS[1]}
 
@@ -36,12 +47,35 @@ validate_type() {
     fi
 }
 
+# Get valid series from content/series directory
+get_valid_series() {
+    ls content/series/ 2>/dev/null | grep -v '^\.$' | grep -v '^\.\.$' || true
+}
+
+# Validate series
+validate_series() {
+    local series=$1
+    local valid_series
+    valid_series=$(get_valid_series)
+
+    if ! echo "$valid_series" | grep -q "^${series}$"; then
+        echo "Invalid series: $series" >&2
+        echo "Valid series: $(echo "$valid_series" | tr '\n' ' ')" >&2
+        exit 1
+    fi
+}
+
 # Get content type
 if [ -z "$CONTENT_TYPE" ]; then
     valid_types=$(get_valid_types)
     CONTENT_TYPE=$(echo "$valid_types" | gum choose --header="Select content type:")
 else
     validate_type "$CONTENT_TYPE"
+fi
+
+# Validate series if provided
+if [ -n "$SERIES_VALUE" ]; then
+    validate_series "$SERIES_VALUE"
 fi
 
 # Generate timestamps
@@ -80,6 +114,11 @@ case "$CONTENT_TYPE" in
         hugo new "$filename"
         ;;
 esac
+
+# Update series field if --series flag was provided
+if [ -n "$SERIES_VALUE" ]; then
+    sed -i '' "s/series: \[\]/series: ['$SERIES_VALUE']/" "$filename"
+fi
 
 echo "Created: $filename"
 
