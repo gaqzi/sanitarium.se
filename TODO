@@ -1,0 +1,5 @@
+- [ ] script/new add --series that will attach a named series to the post
+- [ ] script/new to always do `git add <file>` after creating and appending to the file
+- [ ] script/new add --commit that will commit the latest added post with `git commit -m 'Add <file>'`
+- [ ] Store location per post and display it if it's different from the current "default location" so I can indicate when I'm somewhere else
+- [ ] Update the "reading time" so it displays something like "all in preview" for items that have the full content in the preview, like short scraps, so people know they don't need to click through
