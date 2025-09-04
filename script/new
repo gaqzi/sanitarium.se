@@ -121,6 +121,7 @@ if [ -n "$SERIES_VALUE" ]; then
 fi
 
 echo "Created: $filename"
+git add "$filename"
 
 # Open in editor if --edit flag was provided
 if [ "$EDIT_FLAG" = true ]; then
