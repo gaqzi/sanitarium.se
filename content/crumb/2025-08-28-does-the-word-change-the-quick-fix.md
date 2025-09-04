@@ -8,6 +8,7 @@ tags:
   - thinking-out-loud
   - engineering-culture
 daily: ['2025-08-28']
+image: /img/2025/bengaluru-electrical-cables.jpg
 ------
 I'm in Bengaluru to attend a friend's wedding, and it has been _fascinating_ walking around and seeing "the creative ways" of cable management, and my perspective from Singapore and Sweden is definitely to question the safety and longevity.
 
