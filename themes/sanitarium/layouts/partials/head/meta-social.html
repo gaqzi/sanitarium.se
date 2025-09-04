@@ -50,7 +50,7 @@
     <meta name="twitter:label1" content="Author">
     <meta name="twitter:data1" content="{{ . }}">
 {{ end }}
-{{ with .ReadingTime -}}
-    <meta name="twitter:label2" content="Reading time">
-    <meta name="twitter:data2" content="{{ . }} min">
+{{ if .ReadingTime -}}
+    <meta name="twitter:label2" content="Length">
+    <meta name="twitter:data2" content="{{ if .Truncated }}{{ .ReadingTime }} min read{{ else }}Full in preview{{end }}">
 {{ end -}}
