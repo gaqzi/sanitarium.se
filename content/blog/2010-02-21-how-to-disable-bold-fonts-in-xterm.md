@@ -3,6 +3,7 @@ aliases: ["/blog/2010/02/how-to-disable-bold-fonts-in-xterm", "/blog/blog/2010/0
 authors: ['björn']
 comments: true
 date: 2010-02-21 22:36:19+00:00
+location: Sweden
 slug: how-to-disable-bold-fonts-in-xterm
 title: How to disable bold fonts in xterm
 subtitle: Why sometimes repeating yourself really does get the message through

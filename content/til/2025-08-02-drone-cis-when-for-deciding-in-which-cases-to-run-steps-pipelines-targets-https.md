@@ -1,8 +1,9 @@
 ---
 authors: ['björn']
 date: 2025-08-02T09:37:29.210190+08:00
-daily: ['2025-08-02']
 lastmod: 2025-08-02T09:37:29.210190+08:00
+location: Singapore
+daily: ['2025-08-02']
 title: Drone CI's when targets the merge target for PR events
 tags:
   - drone-ci

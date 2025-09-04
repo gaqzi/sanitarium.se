@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-20T23:02:03+08:00'
 lastmod: '2025-08-20T23:02:03+08:00'
+location: Singapore
 title: 'gum: clean user interactions for shell scripts'
 tags:
   - shell-scripting

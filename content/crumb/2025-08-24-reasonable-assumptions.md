@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-24T13:25:00+08:00'
 lastmod: '2025-08-24T13:25:00+08:00'
+location: Singapore
 title: Reasonable assumptions
 subtitle: …and why they're (nearly) impossible
 tags:

@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-26T18:53:02+08:00'
 lastmod: '2025-08-26T18:53:02+08:00'
+location: Singapore
 title: 'Return of multi-tasking? by Kent Beck'
 tags:
   - genie

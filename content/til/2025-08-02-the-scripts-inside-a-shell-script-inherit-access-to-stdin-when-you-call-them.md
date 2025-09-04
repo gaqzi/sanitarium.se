@@ -1,8 +1,9 @@
 ---
 authors: ['björn']
 date: 2025-08-02T09:37:29.209371+08:00
-daily: ['2025-08-02']
 lastmod: 2025-08-02T09:37:29.209371+08:00
+location: Singapore
+daily: ['2025-08-02']
 title: Scripts/commands in a shell script inherits access to STDIN
 tags:
   - shell-scripting

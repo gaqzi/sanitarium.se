@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-13T08:21:23+08:00'
 lastmod: '2025-08-13T08:21:23+08:00'
+location: Singapore
 title: '/usr/bin/env handles commands with subcommands'
 tags:
   - shell-scripting

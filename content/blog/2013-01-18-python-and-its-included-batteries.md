@@ -3,6 +3,7 @@ aliases: ["/blog/2013/01/python-and-its-included-batteries", "/blog/blog/2013/01
 authors: ['björn']
 comments: true
 date: 2013-01-18 16:22:32+00:00
+location: Singapore
 slug: python-and-its-included-batteries
 title: Python and its included batteries
 wordpress_id: 460

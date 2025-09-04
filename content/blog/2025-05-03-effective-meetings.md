@@ -1,9 +1,9 @@
 ---
-
 authors: ['björn']
 comments: false
 date: 2025-05-03T16:20:00+08:00
 lastmod: 2025-05-03T16:20:00+08:00
+location: Singapore
 title: Running effective meetings uses the same skills as running successful projects
 subtitle: From meeting minutes to project milestones
 slug: effective-meetings
@@ -14,7 +14,6 @@ tags:
   - meetings
   - agile
   - which-role
-
 ---
 
 

@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-21T23:19:01+08:00'
 lastmod: '2025-08-21T23:19:01+08:00'
+location: Singapore
 title: 'What makes a good software engineer?'
 subtitle: '“this is what would change my mind”'
 tags:

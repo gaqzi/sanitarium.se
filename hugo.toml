@@ -79,6 +79,9 @@ enableEmoji = true
   # Author information
   author = "björn"
 
+  # Location
+  defaultLocation = "Sweden"
+
   # Timezone
   timeZone = "UTC"
 

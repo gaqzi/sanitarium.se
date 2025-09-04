@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-13T08:28:11+08:00'
 lastmod: '2025-08-13T08:28:11+08:00'
+location: Singapore
 title: 'Use Commas as Prefix for Your Scripts'
 tags:
   - shell-scripting

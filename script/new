@@ -6,6 +6,7 @@ set -e
 EDIT_FLAG=false
 COMMIT_FLAG=false
 SERIES_VALUE=""
+LOCATION_VALUE=""
 ARGS=()
 
 for arg in "$@"; do
@@ -19,10 +20,20 @@ for arg in "$@"; do
     elif [[ "$arg" == --series=* ]]; then
         # Handle --series=value format
         SERIES_VALUE="${arg#--series=}"
+    elif [ "$arg" = "--location" ]; then
+        # Next argument will be the location value
+        EXPECT_LOCATION_VALUE=true
+    elif [[ "$arg" == --location=* ]]; then
+        # Handle --location=value format
+        LOCATION_VALUE="${arg#--location=}"
     elif [ "${EXPECT_SERIES_VALUE:-false}" = true ]; then
         # This is the series value following --series
         SERIES_VALUE="$arg"
         EXPECT_SERIES_VALUE=false
+    elif [ "${EXPECT_LOCATION_VALUE:-false}" = true ]; then
+        # This is the location value following --location
+        LOCATION_VALUE="$arg"
+        EXPECT_LOCATION_VALUE=false
     else
         ARGS+=("$arg")
     fi
@@ -121,6 +132,11 @@ esac
 # Update series field if --series flag was provided
 if [ -n "$SERIES_VALUE" ]; then
     sed -i '' "s/series: \[\]/series: ['$SERIES_VALUE']/" "$filename"
+fi
+
+# Update location field if --location flag was provided
+if [ -n "$LOCATION_VALUE" ]; then
+    sed -i '' "s/location: .*$/location: $LOCATION_VALUE/" "$filename"
 fi
 
 echo "Created: $filename"

@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-07-07T21:50:00+08:00'
 lastmod: '2025-08-21T17:50:00+08:00'
+location: Singapore
 title: Working with Go's test cache on CI
 subtitle: 'be fast by avoiding work, while doing the important work'
 tags:

@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-26T18:01:11+08:00'
 lastmod: '2025-08-26T18:01:11+08:00'
+location: Singapore
 title: 'Life never gave us lemons, we invented them all by ourselves'
 tags:
   - funny

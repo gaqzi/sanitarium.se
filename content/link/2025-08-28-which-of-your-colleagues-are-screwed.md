@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-28T06:02:42+05:30'
 lastmod: '2025-08-28T06:02:42+05:30'
+location: Bengaluru, India
 title: 'Which of your colleagues are screwed?'
 tags:
   - genie

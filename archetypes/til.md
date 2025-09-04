@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '{{ .Date }}'
 lastmod: '{{ .Date }}'
+location: {{ .Site.Params.defaultLocation }}
 draft: true
 title: '{{ replace .File.ContentBaseName "-" " " | title }}'
 tags: []

@@ -1,0 +1,8 @@
+{{ $page := .Page | default . }}
+{{ $postLocation := $page.Params.location }}
+{{ $defaultLocation := .Site.Params.defaultLocation }}
+
+{{ if and $postLocation (ne $postLocation $defaultLocation) }}
+    <span class="meta-separator" aria-hidden="true">•</span>
+    <span class="icon-location" aria-hidden="true"></span>{{ $postLocation }}
+{{ end }}

@@ -1,8 +1,9 @@
 ---
 authors: ['björn']
 date: '2025-08-01 23:15:00+08:00'
-daily: ['2025-08-01']
 lastmod: '2025-08-01 23:15:00+08:00'
+location: Singapore
+daily: ['2025-08-01']
 title: Enabling macOS fingerprint reader for sudo
 tags:
   - how-to

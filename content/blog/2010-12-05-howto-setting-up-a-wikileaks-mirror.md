@@ -3,6 +3,7 @@ aliases: ["/blog/2010/12/howto-setting-up-a-wikileaks-mirror", "/blog/blog/2010/
 authors: ['björn']
 comments: true
 date: 2010-12-05 21:11:18+00:00
+location: Sweden
 slug: howto-setting-up-a-wikileaks-mirror
 title: "How to: Setting up a Wikileaks mirror"
 wordpress_id: 366

@@ -1,6 +1,7 @@
 ---
 title: "More frequent, smaller posts"
 date: 2025-08-01T23:10:02+08:00
+location: Singapore
 daily: ['2025-08-01']
 tags:
   - announcement

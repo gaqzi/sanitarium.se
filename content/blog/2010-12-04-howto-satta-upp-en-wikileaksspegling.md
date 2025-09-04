@@ -4,6 +4,7 @@ authors: ['björn']
 comments: true
 date: 2010-12-04 21:27:26+00:00
 lastmod: 2010-12-04 21:27:26+00:00
+location: Sweden
 slug: howto-satta-upp-en-wikileaksspegling
 title: "How to: Sätta upp en Wikileaksspegling"
 language: se

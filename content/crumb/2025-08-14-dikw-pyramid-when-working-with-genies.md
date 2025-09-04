@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-15T23:30:00+08:00'
 lastmod: '2025-08-15T23:30:00+08:00'
+location: Singapore
 title: 'DIKW pyramid when working with genies'
 subtitle: '…classification of different types of understanding'
 tags:

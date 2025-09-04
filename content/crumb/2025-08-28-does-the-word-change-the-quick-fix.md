@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-28T07:46:41+05:30'
 lastmod: '2025-08-28T07:46:41+05:30'
+location: Bengaluru, India
 title: Does the word change the "quick fix?"
 subtitle: hack/jugaad vs kludge/bodge
 tags:

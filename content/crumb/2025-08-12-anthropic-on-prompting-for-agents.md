@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-12T23:53:04+08:00'
 lastmod: '2025-08-12T23:53:04+08:00'
+location: Singapore
 title: Anthropic on prompting for agents
 subtitle: …and musing on genies possibly teaching empathy
 tags:

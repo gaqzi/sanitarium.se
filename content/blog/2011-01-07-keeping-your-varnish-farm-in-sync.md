@@ -3,6 +3,7 @@ aliases: ["/blog/2011/01/keeping-your-varnish-farm-in-sync", "/blog/blog/2011/01
 authors: ['björn']
 comments: true
 date: 2011-01-07 01:21:46+00:00
+location: Sweden
 slug: keeping-your-varnish-farm-in-sync
 title: Keeping your Varnish farms configuration in sync
 wordpress_id: 378

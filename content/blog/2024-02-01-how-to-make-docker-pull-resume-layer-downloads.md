@@ -1,8 +1,8 @@
 ---
-
 authors: ['björn']
 comments: false
-date: 2024-02-01 17:00:00 +08:00
+date: 2024-02-01 17:00:00 +07:00
+location: Bali, Indonesia
 slug: how-to-make-docker-pull-resume-layer-downloads
 title: "How to make Docker resume downloads" 
 subtitle: "…download that final 100KB and not 200MB again"
@@ -11,7 +11,6 @@ categories:
 tags:
 - docker
 - how-to
-
 ---
 
 

@@ -1,9 +1,9 @@
 ---
-
 authors: ['björn']
 comments: false
 date: 2024-04-15T19:15:00+08:00
 lastmod: 2024-04-16T12:30:00+08:00
+location: Singapore
 title: Day-to-day automation using Alfred on your Mac
 subtitle: reducing TOIL outside of your DevOps practice
 slug: day-to-day-automation-using-alfred
@@ -15,7 +15,6 @@ tags:
   - alfredapp
   - productivity
   - macos
-
 ---
 
 

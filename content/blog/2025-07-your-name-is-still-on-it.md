@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-07-24T23:00:00+08:00'
 lastmod: '2025-07-24T23:00:00+08:00'
+location: Singapore
 title: Your name is still on it
 subtitle: learning to ride the AI motorcycle without crashing
 tags:

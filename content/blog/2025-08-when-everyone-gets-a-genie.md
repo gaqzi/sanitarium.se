@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-10T18:40:00+08:00'
 lastmod: '2025-08-10T18:40:00+08:00'
+location: Singapore
 title: When everyone gets a genie
 subtitle: learning to handle expertise you didn't earn
 tags:

@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-24T10:40:00+08:00'
 lastmod: '2025-08-24T10:40:00+08:00'
+location: Singapore
 title: Angry at the genie
 subtitle: …getting exactly what I wished for, eventually
 tags:

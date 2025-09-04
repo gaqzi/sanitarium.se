@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-10T21:42:17+08:00'
 lastmod: '2025-08-10T21:42:17+08:00'
+location: Singapore
 title: Simon Sinek on AI and the value of struggle
 full: true
 tags:

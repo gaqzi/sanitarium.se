@@ -1,8 +1,8 @@
 ---
-
 authors: ['björn']
 comments: false
 date: 2015-11-14 21:03:42 +08:00
+location: Singapore
 slug: how-to-ping-a-lost-apple-watch
 title: "How to find your Apple Watch when you've misplaced it"
 subtitle: How I ended up being a sonar bear
@@ -10,7 +10,6 @@ categories:
 - blog
 tags:
 - how-to
-
 ---
 
 I just misplaced my Apple Watch in my apartment. Walking around looking for it,

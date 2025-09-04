@@ -2,6 +2,7 @@
 authors: ['björn']
 date: '2025-08-10T19:53:07+08:00'
 lastmod: '2025-08-10T19:53:07+08:00'
+location: Singapore
 title: Socrates on writing and learning
 tags:
   - genie

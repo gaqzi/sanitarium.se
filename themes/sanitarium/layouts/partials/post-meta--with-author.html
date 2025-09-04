@@ -26,6 +26,7 @@
         </div>
         <div class="meta-line">
             {{ partial "post-meta__time.html" (dict "Page" .) }}
+            {{ partial "post-meta__location.html" (dict "Page" . "Site" .Site) }}
         </div>
     </div>
 </div>
