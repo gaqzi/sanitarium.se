@@ -8,7 +8,7 @@ subtitle: …and why they're (nearly) impossible
 tags:
   - thinking-out-loud
   - engineering-culture
-  # - remote-work
+  - remote-work
 daily: ['2025-08-24']
 ---
 

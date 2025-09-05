@@ -76,6 +76,10 @@ productivity:
   type: concept
   description: Personal productivity, workflow optimization
 
+remote-work:
+  type: concept
+  description: Ideas around remote work, including how to work remotely as I have done it for close to a decade by now.
+
 testing:
   type: concept
   description: General software testing practices
