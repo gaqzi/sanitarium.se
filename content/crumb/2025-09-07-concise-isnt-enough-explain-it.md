@@ -13,7 +13,7 @@ daily: ['2025-09-07']
 series: []
 ---
 
-[Concise explanations accelerate progress](https://stephango.com/concise):
+I came across Steph Ango's [Concise explanations accelerate progress](https://stephango.com/concise):
 
 > If you want to progress faster, write concise explanations. Explain ideas in simple terms, strongly and clearly, so that they can be rebutted, remixed, reworked — or built upon.
 > 

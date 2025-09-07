@@ -13,7 +13,7 @@ daily: ['2025-09-07']
 series: []
 ---
 
-[If you're remote, ramble](https://stephango.com/ramblings):
+Steph Ango says [If you're remote, ramble](https://stephango.com/ramblings):
 
 > A tip for remote teams of 2-10 people. Create a personal “ramblings” channel for each teammate in your team’s chat app of choice.
 >
