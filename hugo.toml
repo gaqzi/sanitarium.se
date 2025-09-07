@@ -64,7 +64,7 @@ enableEmoji = true
     weight = 40
 
   [[menus.main]]
-    name = 'Posts'
+    name = 'Blog'
     pageRef = '/blog/'
     weight = 50
 
