@@ -13,7 +13,12 @@
         {{ if $author }}
             <div class="author-info">
                 {{ with $author.avatar }}
-                    <img src="{{ . }}" alt="{{ $author.displayName }}" class="author-avatar" loading="lazy">
+                    <figure>
+                        <img src="{{ . }}" alt="{{ $author.displayName }}" class="author-avatar" loading="lazy">
+                        {{ with $author.avatar_credit -}}
+                            <p>Photo: {{ . | safeHTML }}</p>
+                        {{ end -}}
+                    </figure>
                 {{ end }}
                 
                 <div class="author-details">
