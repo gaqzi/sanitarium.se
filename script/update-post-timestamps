@@ -189,7 +189,7 @@ class HugoPublisher:
         
         # Apply changes
         new_fm = self.updater.apply_plan(front_matter, plan)
-        new_content = f"---{new_fm}---{body}"
+        new_content = f"---{new_fm}{body}"
         
         # Write it back
         self.file_handler.write(filepath, new_content)
