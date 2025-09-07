@@ -1,8 +1,15 @@
 <header class="masthead">
     <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
     <link rel="prefetch" href="{{ .Site.BaseURL }}">
-
-    {{ if and .Site.Menus.main false }}
-    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    
+    {{ if .Site.Menus.main }}
+    <!-- Mobile Menu Toggle Button -->
+    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger-icon">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </span>
+    </button>
     {{ end }}
 </header>

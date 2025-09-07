@@ -12,7 +12,17 @@
 <body>
 {{ partial "header.html" . }}
 
+{{ if .Site.Menus.main }}
+<!-- Menu Overlay (Mobile) -->
+<div class="menu-overlay"></div>
+{{ end }}
+
 <main>
+    {{ if .Site.Menus.main }}
+    <aside class="sidebar-menu">
+        {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    </aside>
+    {{ end }}
     {{ block "main" . }}{{ end }}
 </main>
 

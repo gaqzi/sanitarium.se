@@ -1,5 +1,7 @@
 {{- /*
-Renders a menu for the given menu ID.
+Renders a responsive menu for the given menu ID.
+Desktop: Shows as sidebar menu
+Mobile: Shows as hamburger menu with overlay
 
 @context {page} page The current page.
 @context {string} menuID The menu ID.
@@ -11,8 +13,9 @@ Renders a menu for the given menu ID.
 {{- $menuID := .menuID }}
 
 {{- with index site.Menus $menuID }}
-  <nav>
-    <ul>
+  <!-- Navigation Menu -->
+  <nav class="menu-nav" aria-label="Main navigation">
+    <ul class="menu-list">
       {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
     </ul>
   </nav>
@@ -33,8 +36,8 @@ Renders a menu for the given menu ID.
         {{- $name = . }}
       {{- end }}
     {{- end }}
-    <li>
-      <a
+    <li class="menu-item{{ if .Params.divider }} divider{{ end }}">
+      <a class="menu-link"
         {{- range $k, $v := $attrs }}
           {{- with $v }}
             {{- printf " %s=%q" $k $v | safeHTMLAttr }}
@@ -42,7 +45,7 @@ Renders a menu for the given menu ID.
         {{- end -}}
       >{{ $name }}</a>
       {{- with .Children }}
-        <ul>
+        <ul class="menu-submenu">
           {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
         </ul>
       {{- end }}

@@ -42,6 +42,56 @@ pygmentsCodeFences = true
 # Enable emojis
 enableEmoji = true
 
+[menus]
+  [[menus.main]]
+    name = 'TILs'
+    pageRef = '/til/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Crumbs'
+    pageRef = '/crumb/'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Scraps'
+    pageRef = '/scrap/'
+    weight = 30
+
+  [[menus.main]]
+    name = 'Links'
+    pageRef = '/link/'
+    weight = 40
+
+  [[menus.main]]
+    name = 'Posts'
+    pageRef = '/blog/'
+    weight = 50
+
+  [[menus.main]]
+    name = 'Series'
+    pageRef = '/series/'
+    weight = 60
+    [menus.main.params]
+      divider = true
+
+  [[menus.main]]
+    name = 'About'
+    pageRef = '/about/'
+    weight = 70
+
+  [[menus.main]]
+    name = 'Now'
+    pageRef = '/now/'
+    weight = 80
+
+#  [[menus.main]]
+#    name = 'Subscribe'
+#    pageRef = '/subscribe/'
+#    weight = 90
+#    [menus.main.params]
+#      divider = true
+
 # Taxonomies
 [taxonomies]
   tag = "tags"

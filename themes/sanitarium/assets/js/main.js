@@ -1,5 +1,74 @@
-// Copy button functionality for code blocks
+// Mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const menuNav = document.querySelector('.menu-nav');
+    const body = document.body;
+    
+    if (menuToggle) {
+        // Toggle menu on button click
+        menuToggle.addEventListener('click', function() {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            toggleMenu(!isExpanded);
+        });
+        
+        // Close menu when clicking overlay
+        if (menuOverlay) {
+            menuOverlay.addEventListener('click', function() {
+                toggleMenu(false);
+            });
+        }
+        
+        // Close menu when clicking menu links (on mobile)
+        if (menuNav) {
+            const menuLinks = menuNav.querySelectorAll('.menu-link');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    // Only close on mobile
+                    if (window.innerWidth <= 768) {
+                        toggleMenu(false);
+                    }
+                });
+            });
+        }
+        
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && body.classList.contains('menu-open')) {
+                toggleMenu(false);
+            }
+        });
+        
+        // Handle resize events
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && body.classList.contains('menu-open')) {
+                toggleMenu(false);
+            }
+        });
+    }
+    
+    function toggleMenu(show) {
+        if (show) {
+            body.classList.add('menu-open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            menuOverlay.classList.add('active');
+            
+            // Focus management for accessibility
+            const firstMenuLink = menuNav.querySelector('.menu-link');
+            if (firstMenuLink) {
+                firstMenuLink.focus();
+            }
+        } else {
+            body.classList.remove('menu-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuOverlay.classList.remove('active');
+            
+            // Return focus to toggle button
+            menuToggle.focus();
+        }
+    }
+
+    // Copy button functionality for code blocks
     const copyButtons = document.querySelectorAll('.copy-button');
     
     copyButtons.forEach(button => {

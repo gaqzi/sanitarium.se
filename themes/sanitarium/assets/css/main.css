@@ -161,6 +161,10 @@ hgroup {
 /* Use a block layout instead of grid for sequential content flow */
 
 header.masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
     & a {
         transition: color 0.2s ease;
 
@@ -1308,4 +1312,250 @@ dfn {
     font-style: inherit; /* Reset */
     text-decoration: underline;
     text-decoration-style: dotted;
+}
+
+/* Responsive Menu System */
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+    display: none;
+    background: Canvas;
+    border: 0;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background-color: var(--button-hover-bg);
+    border-color: rgba(var(--border-color-standard-rgb), 0.5);
+}
+
+/* Hamburger Icon */
+.hamburger-icon {
+    display: block;
+    width: 20px;
+    height: 16px;
+    position: relative;
+}
+
+.hamburger-line {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: CanvasText;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburger-line:nth-child(1) {
+    position: absolute;
+    top: 0;
+}
+
+.hamburger-line:nth-child(2) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger-line:nth-child(3) {
+    position: absolute;
+    bottom: 0;
+}
+
+/* Hamburger Animation to Cross */
+.mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Menu Overlay (Mobile) */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: Canvas;
+    border-left: 1px solid rgba(var(--border-color-standard-rgb), 0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    padding: 0;
+    border-right: 1px solid #eee;
+}
+
+/* Navigation Menu */
+.menu-nav {
+    width: 100%;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 0; /* Remove all margin between items */
+}
+.menu-item.divider {
+    margin-top: 1rem;
+}
+
+.menu-link {
+    display: block;
+    padding: 0.15rem 1rem; /* Much tighter vertical padding */
+    color: CanvasText;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-family: var(--system-sans);
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: right; /* Right-aligned text */
+}
+
+.menu-link:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--main-accent-color);
+    text-decoration: none;
+}
+
+.menu-link.active {
+    background-color: var(--button-bg);
+    color: var(--main-accent-color);
+    font-weight: 600;
+}
+
+/* Submenu styling */
+.menu-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 1rem;
+    border-left: 2px solid rgba(var(--border-color-standard-rgb), 0.2);
+}
+
+.menu-submenu .menu-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.9em;
+    font-weight: normal;
+}
+
+/* Desktop Layout */
+@media (min-width: 769px) {
+    /* Hide mobile elements */
+    .mobile-menu-toggle,
+    .menu-overlay {
+        display: none !important;
+    }
+    
+    /* Position sidebar relative to main content */
+    main {
+        position: relative; /* Create positioning context for sidebar */
+        margin-left: 0; /* Restore full width */
+        min-height: calc(100vh - 4rem);
+    }
+    
+    .sidebar-menu {
+        display: block;
+        position: absolute; /* Position relative to main element */
+        transform: translateX(0);
+        /* Position to the left of main content area */
+        left: calc(-200px - 2rem); /* Position to left of main content with gap */
+        right: auto; /* Override the mobile right positioning */
+        width: 180px; /* Narrower width for better alignment */
+        /* Clean floating appearance - no borders or shadows */
+        border: none;
+        box-shadow: none;
+        height: auto; /* Don't force full viewport height */
+    }
+    
+    /* Restore original heading anchor positioning */
+    .heading-anchor {
+        left: -0.8em; /* Back to original position */
+    }
+    
+    /* Only show sidebar when there's enough void space */
+    @media (max-width: calc(65ch + 200px * 2 + 4rem)) {
+        .sidebar-menu {
+            display: none;
+        }
+    }
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+    /* Show mobile menu toggle in header */
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+    
+    /* Hide sidebar by default - slide from right */
+    .sidebar-menu {
+        transform: translateX(100%); /* Hide to the right instead of left */
+        width: 280px;
+        padding: 4rem 1.5rem 2rem;
+    }
+    
+    /* Show sidebar when menu is active */
+    body.menu-open .sidebar-menu {
+        transform: translateX(0);
+    }
+    
+    /* Show overlay when menu is active */
+    body.menu-open .menu-overlay {
+        display: block;
+    }
+    
+    /* Prevent scrolling when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+    
+    /* Adjust main content */
+    main {
+        margin-left: 0;
+        padding: 1rem;
+        min-height: calc(100vh - 2rem);
+    }
+    
+    /* Mobile menu styling */
+    .menu-link {
+        padding: 1rem;
+        font-size: 1.1em;
+        border-bottom: 1px solid rgba(var(--border-color-standard-rgb), 0.1);
+        border-radius: 0;
+    }
+    
+    .menu-link:last-child {
+        border-bottom: none;
+    }
 }
