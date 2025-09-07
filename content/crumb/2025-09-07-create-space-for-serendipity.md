@@ -5,6 +5,7 @@ lastmod: '2025-09-07T09:16:27+02:00'
 location: Sweden
 title: Create space for serendipity
 tags:
+  - thinking-out-loud
   - engineering-culture
   - remote-work
   - meetings
