@@ -15,7 +15,7 @@ image: /img/2025/09-arvid-nordquist.jpeg
 
 My recipe for Arvid Nordquist mellanrost. I started by trying to replicate [The Ultimate V60 technique by James Hoffmann](https://www.youtube.com/watch?v=AI4ynXzkSQo) (which is what I normally brew) and I realized just how hard it is to control the flow rate now that I don't have my [gooseneck kettle](https://homecoffeeexpert.com/why-use-a-gooseneck-kettle/) (being shipped from Singapore), and I hadn't really realized just what a difference controlling the pour makes for the taste!
 
-{{< figure src="/img/2025/09-arvid-nordquist.jpeg" caption="My current brewing setup which has my Commandante and V60 and then a normal wide spout kettle which gives me very poor flow control, and a bag of Arvid Nordquist mellanrost" alt="Coffee brewing setup on a wooden surface showing a Commandante hand grinder with wooden knob, a white V60 dripper with filter paper on a mug, a bag of Arvid Nordquist Mellanrost coffee, a digital scale reading 253g, and a stainless steel electric kettle." >}}
+{{< figure src="/img/2025/09-arvid-nordquist.jpeg" caption="My current brewing setup which has my [Commandante grinder](https://comandantegrinder.com) and [V60](https://www.hario-europe.com/collections/v60-dripper) and then a normal wide spout kettle which gives me very poor flow control, and a bag of Arvid Nordquist mellanrost" alt="Coffee brewing setup on a wooden surface showing a Commandante hand grinder with wooden knob, a white V60 dripper with filter paper on a mug, a bag of Arvid Nordquist Mellanrost coffee, a digital scale reading 253g, and a stainless steel electric kettle." >}}
 
 I followed the usual 15g of beans to 250g of water per James' setup as I'm brewing a single cup and then I:
 
