@@ -25,7 +25,8 @@ To try and combat that, I try to edit, so I have a concrete summary first per [B
 
 My friend Sławek tries to condense everything into the shortest form possible, then struggles when people ask him to "explain it more." Because he thought long and hard, this was his best explanation. I noticed that I would ask a lot of follow-up questions to get at what he was saying because I felt there was too much implicit in it.
 
-I think there's great value in being concise and explaining things clearly while doing so, for all the reasons in Steph's post, but I wonder if it's only possible with a huge amount of shared context. The people you work with a lot. And then to have more explainers available that you can dig deeper into.   
+I think there's great value in being concise and explaining things clearly while doing so, for all the reasons in Steph's post, but I wonder if it's only possible with a huge amount of shared context. The people you work with a lot. And then to have more explainers available that you can dig deeper into.
+
 Relatedly, we used to have this engineering manifesto at work that was a sentence or two explaining what we value. This super concise document had two major problems:
 
 1. Less experienced engineers struggled to implement because they didn't know what it meant
