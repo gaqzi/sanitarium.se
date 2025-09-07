@@ -48,7 +48,7 @@ I've been doing this as well in my note-taking and I love it (feels like we've b
 
 Creating an evergreen/permanent note turns my [tacit knowledge into explicit knowledge]({{< relref "2025-08-14-dikw-pyramid-when-working-with-genies.md" >}}) but it won't become information for everyone else at that level of detail. I think being able to dig into each point and give examples and explain them will make it easier. For example:
 
-```plain
+```text {class="no-copy-button"}
 ▼ "Always roll back a deploy by going to the pipeline and executing it again"
 └─ Because the pipeline contains all other artifacts that went live at the same time as config and infrastructure.
 └─ If you only roll back the version you might not have the correct config and it can break.
