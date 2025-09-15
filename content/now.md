@@ -3,7 +3,7 @@ title: 'Now'
 date: 2025-09-15T16:28:00+02:00
 ---
 
-I have just moved into a furnished rental apartment in Karlstad, Sweden, after 13 years in Singapore. Adjusting to life without the creature comforts that _my stuff_ provided but that's not really essential, now is it? But, oh so comforting…
+I have just moved into a furnished rental apartment in [Karlstad, Sweden](https://en.wikipedia.org/wiki/Karlstad), after 13 years in Singapore. Adjusting to life without the creature comforts that _my stuff_ provided but that's not really essential, now is it? But, oh so comforting…
 
 Finishing of the last week of work at my old employer and then I'm off to reset what I'm doing. I have a trip to Nuremberg in October to attend a baptism and tickets to Electric Callboy in Stockholm in November. So starting to have some things scheduled. I'm starting to wonder if I should take a train from Nuremberg to Prague, since I'm in the neighbourhood, and see if there's any good beer in Prague.
 
@@ -15,7 +15,7 @@ I decided towards the end of 2024 that I wanted to:
 2. start my own company (which is what I hear you do if you _really_ want to work less, I guess more, work on what _I_ want)
 3. get closer to family. 
 
-I was considering other places in Europe for a while (Berlin, Tallinn), because I liked the idea of continuing to be an expat (am I even Swedish anymore?), but after thinking it through I realized that making friends in a new place is hard and can't get closer to family than within an hour's car ride, and if you don't stay in one of the big cities, then Sweden can be cheap and make my runway longer. The current place I'm looking for something is in [Karlstad, Sweden](https://en.wikipedia.org/wiki/Karlstad).
+I was considering other places in Europe for a while (Berlin, Tallinn), because I liked the idea of continuing to be an expat (am I even Swedish anymore?), but after thinking it through I realized that making friends in a new place is hard and can't get closer to family than within an hour's car ride, and if you don't stay in one of the big cities, then Sweden can be cheap and make my runway longer.
 
 I wonder whether I'll acclimate back to life in Sweden after living for so long in Singapore (which is a world city), even if people there often feel it's too safe and boring. I have already planned for going to one of the bigger cities nearby (by train, ideally) once a month for tech meetups or similar, so that I don't get too insular.
 
