@@ -1,6 +1,6 @@
 ---
 title: 'Now'
-date: 2025-09-15T16:28:00+02:00
+date: 2025-09-15T16:46:00+02:00
 ---
 
 I have just moved into a furnished rental apartment in [Karlstad, Sweden](https://en.wikipedia.org/wiki/Karlstad), after 13 years in Singapore. Adjusting to life without the creature comforts that _my stuff_ provided but that's not really essential, now is it? But, oh so comforting…
@@ -31,7 +31,7 @@ I'm trying to figure out how I want to do it all, [Posse Party](https://possepar
 
 The thing I want to work on for my company is tools to help people be more intentional when they work, and to learn the skills to "see more," which for me has been about various forms of journaling.
 
-I did a presentation in October 2024 at work (I'll share it once I start working, it's basically my blueprint, though totally unvalidated) and several people tried to do it, but many of them fell off using many of my techniques, which I honestly only follow on good days (which isn't all of them), so how can I lower the barrier and make it easier?
+I did a presentation in October 2024 at work (I'll share it once I start working, it's basically my blueprint, though totally unvalidated) and several people tried to do it, but many of them fell off using many of my techniques, which I honestly only follow on good days (which isn't all of them), so how can I lower the barrier and make it easier? I think a part of this pitch is learning the skills that the current generation of AI tools can't do, unique ideas, and creating novel connections, which comes from engaging with your surroundings.
 
 So to figure that out I'm trying to figure out experiments to run and then learning more about learning itself, so I can try and do something.
 
