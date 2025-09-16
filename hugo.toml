@@ -69,8 +69,8 @@ enableEmoji = true
     weight = 50
 
   [[menus.main]]
-    name = 'Series'
-    pageRef = '/series/'
+    name = 'Now'
+    pageRef = '/now/'
     weight = 60
     [menus.main.params]
       divider = true
@@ -81,9 +81,11 @@ enableEmoji = true
     weight = 70
 
   [[menus.main]]
-    name = 'Now'
-    pageRef = '/now/'
+    name = 'Series'
+    pageRef = '/series/'
     weight = 80
+    [menus.main.params]
+      divider = true
 
 #  [[menus.main]]
 #    name = 'Subscribe'
