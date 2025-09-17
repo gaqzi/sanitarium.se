@@ -5,7 +5,7 @@ date: 2025-09-15T16:46:00+02:00
 
 I have just moved into a furnished rental apartment in [Karlstad, Sweden](https://en.wikipedia.org/wiki/Karlstad), after 13 years in Singapore. Adjusting to life without the creature comforts that _my stuff_ provided but that's not really essential, now is it? But, oh so comforting…
 
-Finishing of the last week of work at my old employer and then I'm off to reset what I'm doing. I have a trip to Nuremberg in October to attend a baptism and tickets to Electric Callboy in Stockholm in November. So starting to have some things scheduled. I'm starting to wonder if I should take a train from Nuremberg to Prague, since I'm in the neighbourhood, and see if there's any good beer in Prague.
+Finishing of the last week of work at my old employer and then I'm off to reset what I'm doing. I have a trip to Nuremberg in October to attend a baptism and tickets to Electric Callboy in Stockholm in November. So starting to have some things scheduled. I'm starting to wonder if I should take a train from Nuremberg to Prague, since I'm in the neighbourhood, and I hear there might be some good beer in Prague.
 
 ## Moving home and starting a company
 
