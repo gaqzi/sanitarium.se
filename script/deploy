@@ -31,8 +31,8 @@ if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ZONE_ID" ]; then
     # Convert file paths to full URLs
     urls=()
     while IFS= read -r file; do
-        # Assuming your domain is sanitarium.se
-        urls+=("https://sanitarium.se/$file")
+        # the full URL
+        urls+=("https://bjorn.now/$file")
     done <<< "$transferred_files"
 
     # Process URLs in batches of 30 (Cloudflare API limit)
