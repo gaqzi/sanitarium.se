@@ -36,3 +36,7 @@ I did a presentation in October 2024 at work (I'll share it once I start working
 So to figure that out I'm trying to figure out experiments to run and then learning more about learning itself, so I can try and do something.
 
 One of the things I need to do in the next couple of weeks is figure out a rough sales pitch and setup a signup page so I can link to it in my goodbye message at work on my last day.
+
+---
+
+The [homepage](/) is the firehose of what I'm up to.
