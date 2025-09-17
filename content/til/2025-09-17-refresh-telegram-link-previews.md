@@ -9,4 +9,4 @@ tags:
 daily: ['2025-09-17']
 series: []
 ---
-to refresh a link preview in Telegram open a chat with [Webpage Bot](https://telegram.me/webpagebot) and send the URL
+to refresh a link preview in Telegram open a chat with [Webpage Bot](https://telegram.me/webpagebot) and send the URL, for those cases where you fix a typo or update the image.
