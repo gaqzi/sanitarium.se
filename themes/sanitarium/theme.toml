@@ -21,7 +21,7 @@ min_version = "0.80.0"
   # twitter = ""
   
   # Site settings
-  siteName = "the padded cell"
+  siteName = "bjorn.now"
   description = "A personal blog"
   mainSections = ["posts"]
   rssLimit = 20
