@@ -29,12 +29,12 @@ class TitleSubtitleTestCase:
     def expected_title_tag(self) -> str:
         """Generate expected title tag content."""
         if self.subtitle is None:
-            return f"{self.title} | the padded cell"
+            return f"{self.title} | bjorn.now"
 
         if self.has_punctuation:
-            return f"{self.title} {self.subtitle} | the padded cell"
+            return f"{self.title} {self.subtitle} | bjorn.now"
         else:
-            return f"{self.title} — {self.subtitle} | the padded cell"
+            return f"{self.title} — {self.subtitle} | bjorn.now"
 
 
 def assert_title_tag(soup: BeautifulSoup, expected_title: str) -> None:
@@ -64,7 +64,7 @@ def assert_title_subtitle_combination(
     """Assert that title and subtitle are combined correctly in the title tag."""
     if subtitle is None:
         # Post without subtitle - should just be title + site name
-        expected_title = f"{title} | the padded cell"
+        expected_title = f"{title} | bjorn.now"
         assert_title_tag(soup, expected_title)
 
         # Should not have em dash
@@ -76,10 +76,10 @@ def assert_title_subtitle_combination(
         # Post with subtitle
         if has_punctuation:
             # Title ends with punctuation - use space only
-            expected_title = f"{title} {subtitle} | the padded cell"
+            expected_title = f"{title} {subtitle} | bjorn.now"
         else:
             # Title doesn't end with punctuation - use em dash
-            expected_title = f"{title} — {subtitle} | the padded cell"
+            expected_title = f"{title} — {subtitle} | bjorn.now"
 
         assert_title_tag(soup, expected_title)
         assert_subtitle_element(soup, subtitle)
@@ -145,9 +145,9 @@ TITLE_SUBTITLE_TEST_CASES = [
 ]
 
 LIST_PAGE_TEST_CASES = [
-    ("tags/index.html", "Tags | the padded cell"),
-    ("authors/index.html", "Authors | the padded cell"),
-    ("blog/index.html", "Posts | the padded cell"),
+    ("tags/index.html", "Tags | bjorn.now"),
+    ("authors/index.html", "Authors | bjorn.now"),
+    ("blog/index.html", "Posts | bjorn.now"),
 ]
 
 
@@ -176,7 +176,7 @@ class TestTitleSubtitle:
         )
 
         # This post should have em-dash since title doesn't end with punctuation
-        expected_title = "Working with Go's test cache on CI — be fast by avoiding work, while doing the important work | the padded cell"
+        expected_title = "Working with Go's test cache on CI — be fast by avoiding work, while doing the important work | bjorn.now"
         assert_title_tag(soup, expected_title)
         assert_em_dash_in_title(soup)
 
@@ -193,7 +193,7 @@ class TestTitleSubtitle:
     def test_homepage_title(self, hugo_site, parse_html_fixture):
         """Test that homepage uses site title correctly."""
         homepage = parse_html_fixture(hugo_site / "index.html")
-        assert_title_tag(homepage, "the padded cell")
+        assert_title_tag(homepage, "bjorn.now")
 
     @pytest.mark.parametrize(
         "page_path,expected_title",

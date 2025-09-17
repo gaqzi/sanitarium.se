@@ -1,6 +1,6 @@
-baseURL = 'https://sanitarium.se/'
+baseURL = 'https://bjorn.now/'
 languageCode = 'en-us'
-title = 'the padded cell'
+title = 'bjorn.now'
 theme = 'sanitarium'
 
 defaultContentLanguage = "en"
@@ -119,14 +119,14 @@ enableEmoji = true
   favicon = "/favicon.ico"
 
   # Site settings
-  description = "ramblings of a technical nature"
+  description = "careful chaos in practice"
   mainSections = ["blog", "til", "link", "crumb", "scrap"]
   bannerSections = ["blog", "crumb"]
 
   # Theme appearance
   enableCodeHighlighting = true
   footerLogo = "/img/old-logo.gif"
-  footerLogoAlt = "padded cell logo"
+  footerLogoAlt = "logo"
 
   # Author information
   author = "björn"

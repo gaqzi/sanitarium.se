@@ -9,7 +9,7 @@ min_version = "0.80.0"
 
 [author]
   name = "Björn"
-  homepage = "https://sanitarium.se"
+  homepage = "https://bjorn.now"
 
 # Theme-specific settings
 [params]

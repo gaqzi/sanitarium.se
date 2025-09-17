@@ -17,8 +17,8 @@ from bs4 import BeautifulSoup
 
 # Standard RSS feeds that should be present on all pages
 STANDARD_FEEDS = [
-    "https://sanitarium.se/feed.xml",
-    "https://sanitarium.se/blog/feed.xml",
+    "https://bjorn.now/feed.xml",
+    "https://bjorn.now/blog/feed.xml",
 ]
 
 
@@ -45,7 +45,7 @@ class TestRSSFeeds:
             # Check actual feed file exists (convert absolute URL to local path)
             if feed_href.startswith("http"):
                 # Convert absolute URL to local path
-                feed_path = feed_href.replace("https://sanitarium.se", "").lstrip("/")
+                feed_path = feed_href.replace("https://bjorn.now", "").lstrip("/")
             else:
                 feed_path = feed_href.lstrip("/")
             feed_file = hugo_site / feed_path
@@ -91,7 +91,7 @@ class TestRSSFeeds:
             ), f"How-to tag page should have {feed_href} RSS feed link"
 
         # Should have its own tag feed
-        tag_feed_href = "https://sanitarium.se/tags/how-to/feed.xml"
+        tag_feed_href = "https://bjorn.now/tags/how-to/feed.xml"
         tag_feed_link = tag_page.find(
             "link",
             {"rel": "alternate", "type": "application/rss+xml", "href": tag_feed_href},
@@ -149,7 +149,7 @@ class TestRSSFeeds:
         footer_feed_link = homepage.select_one("footer .social-link.feed")
         assert footer_feed_link is not None, "Homepage footer should have feed link"
 
-        expected_href = "https://sanitarium.se/feed.xml"
+        expected_href = "https://bjorn.now/feed.xml"
         actual_href = footer_feed_link.get("href")
         assert (
             actual_href == expected_href
@@ -166,7 +166,7 @@ class TestRSSFeeds:
         footer_feed_link = tag_page.select_one("footer .social-link.feed")
         assert footer_feed_link is not None, "Tag page footer should have feed link"
 
-        expected_href = "https://sanitarium.se/tags/how-to/feed.xml"
+        expected_href = "https://bjorn.now/tags/how-to/feed.xml"
         actual_href = footer_feed_link.get("href")
         assert (
             actual_href == expected_href
@@ -183,7 +183,7 @@ class TestRSSFeeds:
         footer_feed_link = section_page.select_one("footer .social-link.feed")
         assert footer_feed_link is not None, "Section page footer should have feed link"
 
-        expected_href = "https://sanitarium.se/til/feed.xml"
+        expected_href = "https://bjorn.now/til/feed.xml"
         actual_href = footer_feed_link.get("href")
         assert (
             actual_href == expected_href
@@ -208,7 +208,7 @@ class TestRSSFeeds:
             footer_feed_link is not None
         ), "Individual post footer should have feed link"
 
-        expected_href = "https://sanitarium.se/feed.xml"
+        expected_href = "https://bjorn.now/feed.xml"
         actual_href = footer_feed_link.get("href")
         assert (
             actual_href == expected_href
