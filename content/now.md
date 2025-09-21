@@ -39,4 +39,4 @@ One of the things I need to do in the next couple of weeks is figure out a rough
 
 ---
 
-The [homepage](/) is the firehose of what I'm up to.
+The [homepage](/) is the firehose of what I'm up to, or [follow along](/follow/) how you prefer to get updates.

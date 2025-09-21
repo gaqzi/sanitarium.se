@@ -84,15 +84,13 @@ enableEmoji = true
     name = 'Series'
     pageRef = '/series/'
     weight = 80
+
+  [[menus.main]]
+    name = 'Follow along'
+    pageRef = '/Follow/'
+    weight = 90
     [menus.main.params]
       divider = true
-
-#  [[menus.main]]
-#    name = 'Subscribe'
-#    pageRef = '/subscribe/'
-#    weight = 90
-#    [menus.main.params]
-#      divider = true
 
 # Taxonomies
 [taxonomies]

@@ -25,3 +25,5 @@ I've been thinking about different ways to share what I'm learning. Not everythi
 **[blog](/blog/):** The longer pieces where I've worked through something more completely. Still thinking out loud, just… more of it.
 
 This structure helps me share more frequently without waiting for perfect, polished thoughts. Let's see how it evolves.
+
+**Want to follow along?** Get updates via [email, RSS, or social media](/follow/).
