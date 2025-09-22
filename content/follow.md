@@ -9,12 +9,18 @@ The easiest way, get weekly digests or major announcements only:
 
 <iframe src="https://automation.sanitarium.se/form/c3daf0b4-03f0-4692-bcdd-b345003f6e5e" width="100%" height="500px" frameborder="0" scrolling="yes"></iframe>
 
+## Real-time updates
+
+- [Telegram channel](https://t.me/bjornnow) - Everything I post, instantly delivered (like RSS but in Telegram)
+
 ## Social media accounts
 
 I share updates on these platforms:
 
-- [LinkedIn](https://www.linkedin.com/in/björn-andersson-b18a323a/): career and technical insights
-- [Mastodon](https://hachyderm.io/@gaqzi) / [Bluesky](http://bsky.app/profile/gaqzi.bjorn.now) / [Telegram channel](https://t.me/bjornnow): Everything
+- [LinkedIn](https://www.linkedin.com/in/björn-andersson-b18a323a/) - Career and technical
+- Everything I post:
+  - [Mastodon](https://hachyderm.io/@gaqzi)
+  - [Bluesky](http://bsky.app/profile/gaqzi.bjorn.now)
 
 ## RSS feeds
 
