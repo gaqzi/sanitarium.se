@@ -1,17 +1,23 @@
 ---
 title: 'Now'
-date: 2025-09-15T16:46:00+02:00
+date: 2025-09-23T20:42:00+02:00
 ---
 
-I have just moved into a furnished rental apartment in [Karlstad, Sweden](https://en.wikipedia.org/wiki/Karlstad), after 13 years in Singapore. Adjusting to life without the creature comforts that _my stuff_ provided but that's not really essential, now is it? But, oh so comforting…
+I have lived for about 10 days in a furnished rental apartment in [Karlstad, Sweden](https://en.wikipedia.org/wiki/Karlstad), after 13 years in Singapore. 
 
-Finishing of the last week of work at my old employer and then I'm off to reset what I'm doing. I have a trip to Nuremberg in October to attend a baptism and tickets to Electric Callboy in Stockholm in November. So starting to have some things scheduled. I'm starting to wonder if I should take a train from Nuremberg to Prague, since I'm in the neighbourhood, and I hear there might be some good beer in Prague.
+Starting to adjust to the apartment and the balcony has [become my home office]({{< ref "/scrap/2025-09-14T105315.md" >}}), I wonder how it'll pan out with the winter, but so far it's great.
+
+I had the last day at my former employer yesterday and ambivalent feelings there. Five years, and at the same time, I'm happy to be heading for the next step and get started working more on my own stuff, while still doing it at a very, very leisurely pace. I tried going through the first steps of starting my company today, but I'm [haunting the Swedish paperwork machine]({{< ref "/crumb/2025-09-23-21st-century-digital-society.md" >}}), present but not quite real. I'll wait it out and see if I materialize.
+
+I have a trip to Nuremberg in October to attend a baptism, and tickets to Electric Callboy in Stockholm in November, and I discovered an hour ago that The Northern Boys are playing in London in December, so that's also scheduled now. I'm starting to have a schedule. 
+
+I'm pondering taking a train from Nuremberg to Prague, since I'm in the neighbourhood, and I hear there might be some good beer in Prague…
 
 ## Moving home and starting a company
 
 I decided towards the end of 2024 that I wanted to:
 
-1. work less (so I'm leaving my employer of the last five years, and I have very ambivalent feelings about it, friends have told me it's career suicide (it is). At the same time I really want time off. I took a 3mon unpaid sabbatical last year because I needed it, and I didn't manage to change my ways of working enough to not feel tired again after a couple of months)
+1. work less (so I have left my employer of five years (tied for longest I've had), and I have very ambivalent feelings about it, friends have told me it's career suicide (it is, but is it what I want?) and others say it's a sign of maturity to take a break. At the same time I really want time off. I took a 3mon unpaid sabbatical last year because I needed it, and I didn't manage to change my ways of working enough to not feel tired again after a couple of months)
 2. start my own company (which is what I hear you do if you _really_ want to work less, I guess more, work on what _I_ want)
 3. get closer to family. 
 
@@ -35,7 +41,7 @@ I did a presentation in October 2024 at work (I'll share it once I start working
 
 So to figure that out I'm trying to figure out experiments to run and then learning more about learning itself, so I can try and do something.
 
-One of the things I need to do in the next couple of weeks is figure out a rough sales pitch and setup a signup page so I can link to it in my goodbye message at work on my last day.
+One of the things I need to do in the next couple of weeks is figure out a rough sales pitch and setup a signup page, I hoped to have this out when I had my last day but I ended up sending people to follow this site instead. I'll extend it a bit and also explain what I'm hoping to try out for the alpha so it's clearer than just "trust me, the effort will be worth it."
 
 ---
 
