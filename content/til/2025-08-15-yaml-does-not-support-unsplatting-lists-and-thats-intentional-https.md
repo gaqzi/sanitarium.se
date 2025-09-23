@@ -10,6 +10,8 @@ tags:
 ---
 YAML does not support unsplatting lists (basically, merging list items inline like you can with objects) and [that's intentional](https://github.com/yaml/yaml/issues/35).
 
+<!--more-->
+
 So if you have a document like below, there is no syntax to make the `commands` a three item list:
 
 ```yaml

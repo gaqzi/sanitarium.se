@@ -10,6 +10,8 @@ tags:
 ---
 The YAML anchors to name a reusable section are defined by `&name` and then to use them to replace the value of something you do `*name`, if you want to "unsplat"/merge a dictionary/object then use `<<: *name` and then it'll insert it at that point.
 
+<!--more-->
+
 ```yaml
 world: &world World
 example: &example-anchor
