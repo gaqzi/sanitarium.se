@@ -9,7 +9,7 @@ Starting to adjust to the apartment and the balcony has [become my home office](
 
 I had the last day at my former employer yesterday and ambivalent feelings there. Five years, and at the same time, I'm happy to be heading for the next step and get started working more on my own stuff, while still doing it at a very, very leisurely pace. I tried going through the first steps of starting my company today, but I'm [haunting the Swedish paperwork machine]({{< ref "/crumb/2025-09-23-21st-century-digital-society.md" >}}), present but not quite real. I'll wait it out and see if I materialize.
 
-I have a trip to Nuremberg in October to attend a baptism, and tickets to Electric Callboy in Stockholm in November, and I discovered an hour ago that The Northern Boys are playing in London in December, so that's also scheduled now. I'm starting to have a schedule. 
+I have a trip to Nuremberg in October to attend a baptism, and tickets to [Electric Callboy](https://www.youtube.com/watch?v=EDnIEWyVIlE) in Stockholm in November, and I [discovered]({{< ref "/scrap/2025-09-23T202248.md" >}}) an hour ago that [The Northern Boys](https://www.youtube.com/watch?v=4VXKhJfRQ7k) are playing in London in December, so that's also scheduled now. I'm starting to have a schedule.
 
 I'm pondering taking a train from Nuremberg to Prague, since I'm in the neighbourhood, and I hear there might be some good beer in Prague…
 
