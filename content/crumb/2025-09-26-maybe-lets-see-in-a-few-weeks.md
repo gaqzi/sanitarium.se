@@ -23,7 +23,7 @@ When programming I've lived with the rule that you don't get to create an abstra
 
 So now as I've moved I'm deciding to live with the friction first, seeing what friction or pain is actually real versus what's just different. A bike or a car? Yeah, I feel that urge already: I can't just get around as easily as I could before. But I also haven't really tried to adjust properly yet.  
 
-I'm writing this in Kristinehamn, which is about 1h15m away by bus, and that's not too bad. Would likely be 30m if I had a car. But, would I have found this café I'm at if I didn't have to take public transport here and get other transportation to my mom (she's picking me up after doing some errands 🙂). The constraint led to discovery.
+I'm writing this in Kristinehamn, which is about 1h15m away by bus, and that's not too bad. Would likely be 30m if I had a car. But, would I have [found this café I'm at]({{< ref "/scrap/2025-09-26T133737.md" >}}) if I didn't have to take public transport here and get other transportation to my mom (she's picking me up after doing some errands 🙂). The constraint led to discovery.
 
 I feel the want for some stuff already. I am trying to be particular about what I'm getting, because a lot of the things I miss I'll get from Singapore eventually (the double-walled glass cups, the gooseneck kettle, my knives and sharpening kit, etc.). But I'll wait. (okay, I saw a nice pottery cup at the café and it fit so nicely in my hand, so I bought it, so I let the analytical side accept it brought some joy, while also slightly wincing since I don't have an income.)
 
