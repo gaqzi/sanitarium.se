@@ -91,6 +91,7 @@ enableEmoji = true
     weight = 90
     [menus.main.params]
       divider = true
+      classes = "follow"
 
 # Taxonomies
 [taxonomies]

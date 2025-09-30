@@ -36,7 +36,7 @@ Mobile: Shows as hamburger menu with overlay
         {{- $name = . }}
       {{- end }}
     {{- end }}
-    <li class="menu-item{{ if .Params.divider }} divider{{ end }}">
+    <li class="menu-item{{ if .Params.divider }} divider{{ end }}{{ with .Params.classes }} {{ . }}{{ end }}">
       <a class="menu-link"
         {{- range $k, $v := $attrs }}
           {{- with $v }}

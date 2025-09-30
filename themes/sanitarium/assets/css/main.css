@@ -1528,6 +1528,19 @@ dfn {
     }
 }
 
+/* CTA styling for Follow menu item - filled button look */
+.menu-item.follow .menu-link {
+    background-color: var(--main-accent-color);
+    color: Canvas;
+}
+
+/* On actual hover, outlined button style */
+.menu-item.follow .menu-link:hover {
+    background-color: transparent;
+    color: var(--main-accent-color);
+    box-shadow: inset 0 0 0 2px var(--main-accent-color);
+}
+
 /* Mobile Layout - includes "gap zone" where sidebar would overlap content */
 @media (max-width: calc(50rem /* --bp-sidebar-min */ - 0.0625rem)) {
     /* Show mobile menu toggle in header */
