@@ -510,6 +510,20 @@ body:has(main article.banner) {
             margin-top: 0;
         }
     }
+
+    /* Reduce spacing between consecutive scraps and remove visual borders */
+    & article.scrap + article.scrap {
+        margin-top: 0.25rem;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    /* Remove bottom spacing/borders from scraps followed by another scrap */
+    & article.scrap:has(+ article.scrap) {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
 }
 
 /* Recent posts styles */
@@ -967,6 +981,20 @@ a:has(hgroup){
     & .icon-location::before {
         margin-top: -0.2em;
     }
+}
+
+/* Pull scrap metadata closer to content */
+article.scrap .meta {
+    margin-top: 0.25rem;
+}
+
+/* Remove paragraph margins within scraps for tighter spacing */
+article.scrap .post p:first-child {
+    margin-top: 0;
+}
+
+article.scrap .post p:last-child {
+    margin-bottom: 0;
 }
 
 .meta-avatar {
