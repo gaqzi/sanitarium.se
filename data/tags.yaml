@@ -98,6 +98,10 @@ which-role:
   description: Consciously switching between different (professional) roles/mindsets
 
 # Programming language tags
+css:
+  display: CSS
+  type: programming-language
+
 golang:
   display: Go
   type: programming-language

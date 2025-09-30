@@ -74,6 +74,18 @@
   - Test all color combinations for sufficient contrast in both themes
   - For SVGs and icons, use filters rather than duplicate assets
 
+## Accessibility
+- **Focus indicators**: Use `:focus-visible` instead of `:focus` for keyboard-only focus outlines
+  - `:focus-visible` shows outlines only for keyboard navigation (Tab, arrow keys)
+  - `:focus` shows outlines for all interactions (mouse clicks, touch, keyboard)
+  - This prevents surprising mouse users with unwanted focus borders while preserving accessibility for keyboard users
+- **Semantic HTML**: Use proper semantic elements (`<nav>`, `<main>`, `<article>`, `<header>`, etc.)
+- **ARIA labels**: Add `aria-label`, `aria-expanded`, `aria-current` where appropriate for screen readers
+- **Keyboard navigation**: Ensure all interactive elements are keyboard-accessible
+- **Color contrast**: Test all color combinations meet WCAG contrast requirements in both light and dark modes
+- **Reduced motion**: Respect `prefers-reduced-motion` for animations and transitions
+- **Focus management**: When opening modals or menus, manage focus appropriately but let `:focus-visible` handle the visual indication
+
 ## Code Block Styling
 
 ### Default Behavior

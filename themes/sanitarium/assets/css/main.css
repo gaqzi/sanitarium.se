@@ -864,13 +864,13 @@ ul.social-links {
    ========================================== */
 
 /* Accessibility improvements */
-:focus {
+:focus-visible {
     outline: 2px solid var(--main-accent-color);
     outline-offset: 2px;
 }
 
 @media (prefers-reduced-transparency: reduce) {
-    :focus {
+    :focus-visible {
         outline: 2px solid var(--main-accent-color);
         background-color: rgba(0, 92, 184, 0.1);
     }
