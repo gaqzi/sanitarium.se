@@ -26,33 +26,14 @@
 
     {{ partial "series-nav.html" . }}
 
-    <nav class="post-nav" aria-label="Previous and next posts">
-        {{ with .PrevInSection }}
-            <a href="{{ .RelPermalink }}" class="post-nav-link prev" title="{{ .Summary | plainify | truncate 150 }}">
-                {{- if and .Title (not (strings.HasPrefix .Title .File.BaseFileName)) -}}
-                    <div class="post-nav-title">{{ .Title }}</div>
-                    {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
-                {{- else -}}
-                    <div class="post-nav-title">{{ .Summary | plainify | truncate 40 }}</div>
-                {{- end -}}
-            </a>
-            <link rel="prefetch" href="{{ .Permalink }}">
-        {{ end }}
-
-        {{ with .NextInSection }}
-            <a href="{{ .RelPermalink }}" class="post-nav-link next" title="{{ .Summary | plainify | truncate 150 }}">
-                <div class="post-nav-content">
-                    {{- if and .Title (not (strings.HasPrefix .Title .File.BaseFileName)) -}}
-                        <div class="post-nav-title">{{ .Title }}</div>
-                        {{ with .Params.subtitle }}<div class="post-nav-subtitle">{{ . }}</div>{{ end }}
-                    {{- else -}}
-                        <div class="post-nav-title">{{ .Summary | plainify | truncate 40 }}</div>
-                    {{- end -}}
-                </div>
-            </a>
-            <link rel="prefetch" href="{{ .Permalink }}">
-        {{ end }}
-    </nav>
+    {{ $displayName := index .Site.Data.contents .Section | default (dict) -}}
+    {{ partial "content-nav.html" (dict
+        "label" (print "More " $displayName.plural | default (.Section | lower))
+        "prevPost" .PrevInSection
+        "nextPost" .NextInSection
+        "modifier" "chronological"
+        "showDirection" true
+    ) }}
 
     {{ $currentPage := . -}}
     {{ $backlinks := slice -}}

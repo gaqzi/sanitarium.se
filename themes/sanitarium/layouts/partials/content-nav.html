@@ -1,0 +1,65 @@
+{{/*
+    Reusable content navigation component
+
+    Parameters:
+    - label: string - The navigation label/context (e.g., "Part 2 of 5 in Series Name" or "More posts")
+    - labelLink: string (optional) - URL to link the label to
+    - prevPost: page object (optional) - Previous post
+    - nextPost: page object (optional) - Next post
+    - modifier: string - CSS modifier class (e.g., "series" or "chronological")
+    - showDirection: bool - Whether to show "← Previous" / "Next →" labels
+*/}}
+
+{{- $label := .label | safeHTML -}}
+{{- $labelLink := .labelLink -}}
+{{- $prevPost := .prevPost -}}
+{{- $nextPost := .nextPost -}}
+{{- $modifier := .modifier -}}
+{{- $showDirection := .showDirection -}}
+
+<nav class="content-nav content-nav--{{ $modifier }}" aria-label="{{ $label }}">
+    {{- if $label -}}
+    <div class="content-nav__label">
+        {{- if $labelLink -}}
+            <a href="{{ $labelLink }}">{{ $label }}</a>
+        {{- else -}}
+            {{ $label }}
+        {{- end -}}
+    </div>
+    {{- end -}}
+    <div class="content-nav__links">
+        {{- if $prevPost -}}
+            <a href="{{ $prevPost.RelPermalink }}" class="content-nav__link content-nav__link--prev" title="{{ $prevPost.Summary | plainify | truncate 150 }}">
+                {{- if $showDirection -}}
+                    <div class="content-nav__direction">← Previous</div>
+                {{- end -}}
+                {{- if and $prevPost.Title (not (strings.HasPrefix $prevPost.Title $prevPost.File.BaseFileName)) -}}
+                    <div class="content-nav__title">{{ $prevPost.Title }}</div>
+                    {{ with $prevPost.Params.subtitle }}<div class="content-nav__subtitle">{{ . }}</div>{{ end }}
+                {{- else -}}
+                    <div class="content-nav__title">{{ $prevPost.Summary | plainify | truncate 40 }}</div>
+                {{- end -}}
+            </a>
+            <link rel="prefetch" href="{{ $prevPost.RelPermalink }}">
+        {{- else -}}
+            <div class="content-nav__placeholder"></div>
+        {{- end -}}
+
+        {{- if $nextPost -}}
+            <a href="{{ $nextPost.RelPermalink }}" class="content-nav__link content-nav__link--next" title="{{ $nextPost.Summary | plainify | truncate 150 }}">
+                {{- if $showDirection -}}
+                    <div class="content-nav__direction">Next →</div>
+                {{- end -}}
+                {{- if and $nextPost.Title (not (strings.HasPrefix $nextPost.Title $nextPost.File.BaseFileName)) -}}
+                    <div class="content-nav__title">{{ $nextPost.Title }}</div>
+                    {{ with $nextPost.Params.subtitle }}<div class="content-nav__subtitle">{{ . }}</div>{{ end }}
+                {{- else -}}
+                    <div class="content-nav__title">{{ $nextPost.Summary | plainify | truncate 40 }}</div>
+                {{- end -}}
+            </a>
+            <link rel="prefetch" href="{{ $nextPost.RelPermalink }}">
+        {{- else -}}
+            <div class="content-nav__placeholder"></div>
+        {{- end -}}
+    </div>
+</nav>
