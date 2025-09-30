@@ -1,17 +1,17 @@
 ---
 title: 'Now'
-date: 2025-09-23T20:42:00+02:00
+date: 2025-09-30T21:30:00+02:00
 ---
 
-I have lived for about 10 days in a furnished rental apartment in [Karlstad, Sweden](https://en.wikipedia.org/wiki/Karlstad), after 13 years in Singapore. 
+I have been back in Sweden for almost a month, and about 2.5 weeks in a furnished rental apartment in [Karlstad, Sweden](https://en.wikipedia.org/wiki/Karlstad), after 13 years in Singapore. 
 
-Starting to adjust to the apartment and the balcony has [become my home office]({{< ref "/scrap/2025-09-14T105315.md" >}}), I wonder how it'll pan out with the winter, but so far it's great.
+Currently listening to Ghost's [The Future is a Foreign Land](https://www.youtube.com/watch?v=lz24W6CQ0HI) on repeat while trying to build up a routine for my new gentleman (heh) of leisure persona. And on routine building, I haven't gotten much done during my first week without a job, it has been nice to take it easy. I tried going through the first steps of starting my company today, but I'm [haunting the Swedish paperwork machine]({{< ref "/crumb/2025-09-23-21st-century-digital-society.md" >}}), present but not quite real. I'll wait it out and see if I materialize.
 
-I had the last day at my former employer yesterday and ambivalent feelings there. Five years, and at the same time, I'm happy to be heading for the next step and get started working more on my own stuff, while still doing it at a very, very leisurely pace. I tried going through the first steps of starting my company today, but I'm [haunting the Swedish paperwork machine]({{< ref "/crumb/2025-09-23-21st-century-digital-society.md" >}}), present but not quite real. I'll wait it out and see if I materialize.
+Starting to adjust to the apartment, and the balcony has [become my home office]({{< ref "/scrap/2025-09-14T105315.md" >}}), and I have borrowed a portal heater from my brother Hasse, so I have 1900w of heating helping keep the balcony warm as the evenings and mornings get colder (around 14°C when I get up). Curious to learn what the electrical bill will be 😛 One of the interesting thoughts from the recent while is how much advice is about all the things I need, and "[maybe, let's see in a couple of weeks]({{< ref "/crumb/2025-09-26-maybe-lets-see-in-a-few-weeks.md" >}})," has been my goto response so far.
 
-I have a trip to Nuremberg in October to attend a baptism, and tickets to [Electric Callboy](https://www.youtube.com/watch?v=EDnIEWyVIlE) in Stockholm in November, and I [discovered]({{< ref "/scrap/2025-09-23T202248.md" >}}) an hour ago that [The Northern Boys](https://www.youtube.com/watch?v=4VXKhJfRQ7k) are playing in London in December, so that's also scheduled now. I'm starting to have a schedule.
+Got a chance to hang out with the nieces and nephew last weekend to do an early birthday celebration for the oldest niece, hanging out with family and playing with the kids. And this weekend I'll be house sitting for my mom, or well, I'll be driving them to the train to go to Gothenburg and then I can be wherever as long as I'm picking them up on Sunday. So why not stay in their house and eat their food? 😜
 
-I'm pondering taking a train from Nuremberg to Prague, since I'm in the neighbourhood, and I hear there might be some good beer in Prague…
+I have a trip to Nuremberg in October to attend a baptism, and tickets to [Electric Callboy](https://www.youtube.com/watch?v=EDnIEWyVIlE) in Stockholm in November, and I [discovered]({{< ref "/scrap/2025-09-23T202248.md" >}}) that [The Northern Boys](https://www.youtube.com/watch?v=4VXKhJfRQ7k) are playing in London in December, so that's also scheduled now. I'm starting to have a schedule. I think next will be to consider going to [FOSDEM at the end of January](https://fosdem.org/2026/) since I haven't been before and it seems fun and relevant to my interests. I'll consider [CCC](https://events.ccc.de/en/2025/) some other year.
 
 ## Moving home and starting a company
 
@@ -31,7 +31,9 @@ Right now all my stuff is in a warehouse in Singapore waiting to be packaged int
 
 I have been a bit enamored by the [POSSE](https://indieweb.org/POSSE) model of owning what you publish and do, and because my plan is to work in the open (post devlogs, share how I'm exploring, and learning, the [series]({{< ref "/series/" >}}) are examples of how) as I start my own company, I want to be in control of the stuff I write and that's why I started updating this site. I've never been good at posting, and I tend to go verbose when I do, so writing longer and then posting/linking on other platforms feels more like what I should do. And then we'll see if others find it useful or not. I have had some mild success on LinkedIn, and I'm not sure if I should be happy that it's the crowd that likes what I'm writing or not. Makes me slightly doubt that I'm breaking out to run a small thing 😜
 
-I'm trying to figure out how I want to do it all, [Posse Party](https://posseparty.com) seems really neat, and Searls is getting it out in the next couple of months. And should I just cross-post manually until then, or figure out my own thing? There are various feed2toot and similar tools available to wire up myself. We'll see. I like the idea of a tool and the description from the party website is what I'd like and it feels silly to rebuild it. 
+I'm trying to figure out how I want to do it all, [Posse Party](https://posseparty.com) seems really neat, and Searls is getting it out in the next couple of months. I don't like the idea of cross-posting manually until then, or completely building something from scratch. There are various feed2toot and similar tools available to wire up myself, but urgh. We'll see. I like the idea of a tool and the description from the party website is what I'd like and it feels silly to rebuild it.
+
+For now, I have spun up an instance of [n8n](https://n8n.io), originally to just capture form submissions, and then discovered how simple it was to setup a workflow that cross-posts to Telegram, Mastodon, and Bluesky for me. It hasn't been very thoroughly done, but it works good enough for now. Maybe it'll be good enough by the time the party is ready, we'll see. I'm realizing I want to change the format for how I post to make things work better, but I'll need to explore my needs more before I make any decisions.
 
 ## Learning and self-improvement
 
