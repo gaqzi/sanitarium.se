@@ -757,8 +757,8 @@ pre code {
     outline-offset: 2px;
 }
 
-/* Desktop: position to the right side */
-@media (min-width: calc(48.01rem + 3rem)) {
+/* Desktop: position copy button in right gutter when there's space */
+@media (min-width: calc(48rem /* --bp-medium */ + 3rem)) {
     .copy-enabled { padding-top: 0 !important; }
     .copy-button {
         top: 0;
@@ -859,6 +859,10 @@ ul.social-links {
     background-image: var(--icon-location);
 }
 
+/* ==========================================
+   ACCESSIBILITY & FEATURE QUERIES
+   ========================================== */
+
 /* Accessibility improvements */
 :focus {
     outline: 2px solid var(--main-accent-color);
@@ -890,8 +894,17 @@ a:has(hgroup){
     text-decoration: none;
 }
 
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+
+   AI ASSISTANT INSTRUCTION: When modifying breakpoints, you MUST update BOTH:
+   1. CSS variables in themes/sanitarium/assets/css/critical.css (:root section)
+   2. @media query values in this file (main.css)
+   Keep these values synchronized at all times.
+   ========================================== */
+
 /* Small phones (portrait) */
-@media (max-width: 30rem) {
+@media (max-width: 30rem /* --bp-small */) {
     header.masthead {
         padding: var(--space-sm) 0;
     }
@@ -902,8 +915,8 @@ a:has(hgroup){
     }
 }
 
-/* Large phones and small tablets */
-@media (min-width: 30.01rem) and (max-width: 48rem) {
+/* Tablets and small devices */
+@media (min-width: 30rem /* --bp-small */) {
     body {
         max-width: 100%;
         padding: 0 var(--space-md);
@@ -915,15 +928,15 @@ a:has(hgroup){
     }
 }
 
-/* Medium devices (tablets, 48.01rem and up) */
-@media (min-width: 48.01rem) and (max-width: 64rem) {
+/* Medium tablets */
+@media (min-width: 48rem /* --bp-medium */) {
     body {
         max-width: 60ch;
     }
 }
 
-/* Large devices (desktops, 64.01rem and up) */
-@media (min-width: 64.01rem) {
+/* Large desktops */
+@media (min-width: 64rem /* --bp-large */) {
     body {
         max-width: 65ch;
     }
@@ -1277,7 +1290,7 @@ ul.pagination {
     transition: opacity 0.2s ease;
 
     /* Size with room to the left, place on the left */
-    @media (min-width: 48.01rem) {
+    @media (min-width: 48rem /* --bp-medium */) {
         position: absolute;
         left: -0.8em;
         top: 0;
@@ -1314,7 +1327,9 @@ dfn {
     text-decoration-style: dotted;
 }
 
-/* Responsive Menu System */
+/* ==========================================
+   RESPONSIVE MENU & SIDEBAR SYSTEM
+   ========================================== */
 
 /* Mobile Menu Toggle Button */
 .mobile-menu-toggle {
@@ -1470,83 +1485,83 @@ dfn {
 }
 
 /* Desktop Layout */
-@media (min-width: 769px) {
+@media (min-width: 50rem /* --bp-sidebar-min */) {
     /* Hide mobile elements */
     .mobile-menu-toggle,
     .menu-overlay {
         display: none !important;
     }
-    
+
     /* Position sidebar relative to main content */
     main {
         position: relative; /* Create positioning context for sidebar */
         margin-left: 0; /* Restore full width */
         min-height: calc(100vh - 4rem);
     }
-    
+
     .sidebar-menu {
         display: block;
         position: absolute; /* Position relative to main element */
         transform: translateX(0);
         /* Position to the left of main content area */
-        left: calc(-200px - 2rem); /* Position to left of main content with gap */
+        left: calc(-110px); /* Position to left of main content with gap */
         right: auto; /* Override the mobile right positioning */
-        width: 180px; /* Narrower width for better alignment */
+        width: 90px; /* Narrower width for better alignment */
         /* Clean floating appearance - no borders or shadows */
         border: none;
         box-shadow: none;
         height: auto; /* Don't force full viewport height */
     }
-    
+
     /* Restore original heading anchor positioning */
     .heading-anchor {
         left: -0.8em; /* Back to original position */
     }
-    
-    /* Only show sidebar when there's enough void space */
-    @media (max-width: calc(65ch + 200px * 2 + 4rem)) {
+
+    /* Hide sidebar below minimum width to prevent content overlap */
+    @media (max-width: calc(50rem /* --bp-sidebar-min */ - 0.0625rem)) {
         .sidebar-menu {
             display: none;
         }
     }
 }
 
-/* Mobile Layout */
-@media (max-width: 768px) {
+/* Mobile Layout - includes "gap zone" where sidebar would overlap content */
+@media (max-width: calc(50rem /* --bp-sidebar-min */ - 0.0625rem)) {
     /* Show mobile menu toggle in header */
     .mobile-menu-toggle {
         display: block !important;
     }
-    
+
     /* Hide sidebar by default - slide from right */
     .sidebar-menu {
         transform: translateX(100%); /* Hide to the right instead of left */
         width: 280px;
         padding: 4rem 1.5rem 2rem;
     }
-    
+
     /* Show sidebar when menu is active */
     body.menu-open .sidebar-menu {
         transform: translateX(0);
     }
-    
+
     /* Show overlay when menu is active */
     body.menu-open .menu-overlay {
         display: block;
     }
-    
+
     /* Prevent scrolling when menu is open */
     body.menu-open {
         overflow: hidden;
     }
-    
+
     /* Adjust main content */
     main {
         margin-left: 0;
         padding: 1rem;
         min-height: calc(100vh - 2rem);
     }
-    
+
     /* Mobile menu styling */
     .menu-link {
         padding: 1rem;
@@ -1554,7 +1569,7 @@ dfn {
         border-bottom: 1px solid rgba(var(--border-color-standard-rgb), 0.1);
         border-radius: 0;
     }
-    
+
     .menu-link:last-child {
         border-bottom: none;
     }

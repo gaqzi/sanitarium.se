@@ -86,7 +86,7 @@ enableEmoji = true
     weight = 80
 
   [[menus.main]]
-    name = 'Follow along'
+    name = 'Follow'
     pageRef = '/Follow/'
     weight = 90
     [menus.main.params]

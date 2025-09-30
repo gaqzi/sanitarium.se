@@ -17,6 +17,12 @@
     --space-md: 1rem;
     --space-lg: 2rem;
 
+    /* Responsive breakpoints */
+    --bp-small: 30rem;              /* 480px - phones */
+    --bp-medium: 48rem;             /* 768px - tablets */
+    --bp-large: 64rem;              /* 1024px - desktops */
+    --bp-sidebar-min: 50rem;        /* 800px - minimum for sidebar (also the safe minimum) */
+
     /* Critical colors for initial render */
     --accent-color-dark: #9e9eff;
     --accent-color-light: #a00000;
