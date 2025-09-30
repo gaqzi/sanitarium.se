@@ -108,7 +108,7 @@
         /* Computed variables for light mode */
         --quote-mark-color: var(--quote-mark-color-light);
         --button-bg: rgba(0, 0, 0, 0.05);
-        --button-hover-bg: rgba(0, 0, 0, 0.1);
+        --button-hover-bg: rgba(0, 0, 0, 0.15);
         --button-filter: brightness(0.2);
         --pagination-active-bg: var(--accent-color-light);
         --heading-anchor-hover-color: var(--accent-color-light);
