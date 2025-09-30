@@ -1452,7 +1452,7 @@ dfn {
     padding: 0.15rem 1rem; /* Much tighter vertical padding */
     color: CanvasText;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 6px 0 0 6px; /* Rounded left, flush right */
     transition: all 0.2s ease;
     font-family: var(--system-sans);
     font-weight: 500;
