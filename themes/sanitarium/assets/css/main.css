@@ -1443,6 +1443,8 @@ dfn {
 }
 .menu-item.divider {
     margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(var(--border-color-standard-rgb), 0.2);
 }
 
 .menu-link {
@@ -1564,7 +1566,7 @@ dfn {
 
     /* Mobile menu styling */
     .menu-link {
-        padding: 1rem;
+        padding: 0.65rem 1rem;
         font-size: 1.1em;
         border-bottom: 1px solid rgba(var(--border-color-standard-rgb), 0.1);
         border-radius: 0;
