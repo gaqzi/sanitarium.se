@@ -1515,6 +1515,12 @@ dfn {
         height: auto; /* Don't force full viewport height */
     }
 
+    /* Desktop menu link alignment, make sure there's space to align right */
+    .menu-link {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+
     /* Restore original heading anchor positioning */
     .heading-anchor {
         left: -0.8em; /* Back to original position */
