@@ -1,0 +1,25 @@
+---
+
+til:
+  display: TIL
+  plural: TILs
+
+crumb:
+  display: crumb
+  plural: crumbs
+
+blog:
+  display: post
+  plural: posts
+
+daily:
+  display: daily
+  plural: dailies
+
+series:
+  display: series
+  plural: series
+
+scrap:
+  display: scrap
+  plural: scraps
