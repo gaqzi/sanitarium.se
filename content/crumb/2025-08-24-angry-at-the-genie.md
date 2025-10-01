@@ -9,7 +9,7 @@ tags:
   - thinking-out-loud
   - genie
   - learning
-series: ['learning-with-genies']
+series: ['learning-with-genies', 'working-with-genies']
 daily: ['2025-08-24']
 ---
 
