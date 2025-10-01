@@ -13,15 +13,6 @@ rsync -rvz \
     --checksum \
     . sanitarium@the.padded.cell.sanitarium.se:/srv/www/sanitarium.se/ | tee "$tmpfile"
 
-# Run rsync and tee output to both console and temp file
-rsync -rvz \
-    --perms --chmod=Dgo+rx,Fgo+r \
-    --delete-after --delete-excluded \
-    --exclude index.csv --exclude banner.html \
-    --itemize-changes \
-    --checksum \
-    . bjornnow@automation.sanitarium.se:/srv/www/bjorn.now/ | tee "$tmpfile"
-
 # Cloudflare cache purge
 if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ZONE_ID" ]; then
     # Extract transferred files (excluding directories, CSS, and JS files)

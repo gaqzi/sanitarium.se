@@ -55,7 +55,6 @@ jobs:
         run: |
           mkdir -p /home/runner/.ssh
           ssh-keyscan the.padded.cell.sanitarium.se >> /home/runner/.ssh/known_hosts
-          ssh-keyscan automation.sanitarium.se >> /home/runner/.ssh/known_hosts
           echo "${{ secrets.DEPLOY_SSH }}" > /home/runner/.ssh/github_actions
           chmod 600 /home/runner/.ssh/github_actions
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
