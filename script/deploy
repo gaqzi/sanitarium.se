@@ -11,7 +11,7 @@ rsync -rvz \
     --exclude index.csv --exclude banner.html \
     --itemize-changes \
     --checksum \
-    . bjornnow@the.padded.cell.sanitarium.se:/srv/www/bjorn.now/ | tee "$tmpfile"
+    . bjornnow@the.padded.cell.sanitarium.se:/srv/www/bjorn.now/ | tee "$tmpfile" || exit 1
 
 # Cloudflare cache purge
 if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ZONE_ID" ]; then
