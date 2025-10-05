@@ -3,7 +3,8 @@
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{- else }}
     {{- with . | minify | fingerprint }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      <link rel="preload" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></noscript>
     {{- end }}
   {{- end }}
 {{- end }}
