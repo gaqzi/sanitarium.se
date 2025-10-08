@@ -1,10 +1,22 @@
-{{ $ogImage := partial "head/banner-image.html" . }}
 <!-- Open Graph (Facebook, LinkedIn) -->
-<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
 {{ $ogTitle := partial "title-with-subtitle.html" .}}
-{{ with $ogTitle -}}
-<meta property="og:title" content="{{ . }}">
-<meta name="twitter:title" content="{{ . }}">
+{{ if and $ogTitle (not .Params.noPageTitle) -}}
+<meta property="og:title" content="{{ $ogTitle }}">
+{{ end }}
+
+{{ $ogDescription := "" -}}
+{{ with .Description -}}
+    {{ $ogDescription =  . }}
+{{ else -}}
+    {{ if .IsPage -}}
+        {{ $ogDescription = .Summary | plainify }}
+    {{ else -}}
+        {{ $ogDescription = .Site.Params.description }}
+    {{ end -}}
+{{ end -}}
+{{ with $ogDescription }}
+<meta name="description" content="{{ . }}">
+<meta property="og:description" content="{{ . }}">
 {{ end }}
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
@@ -19,6 +31,7 @@
 <meta property="og:type" content="website">
 {{ end }}
 
+{{ $ogImage := partial "head/banner-image.html" . }}
 {{ with $ogImage }}
     <meta property="og:image" content="{{ . | absURL }}">
     {{ with resources.Get . -}}
@@ -26,18 +39,15 @@
     <meta property="og:image:height" content="{{ .Height }}">
     {{ end -}}
 {{ end }}
+
 {{- $firstAuthor := index (.Params.authors | default (slice .Site.Params.author)) 0 -}}
 {{- $authorData := index .Site.Data.authors $firstAuthor -}}
 {{ with $authorData.social.mastodon -}}
     <meta name="fediverse:creator" content="{{ . }}">
 {{ end -}}
 
-<!-- Twitter Card -->
+<!-- Twitter Card, labels also used by Slack -->
 <meta name="twitter:card" content="{{ if $ogImage }}summary_large_image{{ else }}summary{{ end }}">
-<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
-{{ with $ogImage }}
-<meta name="twitter:image" content="{{ . | absURL }}">
-{{ end }}
 {{ with .Site.Params.twitter }}
 <meta name="twitter:site" content="@{{ . }}">
 {{ end }}

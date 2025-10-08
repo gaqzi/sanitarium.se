@@ -23,16 +23,6 @@ class TestBannerImages:
             "/img/banners/2025-07-which-hats-are-you-wearing.png" in image_url
         ), f"which-hat-are-you-wearing should use specific banner, got: {image_url}"
 
-        twitter_image = soup.find("meta", attrs={"name": "twitter:image"})
-        assert (
-            twitter_image is not None
-        ), "which-hat-are-you-wearing post should have twitter:image"
-
-        twitter_image_url = twitter_image.get("content", "")
-        assert (
-            twitter_image_url == image_url
-        ), "Open Graph and Twitter images should match"
-
         og_width = soup.find("meta", attrs={"property": "og:image:width"})
         og_height = soup.find("meta", attrs={"property": "og:image:height"})
 
@@ -44,9 +34,6 @@ class TestBannerImages:
         assert image_url.startswith(
             "http"
         ), f"og:image should be absolute URL, got: {image_url}"
-        assert twitter_image_url.startswith(
-            "http"
-        ), f"twitter:image should be absolute URL, got: {twitter_image_url}"
 
         twitter_card = soup.find("meta", attrs={"name": "twitter:card"})
         assert twitter_card is not None, "Should have twitter:card meta tag"
