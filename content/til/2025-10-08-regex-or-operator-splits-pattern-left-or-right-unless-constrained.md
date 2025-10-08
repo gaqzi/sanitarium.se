@@ -1,9 +1,8 @@
 ---
 authors: ['björn']
-date: '2025-10-08T22:07:44+02:00'
-lastmod: '2025-10-08T22:07:44+02:00'
+date: '2025-10-08T23:34:03+02:00'
+lastmod: '2025-10-08T23:34:03+02:00'
 location: Sweden
-draft: true
 title: The regex | (or) operator splits the pattern left or right unless explicitly grouped
 tags:
   - how-to
