@@ -10,11 +10,11 @@ daily: ['2025-10-08']
 series: []
 image: /img/2025/10-n8n-step-rerun.png
 ---
-{{< figure src="/img/2025/10-n8n-step-rerun.png" alt="n8n workflow showing a sequential workflow starting with RSS fetching and going through Telegram, Mastodon, and Bluesky" >}}
-
 Execute the data node/step and pin it,
 instead of rerunning the workflow or the step that relies on that data,
 when modifying a step that needs fresh data.
+
+{{< figure src="/img/2025/10-n8n-step-rerun.png" alt="n8n workflow showing a sequential workflow starting with RSS fetching and going through Telegram, Mastodon, and Bluesky" >}}
 
 Example: When modifying Mastodon/Bluesky cross-posting nodes that depend on an RSS Feed Trigger,
 execute and pin the RSS node.
