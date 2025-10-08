@@ -136,6 +136,10 @@ drone-ci:
   display: Drone CI
   type: tool
 
+hugo:
+  display: Hugo
+  type: tool
+
 github:
   display: GitHub
   type: tool
