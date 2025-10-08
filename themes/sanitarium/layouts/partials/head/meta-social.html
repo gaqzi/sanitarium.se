@@ -18,7 +18,10 @@
 <meta name="description" content="{{ . }}">
 <meta property="og:description" content="{{ . }}">
 {{ end }}
+
+<link rel="canonical" href="{{ .Permalink }}">
 <meta property="og:url" content="{{ .Permalink }}">
+
 <meta property="og:site_name" content="{{ .Site.Title }}">
 <meta property="og:locale" content="{{ .Site.Language.Lang }}">
 {{ if .IsPage }}
@@ -42,19 +45,20 @@
     {{ end -}}
 {{ end }}
 
+{{ range (.Params.authors | default (slice .Site.Params.author)) }}{{ $authorData := index $.Site.Data.authors . }}<meta name="author" content="{{ $authorData.displayName | default . }}">{{ end }}
 {{- $firstAuthor := index (.Params.authors | default (slice .Site.Params.author)) 0 -}}
 {{- $authorData := index .Site.Data.authors $firstAuthor -}}
 {{ with $authorData.social.mastodon -}}
     <meta name="fediverse:creator" content="{{ . }}">
 {{ end -}}
+{{ with .Site.Params.twitterAuthor }}
+    <meta name="twitter:creator" content="@{{ . }}">
+{{ end }}
 
 <!-- Twitter Card, labels also used by Slack -->
 <meta name="twitter:card" content="{{ if $ogImage }}summary_large_image{{ else }}summary{{ end }}">
 {{ with .Site.Params.twitter }}
 <meta name="twitter:site" content="@{{ . }}">
-{{ end }}
-{{ with .Site.Params.twitterAuthor }}
-<meta name="twitter:creator" content="@{{ . }}">
 {{ end }}
 {{ with $authorData.displayName -}}
     <meta name="twitter:label1" content="Author">

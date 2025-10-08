@@ -2,7 +2,3 @@
 <title>{{- $pageTitle := partial "title-with-subtitle.html" . -}}{{- $pageTitle -}}{{- if and (not .IsHome) $pageTitle }} | {{ .Site.Title }}{{ else if .IsHome }}{{ else }}{{ .Site.Title }}{{ end }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
-
-<!-- Standard SEO metadata -->
-{{ range (.Params.authors | default (slice .Site.Params.author)) }}{{ $authorData := index $.Site.Data.authors . }}<meta name="author" content="{{ $authorData.displayName | default . }}">{{ end }}
-<link rel="canonical" href="{{ .Permalink }}">
