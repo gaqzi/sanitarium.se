@@ -51,9 +51,9 @@ background-work:
   type: concept
   description: >
     The extra work to understand how things work because you just want to know,
-    not strictly necessary to get <whatever> done,
-    but you walk away having learned something new.
-    Inspired by [Kent Beck](https://tidyfirst.substack.com/p/background-work)
+    not strictly necessary to get the thing done <em>right now</em>,
+    but you walk away better at your craft, and better equipped for the future.
+    Inspired by Kent Beck's <a href="https://tidyfirst.substack.com/p/background-work">Background Work</a> post.
 
 ci:
   display: CI
