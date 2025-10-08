@@ -3,8 +3,16 @@
 {{ define "main" }}
 <header>
     <h1>{{ if eq .Kind "term" }}#{{ .Data.Term }}{{ else }}{{ .Title }}{{ end }}</h1>
-    {{ with .Description }}
-    <div class="description">{{ . }}</div>
+
+    {{ $tagDescription := "" }}
+    {{ if .Data.Term }}
+        {{ with index site.Data.tags .Data.Term }}
+            {{ $tagDescription = .description }}
+        {{ end }}
+    {{ end }}
+    {{ $description := or .Description $tagDescription }}
+    {{ with $description }}
+        <div class="description">{{ . |safeHTML }}</div>
     {{ end }}
 </header>
 
