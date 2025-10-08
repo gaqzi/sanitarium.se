@@ -1,6 +1,14 @@
 {{ $ogImage := "" }}
 
-{{ if in .Site.Params.bannerSections .Section }}
+{{ with .Params.image }}
+    {{ if reflect.IsMap . }}
+        {{ with .path }}{{ $ogImage = . }}{{ end }}
+    {{ else }}
+        {{ $ogImage = . }}
+    {{ end }}
+{{ end }}
+
+{{ if and (not $ogImage) (in .Site.Params.bannerSections .Section) }}
     {{ $slug := "" }}
     {{ if .File }}
         {{ $slug = .File.ContentBaseName }}
@@ -17,16 +25,10 @@
     {{ end }}
 {{ end }}
 
-{{ with .Params.image }}
-    {{ if reflect.IsMap . }}
-        {{ with .path }}{{ $ogImage = . }}{{ end }}
-    {{ else }}
-        {{ $ogImage = . }}
-    {{ end }}
-{{ end }}
-
 {{ if and (not $ogImage) .Site.Params.defaultImage }}
-    {{ $ogImage = .Site.Params.defaultImage }}
+    {{ with resources.Get .Site.Params.defaultImage }}
+        {{ $ogImage = .RelPermalink }}
+    {{ end }}
 {{ end }}
 
 {{ return $ogImage }}

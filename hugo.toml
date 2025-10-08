@@ -113,7 +113,7 @@ enableEmoji = true
   mastodonHandle = "@gaqzi@hachyderm.io"
 
   # SEO settings
-  defaultImage = ""  # Default image for social media when not specified in post
+  defaultImage = "/img/banners/default.png"  # Default image for social media when not specified in post
   twitterAuthor = "gaqzi"  # Twitter handle without @
   favicon = "/favicon.ico"
 
