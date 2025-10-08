@@ -19,7 +19,7 @@ The script expects the banner server to:
 
 Usage:
   python genbanners.py [options]
-  python genbanners.py --csv-path public/posts.csv --output-dir static/banners
+  python genbanners.py --csv-path public/posts.csv --output-dir assets/banners
 
 Requirements:
   - Python 3.6+
@@ -429,8 +429,8 @@ def parse_args():
     )
     parser.add_argument(
         "--output-dir",
-        default="static/img/banners",
-        help="Directory to save banner images (default: static/img/banners)",
+        default="assets/img/banners",
+        help="Directory to save banner images (default: assets/img/banners)",
     )
     parser.add_argument(
         "--cache-file",

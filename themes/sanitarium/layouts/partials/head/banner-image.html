@@ -12,7 +12,9 @@
         {{ $slug = path.Base .RelPermalink | strings.TrimSuffix ".html" }}
     {{ end }}
     {{ $defaultBannerPath := printf "/img/banners/%s.png" $slug }}
-    {{ $ogImage = $defaultBannerPath }}
+    {{ with resources.Get $defaultBannerPath }}
+        {{ $ogImage = .RelPermalink }}
+    {{ end }}
 {{ end }}
 
 {{ with .Params.image }}
