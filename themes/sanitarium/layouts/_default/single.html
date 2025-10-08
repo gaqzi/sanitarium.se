@@ -41,7 +41,7 @@
     {{ range site.RegularPages -}}
         {{ if ne .Permalink $currentPage -}}
             {{/* Only match links inside <a href> */}}
-            {{ $pattern := printf `<a[^>]+href=["']%s` $currentPage.Permalink -}}
+            {{ $pattern := printf `<a[^>]+href=["'](?:%s|%s)` $currentPage.Permalink $currentPage.RelPermalink -}}
             {{ if findRE $pattern .Content -}}
                 {{ $backlinks = $backlinks | append . -}}
             {{ end -}}

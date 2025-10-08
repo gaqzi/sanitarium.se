@@ -47,6 +47,14 @@ automation:
   type: concept
   description: Reducing manual work through scripting and tools
 
+background-work:
+  type: concept
+  description: >
+    The extra work to understand how things work because you just want to know,
+    not strictly necessary to get <whatever> done,
+    but you walk away having learned something new.
+    Inspired by [Kent Beck](https://tidyfirst.substack.com/p/background-work)
+
 ci:
   display: CI
   type: concept
@@ -113,6 +121,14 @@ html:
 python:
   display: Python
   type: programming-language
+
+regex:
+  display: Regular Expressions
+  type: programming-language
+  description: >
+    One of my first loves as a programming language,
+    I learned about it while working with PHP and how it allowed me work with text was mind blowing at the time.
+    I ended up learning Perl because of 'em.
 
 ruby:
   display: Ruby
