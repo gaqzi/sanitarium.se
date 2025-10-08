@@ -3,7 +3,7 @@
 {{ define "main" }}
 <article class="post {{ .Section }} single">
     {{/* When changing this layout remember to change single.banner.html too */}}
-    {{ if not .Params.full }}
+    {{ if or (not .Params.noPageTitle) (not .Title) }}
     <header>
         <hgroup {{ if .Params.language }} lang="{{ .Params.language }}"{{ end }}>
             <h1 class="title">{{ .Title }}</h1>

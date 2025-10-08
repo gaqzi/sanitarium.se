@@ -7,9 +7,9 @@ defaultContentLanguage = "en"
 
 cascade = [
   { _target = { path = "/archive/**" }, outputs = ["HTML"], sitemap = { disable = true } },
-  { _target = { path = "/til/**"} },
-  { _target = { path = "/link/**"}, full = true },
-  { _target = { path = "/scrap/**"}, full = true },
+  { _target = { path = "/til/**"}, noPageTitle = true},
+  { _target = { path = "/link/**"}, full = true, noPageTitle = true },
+  { _target = { path = "/scrap/**"}, full = true, noPageTitle = true },
 ]
 
 # URL structure 
