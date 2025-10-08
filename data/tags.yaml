@@ -156,6 +156,10 @@ macos:
   type: tool
   description: Apple's operating system
 
+n8n:
+  type: tool
+  description: Workflow automation, using it to handle cross-posting this site, and hopefully more in the future
+
 roam-research:
   display: Roam Research
   type: tool
