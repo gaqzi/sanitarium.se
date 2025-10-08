@@ -39,7 +39,7 @@ available in `/opt/local/python/<version>`.
 A quick change to the Snap config, to add these to my `$PATH`, and [tox] ran
 through without any problems.
 
-{{< img src="/img/2015/10/snap-console.png" alt="New Snap CI config" >}}
+{{< figure src="/img/2015/10/snap-console.png" alt="New Snap CI config" >}}
 
 What you'll need to add to your command box. **Note** it didn't work for me when
 I added it to the environment variable field, I'm guessing it's because the `$PATH`
@@ -51,7 +51,7 @@ export PATH="$PATH:/opt/local/python/3.3.5/bin:/opt/local/python/3.4.0/bin:/opt/
 
 And look, my tests are passing!
 
-[{{< img src="/img/2015/10/snap-success.png" alt="Passing tests" >}}](https://snap-ci.com/gaqzi/py-gocd/branch/master)
+[{{< figure src="/img/2015/10/snap-success.png" alt="Passing tests" >}}](https://snap-ci.com/gaqzi/py-gocd/branch/master)
 
 [gocd-cli]: https://github.com/gaqzi/gocd-cli
 [pull request]: https://github.com/gaqzi/py-gocd/pull/6

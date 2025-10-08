@@ -87,7 +87,7 @@ The `wikileaks` file downloaded from this server looks like this:
 
 # Now tell Wikileaks about your mirror
 Go to the [form][formuläret] and fill it as the picture, set the IP-address of your server in the IP-field:  
-{{< img alt="Wikileaks mirror settings" src="/img/2010/installning-hos-wikileaks.png" >}}
+{{< figure alt="Wikileaks mirror settings" src="/img/2010/installning-hos-wikileaks.png" >}}
 
 If you're having any troubles don't hesitate to ask in the comments!
 

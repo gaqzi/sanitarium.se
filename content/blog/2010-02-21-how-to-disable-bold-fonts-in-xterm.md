@@ -33,7 +33,7 @@ Into my `~/.Xresources` and afterwards ran `xrdb -load ~/.Xresources` and starte
 
 
 
-{{< img alt="xterm with bold font and xterm without bold font" src="/img/2010/xterms.png" >}}
+{{< figure alt="xterm with bold font and xterm without bold font" src="/img/2010/xterms.png" >}}
 
 
 The before and after shot.

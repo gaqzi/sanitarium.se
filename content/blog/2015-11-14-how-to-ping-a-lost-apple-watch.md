@@ -27,14 +27,14 @@ companion app on the phone.
    1. Settings
    2. Bluetooth
    3. My Devices should show your Watch:
-      {{< img alt="Bluetooth settings on an iPhone" style="max-width: 375px;" src="/img/2015/11/bluetooth-settings.png" >}}
+      {{< figure alt="Bluetooth settings on an iPhone" style="max-width: 375px;" src="/img/2015/11/bluetooth-settings.png" >}}
            
 2. Open the Apple Watch app:
    1. Sounds & Haptics
    2. Drag the slider for alert volume to max
    3. Tap the knob on the slider.  
       The watch will make a sound every time you tap the knob.
-      {{< img src="/img/2015/11/alert-volume-settings.png"
+      {{< figure src="/img/2015/11/alert-volume-settings.png"
            alt="Alert volume settings" style="max-width: 375px;" >}}
 3. Don't cry yourself to sleep over losing an expensive toy in the mess that is
    your own apartment.

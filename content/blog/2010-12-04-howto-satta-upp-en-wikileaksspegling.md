@@ -91,7 +91,7 @@ Innehållet i filen `wikileaks` som du tankar från den här servern är:
 
 # Hur du säger till Wikileaks att allt är klart
 Surfa in på [formuläret] och fyll i det enligt nedan, byt ut ip-adress mot IP:t för din server:  
-{{< img alt="Wikileaks mirror settings" src="/img/2010/installning-hos-wikileaks.png" >}}
+{{< figure alt="Wikileaks mirror settings" src="/img/2010/installning-hos-wikileaks.png" >}}
 
 Om det är några oklarheter eller funderingar så fråga på i kommentarsfältet
 nedan så ska jag försöka hjälpa till att reda ut!

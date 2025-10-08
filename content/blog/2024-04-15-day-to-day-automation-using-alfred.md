@@ -68,7 +68,7 @@ with a keybinding and type the name of the app you want to start and voilà.
 I have bound the keyboard shortcut to `cmd+space` and replaced the built-in
 Spotlight search.
 
-{{< img alt="Opening Firefox in Alfred" src="/img/2024/04/15/01-open-app.png" >}}
+{{< figure alt="Opening Firefox in Alfred" src="/img/2024/04/15/01-open-app.png" >}}
 
 ### Spell / define
 
@@ -78,14 +78,14 @@ words are spelled very differently from how they sound. Summon Alfred and
 you don't find it, replace `spell` with `google` and see if Google knows
 better. Hit enter to copy the correct spelling to the clipboard.
 
-{{< img alt="Finding the correct spelling of continuus" src="/img/2024/04/15/02-spell-continuous.png" >}}
+{{< figure alt="Finding the correct spelling of continuus" src="/img/2024/04/15/02-spell-continuous.png" >}}
 
 And `define` is the same thing but for dictionary lookup because you have some
 word you're unsure what it means, or because you're wondering if someone was
 trying to call you something you with some subtle nuance to a word. 😉
 Hit enter to open the definition in macOS's dictionary app.
 
-{{< img alt="Define 'laggard'" src="/img/2024/04/15/03-define-laggard.png" >}}
+{{< figure alt="Define 'laggard'" src="/img/2024/04/15/03-define-laggard.png" >}}
 
 ### Calculator
 
@@ -93,7 +93,7 @@ You can give it an expression and when you hit enter the result goes into the
 clipboard. I often end up using this instead of opening a Python console on the
 CLI.
 
-{{< img alt="Adding some numbers together" src="/img/2024/04/15/04-calculator.png" >}}
+{{< figure alt="Adding some numbers together" src="/img/2024/04/15/04-calculator.png" >}}
 
 ### Custom web search
 
@@ -104,7 +104,7 @@ have to be a search engine or even a search page._
 To configure a custom web search summon Alfred and hit `cmd+,` to open
 the settings page. Go into the `Features` tab and click on `Web Search`.
 
-{{< img alt="Alfred's setting Features -> Web Search highlighted" src="/img/2024/04/15/05-web-search-listing.png" >}}
+{{< figure alt="Alfred's setting Features -> Web Search highlighted" src="/img/2024/04/15/05-web-search-listing.png" >}}
 
 Some example search engines I have made:
 
@@ -121,7 +121,7 @@ Some example search engines I have made:
 - Pypi: `https://pypi.org/project/{query}`
   - To look up python packages
 
-{{< img alt="Example setup of the Confluence search engine" src="/img/2024/04/15/06-web-search-example-config.png" >}}
+{{< figure alt="Example setup of the Confluence search engine" src="/img/2024/04/15/06-web-search-example-config.png" >}}
 
 ## Working with other applications
 
@@ -145,7 +145,7 @@ This is using [Alfred's Workflows](https://www.alfredapp.com/workflows/), and
 they're part of their advanced set of options. You can do keybindings that work
 across all of macOS as well as actions based on what you're typing.
 
-{{< img alt="The custom app shortcuts workflow" src="/img/2024/04/15/07-app-shortcuts.png" >}}
+{{< figure alt="The custom app shortcuts workflow" src="/img/2024/04/15/07-app-shortcuts.png" >}}
 
 ### Spotify controller
 
@@ -161,7 +161,7 @@ This is an example of something where the automation is _far from necessary,_
 but, I enjoyed adding it. It's something I do every other week and knowing I
 can just go straight into the song nearly every time is great.
 
-{{< img alt="Spotify keybinding and keyword configuration" src="/img/2024/04/15/08-spotify-keybindings.png" >}}
+{{< figure alt="Spotify keybinding and keyword configuration" src="/img/2024/04/15/08-spotify-keybindings.png" >}}
 
 My [Spotify workflow] is on Github if you want to install it, or [here's a gist]
 if you're just curious how I made "open on genius."
@@ -192,7 +192,7 @@ I want to speak by unmuting myself in the current app, so in those rare cases
 I'll use the mute in the app itself. Because optimizing my workflow
 shouldn't come at the pain of everyone else, we live in a society. 🙂
 
-{{< img alt="The mic switch workflow setup" src="/img/2024/04/15/09-mic-switch.png" >}}
+{{< figure alt="The mic switch workflow setup" src="/img/2024/04/15/09-mic-switch.png" >}}
 
 This [mute/unmute workflow] is available on Github,
 and [here's a gist][mute-gist] if you want to see the toggle code. My
@@ -228,7 +228,7 @@ the example keyword `exp` you'd then type `\\exp` to add it. If you need to type
 the exact string for some reason it's easiest to add a space somewhere before
 you type the last character and then go back and remove it.
 
-{{< img alt="How to view or create snippets" src="/img/2024/04/15/11-snippets-config.png" >}}
+{{< figure alt="How to view or create snippets" src="/img/2024/04/15/11-snippets-config.png" >}}
 
 My trigger for creating a snippet is finding that I keep typing or
 pasting the same thing again and again.
@@ -268,7 +268,7 @@ The Alfred snippet configuration
 [{clipboard:trim}](https://jira.example.com/browse/{clipboard:trim})
 ```
 
-{{< img alt="Configuring the jiramd snippet in Alfred" src="/img/2024/04/15/12-snippet-jiramd.png" >}}
+{{< figure alt="Configuring the jiramd snippet in Alfred" src="/img/2024/04/15/12-snippet-jiramd.png" >}}
 
 #### Roam Research
 
@@ -301,7 +301,7 @@ across places. This way I don't have to remember how Slack named this emoji vs.
 Miro vs. Google Docs vs. Confluence vs. other random website. I just learn it in
 Alfred and then paste it straight into the textbox I wanted.
 
-{{< img alt="Searching for the rocket emoji" src="/img/2024/04/15/10-search-emoji.png" >}}
+{{< figure alt="Searching for the rocket emoji" src="/img/2024/04/15/10-search-emoji.png" >}}
 
 This is an external Workflow made by [James Sumners], and you can download it
 from the [workflow's Github page.](https://github.com/jsumners/alfred-emoji)
@@ -322,13 +322,13 @@ uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | pbcopy
 So I instead created a new workflow that is triggered by a snippet that runs
 this for me.
 
-{{< img alt="Configuring the uuidgen snippet" src="/img/2024/04/15/15-snippet-uuidgen.png" >}}
+{{< figure alt="Configuring the uuidgen snippet" src="/img/2024/04/15/15-snippet-uuidgen.png" >}}
 
 **Note:** To make it behave just like a regular snippet you need to
 configure the _Copy to clipboard_ output to `Automatically paste to the
 frontmost app` and `Mark item as transient in clipboard`.
 
-{{< img alt="How configure the Copy to clipboard output" src="/img/2024/04/15/16-snippet-uuidgen-clipboard-config.png" >}}
+{{< figure alt="How configure the Copy to clipboard output" src="/img/2024/04/15/16-snippet-uuidgen-clipboard-config.png" >}}
 
 The [uuidgen workflow] is available on Github.
 
@@ -345,7 +345,7 @@ imperial units into metric and currency conversion. Super convenient and now I
 can finally get how much 16 floz is in ml (473.176) without needing to go
 online.
 
-{{< img alt="Calculate Anything converting 16 floz to ml" src="/img/2024/04/15/13-calculate-anything.png" >}}
+{{< figure alt="Calculate Anything converting 16 floz to ml" src="/img/2024/04/15/13-calculate-anything.png" >}}
 
 By [Biati Digital] and available in
 the [Alfred Gallery](https://alfred.app/workflows/biatidigital/calculate-anything/).
@@ -358,7 +358,7 @@ There was a time when I kept looking at unix timestamps and needed to quickly
 get when it was, so copying and then `ts <paste>` gave me when it was and
 `ts` without anything will give you the current unix timestamp.
 
-{{< img alt="Epoch Converter showing the current unix timestamp" src="/img/2024/04/15/14-epoch-converter.png" >}}
+{{< figure alt="Epoch Converter showing the current unix timestamp" src="/img/2024/04/15/14-epoch-converter.png" >}}
 
 By [Julien Lehuen] and available in
 the [Alfred Gallery](https://alfred.app/workflows/julienlehuen/epoch-converter/).

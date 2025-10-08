@@ -30,17 +30,17 @@ block. So I took that CSS and modified it slightly to support making a
 block float, so I could have it stay with me in the sidebar.
 
 An example of how it looks in my sidebar before my new tags:
-{{< img alt="Unmodified list" src="/img/2022/02/05/01-bare-listing.png" >}}
+{{< figure alt="Unmodified list" src="/img/2022/02/05/01-bare-listing.png" >}}
 
 With the `#sticky` tag from the Roam Book Club, I can make for example
 `Tasks` float when I'm scrolling inside the tasks. This can be super helpful
 for keeping track of where you are (they use it for daily chat pages) but
 not quite what I need:
-{{< img alt="#sticky" src="/img/2022/02/05/02-sticky.png" >}}
+{{< figure alt="#sticky" src="/img/2022/02/05/02-sticky.png" >}}
 
 Introducing `#sticky-block`, which will make the block and all its children
 float along at the top of the page, so I can always drag things there quickly:
-{{< img alt="#sticky-block" src="/img/2022/02/05/03-sticky-block.png" >}}
+{{< figure alt="#sticky-block" src="/img/2022/02/05/03-sticky-block.png" >}}
 
 ```css
 /* To make blocks float, a constant in the sidebar */
