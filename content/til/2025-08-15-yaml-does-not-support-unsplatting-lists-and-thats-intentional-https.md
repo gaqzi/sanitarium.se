@@ -7,6 +7,7 @@ title: YAML does *not* support unsplatting/merging lists
 daily: ['2025-08-15']
 tags:
   - yaml
+  - background-work
 ---
 YAML does not support unsplatting lists (basically, merging list items inline like you can with objects) and [that's intentional](https://github.com/yaml/yaml/issues/35).
 

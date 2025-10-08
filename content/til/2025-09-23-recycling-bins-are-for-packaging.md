@@ -4,7 +4,8 @@ date: '2025-09-23T11:43:42+02:00'
 lastmod: '2025-09-23T11:43:42+02:00'
 location: Sweden
 title: 'Recycling bins are for packaging, not the products'
-tags: []
+tags:
+  - background-work
 daily: ['2025-09-23']
 series: ['moving-to-sweden']
 ---
