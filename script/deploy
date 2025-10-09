@@ -33,6 +33,11 @@ if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ZONE_ID" ]; then
     while IFS= read -r file; do
         # the full URL
         urls+=("https://bjorn.now/$file")
+
+        # Also purge the "directory listing" since index.html is served by default if it's there.
+        if [[ "$file" =~ /index\.html$ ]]; then
+          urls+=("https://bjorn.now/${file/index.html/}")
+        fi
     done <<< "$transferred_files"
 
     # Process URLs in batches of 30 (Cloudflare API limit)
