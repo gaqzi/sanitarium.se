@@ -106,6 +106,10 @@ which-role:
   description: Consciously switching between different (professional) roles/mindsets
 
 # Programming language tags
+bash:
+  display: Bash
+  type: programming-language
+
 css:
   display: CSS
   type: programming-language
