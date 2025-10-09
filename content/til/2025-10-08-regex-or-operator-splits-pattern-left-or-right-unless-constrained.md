@@ -23,7 +23,7 @@ That's because `|` [has the lowest precedence][precedence] so _all other_ operat
 So while I used to think that `prefix_cat|dog` would match `prefix_cat` and `prefix_dog`,
 it actually matches `prefix_cat` and then `dog`.
 
-And that exact problem in a real-world example to find if a page is linking to another, relative or full URL:
+And that exact problem in a real-world example, to find if a page is linking to another, both relative or full URL:
 
 [precedence]: https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag_09_04_08
 
